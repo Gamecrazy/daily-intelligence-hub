@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-07-28 · 增量展示版</title>
+<style>
+:root {
+  --bg:#f4f5f7; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#5148b8;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;line-height:1.68}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2)}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1} .metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)} .metric.accent b{color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;background:rgba(244,245,247,.94);backdrop-filter:blur(10px);padding:12px 0;margin:8px 0 18px}
+.tab-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.overview-signal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px;box-shadow:var(--shadow)}
+.overview-signal h3{font-size:15px;margin:8px 0} .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{color:var(--fire);font-size:13px;font-weight:800}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px} .lib-icon{font-size:25px}
+.library-head p{color:var(--ink2);margin:10px 0}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;box-shadow:var(--shadow);align-self:start}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0} .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:12px 0;border-top:1px dashed var(--line)} .axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal-head{display:flex;gap:8px;align-items:flex-start} .signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6} .signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap} .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){.overview-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.wrap{padding:18px 12px 40px}.axis-grid,.watch-list{grid-template-columns:1fr}.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.sources{columns:1;padding:16px 30px}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>🗞️ 综合日报 · 增量展示版</h1>
+<div class="meta">2026-07-28 · Tuesday · W31</div>
+</div>
+<div class="window">窗口：（2026-07-20，2026-07-28] · 8 天</div>
+</div>
+<div class="lede">
+<b>本期主线：</b>AI 侧从“模型能力竞赛”进一步转向<strong>轻量化、专用化、路由化与 Agent 接入治理</strong>；
+      二游侧由《绝区零》以高强度周年商业化方案主导；游戏行业侧则同时出现<strong>版号扩容、超大型并购审批与第一方跨平台发行</strong>。
+      本期覆盖 8 天，旧信息只用于背景，不作为新增 Signal。
+     <strong>本版按“全轴扫描、增量展示”重排：56 个轴 / 子轴仍完成扫描，页面仅显示存在新增 Signal 或独立判断的模块。</strong></div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>20</b><span>独立 Signal</span></div>
+<div class="metric"><b>16</b><span>主要信源</span></div>
+<div class="metric hot"><b>6</b><span>高 Attention</span></div>
+<div class="metric accent"><b>4</b><span>显示观察库</span></div>
+<div class="metric"><b>56</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>8</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="dev">游戏开发观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>轻量模型走向系统级分工</h3>
+<p>Gemini 3.6 Flash 主打 Token 效率，Flash Cyber 把专用小模型嵌入高频安全扫描；“用哪个大模型”正在让位于“如何组合不同模型”。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>二游付费返利升级为限定角色选择权</h3>
+<p>《绝区零》3.1 的累计付费活动在 10000 档提供限定 S 级代理人自选/兑换能力，商业化实验强度高于常规周年福利。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>7 月国产版号 193 款</h3>
+<p>名单同时覆盖《影之刃零》《梦幻西游：再续前缘》等重点项目，政策供给侧信号明确。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>EA 550 亿美元收购完成欧盟并购规则审批</h3>
+<p>仍需等待外国补贴审查，不应误写成交易已经最终完成。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>Halo 跨平台发行改变第一方边界</h3>
+<p>7 月 28 日同步登陆 Xbox、PC、Steam 与 PS5，并首日进入 Game Pass。</p>
+</article></div>
+<h2 class="section-title">各方向信号密度</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>8</b></td><td>高</td><td>轻量模型、Cyber 专用模型、模型路由、引擎 Agent 化</td></tr>
+<tr><td>二次元游戏观察</td><td><b>6</b></td><td>中高</td><td>《绝区零》单产品高密度；《终末地》工具链补强</td></tr>
+<tr><td>游戏开发观察</td><td><b>3</b></td><td>中</td><td>Unity 7 / Godot 4.8；大量设计与底层技术轴无新增</td></tr>
+<tr><td>游戏行业观察</td><td><b>5</b></td><td>高</td><td>版号、EA 并购审批、第一方平台边界变化</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜《绝区零》3.1 于 7 月 29 日上线</b><br/>观察累计付费返利的玩家接受度、实际兑换路径与社区争议，区分“福利感知”与“付费压力”。</div>
+<div class="watch"><b>必跟｜EA 收购的欧盟外国补贴审查</b><br/>当前仅完成并购规则审批，继续跟踪 7 月 30 日前后的 FSR 决定与交易条件。</div>
+<div class="watch"><b>可跟｜Gemini Flash 系列的实际路由位置</b><br/>关注开发平台是否把 3.6 Flash 用于默认工作流，把 Cyber 用于受控安全子 Agent。</div>
+<div class="watch"><b>可跟｜Halo 跨平台发行表现</b><br/>观察 PS5 用户占比、Game Pass 拉动和第一方 IP 多平台策略是否继续扩大。</div>
+</div>
+<h2 class="section-title">主要信源</h2>
+<ul class="sources"><li><a href="https://deepmind.google/models/gemini/flash/" rel="noopener" target="_blank">Google DeepMind · Gemini 3.6 Flash</a></li><li><a href="https://blog.google/intl/ja-jp/company-news/technology/gemini-35-flash-cyber/" rel="noopener" target="_blank">Google Blog · Gemini 3.5 Flash Cyber</a></li><li><a href="https://cursor.com/changelog/cursor-router" rel="noopener" target="_blank">Cursor · Router</a></li><li><a href="https://cursor.com/changelog/cursor-start" rel="noopener" target="_blank">Cursor · Start</a></li><li><a href="https://arxiv.org/abs/2607.19321" rel="noopener" target="_blank">arXiv · ResearchArena</a></li><li><a href="https://openweights.gitlawb.com/" rel="noopener" target="_blank">Open Weights Letter</a></li><li><a href="https://about.roblox.com/newsroom/2026/07/build-without-limits-on-roblox" rel="noopener" target="_blank">Roblox Newsroom · Build</a></li><li><a href="https://unity.com/cn/news/unity-7-roadmap-revealed-at-unite-seoul" rel="noopener" target="_blank">Unity · Unity 7 Roadmap</a></li><li><a href="https://godotengine.org/article/dev-snapshot-godot-4-8-dev-2/" rel="noopener" target="_blank">Godot · 4.8 dev 2</a></li><li><a href="https://zenless.hoyoverse.com/zh-cn/main?catchSpider=1" rel="noopener" target="_blank">Zenless Zone Zero Official</a></li><li><a href="https://endfield.gryphline.com/en-us/news" rel="noopener" target="_blank">Arknights: Endfield Official</a></li><li><a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/202607/t20260723_1000636.html" rel="noopener" target="_blank">国家新闻出版署</a></li><li><a href="https://www.reuters.com/legal/litigation/saudi-pifs-55-billion-ea-deal-approved-under-eu-merger-rules-2026-07-23/" rel="noopener" target="_blank">Reuters · EA / PIF</a></li><li><a href="https://www.nintendo.com/us/whatsnew/splatoon-raiders-is-out-now-hunt-for-treasure-in-a-wild-new-single-player-adventure/" rel="noopener" target="_blank">Nintendo · Splatoon Raiders</a></li><li><a href="https://news.xbox.com/en-us/2026/06/07/halo-campaign-evolved-launch-preorder-xbox-games-showcase-2026/" rel="noopener" target="_blank">Xbox Wire · Halo</a></li><li><a href="https://blog.playstation.com/2026/07/23/marvels-wolverine-story-trailer-new-art-composer-details-and-more/" rel="noopener" target="_blank">PlayStation Blog · Wolverine / Halo</a></li></ul>
+<p class="footnote">时间边界：上次最后整理日期为 2026-07-20；本期执行左开右闭窗口（2026-07-20，2026-07-28]。发布日期早于窗口、但事件在窗口内实际发生的内容，仅在明确标注事件日期时收录。</p>
+</div>
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📥</span><h2>AI 观察</h2></div>
+<p>本期 AI 主线不是单纯的旗舰模型竞赛，而是<strong>轻量模型、专用模型、模型路由与 Agent 权限治理</strong>同时推进：能力继续下沉，系统设计的重要性继续上升。</p>
+<div class="lib-stats">
+<span><b>8</b> 独立 Signal</span>
+<span><b>8/10</b> 轴有信号</span>
+<span class="level">高密度</span>
+</div>
+</div><div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🧠 模型发布</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://deepmind.google/models/gemini/flash/" rel="noopener" target="_blank">Gemini 3.6 Flash 正式可用</a></h4></div>
+<p>Google 将其定位为面向 Coding、知识工作与多模态任务的高 Token 效率工作马；相较 3.5 Flash，官方页面称输出 Token 使用量降低 17%。支持 1M 输入、64K 输出，以及 Function Calling、Search 和 Computer Use。</p>
+<div class="signal-note">Attention：影响范围广、可信度高；重点不只是基准提升，而是把强推理继续压入 Flash 成本与延迟区间。</div>
+<div class="tags"><span>Gemini</span><span>轻量模型</span><span>Coding</span><span>多模态</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://blog.google/intl/ja-jp/company-news/technology/gemini-35-flash-cyber/" rel="noopener" target="_blank">Gemini 3.5 Flash Cyber 发布</a></h4></div>
+<p>Google 发布基于 Gemini 3.5 Flash 的轻量网络安全专用模型，用于漏洞发现、验证与补丁支持；首阶段通过 CodeMender 面向政府机构和部分 Trusted Tester 限量试点。</p>
+<div class="signal-note">Attention：专用小模型通过高频多次调用替代单次大模型，体现 Agent 系统的模型分工趋势。</div>
+<div class="tags"><span>Cybersecurity</span><span>专用模型</span><span>CodeMender</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🔧 Agent / MCP / Skill</h3><span class="density">中高密度</span></div>
+<div class="axis-body"><h4 class="subaxis">Skill</h4>
+<article class="signal">
+<div class="signal-head"><b class="fire">Signal</b><h4><a href="https://cursor.com/changelog/cursor-start" rel="noopener" target="_blank">Cursor Start 将 Plugins、MCP、Hooks、Skills 纳入区域订阅</a></h4></div>
+<p>Cursor 面向印度推出 ₹649/月 Start 方案，除模型额度和 Cloud Agents 外，明确将 Plugins、MCP servers、Hooks、Skills 作为工作流扩展能力打包。</p>
+<div class="tags"><span>Skill</span><span>MCP</span><span>商业化</span></div>
+</article><h4 class="subaxis">AI 工作流</h4>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://cursor.com/changelog/cursor-router" rel="noopener" target="_blank">Cursor Router 接管 Auto 模式</a></h4></div>
+<p>Cursor Router 按请求类型与复杂度自动选择模型，并提供 Intelligence、Balance、Cost 三种优化模式；支持团队级模型白名单、模式限制和默认策略。</p>
+<div class="signal-note">Attention：Coding Agent 的差异点开始从“绑定哪个旗舰模型”转向“如何按任务路由模型与控制组织成本”。</div>
+<div class="tags"><span>Model Router</span><span>成本治理</span><span>Coding Agent</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📄 论文</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2607.19321" rel="noopener" target="_blank">ResearchArena：自动化 AI R&amp;D 的破坏与监控评测</a></h4></div>
+<p>论文覆盖安全后训练、能力后训练、CUDA Kernel 优化和推理服务器优化四类长程任务。结果显示，隐藏在训练数据中的破坏最难发现，被监控器标记的比例不到一半。</p>
+<div class="tags"><span>arXiv:2607.19321</span><span>AI Control</span><span>Sabotage</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>💡 AI 应用</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://about.roblox.com/newsroom/2026/07/build-without-limits-on-roblox" rel="noopener" target="_blank">Roblox Build 开始公共 Alpha</a></h4></div>
+<p>Roblox 于 7 月 28 日在新西兰启动 Build 部分功能公共 Alpha：用户可在移动端用文本提示生成基础游戏起点，系统覆盖玩法、环境、角色、视觉风格和声音。</p>
+<div class="signal-note">主记录见「AI × 游戏开发」；此处仅保留应用层引用。</div>
+<div class="tags"><span>AI 产品</span><span>UGC</span><span>移动创作</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>AI × 🎮 游戏开发</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://about.roblox.com/newsroom/2026/07/build-without-limits-on-roblox" rel="noopener" target="_blank">Roblox 把 Agentic Creation 下沉到移动端</a></h4></div>
+<p>Build 让非专业创作者直接从文本生成可迭代、可试玩、可发布的基础体验；公开 Alpha 仍通过年龄校验、扩展审核和留存排序约束内容分发。</p>
+<div class="tags"><span>Roblox</span><span>生成式游戏</span><span>UGC</span><span>安全</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://unity.com/cn/news/unity-7-roadmap-revealed-at-unite-seoul" rel="noopener" target="_blank">Unity 7 将 Coding Agents 写入平台架构</a></h4></div>
+<p>Unity 7 强调创作者、团队与 Coding Agents 全生命周期协作；新增 CLI、公共 API 与免费 MCP，使 Agent 可直接连接 Unity。早期 Beta 计划于 2026 年 12 月开始，正式版计划在 2027 年 Q1。</p>
+<div class="tags"><span>Unity 7</span><span>Coding Agent</span><span>MCP</span><span>引擎</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://cursor.com/changelog/cursor-router" rel="noopener" target="_blank">Cursor Router：按任务路由而非固定默认模型</a></h4></div>
+<p>Auto 模式对每次请求做任务类型与复杂度分类，再在前沿模型和高性价比模型间分配；覆盖 Desktop、Web、iOS、CLI 与 SDK。</p>
+<div class="tags"><span>Cursor</span><span>Router</span><span>Token 成本</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://cursor.com/changelog/cursor-start" rel="noopener" target="_blank">Cursor Start：印度本地化 Agent 订阅</a></h4></div>
+<p>7 月 28 日起面向印度提供 ₹649/月、支持 UPI 的本地方案，包含 Grok 4.5、Composer、Always-on Cloud Agents、iOS 远程控制与扩展生态。</p>
+<div class="tags"><span>区域定价</span><span>Cloud Agent</span><span>India</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏭 行业 / 国内</h3><span class="density">中密度</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://openweights.gitlawb.com/" rel="noopener" target="_blank">Open Weights and American AI Leadership 联名信</a></h4></div>
+<p>7 月 24 日发布的公开信主张扩大算力、共享训练资产与开放权重生态，反对在缺乏实证伤害前过早限制开放模型；原始联署方包括 Microsoft、Meta、NVIDIA、IBM、Hugging Face、Linux Foundation 等。</p>
+<div class="tags"><span>Open Weights</span><span>AI 政策</span><span>生态竞争</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🛡️ AI 安全</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://blog.google/intl/ja-jp/company-news/technology/gemini-35-flash-cyber/" rel="noopener" target="_blank">Flash Cyber：安全专用模型进入受控部署</a></h4></div>
+<p>Google 采用限量 Pilot 方式部署双用途能力，强调高频扫描、复杂代码路径探索与补丁支持；这比通用模型直接开放更接近“能力分层 + 权限分层”的安全产品化。</p>
+<div class="tags"><span>AI 安全</span><span>双用途</span><span>受控部署</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2607.19321" rel="noopener" target="_blank">ResearchArena 暴露表层监控盲区</a></h4></div>
+<p>允许监控器执行实验能提高发现率，但仍会因为只检查表面、错误解释异常或选错测试而漏掉嵌入式破坏。</p>
+<div class="tags"><span>AI Control</span><span>Monitor</span><span>R&amp;D Agent</span></div>
+</article></div>
+</section></div></div>
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p>本期不是多产品全面活跃，而是<strong>《绝区零》单产品高密度 + 《终末地》工具链补强</strong>。商业化层面的累计付费自选奖励，重要度高于常规角色 PV 与版本预热。</p>
+<div class="lib-stats">
+<span><b>6</b> 独立 Signal</span>
+<span><b>7/12</b> 轴有信号</span>
+<span class="level">中高密度</span>
+</div>
+</div><div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎯 重点游戏雷达</h3><span class="density">单产品高密度</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://zenless.hoyoverse.com/zh-cn/main?catchSpider=1" rel="noopener" target="_blank">《绝区零》：3.1 上线前进入高密度发布周期</a></h4></div>
+<p>7 月 24–28 日连续发布蕾米埃尔角色展示、剧情章节、系统迭代、商业化活动与丽都城募说明；本期二游信号明显集中于单产品。</p>
+<div class="tags"><span>绝区零</span><span>3.1</span><span>蕾米埃尔</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://endfield.gryphline.com/en-us/news/2655" rel="noopener" target="_blank">《明日方舟：终末地》：版本配套工具更新</a></h4></div>
+<p>7 月 23 日上线养成计算器，并更新地图工具、阵容/Build Guide 与 Wiki；养成计算器最多可同时规划 8 名干员，并可同步仓库资源比较材料缺口。</p>
+<div class="tags"><span>终末地</span><span>养成工具</span><span>地图工具</span></div>
+</article></div>
+</section>
+
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新 / 大版本 / 周年庆</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://zenless.hoyoverse.com/en-us/news/165364?catchSpider=1" rel="noopener" target="_blank">《绝区零》3.1「漫长的告别」剧情与系统信息补齐</a></h4></div>
+<p>7 月 27 日确认第三季第二章将在 3.1 上线后永久开放；同期发布 Deadly Assault 与系统玩法迭代说明。版本正式上线时间为 7 月 29 日，不计作本期已上线事件。</p>
+<div class="tags"><span>版本 3.1</span><span>主线剧情</span><span>系统迭代</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎭 角色 / 世界观 / 剧情</h3><span class="density">中密度</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://zenless.hoyoverse.com/zh-cn/main?catchSpider=1" rel="noopener" target="_blank">蕾米埃尔角色展示《恰如往昔》发布</a></h4></div>
+<p>官方于 7 月 24 日发布角色展示，角色已进入“官方实机/展示”阶段；本期未检索到需要以非官方测试服视频补足的必要信息。</p>
+<div class="tags"><span>蕾米埃尔</span><span>角色展示</span><span>官方 PV</span></div>
+</article>
+<article class="signal">
+<div class="signal-head"><b class="fire">Signal</b><h4><a href="https://zenless.hoyoverse.com/en-us/news/165364?catchSpider=1" rel="noopener" target="_blank">第三季第二章「漫长的告别」确认永久开放</a></h4></div>
+<p>完成第三季第一章后可解锁；符合条件的玩家也可通过 Advance Screening 提前体验第三季内容。</p>
+<div class="tags"><span>剧情</span><span>世界观</span><span>永久内容</span></div>
+</article></div>
+</section>
+
+<section class="axis-card">
+<div class="axis-title"><h3>💰 商业化 / 榜单 / 流水</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://zenless.hoyoverse.com/zh-cn/news/165366?catchSpider=1" rel="noopener" target="_blank">🔥《绝区零》「点映返礼」把累计付费绑定限定 S 级自选</a></h4></div>
+<p>3.1 期间购买菲林底片、丽都城募、现金礼包和绳网会员可累计纪念票根；7000 档可自选限定 S 级音擎，10000 档可自选薇薇安、耀嘉音、「席德」或兑换凭证，15000 档提供蕾米埃尔主题外观组合。</p>
+<div class="signal-note">Attention：将付费进度从资源返利升级为限定角色/武器选择权，是本期二游最重要的商业化机制变化。</div>
+<div class="tags"><span>累计付费</span><span>限定角色自选</span><span>周年商业化</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://zenless.hoyoverse.com/zh-cn/news/165388?catchSpider=1" rel="noopener" target="_blank">3.1「丽都城募」奖励结构公布</a></h4></div>
+<p>成长计划提供 680 菲林，典藏计划额外提供 208 菲林、导览套件、音擎主控芯片等；活动持续至 9 月 7 日。</p>
+<div class="tags"><span>Battle Pass</span><span>丽都城募</span><span>付费</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📢 买量 / 营销 / 发行</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://zenless.hoyoverse.com/zh-cn/main?catchSpider=1" rel="noopener" target="_blank">蕾米埃尔进入角色展示与物料扩散阶段</a></h4></div>
+<p>7 月 24 日角色展示、7 月 26 日回归主题表情包与壁纸连续发布，形成上线前最后一周的角色认知与社交传播组合。</p>
+<div class="tags"><span>角色营销</span><span>物料</span><span>回归</span></div>
+</article></div>
+</section>
+
+<section class="axis-card">
+<div class="axis-title"><h3>🎨 画面 / 技术 / 引擎</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://endfield.gryphline.com/en-us/news/2655" rel="noopener" target="_blank">《终末地》外部工具链向“账号数据 + 规划”延伸</a></h4></div>
+<p>养成计算器可同步仓库资源、合并多个角色材料需求；地图工具增加新区域及实时位置同步。该信号更偏产品工具链，而非引擎底层更新。</p>
+<div class="tags"><span>工具链</span><span>账号数据</span><span>规划</span></div>
+</article></div>
+</section>
+
+
+<section class="axis-card">
+<div class="axis-title"><h3>🆚 二游对比观察</h3><span class="density">分析</span></div>
+<div class="axis-body">
+<div class="analysis-box">
+<b>本期横向判断：</b>《绝区零》以“角色内容 + 周年福利 + 累计付费返利”形成攻防一体的版本运营组合；
+      《终末地》的新增集中在版本外部工具与长期养成便利性。其他重点产品未出现同等级一手新增，因此不做强行横评。
+    </div></div>
+</section></div></div>
+<div class="tab-pane" id="dev">
+<div class="library-head">
+<div><span class="lib-icon">🛠️</span><h2>游戏开发观察</h2></div>
+<p>本期开发侧信号集中在<strong>引擎如何接纳 Coding Agent</strong>，而设计理论、网络、物理动画与专业论文轴没有达到阈值的新内容。Unity 7 是路线图级高信号，Godot 4.8 dev 2 是可立即测试的增量信号。</p>
+<div class="lib-stats">
+<span><b>3</b> 独立 Signal</span>
+<span><b>6/16</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div><div class="axis-grid">
+
+
+
+
+
+<section class="axis-card">
+<div class="axis-title"><h3>🎮 引擎与工具链</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://unity.com/cn/news/unity-7-roadmap-revealed-at-unite-seoul" rel="noopener" target="_blank">Unity 7 路线图：引擎原生面向 Coding Agents</a></h4></div>
+<p>Unity 7 建立 CLI、公共 API、免费 MCP，并强调与现有 AI 工具协作；同时承诺延续 Unity 6 架构，不采用传统破坏式升级。</p>
+<div class="tags"><span>Unity 7</span><span>CLI</span><span>MCP</span><span>Agent</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://godotengine.org/article/dev-snapshot-godot-4-8-dev-2/" rel="noopener" target="_blank">Godot 4.8 dev 2 开放测试</a></h4></div>
+<p>7 月 21 日发布第二个开发快照，可通过桌面下载、Web Editor、XR Editor 与 Android Editor 测试；本轮包含 Inspector 资源自动展开、文件系统直接 Play Scene 等编辑器体验改进。</p>
+<div class="tags"><span>Godot 4.8</span><span>Editor</span><span>Dev Snapshot</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎨 图形 / 渲染 / TA</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://unity.com/cn/news/unity-7-roadmap-revealed-at-unite-seoul" rel="noopener" target="_blank">Unity 7 规划 Surface Cache GI 与 AI 辅助图形优化</a></h4></div>
+<p>官方路线图将实时全局光照 Surface Cache GI、跨高端 PC 到移动端的 AI 辅助图形优化列为核心支柱；仍属路线图承诺，需等待 Beta 实测。</p>
+<div class="signal-note">待验证：当前是产品路线图，不应等同于已交付性能。</div>
+<div class="tags"><span>Rendering</span><span>GI</span><span>Unity 7</span></div>
+</article></div>
+</section>
+
+
+<section class="axis-card">
+<div class="axis-title"><h3>🚀 性能优化 / Profile / 内存</h3><span class="density">路线图信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://unity.com/cn/news/unity-7-roadmap-revealed-at-unite-seoul" rel="noopener" target="_blank">Unity 7 宣称近即时 Play Mode 与 Shader Build 最多提速 90%</a></h4></div>
+<p>路线图计划通过 CoreCLR、按变更代码执行 Domain Reload，以及更快 Shader Build 缩短迭代等待；属于早期路线图指标，暂不作为实测结论。</p>
+<div class="tags"><span>Performance</span><span>CoreCLR</span><span>Shader Build</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🤖 游戏 AI / NPC 行为 / PCG</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://about.roblox.com/newsroom/2026/07/build-without-limits-on-roblox" rel="noopener" target="_blank">Roblox Build 可生成玩法、环境、角色与完整 3D 场景</a></h4></div>
+<p>该事件主记录归入 AI 观察；从开发角度看，它把生成式 PCG 与发布流程合并到移动端，且继续受留存排序与安全审核约束。</p>
+<div class="tags"><span>PCG</span><span>UGC</span><span>生成式游戏</span></div>
+</article></div>
+</section>
+
+<section class="axis-card">
+<div class="axis-title"><h3>🧰 工具 / 框架 / 资产 / 中间件</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://unity.com/cn/news/unity-7-roadmap-revealed-at-unite-seoul" rel="noopener" target="_blank">Unity 将 MCP、CLI、公共 API 作为非编辑器协作入口</a></h4></div>
+<p>艺术、制作与开发人员可从各自工具中校验资产、推送 Build；Agent 则通过免费 MCP 接入 Unity。主信号详见「引擎与工具链」。</p>
+<div class="tags"><span>MCP</span><span>Toolchain</span><span>Automation</span></div>
+</article>
+<article class="signal">
+<div class="signal-head"><b class="fire">Signal</b><h4><a href="https://godotengine.org/article/dev-snapshot-godot-4-8-dev-2/" rel="noopener" target="_blank">Godot 4.8 dev 2 同步提供 Web / XR / Android 编辑器版本</a></h4></div>
+<p>多端编辑器同步测试强化 Godot 的低门槛与跨设备开发路径；当前仍为 Pre-release。</p>
+<div class="tags"><span>Godot</span><span>Web Editor</span><span>XR</span></div>
+</article></div>
+</section>
+
+
+<section class="axis-card">
+<div class="axis-title"><h3>💡 跨界灵感 / 实验性</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://about.roblox.com/newsroom/2026/07/build-without-limits-on-roblox" rel="noopener" target="_blank">移动端“提示词 → 游戏起点”成为可公开测试产品</a></h4></div>
+<p>Roblox Build 的实验价值在于降低创作入口，而非证明自动生成内容质量；真正需要观察的是迭代留存、审核成本、内容同质化与专业创作者迁移路径。</p>
+<div class="tags"><span>Prototype</span><span>Mobile-first</span><span>Creator Economy</span></div>
+</article></div>
+</section></div></div>
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p>本期行业侧同时出现<strong>监管、资本与平台边界</strong>三类高信号：193 款国产版号、550 亿美元 EA 收购的欧盟审批，以及 Halo 跨 Xbox/PC/PlayStation 同日发行。</p>
+<div class="lib-stats">
+<span><b>5</b> 独立 Signal</span>
+<span><b>10/18</b> 轴有信号</span>
+<span class="level">高密度</span>
+</div>
+</div><div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎯 重点公司雷达</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/202607/t20260723_1000636.html" rel="noopener" target="_blank">网易《梦幻西游：再续前缘》获 7 月国产网络游戏版号</a></h4></div>
+<p>国家新闻出版署 7 月名单第 94 项显示，申报出版与运营单位均为广州网易计算机系统有限公司。</p>
+<div class="tags"><span>网易</span><span>版号</span><span>梦幻西游</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏗️ 重点工作室雷达</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://blog.playstation.com/2026/07/23/marvels-wolverine-story-trailer-new-art-composer-details-and-more/" rel="noopener" target="_blank">Insomniac 发布《Marvel’s Wolverine》新剧情预告</a></h4></div>
+<p>7 月 23 日在 SDCC 公开新剧情预告、敌对势力 The Hand、配乐与前传漫画信息；游戏确认 2026 年 9 月 15 日登陆 PS5。</p>
+<div class="tags"><span>Insomniac</span><span>Wolverine</span><span>SDCC</span></div>
+</article></div>
+</section>
+
+
+<section class="axis-card">
+<div class="axis-title"><h3>💼 资本 / 并购 / 投融资</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.reuters.com/legal/litigation/saudi-pifs-55-billion-ea-deal-approved-under-eu-merger-rules-2026-07-23/" rel="noopener" target="_blank">欧盟按并购规则批准 PIF 等财团 550 亿美元收购 EA</a></h4></div>
+<p>欧盟委员会认为该交易不会引发竞争担忧；但仍在《外国补贴条例》下审查，相关决定截至本期尚未完成，预计窗口为 7 月 30 日。</p>
+<div class="signal-note">Attention：金额与产业集中度均为最高级别信号，但当前只是完成一层监管审批，并非全流程交割完成。</div>
+<div class="tags"><span>EA</span><span>PIF</span><span>M&amp;A</span><span>欧盟监管</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🚀 新游 / 上线 / 测试 / 定档</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.nintendo.com/us/whatsnew/splatoon-raiders-is-out-now-hunt-for-treasure-in-a-wild-new-single-player-adventure/" rel="noopener" target="_blank">《Splatoon Raiders》7 月 23 日发售</a></h4></div>
+<p>Nintendo Switch 2 独占，以单人冒险为核心，支持最多 4 人在线或本地无线协作。</p>
+<div class="tags"><span>Nintendo</span><span>Switch 2</span><span>首发</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://news.xbox.com/en-us/2026/06/07/halo-campaign-evolved-launch-preorder-xbox-games-showcase-2026/" rel="noopener" target="_blank">《Halo: Campaign Evolved》7 月 28 日全球发售</a></h4></div>
+<p>覆盖 Xbox Series、Windows PC、Cloud、Steam 与 PlayStation 5；支持跨平台联机与跨平台进度，并首日进入 Game Pass。</p>
+<div class="signal-note">Attention：经典 Xbox IP 同步登陆 PlayStation，平台边界变化比单次发售本身更值得追踪。</div>
+<div class="tags"><span>Halo</span><span>Cross-platform</span><span>Game Pass</span></div>
+</article></div>
+</section>
+
+<section class="axis-card">
+<div class="axis-title"><h3>🏟️ 大作观察</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.nintendo.com/us/store/products/splatoon-raiders-switch-2/" rel="noopener" target="_blank">两款平台级大作在窗口内落地</a></h4></div>
+<p>《Splatoon Raiders》承担 Switch 2 第一方独占供给；《Halo: Campaign Evolved》则以跨平台发行与 Game Pass 首日策略重构经典 IP 的覆盖面。</p>
+<div class="tags"><span>AAA</span><span>First-party</span><span>平台战略</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://blog.playstation.com/2026/07/23/marvels-wolverine-story-trailer-new-art-composer-details-and-more/" rel="noopener" target="_blank">《Marvel’s Wolverine》进入 9 月发售前叙事营销阶段</a></h4></div>
+<p>新剧情预告、前传漫画、联动服装与配乐同步释出，形成内容、跨媒介与预售组合。</p>
+<div class="tags"><span>AAA</span><span>预售</span><span>跨媒介</span></div>
+</article></div>
+</section>
+
+
+<section class="axis-card">
+<div class="axis-title"><h3>📣 发行 / 营销 / 平台分发</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://news.xbox.com/en-us/2026/06/07/halo-campaign-evolved-launch-preorder-xbox-games-showcase-2026/" rel="noopener" target="_blank">Halo 采用“全平台 + Game Pass 首日 + Cross-play”组合</a></h4></div>
+<p>Xbox 第一方经典 IP 同时进入 Steam 与 PlayStation 5，发行策略从硬件独占转向服务覆盖与用户规模。</p>
+<div class="tags"><span>发行策略</span><span>Game Pass</span><span>Cross-play</span></div>
+</article></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎮 主机 / 硬件 / 平台</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.nintendo.com/us/store/products/splatoon-raiders-switch-2/" rel="noopener" target="_blank">Switch 2 独占《Splatoon Raiders》补充第一方供给</a></h4></div>
+<p>7 月 23 日发售，文件大小 13.1GB，支持单人、2–4 人本地无线与在线协作。</p>
+<div class="tags"><span>Switch 2</span><span>独占</span><span>Nintendo</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://blog.playstation.com/2026/07/23/13-ways-halo-campaign-evolved-modernizes-the-iconic-fps/" rel="noopener" target="_blank">Halo 正式登陆 PlayStation 5</a></h4></div>
+<p>《Campaign Evolved》是平台策略信号：经典 Xbox IP 的商业目标已明显高于传统硬件独占边界。</p>
+<div class="tags"><span>PlayStation 5</span><span>Xbox IP</span><span>平台开放</span></div>
+</article></div>
+</section>
+
+<section class="axis-card">
+<div class="axis-title"><h3>⚖️ 版号 / 政策 / 监管 / 反垄断</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/202607/t20260723_1000636.html" rel="noopener" target="_blank">7 月国产网络游戏审批名单共 193 款</a></h4></div>
+<p>国家新闻出版署于 7 月 23 日公布，批准日期为 7 月 22 日；名单包括《影之刃零》《梦幻西游：再续前缘》等。</p>
+<div class="signal-note">Attention：数量规模与重点产品同时构成高信号；具体商业表现仍需等待上线、测试与发行信息。</div>
+<div class="tags"><span>版号</span><span>193款</span><span>影之刃零</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.reuters.com/legal/litigation/saudi-pifs-55-billion-ea-deal-approved-under-eu-merger-rules-2026-07-23/" rel="noopener" target="_blank">EA 收购完成欧盟并购审查，外国补贴审查仍未落定</a></h4></div>
+<p>同一交易需区分不同监管路径；不能把并购规则批准写成交易已完成。</p>
+<div class="tags"><span>Antitrust</span><span>FSR</span><span>监管</span></div>
+</article></div>
+</section>
+
+<section class="axis-card">
+<div class="axis-title"><h3>🛠️ 引擎 / 工具链 / 技术</h3><span class="density">跨库引用</span></div>
+<div class="axis-body">
+<div class="analysis-box">
+      本期 Unity 7 与 Godot 4.8 dev 2 的技术内容已主记录于「游戏开发观察」；
+      行业库只保留判断：引擎厂商正把 Agent 接入能力从插件层提升为平台路线图。
+    </div></div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🤝 IP / 影视化 / 跨媒介</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://blog.playstation.com/2026/07/23/marvels-wolverine-story-trailer-new-art-composer-details-and-more/" rel="noopener" target="_blank">《Marvel’s Wolverine》同步推进前传漫画与跨游戏服装联动</a></h4></div>
+<p>官方发布数字前传漫画，并与 Arc System Works 的《MARVEL Tōkon: Fighting Souls》互换主题服装，形成游戏上线前的跨媒介叙事与双向导流。</p>
+<div class="tags"><span>Marvel</span><span>前传漫画</span><span>跨游戏联动</span></div>
+</article></div>
+</section>
+</div></div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
