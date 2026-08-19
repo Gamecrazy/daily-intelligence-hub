@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-19 · 增量展示版</title>
+<style>
+:root {
+  --bg:#f4f5f7; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#5148b8;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;line-height:1.68}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2)}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1} .metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)} .metric.accent b{color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;background:rgba(244,245,247,.94);backdrop-filter:blur(10px);padding:12px 0;margin:8px 0 18px}
+.tab-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.overview-signal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px;box-shadow:var(--shadow)}
+.overview-signal h3{font-size:15px;margin:8px 0} .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{color:var(--fire);font-size:13px;font-weight:800}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px} .lib-icon{font-size:25px}
+.library-head p{color:var(--ink2);margin:10px 0}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;box-shadow:var(--shadow);align-self:start}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0} .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:12px 0;border-top:1px dashed var(--line)} .axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal-head{display:flex;gap:8px;align-items:flex-start} .signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6} .signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap} .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){.overview-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.wrap{padding:18px 12px 40px}.axis-grid,.watch-list{grid-template-columns:1fr}.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.sources{columns:1;padding:16px 30px}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>🗞️ 综合日报 · 增量展示版</h1>
+<div class="meta">2026-08-19 · Wednesday · W34</div>
+</div>
+<div class="window">窗口：（2026-08-18，2026-08-19]</div>
+</div>
+<div class="lede">
+今日是运营日，不是旗舰发布日。AI 侧是推理芯片融资与 Agent 自改进评测；二游是战双「歧海循光」实装与绝区零 3.1 下半开池；开发是 arXiv cs.GR 布料 / 变形 / Gaussian；行业预 Gamescom 淡日，《仁王 3》首个 DLC 按期上线。状态文档仍停在 8/10，但 8/18 已发布，本期按（2026-08-18，2026-08-19] 搜集，避免重复。
+<strong>本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</strong>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>20</b><span>独立 Signal</span></div>
+<div class="metric"><b>18</b><span>主要信源</span></div>
+<div class="metric hot"><b>6</b><span>高 Attention</span></div>
+<div class="metric accent"><b>4</b><span>显示观察库</span></div>
+<div class="metric"><b>53</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="dev">游戏开发观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>Etched 融资 7 亿美元、估值 210 亿美元</h3>
+<p>首套推理机架交付 Jane Street 后由其领投。官方落款 8/18，上海日历 8/19 01:21 落地，前报截稿后增量。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>战双「歧海循光」今日上线</h3>
+<p>卡列尼娜·烬航（物理破甲）实装。8/22 全球线上音乐会已定档，不是今日首发。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>绝区零 3.1 下半：希格莉德开池</h3>
+<p>12:00 起「直到天空沉落」；3.1 本体 7/29 在窗外。时装「惊鸿逐浪」同期折扣。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>自改进 Agent 在方差和任务序下很脆</h3>
+<p>Salesforce arXiv 2608.18066：71% 设定放大方差；打乱任务序后平均由 +1.5% 变为 −4.5%。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>IPC 管线首个布料 r-adaptivity</h3>
+<p>Adobe + USC，arXiv 2608.17833。参考网格顶点移动、拓扑不变；动态 ITR 相对先前最优约 3–6×。</p>
+</article>
+</div>
+<h2 class="section-title">各方向信号密度</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>5</b></td><td>中</td><td>无新旗舰模型；推理芯片融资 + Agent 论文</td></tr>
+<tr><td>二次元游戏观察</td><td><b>7</b></td><td>中</td><td>运营日：战双版本 + 绝区零下半，不是大版本首发</td></tr>
+<tr><td>游戏开发观察</td><td><b>6</b></td><td>中</td><td>cs.GR 新邮主导；Unreal / Unity / Godot 官方空</td></tr>
+<tr><td>游戏行业观察</td><td><b>2</b></td><td>低</td><td>预 Gamescom 淡日；Immens 访谈 +《仁王 3》DLC</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜鸣潮 3.6「蜃云灯影，凡尘剑心」8/20</b><br/>今日无新官宣。看清宵实装、版本体验和社区首日口径。</div>
+<div class="watch"><b>必跟｜星铁 4.5 于 8/26 上线</b><br/>同步跟踪冬季与绝区零姊妹作联动的后续形态，不把 8/14 前瞻当今日新信号。</div>
+<div class="watch"><b>可跟｜战双全球线上音乐会 8/22「于频率中相汇」</b><br/>版本日已定档，看宣发是否带新机体或海外舆情。</div>
+<div class="watch"><b>可跟｜Etched 机架量产与 Jane Street 后续采购</b><br/>首客交付已闭环，跟踪是否出现第二家金融机构或云厂商订单。</div>
+</div>
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://www.etched.com/progress/from-zero-to-one" rel="noopener" target="_blank">Etched · From Zero to One</a></li>
+<li><a href="https://arxiv.org/abs/2608.18066" rel="noopener" target="_blank">arXiv · 2608.18066 Self-Improving Agents</a></li>
+<li><a href="https://arxiv.org/abs/2608.16890" rel="noopener" target="_blank">arXiv · 2608.16890 GxP-Agent</a></li>
+<li><a href="https://arxiv.org/abs/2608.17616" rel="noopener" target="_blank">arXiv · 2608.17616 MoNe</a></li>
+<li><a href="https://arxiv.org/abs/2608.16970" rel="noopener" target="_blank">arXiv · 2608.16970 Probing the Prefill</a></li>
+<li><a href="https://www.taptap.cn/game-event/12451" rel="noopener" target="_blank">TapTap · 战双「歧海循光」活动页</a></li>
+<li><a href="https://zenless.hoyoverse.com/zh-cn/news/165737" rel="noopener" target="_blank">绝区零 · 3.1 限时频段（下期）</a></li>
+<li><a href="https://weibo.com/6593199887/RdN9bdwlm" rel="noopener" target="_blank">原神官方微博 · 幽境危战</a></li>
+<li><a href="https://endfield.hypergryph.com/news/9335" rel="noopener" target="_blank">终末地 · 密境行者 六方巧境</a></li>
+<li><a href="https://dengekionline.com/article/202608/84562" rel="noopener" target="_blank">电击 Online · 蔚蓝档案日服第 2 章</a></li>
+<li><a href="https://www.4gamers.com.tw/news/detail/81086/arknights-endfield-7-eleven-slurpee-cooperation" rel="noopener" target="_blank">4Gamers · 终末地 × 7-ELEVEN</a></li>
+<li><a href="https://www.miyoushe.com/zzz/topicDetail/2434" rel="noopener" target="_blank">米游社 · 希格莉德话题</a></li>
+<li><a href="https://arxiv.org/abs/2608.17833" rel="noopener" target="_blank">arXiv · 2608.17833 r-Adaptive Cloth</a></li>
+<li><a href="https://arxiv.org/abs/2608.17930" rel="noopener" target="_blank">arXiv · 2608.17930 Handles</a></li>
+<li><a href="https://arxiv.org/abs/2608.17298" rel="noopener" target="_blank">arXiv · 2608.17298 3DGART</a></li>
+<li><a href="https://arxiv.org/abs/2608.17390" rel="noopener" target="_blank">arXiv · 2608.17390 Vangers / WebGPU</a></li>
+<li><a href="https://www.gamesindustry.biz/three-epic-veterans-are-building-an-ai-powered-game-engine-to-break-the-industrys-doom-cycle" rel="noopener" target="_blank">GamesIndustry.biz · Immens</a></li>
+<li><a href="https://teamninja-studio.com/nioh3/us/dlc/" rel="noopener" target="_blank">Team NINJA · Nioh 3 DLC</a></li>
+</ul>
+<p class="footnote">时间边界：线上已发 8/18，本期执行左开右闭窗口（2026-08-18，2026-08-19]。状态文档仍写最后整理日期 2026-08-10，未写入 8/18。Etched 官方落款 Aug 18，按上海日历与 TechCrunch 10:21 AM PDT 记入今日。绝区零 3.1 本体（7/29）、原神 7.0 开门、星铁 4.5 前瞻、鸣潮 3.6 预告均在窗外。待核不进核心结论：ChatGPT for Teens（8/18 官方）、Anthropic 循环信贷（Bloomberg）、小米 MiMo 桌面端、字节漫剧工具、UE 5.8 AnimGen / GASP、Mighty Kingdom 勒索软件声称、灵犀交易媒体约 15 亿美元。战双版本号「4.7」仅见 TapTap 活动页。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📥</span><h2>AI 观察</h2></div>
+<p>今日无 GPT / Claude / Gemini / Qwen / DeepSeek 新旗舰。主线是 <b>Etched 推理芯片融资闭环</b>，以及 Salesforce 对记忆型自改进 Agent 的复评。</p>
+<div class="lib-stats">
+<span><b>5</b> 独立 Signal</span>
+<span><b>2/6</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🏭 行业 / 国内</h3><span class="density">中高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.etched.com/progress/from-zero-to-one" rel="noopener" target="_blank">Etched 融资 7 亿美元、估值 210 亿美元；首套机架交付 Jane Street</a></h4></div>
+<p>官方博文落款 Aug 18, 2026；TechCrunch 10:21 AM PDT = 上海 8/19 01:21，属前报截稿后增量。Jane Street 测试并采购首套 rack 后领投。估值相对 7/23 C 轮 103 亿美元约一个月翻倍。官方称系统可运行任意前沿模型。资金用于工厂、供应链与机群软件，迈向 GW 级推理。</p>
+<div class="signal-note">Attention：推理专用硬件完成「测试 → 首客交付 → 领投」闭环，不是新旗舰模型，但改变推理算力供给叙事。</div>
+<div class="tags"><span>Etched</span><span>Inference</span><span>Jane Street</span><span>$21B</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📄 论文</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.18066" rel="noopener" target="_blank">On the Fragility of Self-Improving Agents</a></h4></div>
+<p>Salesforce AI Research，arXiv:2608.18066。对 AWM 与 ReasoningBank 在 WebArena / VisualWebArena / SCUBA 做多 run + 打乱任务序复评。自改进循环在 71% 设定中放大方差（最好 / 最差可差约 10 个百分点）；默认序隐含易到难课程，打乱后平均由 +1.5% 变为 −4.5%。</p>
+<div class="tags"><span>arXiv:2608.18066</span><span>Agent</span><span>Eval</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.16890" rel="noopener" target="_blank">GxP-Agent：把监管流程编成 DAG</a></h4></div>
+<p>arXiv:2608.16890。ADSL 任务上，单次生成与扁平多 Agent 结构匹配率 0%；同一 Claude Sonnet 4.6 在 15 节点 DAG 上三次独立运行为 100% 结构匹配（49/49 变量、254 条记录）。</p>
+<div class="tags"><span>arXiv:2608.16890</span><span>DAG</span><span>GxP</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.17616" rel="noopener" target="_blank">MoNe：可插拔长上下文神经记忆</a></h4></div>
+<p>Qualcomm AI Research，arXiv:2608.17616。挂到冻结 Transformer 上按段做 test-time 快权重更新。128K 相对 ICL 计算与峰值显存约降 80%，参数开销约 6.4%。骨干实验为 Qwen2.5-0.5B。</p>
+<div class="tags"><span>arXiv:2608.17616</span><span>Long context</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.16970" rel="noopener" target="_blank">Probing the Prefill：用激活探测代码漏洞</a></h4></div>
+<p>arXiv:2608.16970。在 last-prefill 激活上训练约 13–16M 参数 MLP probe。Devign 最佳 F1 68.8%；四数据集平均 F1 仅 41.7%。作者称这是生成时闸门的前置证据。</p>
+<div class="tags"><span>arXiv:2608.16970</span><span>Security</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p>运营日，不是大版本首发。主线是 <b>战双「歧海循光」实装</b> 与 <b>绝区零 3.1 下半希格莉德开池</b>。鸣潮 3.6 仍是 8/20，星铁 4.5 仍是 8/26。</p>
+<div class="lib-stats">
+<span><b>7</b> 独立 Signal</span>
+<span><b>7/12</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新 / 卡池</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.taptap.cn/game-event/12451" rel="noopener" target="_blank">战双「歧海循光」今日上线，卡列尼娜·烬航实装</a></h4></div>
+<p>新 S 级泛用机体「卡列尼娜·烬航」（物理 / 破甲 / 黯衍）。同期晖暮涂装、骇影活动免费涂装、烬航伴生涂装。8/22 19:00「于频率中相汇」全球线上音乐会已定档，不是今日首发。版本号「4.7」仅见 TapTap 活动页，官方微博正文未写死。</p>
+<div class="tags"><span>战双帕弥什</span><span>烬航</span><span>卡池</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://zenless.hoyoverse.com/zh-cn/news/165737" rel="noopener" target="_blank">绝区零 3.1 下半：希格莉德「直到天空沉落」</a></h4></div>
+<p>3.1 本体 7/29 在窗外。今日 12:00 开限定 S 级希格莉德（冰·强攻）与音擎「骁骑礼赞」。同期独家重映自选琉音 / 浮波柚叶 / 浅羽悠真。时装「惊鸿逐浪」12:00 起限时 1350 菲林底片。「嗯呢」大派送与咔滋酥脆出餐计划今日 10:00 开。</p>
+<div class="tags"><span>绝区零</span><span>希格莉德</span><span>3.1 下半</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://weibo.com/6593199887/RdN9bdwlm" rel="noopener" target="_blank">原神 7.0 周期「幽境危战」紊乱地脉挑战开启</a></h4></div>
+<p>8/19 10:00～9/22 03:59；紊乱爆发期至 8/29 03:59。不是 7.0 开图复述。冒险等阶 ≥45 可在爆发期用树脂换自选祝圣秘境。</p>
+<div class="tags"><span>原神</span><span>幽境危战</span></div>
+</article>
+<article class="signal">
+<div class="signal-head"><b class="fire">Signal</b><h4><a href="https://endfield.hypergryph.com/news/9335" rel="noopener" target="_blank">终末地「密境行者」新空间组「六方巧境」</a></h4></div>
+<p>8/19 12:00 先开 3 个协议空间，8/26 04:00 再开后 3 个。版本仍是 7/16「向渊行」。</p>
+<div class="tags"><span>终末地</span><span>密境行者</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎭 角色 / 剧情</h3><span class="density">中高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://zenless.hoyoverse.com/zh-cn/news/165737" rel="noopener" target="_blank">希格莉德：冰·强攻，今日可抽</a></h4></div>
+<p>空域巡戍局总务次官。阶段：卡池实装。官方一线未给强度评级。主记录见下半频段。</p>
+<div class="tags"><span>希格莉德</span><span>冰</span><span>强攻</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://weibo.com/6626590268/RdtTPi9zb" rel="noopener" target="_blank">卡列尼娜·烬航：物理破甲实装</a></h4></div>
+<p>相对旧机体烬燃换到物理破甲 + 黯衍。角色 PV「案发现场」8/15 已出，今日才进池。</p>
+<div class="tags"><span>烬航</span><span>物理</span><span>破甲</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://dengekionline.com/article/202608/84562" rel="noopener" target="_blank">蔚蓝档案日服主线第 2 部第 2 章今日实装</a></h4></div>
+<p>Vol.1「炎と影」第 2 章「炎となる私たち」+ 迷你剧情「イブキ家出事件」+ 大决战「屋外戦・ビナー」。国服无同日镜像。</p>
+<div class="tags"><span>蔚蓝档案</span><span>日服</span><span>主线</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🤝 IP / 联动</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.4gamers.com.tw/news/detail/81086/arknights-endfield-7-eleven-slurpee-cooperation" rel="noopener" target="_blank">终末地 × 台湾 7-ELEVEN 思乐冰今日开跑</a></h4></div>
+<p>8/19～9/15，全台有思乐冰机门市。8/3 已预告，今日才开始。一线是区域媒体 4Gamers，大陆无对应门店。</p>
+<div class="tags"><span>终末地</span><span>7-ELEVEN</span><span>台湾</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>💬 社区 / 舆情</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.miyoushe.com/zzz/topicDetail/2434" rel="noopener" target="_blank">希格莉德开池日：米游社讨论升温</a></h4></div>
+<p>攻略站同步「值不值得抽」。二线口径不作官方强度结论。NGA / 贴吧一手热帖今日未核到可引用 URL。</p>
+<div class="tags"><span>米游社</span><span>舆情</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="dev">
+<div class="library-head">
+<div><span class="lib-icon">🛠️</span><h2>游戏开发观察</h2></div>
+<p>Unreal / Unity / Godot 官方博客今日空。信号全部来自 <b>arXiv cs.GR 8/19 新邮</b>：布料、变形 handle、Gaussian 训练、WebGPU 高度场。</p>
+<div class="lib-stats">
+<span><b>6</b> 独立 Signal</span>
+<span><b>6/17</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>⚙️ 物理 / 动画 / 角色控制</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.17833" rel="noopener" target="_blank">Variational r-Adaptive Cloth Simulation</a></h4></div>
+<p>Adobe + USC，arXiv:2608.17833。据称首个可接现代 IPC 管线的布料 r-adaptivity（参考网格顶点移动、拓扑不变）。动态 ITR 求解相对先前最优 ITR 约 3–6×。局限：目前假设未变形为平板。</p>
+<div class="tags"><span>arXiv:2608.17833</span><span>Cloth</span><span>IPC</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.17930" rel="noopener" target="_blank">Handles：面向游戏 / RL 的稀疏变形 handle</a></h4></div>
+<p>arXiv:2608.17930。篮球 metamaterial 例 20 万顶点 → 268 handle，非线性弹性约 150 step/s。预处理最差约 36 小时。</p>
+<div class="tags"><span>arXiv:2608.17930</span><span>Deformation</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎨 图形 / 渲染 / TA</h3><span class="density">中高密度</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.17298" rel="noopener" target="_blank">3DGART：射线追踪 Gaussian 训练加速</a></h4></div>
+<p>arXiv:2608.17298。相对 3DGRT 约 4×。仍是训练加速，不是运行时游戏管线。</p>
+<div class="tags"><span>arXiv:2608.17298</span><span>3DGS</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.17390" rel="noopener" target="_blank">Six Ways to Draw Vangers with WebGPU</a></h4></div>
+<p>kvark 用同一引擎对比六种可编辑多层高度场画法。引擎 + harness：<a href="https://github.com/kvark/vange-rs" rel="noopener" target="_blank">github.com/kvark/vange-rs</a>。</p>
+<div class="tags"><span>arXiv:2608.17390</span><span>WebGPU</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.17969" rel="noopener" target="_blank">MetaSapiens v2：注视点神经渲染</a></h4></div>
+<p>arXiv:2608.17969。相对既有 PBNR：移动 Volta 最高约 8.7×，专用硬件约 30.9×。AR / VR 向。</p>
+<div class="tags"><span>arXiv:2608.17969</span><span>Foveated</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>💡 跨界 / 实验性</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.17975" rel="noopener" target="_blank">aDSL：给 LLM agent 用的 3D DSL</a></h4></div>
+<p>北大，arXiv:2608.17975。Plan–Execute–Critic 无训练循环。代码 <a href="https://github.com/sig-pku/aDSL" rel="noopener" target="_blank">github.com/sig-pku/aDSL</a>。记实验性资产生成，不记运行时 NPC。</p>
+<div class="tags"><span>arXiv:2608.17975</span><span>DSL</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p>预 Gamescom 淡日。腾讯 / 网易 / 米哈游 / 鹰角 / 库洛与重点工作室、制作人雷达今日空。<b>Immens 新引擎访谈</b> 和 <b>《仁王 3》DLC 按期上线</b> 是仅有的达门槛信号。</p>
+<div class="lib-stats">
+<span><b>2</b> 独立 Signal</span>
+<span><b>2/18</b> 轴有信号</span>
+<span class="level">低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🛠️ 引擎 / 工具链 / 技术</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.gamesindustry.biz/three-epic-veterans-are-building-an-ai-powered-game-engine-to-break-the-industrys-doom-cycle" rel="noopener" target="_blank">三名 Epic / Guerrilla 老兵创办 Immens</a></h4></div>
+<p>GamesIndustry.biz 当日访谈。强调 AI 用于引擎代码库可扩展，而不是「一句话生成 3A」。仅三名创始人；融资未官宣金额；拟本月拿出 PoC。无公开 demo、无客户、无版本号，故压火。工程细节不在本库展开。</p>
+<div class="tags"><span>Immens</span><span>Engine</span><span>AI</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本 / 大型 DLC</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://teamninja-studio.com/nioh3/us/dlc/" rel="noopener" target="_blank">《仁王 3》DLC 1 Hell Rising 登陆 PS5 / Steam</a></h4></div>
+<p>Team NINJA 官网日期 8/19/2026。1651 庆安年间未来江户、鉾 + 盾、新难度 Enlightened One's Journey。需买断本体且通关主线。7/28 已官宣，今日是按期交付。无首日评测 / 销量，不拔高。</p>
+<div class="tags"><span>Nioh 3</span><span>DLC</span><span>Team NINJA</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
