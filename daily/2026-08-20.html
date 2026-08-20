@@ -82,15 +82,15 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <div class="window">窗口：（2026-08-19，2026-08-20]</div>
 </div>
 <div class="lede">
-今日主线只有一条：<b>鸣潮 3.6「蜃云灯影，凡尘剑心」按官方预告今日维护后开服</b>。AI 无新旗舰，只抬一篇推理 Agent 合谋认证 position paper。开发官方博客与 cs.GR 新邮空；行业预 Gamescom，网易 Q2 今晚才出，正文不渲染空库。
+主线仍是 <b>鸣潮 3.6「蜃云灯影，凡尘剑心」</b>。补扫后四库都有增量：AI 是 SkillGate / ComponentBench / 合谋认证三篇论文，无新旗舰；开发只有 Disney 鼓手动捕交叉一篇；行业是 STALKER 2 首个资料片、STEINS;GATE RE:BOOT Steam、Mortal Shell II，以及 PlaySide FY26 扭亏。网易 Q2 今晚才出，不预写。
 <strong>本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</strong>
 </div>
 </header>
 <section class="metrics">
-<div class="metric hot"><b>5</b><span>独立 Signal</span></div>
-<div class="metric"><b>12</b><span>主要信源</span></div>
-<div class="metric hot"><b>3</b><span>高 Attention</span></div>
-<div class="metric accent"><b>2</b><span>显示观察库</span></div>
+<div class="metric hot"><b>12</b><span>独立 Signal</span></div>
+<div class="metric"><b>18</b><span>主要信源</span></div>
+<div class="metric hot"><b>4</b><span>高 Attention</span></div>
+<div class="metric accent"><b>4</b><span>显示观察库</span></div>
 <div class="metric"><b>53</b><span>轴 / 子轴扫描</span></div>
 <div class="metric"><b>1</b><span>覆盖天数</span></div>
 </section>
@@ -98,6 +98,8 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <button class="tab-btn active" data-tab="overview">总览</button>
 <button class="tab-btn" data-tab="ai">AI 观察</button>
 <button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="dev">游戏开发观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
 </nav>
 <main>
 <div class="tab-pane active" id="overview">
@@ -106,7 +108,7 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <article class="overview-signal">
 <div class="ov-fire">🔥🔥🔥</div>
 <h3>鸣潮 3.6「蜃云灯影，凡尘剑心」今日开服</h3>
-<p>官方维护 04:00–11:00（UTC+8）。补偿星声×300、结晶溶剂×2。扫描未见延期。未见「现已开放」二次官宣，不把已可登录写成已核验事实。</p>
+<p>官方维护 04:00–11:00（UTC+8）。补偿星声×300、结晶溶剂×2。扫描未见延期。未见「现已开放」二次官宣。</p>
 </article>
 <article class="overview-signal">
 <div class="ov-fire">🔥🔥🔥</div>
@@ -116,17 +118,17 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <article class="overview-signal">
 <div class="ov-fire">🔥🔥</div>
 <h3>PC 端升级 NVIDIA DLSS 4.5 插帧</h3>
-<p>官方维护正文写死。另写「更换编程语言」做全平台性能优化。前瞻直播约 +10fps 未进官方正文，不进结论。</p>
+<p>官方维护正文写死。另写「更换编程语言」做全平台性能优化。前瞻约 +10fps 未进官方正文，不进结论。</p>
 </article>
 <article class="overview-signal">
-<div class="ov-fire">🔥</div>
-<h3>推理 Agent 合谋需要行为认证</h3>
-<p>arXiv:2608.18078。DeepSeek-R1 蒸馏在 Bertrand 定价上默认抬价；CoT 看不出合谋，行为却可被转向。</p>
+<div class="ov-fire">🔥🔥</div>
+<h3>SkillGate：长程 Agent 的技能选择要单独给学分</h3>
+<p>arXiv:2608.18852。9B 从 40.8% 提到 53.2%；outcome-only RL 教不会「读哪个 skill」。</p>
 </article>
 <article class="overview-signal">
-<div class="ov-fire">🔥</div>
-<h3>今日大版本节点只有鸣潮</h3>
-<p>米系三作与星铁 4.5 无新版本官宣。星铁仍锁 8/26。库洛独自落地开放世界大更。</p>
+<div class="ov-fire">🔥🔥</div>
+<h3>STALKER 2 首个资料片 Cost of Hope 今日交付</h3>
+<p>与免费 Update 2.0 同步登陆 PC / Xbox / PS5。7/27 已预告，今日按期。截稿未见「现已上线」二次官宣。</p>
 </article>
 </div>
 <h2 class="section-title">各方向信号密度</h2>
@@ -134,53 +136,66 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <table>
 <thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
 <tbody>
-<tr><td>AI 观察</td><td><b>1</b></td><td>低</td><td>无新旗舰；一篇合谋认证 position paper</td></tr>
-<tr><td>二次元游戏观察</td><td><b>4</b></td><td>中高</td><td>单产品大版本日；米系/鹰角/战双无新节点</td></tr>
+<tr><td>AI 观察</td><td><b>3</b></td><td>低</td><td>无新旗舰；Agent 论文日</td></tr>
+<tr><td>二次元游戏观察</td><td><b>4</b></td><td>中高</td><td>单产品大版本日；米系无新节点</td></tr>
+<tr><td>游戏开发观察</td><td><b>1</b></td><td>低</td><td>官方引擎博客空；cs.GR 仅交叉 1</td></tr>
+<tr><td>游戏行业观察</td><td><b>4</b></td><td>中</td><td>资料片 + 两作上线 + 一家 ASX 年报；网易今晚</td></tr>
 </tbody>
 </table>
 </div>
 <h2 class="section-title">明日 / 后续观察清单</h2>
 <div class="watch-list">
-<div class="watch"><b>必跟｜网易 Q2 / H1 2026 今晚约 18:00 港交所</b><br/>电话会 20:00。扫描时 IR 仍只有 8/6 预告，无数可写。出了再记游戏收入与指引。</div>
-<div class="watch"><b>必跟｜星铁 4.5「挥掷千星的筹码」8/26</b><br/>今日无改期。继续跟冬季与绝区零联动形态。</div>
-<div class="watch"><b>可跟｜鸣潮 3.6 维护完成二次公告与开服首日榜</b><br/>扫描未见「现已开放」。晚间七麦 / 点点快照才有意义。</div>
-<div class="watch"><b>可跟｜终末地「雪淞幽梦」前瞻 8/21 19:30</b><br/>版本仍是 7/16「向渊行」。今日无新官宣。</div>
-<div class="watch"><b>可跟｜Gamescom 8/26–30，Opening Night Live 8/25</b><br/>任天堂 9 作与网易阵容已是窗外预告，等现场增量。</div>
+<div class="watch"><b>必跟｜网易 Q2 / H1 2026 今晚约 18:00 港交所</b><br/>电话会 20:00。扫描时 IR 仍只有 8/6 预告，无数可写。</div>
+<div class="watch"><b>必跟｜星铁 4.5「挥掷千星的筹码」8/26</b><br/>今日无改期。</div>
+<div class="watch"><b>可跟｜鸣潮 3.6 维护完成二次公告与开服首日榜</b><br/>晚间七麦 / 点点快照才有意义。</div>
+<div class="watch"><b>可跟｜终末地「雪淞幽梦」前瞻 8/21 19:30</b><br/>版本仍是 7/16「向渊行」。</div>
+<div class="watch"><b>可跟｜Gamescom 8/26–30，Opening Night Live 8/25</b><br/>任天堂 9 作与网易阵容已是窗外预告。</div>
 </div>
 <h2 class="section-title">主要信源</h2>
 <ul class="sources">
 <li><a href="https://wutheringwaves.gg/wuthering-waves-version-3-6-update-maintenance-notice/" rel="noopener" target="_blank">库洛 · 鸣潮 3.6 维护预告（转载）</a></li>
 <li><a href="https://wutheringwaves.kurogames.com/en/main/news/detail/5245" rel="noopener" target="_blank">Wuthering Waves · Version 3.6 notice</a></li>
-<li><a href="https://mc.kurogames.com/main/news/detail/4411" rel="noopener" target="_blank">鸣潮官网 · 新闻 4411</a></li>
-<li><a href="https://www.233leyuan.com/post-detail/2087738836923711488" rel="noopener" target="_blank">233乐园 · 3.6 维护预告</a></li>
-<li><a href="https://gnn.gamer.com.tw/detail.php?sn=309626" rel="noopener" target="_blank">GNN · 鸣潮 3.6</a></li>
-<li><a href="https://weibo.com/7730797357/RcjZ0xJ3i" rel="noopener" target="_blank">鸣潮官方微博</a></li>
+<li><a href="https://arxiv.org/abs/2608.18852" rel="noopener" target="_blank">arXiv · 2608.18852 SkillGate</a></li>
+<li><a href="https://arxiv.org/abs/2608.18307" rel="noopener" target="_blank">arXiv · 2608.18307 ComponentBench</a></li>
 <li><a href="https://arxiv.org/abs/2608.18078" rel="noopener" target="_blank">arXiv · 2608.18078 Collusion Certification</a></li>
-<li><a href="https://arxiv.org/list/cs.AI/new" rel="noopener" target="_blank">arXiv cs.AI new · 2026-08-20</a></li>
+<li><a href="https://arxiv.org/abs/2608.19055" rel="noopener" target="_blank">arXiv · 2608.19055 Drummer Motion</a></li>
+<li><a href="https://steinsgate.jp/reboot/en-us/" rel="noopener" target="_blank">STEINS;GATE RE:BOOT 官网</a></li>
+<li><a href="https://mortalshell.com/en/" rel="noopener" target="_blank">Mortal Shell II 官网</a></li>
+<li><a href="https://www.gamespress.com/en-US/STALKER-2-Cost-of-Hope-Launches-August-20" rel="noopener" target="_blank">GSC · Cost of Hope 8/20</a></li>
+<li><a href="https://announcements.asx.com.au/asxpdf/20260820/pdf/072yz9332b9jsj.pdf" rel="noopener" target="_blank">ASX · PlaySide FY26</a></li>
 <li><a href="https://ir.netease.com/" rel="noopener" target="_blank">NetEase IR（财报未出）</a></li>
 </ul>
-<p class="footnote">时间边界：线上已发 8/19，本期执行左开右闭窗口（2026-08-19，2026-08-20]。3.6 维护预告锁定今日 04:00–11:00；扫描未见延期，也未见「维护完成」二次官宣。景燃下半未开池，不记今日卡池落地。前瞻约 +10fps 未进官方正文。网易 Q2 今晚才出，不预写数字。游戏开发观察 17 轴空、游戏行业观察 18 轴空，按规范不渲染。窗外不复述：战双烬航、绝区零希格莉德、原神幽境危战、蔚蓝档案日服第 2 章、终末地六方巧境、Etched 融资、8/19 cs.GR 六篇、《仁王 3》DLC、Immens。待核：3.6 完整内容说明页、上半四星陪跑、达妮娅/绯雪复刻是否官网写死、7 月出海榜不作今日流水。</p>
+<p class="footnote">时间边界：线上已发 8/19，本期左开右闭（2026-08-19，2026-08-20]。3.6 维护未见延期，也未见「维护完成」二次官宣。景燃下半未开池。STALKER 2 / Mortal Shell II 按官方发售日入账，截稿未见「现已上线」二次帖。Cursor changelog 08-19、OpenAI ZDR、Gemini 学生优惠未核到沪上 8/20 落款，不进正文。窗外不复述：战双烬航、绝区零希格莉德、Etched、8/19 cs.GR 六篇、《仁王 3》DLC、Immens。待核：网易今晚数字、Newzoo 付费版、3.6 内容说明页。</p>
 </div>
 
 <div class="tab-pane" id="ai">
 <div class="library-head">
 <div><span class="lib-icon">📥</span><h2>AI 观察</h2></div>
-<p>今日无 GPT / Claude / Gemini / Qwen / DeepSeek 新旗舰。AI Release Tracker 最新仍是 8/14 的 Qwen3.8-27B。唯一达门槛信号是一篇 <b>推理 Agent 合谋认证</b> position paper。</p>
+<p>今日无 GPT / Claude / Gemini / Qwen / DeepSeek 新旗舰。三篇都是 <b>Agent 评测 / 训练</b>：技能选择学分、组件级 computer-use、推理合谋认证。</p>
 <div class="lib-stats">
-<span><b>1</b> 独立 Signal</span>
+<span><b>3</b> 独立 Signal</span>
 <span><b>1/6</b> 轴有信号</span>
 <span class="level">低密度</span>
 </div>
 </div>
 <div class="axis-grid">
 <section class="axis-card">
-<div class="axis-title"><h3>📄 论文</h3><span class="density">有信号</span></div>
+<div class="axis-title"><h3>📄 论文</h3><span class="density">中高密度</span></div>
 <div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.18852" rel="noopener" target="_blank">SkillGate：长程 Agent 的技能选择要单独给学分</a></h4></div>
+<p>上海交大 + 小红书，arXiv:2608.18852。指出 selector credit starvation：读哪个 SKILL.md 只占轨迹约 0.14% token，outcome RL 会把选对但执行失败的选择打成负分。SkillGate 把选择 token 与执行 token 拆成两条学分。9B 在 16 候选 slate 上从 40.8% 提到 53.2%，误导 skill 暴露降约三分之二。代码 <a href="https://github.com/DeepExperience/SkillGate" rel="noopener" target="_blank">github.com/DeepExperience/SkillGate</a>。</p>
+<div class="tags"><span>arXiv:2608.18852</span><span>Agent</span><span>Skills</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.18307" rel="noopener" target="_blank">ComponentBench：computer-use 卡在组件层</a></h4></div>
+<p>Duke + Amazon AGI，arXiv:2608.18307。97 种 UI 组件、2910 个可程序验证任务。同一模型换观察空间，成功率可差 30 个点以上（GPT-5 mini AX-tree 83.1% → Pixel 48.9%）。最快配置仍是人类参考轨迹的 3.7× 时长。滑条 / 拖拽对人类 1–2 步，对 Agent 平均低于 60%。</p>
+<div class="tags"><span>arXiv:2608.18307</span><span>Computer-use</span></div>
+</article>
 <article class="signal medium">
 <div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.18078" rel="noopener" target="_blank">Position：推理 Agent 合谋风险，市场决策应先做行为认证</a></h4></div>
-<p>arXiv:2608.18078，Matthew Riemer 等。DeepSeek-R1-Distill-Qwen-7B 在 Bertrand 寡头定价上，默认「最大化利润」平均利润增益 Δ≈0.442（Nash=0，垄断=1）。显式提示「不要合谋」仍抬价，甚至更不理性。激活转向在第 18 层可使 Δ 从 0.013 拉到 0.781，而另一模型对 CoT 判合谋的概率稳定在 32–34%。作者主张：部署前用可观察行为做认证，不能靠提示或思维链监察。代码 <a href="https://github.com/mattriemer/LLMCartel" rel="noopener" target="_blank">github.com/mattriemer/LLMCartel</a>。</p>
-<div class="signal-note">Attention：不是新旗舰。把「Agent 会不会合谋」从评测题推进到监管认证提案，且给出 CoT 与行为可分离的实验。</div>
-<div class="tags"><span>arXiv:2608.18078</span><span>Agent</span><span>Collusion</span><span>DeepSeek-R1</span></div>
+<p>arXiv:2608.18078。DeepSeek-R1 蒸馏 7B 在 Bertrand 定价上默认 Δ≈0.442。显式「不要合谋」仍抬价。激活转向可使 Δ 从 0.013 到 0.781，而 CoT 被判合谋概率稳定在 32–34%。代码 <a href="https://github.com/mattriemer/LLMCartel" rel="noopener" target="_blank">github.com/mattriemer/LLMCartel</a>。</p>
+<div class="tags"><span>arXiv:2608.18078</span><span>Collusion</span></div>
 </article>
 </div>
 </section>
@@ -190,7 +205,7 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <div class="tab-pane" id="anime">
 <div class="library-head">
 <div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
-<p>单产品大版本日。主线是 <b>鸣潮 3.6「蜃云灯影，凡尘剑心」</b> 与上半 <b>清宵</b>。米系三作、战双、终末地今日无新节点。星铁 4.5 仍是 8/26。</p>
+<p>单产品大版本日。主线是 <b>鸣潮 3.6</b> 与上半 <b>清宵</b>。米系三作、战双、终末地今日无新节点。星铁 4.5 仍是 8/26。</p>
 <div class="lib-stats">
 <span><b>4</b> 独立 Signal</span>
 <span><b>5/12</b> 轴有信号</span>
@@ -203,7 +218,7 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <div class="axis-body">
 <article class="signal high">
 <div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://wutheringwaves.gg/wuthering-waves-version-3-6-update-maintenance-notice/" rel="noopener" target="_blank">鸣潮 3.6「蜃云灯影，凡尘剑心」今日维护后开服</a></h4></div>
-<p>官方维护 2026-08-20 04:00–11:00（UTC+8）。补偿星声×300、结晶溶剂×2（04:00 前建号并解锁邮件）。扫描未见延期或加时。也未见「维护完成 / 现已开放」二次官宣，不把「已可登录」写成已核验事实。预下载 8/18 已开（PC 预留 50GB / 实下约 22GB）。新场景「玄元境」；潮汐任务第四章第三幕「烟云幽远心剑鸣」+ 幕间「幽客销残声」。上半清宵 + 复刻达妮娅（GNN 转 8/10 通稿）；下半景燃今日未开池。</p>
+<p>官方维护 2026-08-20 04:00–11:00（UTC+8）。补偿星声×300、结晶溶剂×2。扫描未见延期或加时。也未见「维护完成 / 现已开放」二次官宣。新场景「玄元境」；潮汐任务第四章第三幕「烟云幽远心剑鸣」。上半清宵；下半景燃今日未开池。</p>
 <div class="tags"><span>鸣潮</span><span>3.6</span><span>库洛</span></div>
 </article>
 </div>
@@ -213,7 +228,7 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <div class="axis-body">
 <article class="signal high">
 <div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://wutheringwaves.gg/wuthering-waves-version-3-6-update-maintenance-notice/" rel="noopener" target="_blank">清宵：气动·迅刀，上半随 3.6 实装</a></h4></div>
-<p>活动唤取「仙风玉影水天清」（EN：Wind of Transcendence）。官方定位传说剑仙 / 镇玄司骑，琴剑双修。专武迅刀「云琅」（Glint of Clouds），饰品「清宵-云岚疏影」。中配姜贺。官方一线未给强度评级；攻略站倍率 / T0 不作结论。景燃（热熔·长刃）仅出现在版本简介，下半待开，不记今日卡池落地。</p>
+<p>活动唤取「仙风玉影水天清」。官方定位传说剑仙 / 镇玄司骑。专武迅刀「云琅」。官方一线未给强度评级。景燃仅出现在版本简介，下半待开，不记今日卡池落地。</p>
 <div class="tags"><span>清宵</span><span>气动</span><span>迅刀</span></div>
 </article>
 </div>
@@ -223,8 +238,8 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <div class="axis-body">
 <article class="signal high">
 <div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://wutheringwaves.gg/wuthering-waves-version-3-6-update-maintenance-notice/" rel="noopener" target="_blank">PC 端升级 NVIDIA DLSS 4.5 插帧；更换编程语言</a></h4></div>
-<p>CN 维护预告原文写死「PC端优化升级英伟达插帧技术支持【DLSS 4.5】」「更换编程语言，实现全平台性能优化」。EN 同步。前瞻直播有渠道转述约 +10fps，官方维护正文未写死，不进结论。未见独立 NVIDIA 新闻稿。CN 预告另列鸿蒙端（最低 HarmonyOS 6.0.1 / 麒麟 9000），EN 无鸿蒙条。</p>
-<div class="tags"><span>DLSS 4.5</span><span>PC</span><span>性能</span></div>
+<p>CN 维护预告原文写死。EN 同步。前瞻直播约 +10fps 未进官方正文，不进结论。未见独立 NVIDIA 新闻稿。</p>
+<div class="tags"><span>DLSS 4.5</span><span>PC</span></div>
 </article>
 </div>
 </section>
@@ -233,8 +248,81 @@ th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:
 <div class="axis-body">
 <article class="signal medium">
 <div class="signal-head"><b class="fire">🔥</b><h4>窗口内大版本节点：仅鸣潮 3.6</h4></div>
-<p>星铁 4.5「挥掷千星的筹码」仍锁定 2026-08-26，今日无改期。原神 7.0 8/12 开至冬＝窗外。绝区零 3.1 下半 8/19＝昨日。战双「歧海循光」＝昨日。终末地版本仍是 7/16「向渊行」，8/21「雪淞幽梦」前瞻＝明日。今日横向：库洛现运营开放世界独自落地大更，米哈游侧进入 4.5 前静默周。</p>
+<p>星铁 4.5 仍锁 8/26。原神 7.0、绝区零 3.1 下半、战双「歧海循光」均在窗外。终末地「雪淞幽梦」前瞻 8/21。今日横向：库洛独自落地开放世界大更。</p>
 <div class="tags"><span>对比</span><span>版本节奏</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="dev">
+<div class="library-head">
+<div><span class="lib-icon">🛠️</span><h2>游戏开发观察</h2></div>
+<p>Unreal / Unity / Godot 官方博客今日空。cs.GR 周四新投 0、交叉 1、替换 3。唯一达门槛的是 Disney 鼓手全身动作扩散。</p>
+<div class="lib-stats">
+<span><b>1</b> 独立 Signal</span>
+<span><b>1/17</b> 轴有信号</span>
+<span class="level">低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>⚙️ 物理 / 动画 / 角色控制</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.19055" rel="noopener" target="_blank">Generalized Audio-Driven Synthesis of Precise Drummer Motion</a></h4></div>
+<p>DisneyResearch|Studios + ETH + Tel Aviv，arXiv:2608.19055（cs.CV→cs.GR 交叉）。SCA / CGF Vol.45 No.8。双目标损失把身体 6D 旋转与鼓槌尖笛卡尔坐标拆开；击打偏差均值约 1.9 cm（仅旋转基线约 8.4 cm）。22 人 2AFC：相对旋转基线偏好 92.8%；相对 GT 仅 58.7% 偏好 GT（p=0.08）。3.5h+ 职业鼓手光学动捕 @120 Hz。局限：输入须鼓轨；固定 10 件鼓组；不是引擎运行时插件。</p>
+<div class="tags"><span>arXiv:2608.19055</span><span>Animation</span><span>Disney</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p>预 Gamescom。腾讯 / 网易 / 米哈游公司层今日空。落地的是 <b>STALKER 2 资料片</b>、<b>STEINS;GATE RE:BOOT Steam</b>、<b>Mortal Shell II</b>，以及澳大利亚 PlaySide 年报扭亏。网易 Q2 今晚。</p>
+<div class="lib-stats">
+<span><b>4</b> 独立 Signal</span>
+<span><b>3/18</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本 / 大型 DLC</h3><span class="density">中高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.gamespress.com/en-US/STALKER-2-Cost-of-Hope-Launches-August-20" rel="noopener" target="_blank">《S.T.A.L.K.E.R. 2》Cost of Hope 与免费 Update 2.0 今日同步</a></h4></div>
+<p>GSC 官方：首个大型剧情资料片，PC / Xbox Series / PS5。7/27 已预告，今日按期交付。Update 2.0 免费，升新版 UE5。截稿未见「现已上线」二次官宣，无首日评测 / 销量，不拔高。</p>
+<div class="tags"><span>STALKER 2</span><span>DLC</span><span>GSC</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🆕 新游 / 上线</h3><span class="density">中密度</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://steinsgate.jp/reboot/en-us/" rel="noopener" target="_blank">《STEINS;GATE RE:BOOT》Steam 今日开售</a></h4></div>
+<p>官网写死 Steam 8/20；主机（NS2 / Switch / PS5 / Xbox）10/29。Xbox 西区已从 8/20 改档对齐主机，不记今日 Xbox 上线。新世界线 / 新结局、全语音重录、huke 重绘、E-mote。截稿无 Metacritic 首日评测包。</p>
+<div class="tags"><span>STEINS;GATE</span><span>Steam</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://mortalshell.com/en/" rel="noopener" target="_blank">《Mortal Shell II》官方全球发售日 8/20</a></h4></div>
+<p>Cold Symmetry / Playstack。PS5 / Xbox Series / Steam，标准 $49.99。官网落款 20 AUGUST 2026。Advanced Access 8/17 已开＝窗外。标准版截稿可能尚未全球解锁，按官方发售日入轴，不作今日首日评测。</p>
+<div class="tags"><span>Mortal Shell II</span><span>Soulslike</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📈 财报</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://announcements.asx.com.au/asxpdf/20260820/pdf/072yz9332b9jsj.pdf" rel="noopener" target="_blank">PlaySide FY26：收入 A$5490 万超指引，EBITDA 扭亏 A$1550 万</a></h4></div>
+<p>ASX:PLY，年结 2026-06-30。收入 A$54.9m（指引 50–53，pcp 48.7，+13%）；自有 IP A$34.7m（+108%）；外部项目 A$20.2m（−37%）；EBITDA A$15.5m（pcp 亏 7.5）；NPAT A$5.4m。主因《MOUSE: P.I. For Hire》。非雷达公司，规模远小于腾讯 / 网易，不拔高。网易 Q2 今晚才出，不并列。</p>
+<div class="tags"><span>PlaySide</span><span>ASX</span><span>FY26</span></div>
 </article>
 </div>
 </section>
