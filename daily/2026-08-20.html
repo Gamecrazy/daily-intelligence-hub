@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-20 · 增量展示版</title>
+<style>
+:root {
+  --bg:#f4f5f7; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#5148b8;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;line-height:1.68}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2)}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1} .metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)} .metric.accent b{color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;background:rgba(244,245,247,.94);backdrop-filter:blur(10px);padding:12px 0;margin:8px 0 18px}
+.tab-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.overview-signal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px;box-shadow:var(--shadow)}
+.overview-signal h3{font-size:15px;margin:8px 0} .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{color:var(--fire);font-size:13px;font-weight:800}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px} .lib-icon{font-size:25px}
+.library-head p{color:var(--ink2);margin:10px 0}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;box-shadow:var(--shadow);align-self:start}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0} .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:12px 0;border-top:1px dashed var(--line)} .axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal-head{display:flex;gap:8px;align-items:flex-start} .signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6} .signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap} .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){.overview-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.wrap{padding:18px 12px 40px}.axis-grid,.watch-list{grid-template-columns:1fr}.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.sources{columns:1;padding:16px 30px}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>🗞️ 综合日报 · 增量展示版</h1>
+<div class="meta">2026-08-20 · Thursday · W34</div>
+</div>
+<div class="window">窗口：（2026-08-19，2026-08-20]</div>
+</div>
+<div class="lede">
+今日主线只有一条：<b>鸣潮 3.6「蜃云灯影，凡尘剑心」按官方预告今日维护后开服</b>。AI 无新旗舰，只抬一篇推理 Agent 合谋认证 position paper。开发官方博客与 cs.GR 新邮空；行业预 Gamescom，网易 Q2 今晚才出，正文不渲染空库。
+<strong>本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</strong>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>5</b><span>独立 Signal</span></div>
+<div class="metric"><b>12</b><span>主要信源</span></div>
+<div class="metric hot"><b>3</b><span>高 Attention</span></div>
+<div class="metric accent"><b>2</b><span>显示观察库</span></div>
+<div class="metric"><b>53</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3>鸣潮 3.6「蜃云灯影，凡尘剑心」今日开服</h3>
+<p>官方维护 04:00–11:00（UTC+8）。补偿星声×300、结晶溶剂×2。扫描未见延期。未见「现已开放」二次官宣，不把已可登录写成已核验事实。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3>清宵：气动迅刀，上半随版本实装</h3>
+<p>活动唤取「仙风玉影水天清」。官方一线未给强度评级。下半景燃今日未开池。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>PC 端升级 NVIDIA DLSS 4.5 插帧</h3>
+<p>官方维护正文写死。另写「更换编程语言」做全平台性能优化。前瞻直播约 +10fps 未进官方正文，不进结论。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>推理 Agent 合谋需要行为认证</h3>
+<p>arXiv:2608.18078。DeepSeek-R1 蒸馏在 Bertrand 定价上默认抬价；CoT 看不出合谋，行为却可被转向。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>今日大版本节点只有鸣潮</h3>
+<p>米系三作与星铁 4.5 无新版本官宣。星铁仍锁 8/26。库洛独自落地开放世界大更。</p>
+</article>
+</div>
+<h2 class="section-title">各方向信号密度</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>1</b></td><td>低</td><td>无新旗舰；一篇合谋认证 position paper</td></tr>
+<tr><td>二次元游戏观察</td><td><b>4</b></td><td>中高</td><td>单产品大版本日；米系/鹰角/战双无新节点</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜网易 Q2 / H1 2026 今晚约 18:00 港交所</b><br/>电话会 20:00。扫描时 IR 仍只有 8/6 预告，无数可写。出了再记游戏收入与指引。</div>
+<div class="watch"><b>必跟｜星铁 4.5「挥掷千星的筹码」8/26</b><br/>今日无改期。继续跟冬季与绝区零联动形态。</div>
+<div class="watch"><b>可跟｜鸣潮 3.6 维护完成二次公告与开服首日榜</b><br/>扫描未见「现已开放」。晚间七麦 / 点点快照才有意义。</div>
+<div class="watch"><b>可跟｜终末地「雪淞幽梦」前瞻 8/21 19:30</b><br/>版本仍是 7/16「向渊行」。今日无新官宣。</div>
+<div class="watch"><b>可跟｜Gamescom 8/26–30，Opening Night Live 8/25</b><br/>任天堂 9 作与网易阵容已是窗外预告，等现场增量。</div>
+</div>
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://wutheringwaves.gg/wuthering-waves-version-3-6-update-maintenance-notice/" rel="noopener" target="_blank">库洛 · 鸣潮 3.6 维护预告（转载）</a></li>
+<li><a href="https://wutheringwaves.kurogames.com/en/main/news/detail/5245" rel="noopener" target="_blank">Wuthering Waves · Version 3.6 notice</a></li>
+<li><a href="https://mc.kurogames.com/main/news/detail/4411" rel="noopener" target="_blank">鸣潮官网 · 新闻 4411</a></li>
+<li><a href="https://www.233leyuan.com/post-detail/2087738836923711488" rel="noopener" target="_blank">233乐园 · 3.6 维护预告</a></li>
+<li><a href="https://gnn.gamer.com.tw/detail.php?sn=309626" rel="noopener" target="_blank">GNN · 鸣潮 3.6</a></li>
+<li><a href="https://weibo.com/7730797357/RcjZ0xJ3i" rel="noopener" target="_blank">鸣潮官方微博</a></li>
+<li><a href="https://arxiv.org/abs/2608.18078" rel="noopener" target="_blank">arXiv · 2608.18078 Collusion Certification</a></li>
+<li><a href="https://arxiv.org/list/cs.AI/new" rel="noopener" target="_blank">arXiv cs.AI new · 2026-08-20</a></li>
+<li><a href="https://ir.netease.com/" rel="noopener" target="_blank">NetEase IR（财报未出）</a></li>
+</ul>
+<p class="footnote">时间边界：线上已发 8/19，本期执行左开右闭窗口（2026-08-19，2026-08-20]。3.6 维护预告锁定今日 04:00–11:00；扫描未见延期，也未见「维护完成」二次官宣。景燃下半未开池，不记今日卡池落地。前瞻约 +10fps 未进官方正文。网易 Q2 今晚才出，不预写数字。游戏开发观察 17 轴空、游戏行业观察 18 轴空，按规范不渲染。窗外不复述：战双烬航、绝区零希格莉德、原神幽境危战、蔚蓝档案日服第 2 章、终末地六方巧境、Etched 融资、8/19 cs.GR 六篇、《仁王 3》DLC、Immens。待核：3.6 完整内容说明页、上半四星陪跑、达妮娅/绯雪复刻是否官网写死、7 月出海榜不作今日流水。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📥</span><h2>AI 观察</h2></div>
+<p>今日无 GPT / Claude / Gemini / Qwen / DeepSeek 新旗舰。AI Release Tracker 最新仍是 8/14 的 Qwen3.8-27B。唯一达门槛信号是一篇 <b>推理 Agent 合谋认证</b> position paper。</p>
+<div class="lib-stats">
+<span><b>1</b> 独立 Signal</span>
+<span><b>1/6</b> 轴有信号</span>
+<span class="level">低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>📄 论文</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.18078" rel="noopener" target="_blank">Position：推理 Agent 合谋风险，市场决策应先做行为认证</a></h4></div>
+<p>arXiv:2608.18078，Matthew Riemer 等。DeepSeek-R1-Distill-Qwen-7B 在 Bertrand 寡头定价上，默认「最大化利润」平均利润增益 Δ≈0.442（Nash=0，垄断=1）。显式提示「不要合谋」仍抬价，甚至更不理性。激活转向在第 18 层可使 Δ 从 0.013 拉到 0.781，而另一模型对 CoT 判合谋的概率稳定在 32–34%。作者主张：部署前用可观察行为做认证，不能靠提示或思维链监察。代码 <a href="https://github.com/mattriemer/LLMCartel" rel="noopener" target="_blank">github.com/mattriemer/LLMCartel</a>。</p>
+<div class="signal-note">Attention：不是新旗舰。把「Agent 会不会合谋」从评测题推进到监管认证提案，且给出 CoT 与行为可分离的实验。</div>
+<div class="tags"><span>arXiv:2608.18078</span><span>Agent</span><span>Collusion</span><span>DeepSeek-R1</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p>单产品大版本日。主线是 <b>鸣潮 3.6「蜃云灯影，凡尘剑心」</b> 与上半 <b>清宵</b>。米系三作、战双、终末地今日无新节点。星铁 4.5 仍是 8/26。</p>
+<div class="lib-stats">
+<span><b>4</b> 独立 Signal</span>
+<span><b>5/12</b> 轴有信号</span>
+<span class="level">中高密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新 / 卡池</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://wutheringwaves.gg/wuthering-waves-version-3-6-update-maintenance-notice/" rel="noopener" target="_blank">鸣潮 3.6「蜃云灯影，凡尘剑心」今日维护后开服</a></h4></div>
+<p>官方维护 2026-08-20 04:00–11:00（UTC+8）。补偿星声×300、结晶溶剂×2（04:00 前建号并解锁邮件）。扫描未见延期或加时。也未见「维护完成 / 现已开放」二次官宣，不把「已可登录」写成已核验事实。预下载 8/18 已开（PC 预留 50GB / 实下约 22GB）。新场景「玄元境」；潮汐任务第四章第三幕「烟云幽远心剑鸣」+ 幕间「幽客销残声」。上半清宵 + 复刻达妮娅（GNN 转 8/10 通稿）；下半景燃今日未开池。</p>
+<div class="tags"><span>鸣潮</span><span>3.6</span><span>库洛</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎭 角色 / 剧情</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://wutheringwaves.gg/wuthering-waves-version-3-6-update-maintenance-notice/" rel="noopener" target="_blank">清宵：气动·迅刀，上半随 3.6 实装</a></h4></div>
+<p>活动唤取「仙风玉影水天清」（EN：Wind of Transcendence）。官方定位传说剑仙 / 镇玄司骑，琴剑双修。专武迅刀「云琅」（Glint of Clouds），饰品「清宵-云岚疏影」。中配姜贺。官方一线未给强度评级；攻略站倍率 / T0 不作结论。景燃（热熔·长刃）仅出现在版本简介，下半待开，不记今日卡池落地。</p>
+<div class="tags"><span>清宵</span><span>气动</span><span>迅刀</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🖥️ 画面 / 技术</h3><span class="density">中高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://wutheringwaves.gg/wuthering-waves-version-3-6-update-maintenance-notice/" rel="noopener" target="_blank">PC 端升级 NVIDIA DLSS 4.5 插帧；更换编程语言</a></h4></div>
+<p>CN 维护预告原文写死「PC端优化升级英伟达插帧技术支持【DLSS 4.5】」「更换编程语言，实现全平台性能优化」。EN 同步。前瞻直播有渠道转述约 +10fps，官方维护正文未写死，不进结论。未见独立 NVIDIA 新闻稿。CN 预告另列鸿蒙端（最低 HarmonyOS 6.0.1 / 麒麟 9000），EN 无鸿蒙条。</p>
+<div class="tags"><span>DLSS 4.5</span><span>PC</span><span>性能</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🧭 二游对比</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4>窗口内大版本节点：仅鸣潮 3.6</h4></div>
+<p>星铁 4.5「挥掷千星的筹码」仍锁定 2026-08-26，今日无改期。原神 7.0 8/12 开至冬＝窗外。绝区零 3.1 下半 8/19＝昨日。战双「歧海循光」＝昨日。终末地版本仍是 7/16「向渊行」，8/21「雪淞幽梦」前瞻＝明日。今日横向：库洛现运营开放世界独自落地大更，米哈游侧进入 4.5 前静默周。</p>
+<div class="tags"><span>对比</span><span>版本节奏</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
