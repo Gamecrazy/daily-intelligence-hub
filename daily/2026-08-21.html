@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-21 · 增量展示版</title>
+<style>
+:root {
+  --bg:#f4f5f7; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#5148b8;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;line-height:1.68}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2)}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1} .metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)} .metric.accent b{color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;background:rgba(244,245,247,.94);backdrop-filter:blur(10px);padding:12px 0;margin:8px 0 18px}
+.tab-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.overview-signal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px;box-shadow:var(--shadow)}
+.overview-signal h3{font-size:15px;margin:8px 0} .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{color:var(--fire);font-size:13px;font-weight:800}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px} .lib-icon{font-size:25px}
+.library-head p{color:var(--ink2);margin:10px 0}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;box-shadow:var(--shadow);align-self:start}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0} .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:12px 0;border-top:1px dashed var(--line)} .axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal-head{display:flex;gap:8px;align-items:flex-start} .signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6} .signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap} .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){.overview-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.wrap{padding:18px 12px 40px}.axis-grid,.watch-list{grid-template-columns:1fr}.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.sources{columns:1;padding:16px 30px}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>🗞️ 综合日报 · 增量展示版</h1>
+<div class="meta">2026-08-21 · Friday · W34</div>
+</div>
+<div class="window">窗口：（2026-08-20，2026-08-21]</div>
+</div>
+<div class="lede">
+主线是 <b>网易 2026 Q2 / H1</b>（IR 落款 8/20 16:58 CST，昨报截稿未入，本期必跟补入）和 Riot《2XKO》12 月结束主动研发。From《The Duskbloods》Network Test 今日开窗；《Cyberpunk: Edgerunners II》定档 Netflix 10/20；Codex 0.149.0 稳定版。二次元雷达作无落地节点，正文只收《诡秘之主》今日公测作对照。游戏开发 0 Signal，不渲染 Tab。
+<strong>本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</strong>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>7</b><span>独立 Signal</span></div>
+<div class="metric"><b>12</b><span>主要信源</span></div>
+<div class="metric hot"><b>2</b><span>高 Attention</span></div>
+<div class="metric accent"><b>3</b><span>显示观察库</span></div>
+<div class="metric"><b>53</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3>网易 Q2：营收 301 亿 +7.9%，游戏 250 亿 +9.7%</h3>
+<p>归母净利 70 亿；非 GAAP 77 亿。IR 落款昨窗 16:58 CST，昨报截稿未入，本期必跟补入。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>Riot《2XKO》12 月结束主动研发</h3>
+<p>留存 / 新增不足以支撑，运营成本显著高于收入。服务器保留；8/20 起停售 KO Points 并退款。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>《The Duskbloods》Network Test 今日开窗</h3>
+<p>首场 18:00–22:00 CST。截稿上午未见「现已开测」。不写成发售。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>《Cyberpunk: Edgerunners II》Netflix 10/20</h3>
+<p>CDPR + TRIGGER，10 集独立故事。Gematsu 落款跨过沪上 8/21。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">·</div>
+<h3>Codex 0.149.0：agents 仪表盘与 queue</h3>
+<p>稳定版。新增仪表盘、会话队列、工作目录命令与 doctor。无新旗舰模型。</p>
+</article>
+</div>
+<h2 class="section-title">各方向信号密度</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>1</b></td><td>低</td><td>无新旗舰；Codex CLI 增量</td></tr>
+<tr><td>二次元游戏观察</td><td><b>1</b></td><td>低</td><td>雷达作无落地节点；对照公测 1</td></tr>
+<tr><td>游戏行业观察</td><td><b>5</b></td><td>中高</td><td>网易财报 + 2XKO 日落</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜终末地「雪淞幽梦」前瞻今晚 19:30</b><br/>未开播，不预写干员名 / 上线日 / 兑换码。</div>
+<div class="watch"><b>必跟｜星铁 4.5「挥掷千星的筹码」仍锁 8/26</b><br/>窗口内未见改期。</div>
+<div class="watch"><b>必跟｜Gamescom 8/26–30，Opening Night Live 8/25</b><br/>今日无新阵容、无改期。</div>
+<div class="watch"><b>可跟｜Duskbloods 首场 18:00 CST 是否按时</b><br/>截稿未见「现已开测」。</div>
+<div class="watch"><b>可跟｜鸣潮 3.6 晚间七麦 / 点点快照</b><br/>上午无可用数字，有数字再写。</div>
+<div class="watch"><b>可跟｜雷鸟 iO 14:30 发布会</b><br/>截稿未开，配置 / 售价未揭晓。</div>
+</div>
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://ir.netease.com/news-releases/news-release-details/netease-announces-second-quarter-and-interim-2026-unaudited" rel="noopener" target="_blank">NetEase IR · Q2 / H1 2026 业绩稿</a></li>
+<li><a href="https://ir.netease.com/node/15796/pdf" rel="noopener" target="_blank">NetEase IR · Q2 / 中期业绩 PDF</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1110646/000110465926098940/tm2623482d1_6k.htm" rel="noopener" target="_blank">SEC · NetEase Form 6-K（2026-08-20）</a></li>
+<li><a href="https://www.riotgames.com/en/news/2xko-active-development-ends-december-2026" rel="noopener" target="_blank">Riot · 2XKO 结束主动研发</a></li>
+<li><a href="https://www.gematsu.com/2026/08/2xko-to-end-active-development-in-december" rel="noopener" target="_blank">Gematsu · 2XKO 跟进</a></li>
+<li><a href="https://campaign.theduskbloods.jp/p/event/networktest/" rel="noopener" target="_blank">The Duskbloods · Network Test</a></li>
+<li><a href="https://www.gematsu.com/2026/08/cyberpunk-edgerunners-ii-premieres-october-20" rel="noopener" target="_blank">Gematsu · Edgerunners II 10/20</a></li>
+<li><a href="https://www.gematsu.com/2026/08/borderlands-4-dlc-story-pack-2-fl4k-and-the-last-resort-launches-september-10-2" rel="noopener" target="_blank">Gematsu · Borderlands 4 Story Pack 2</a></li>
+<li><a href="https://github.com/openai/codex/releases/tag/rust-v0.149.0" rel="noopener" target="_blank">GitHub · Codex rust-v0.149.0</a></li>
+<li><a href="https://www.taptap.cn/app/281223" rel="noopener" target="_blank">TapTap · 诡秘之主</a></li>
+<li><a href="https://endfield.hypergryph.com/news/9335" rel="noopener" target="_blank">终末地官网 · 「雪淞幽梦」前瞻预告</a></li>
+<li><a href="https://www.gamespress.com/en-US/Honkai-Star-Rail-Version-45-To-Roll-the-Stars-in-Astropolis-is-Coming-" rel="noopener" target="_blank">Games Press · 星铁 4.5 锁 8/26</a></li>
+</ul>
+<p class="footnote">时间边界：线上已发 8/20，本期左开右闭（2026-08-20，2026-08-21]。网易 Q2 IR 落款 8/20 16:58 CST，昨日报截稿未入，本期按必跟补入。电话会已于 8/20 20:00 北京时间召开。不写股息。终末地「雪淞幽梦」前瞻今晚 19:30 未开播，不预写。星铁 4.5 仍锁 8/26。Duskbloods 截稿未见「现已开测」。游戏开发 0 Signal，未渲染 Tab。待核不进核心：股息、Nexon 投资传闻、Newzoo 付费版数字、鸣潮首日榜、终末地干员名。窗外不复述：鸣潮 3.6 / 清宵 / DLSS、SkillGate / ComponentBench / Collusion、Disney 鼓手、STALKER 2 DLC、STEINS;GATE RE:BOOT、Mortal Shell II、PlaySide FY26。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📥</span><h2>AI 观察</h2></div>
+<p>今日无 GPT / Claude / Gemini / Qwen / DeepSeek 新旗舰。arXiv 周五列表截稿未出。唯一增量是 <b>Codex 0.149.0</b> 稳定版，属 CLI 版本列车，不标火苗。</p>
+<div class="lib-stats">
+<span><b>1</b> 独立 Signal</span>
+<span><b>1/6</b> 轴有信号</span>
+<span class="level">低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal">
+<div class="signal-head"><h4><a href="https://github.com/openai/codex/releases/tag/rust-v0.149.0" rel="noopener" target="_blank">Codex 0.149.0：agents 仪表盘、codex queue、工作目录命令</a></h4></div>
+<p>GitHub 稳定 tag rust-v0.149.0。Published 2026-08-20T21:04:55Z = 8/21 05:04 CST。新增交互式 <code>codex agents</code> 仪表盘、<code>codex queue</code>、斜杠命令 <code>/cd /pwd /cwd</code>、Vim 改动、<code>codex doctor</code> 诊断，以及 SDK <code>max</code> / <code>ultra</code> reasoning。无新旗舰模型。</p>
+<div class="tags"><span>Codex</span><span>0.149.0</span><span>CLI</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p>雷达九作今日无落地节点。终末地「雪淞幽梦」前瞻今晚 19:30 未开播，星铁 4.5 仍锁 8/26，二者进观察清单、不进核心、不点火苗。正文只收 <b>《诡秘之主》今日公测</b>作对照。</p>
+<div class="lib-stats">
+<span><b>1</b> 独立 Signal</span>
+<span><b>1/12</b> 轴有信号</span>
+<span class="level">低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎮 新游 / 测试 / 上线</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.taptap.cn/app/281223" rel="noopener" target="_blank">《诡秘之主》今日 10:00 全平台公测</a></h4></div>
+<p>杭州弹指宇宙（快手系）。UE5 开放世界 MMO，非抽卡二游。TapTap 官方页写「今天10点 首发」、上线日期 2026-08-21。不进重点游戏雷达角色池。</p>
+<p class="signal-note">对照条。同日注意力可能被分流；不写「12 亿成本」。终末地前瞻、星铁 4.5 不在本轴点火苗。</p>
+<div class="tags"><span>诡秘之主</span><span>公测</span><span>对照</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p>主线是 <b>网易 Q2 / H1</b> 补入与 Riot《2XKO》日落。From Network Test 今日开窗；两则硬日期定档：Edgerunners II、Borderlands 4 Story Pack 2。腾讯 / 米哈游公司层今日空。</p>
+<div class="lib-stats">
+<span><b>5</b> 独立 Signal</span>
+<span><b>4/18</b> 轴有信号</span>
+<span class="level">中高密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎯 重点公司雷达</h3><span class="density">高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://ir.netease.com/news-releases/news-release-details/netease-announces-second-quarter-and-interim-2026-unaudited" rel="noopener" target="_blank">网易 2026 Q2 / H1：营收 301 亿 +7.9%，游戏 250 亿 +9.7%，归母净利 70 亿</a></h4></div>
+<p>未经审计。Q2 净收入 RMB30.1bn +7.9%（表内 30,106,546 千元）；游戏及相关增值 25.0bn +9.7%（25,022,788 千元）；有道 15 亿 +3.5%；云音乐 20 亿持平；创新及其他 16 亿 −3.5%。毛利 212 亿 +17.5%；营业费用 91 亿 +1.5%；营业利润约 121 亿（12,089,338 千元）。归母净利 70 亿（6,980,656 千元）；非 GAAP 77 亿（7,746,714 千元）。投资净亏损 29.54 亿（2,953,671 千元）；有效税率 25.5%。经营现金流 100 亿；截至 6/30 净现金 1,675 亿。</p>
+<p>H1：净收入 607 亿 +7.0%；游戏 507 亿 +8.3%；归母净利 177 亿；非 GAAP 190 亿。</p>
+<p>游戏：梦幻西游系列、第五人格、蛋仔派对、逆水寒、燕云十六声维持；燕云与漫威争锋拓展北美 / 欧洲；《遗忘之海》7 月国内上线；Ananta / 归唐按计划。环比游戏收入略降，官方写「若干自研及授权游戏净收入略有下降」。电话会已于 8/20 20:00 北京时间召开。</p>
+<p class="signal-note">IR 落款 8/20 16:58 CST，昨日报截稿未入，本期按必跟补入。不写股息。PDF：<a href="https://ir.netease.com/node/15796/pdf" rel="noopener" target="_blank">ir.netease.com/node/15796/pdf</a></p>
+<div class="tags"><span>网易</span><span>Q2</span><span>H1</span><span>NTES</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本 / 大型 DLC</h3><span class="density">中高密度</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.riotgames.com/en/news/2xko-active-development-ends-december-2026" rel="noopener" target="_blank">Riot《2XKO》官方宣布 12 月结束主动研发</a></h4></div>
+<p>官方落款 Aug 20, 2026（美东下午 = 沪上 8/21）。留存 / 新增不足以支撑；运营成本显著高于收入。服务器 2026 年后仍在线。8/20 起停售 KO Points；8/20 及之前消费退款。9/8 Patch 1.3.1：Lux、全角色解锁、Ultimate Bundle $39.99、取消 Battle Pass / 排位 / 赛季。10 月 Samira 为最后一位新角色。12 月可选 1.3.5 修 bug。</p>
+<div class="tags"><span>2XKO</span><span>Riot</span><span>日落</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.gematsu.com/2026/08/borderlands-4-dlc-story-pack-2-fl4k-and-the-last-resort-launches-september-10-2" rel="noopener" target="_blank">《Borderlands 4》Story Pack 2 定档 9/10</a></h4></div>
+<p>FL4K 回归；同步 Bounty Pack 5 + Version 1.10。Gematsu 8/20 12:30 EDT = 8/21 00:30 CST。非今日上线，是硬日期定档。</p>
+<div class="tags"><span>Borderlands 4</span><span>DLC</span><span>2K</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏭 重点工作室雷达</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://campaign.theduskbloods.jp/p/event/networktest/" rel="noopener" target="_blank">From《The Duskbloods》Network Test 今日开窗</a></h4></div>
+<p>首场 8/21 03:00–07:00 PDT = 18:00–22:00 CST。官方站点日程未改。截稿上午未见「现已开测」。不写成发售。</p>
+<p class="signal-note">其后还有多场。目标为服务器负载 / 多人 / 平衡。晚间看是否按时开测。</p>
+<div class="tags"><span>The Duskbloods</span><span>FromSoftware</span><span>Network Test</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🤝 IP / 影视化</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.gematsu.com/2026/08/cyberpunk-edgerunners-ii-premieres-october-20" rel="noopener" target="_blank">《Cyberpunk: Edgerunners II》官方定档 Netflix 10/20</a></h4></div>
+<p>CD Projekt RED + TRIGGER，10 集独立故事。Gematsu 8/20 19:39 EDT = 8/21 07:39 CST。</p>
+<div class="tags"><span>Edgerunners II</span><span>Netflix</span><span>CDPR</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
