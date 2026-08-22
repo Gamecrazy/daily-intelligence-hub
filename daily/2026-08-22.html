@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-22 · 增量展示版</title>
+<style>
+:root {
+  --bg:#f4f5f7; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#5148b8;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;line-height:1.68}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2)}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1} .metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)} .metric.accent b{color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;background:rgba(244,245,247,.94);backdrop-filter:blur(10px);padding:12px 0;margin:8px 0 18px}
+.tab-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.overview-signal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px;box-shadow:var(--shadow)}
+.overview-signal h3{font-size:15px;margin:8px 0} .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{color:var(--fire);font-size:13px;font-weight:800}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px} .lib-icon{font-size:25px}
+.library-head p{color:var(--ink2);margin:10px 0}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;box-shadow:var(--shadow);align-self:start}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0} .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:12px 0;border-top:1px dashed var(--line)} .axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal-head{display:flex;gap:8px;align-items:flex-start} .signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6} .signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap} .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){.overview-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.wrap{padding:18px 12px 40px}.axis-grid,.watch-list{grid-template-columns:1fr}.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.sources{columns:1;padding:16px 30px}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>🗞️ 综合日报 · 增量展示版</h1>
+<div class="meta">2026-08-22 · Saturday · W34</div>
+</div>
+<div class="window">窗口：（2026-08-21，2026-08-22]</div>
+</div>
+<div class="lede">
+主线是 <b>终末地 1.5「雪淞幽梦」前瞻已播</b>（官方定档 9/2，干员 Typhoeus / Purrchena）、Insomniac《Marvel's Wolverine》金盘（仍 9/15）与《COD: MW4》Early Access Beta 开测。From《The Duskbloods》Network Test 首场因服务器故障关停。<b>今日无新旗舰。今日无新 MCP/Skill 推荐。</b>游戏开发 0 Signal，不渲染 Tab。
+<strong>本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</strong>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>8</b><span>独立 Signal</span></div>
+<div class="metric"><b>13</b><span>主要信源</span></div>
+<div class="metric hot"><b>3</b><span>高 Attention</span></div>
+<div class="metric accent"><b>3</b><span>显示观察库</span></div>
+<div class="metric"><b>53</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>终末地 1.5「雪淞幽梦」定档 9/2，点名 Typhoeus / Purrchena</h3>
+<p>昨 19:30 前瞻已播。GRYPHLINE 通稿锁 9/2；9/24 开放 Suiming，并可免费招募 Purrchena。中文正式名待 Hypergryph。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>Insomniac《Marvel's Wolverine》已金盘，仍 9/15 PS5</h3>
+<p>Sony / Insomniac 宣布 gold。发售日未改。Gematsu 8/21 11:00 AM EDT = 23:00 CST，昨窗补入核。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>《COD: MW4》Early Access Beta 现已开测（Open Beta 8/28）</h3>
+<p>预购或 Beta Code 可进。Open Beta 8/28 起全员可进。发售仍 10/23。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>From《The Duskbloods》Network Test 首场官方关停</h3>
+<p>服务器登录失败，官方宣布 today's session is now closed；后续场次 later date。不是发售。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>GPT-5.6 Sol API 短上下文 $4/$20，约 3 个月</h3>
+<p>short-context 从 $5/$30 调至 $4/$20 per 1M，cached $0.40，至少至 2026-11-21。订阅价不变。不是新旗舰。</p>
+</article>
+</div>
+<h2 class="section-title">各方向信号密度</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>2</b></td><td>偏低</td><td>无新旗舰；无新 MCP/Skill；价格 / 分发两条</td></tr>
+<tr><td>二次元游戏观察</td><td><b>2</b></td><td>中</td><td>终末地 1.5 回顾落地；雷达其他作无新节点</td></tr>
+<tr><td>游戏行业观察</td><td><b>4</b></td><td>中</td><td>Wolverine 金盘 + MW4 开测；雷达公司层空</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜星铁 4.5「挥掷千星的筹码」仍锁 8/26</b><br/>本窗口未见改期。不把锁期未变写成独立 Signal。</div>
+<div class="watch"><b>必跟｜战双音乐会「于频率中相汇」今晚 19:00</b><br/>扫描时未开播，不预写曲目 / 礼包码 / 抽奖。</div>
+<div class="watch"><b>可跟｜终末地台北相伴庆典 13:00–17:00 西门</b><br/>8/22–8/23。扫描时未开场，不写出席、不预写现场。</div>
+<div class="watch"><b>可跟｜终末地 CN 新闻页干员中文正式名</b><br/>核心只用 Typhoeus / Purrchena。中文名与地图名待 Hypergryph。</div>
+<div class="watch"><b>必跟｜Duskbloods 后续场次</b><br/>From 写 later date；官网日程未改。不把原日程复述成新闻。</div>
+<div class="watch"><b>必跟｜Gamescom 8/26–30，ONL 8/25；GTA6 Extended Look 8/27；Elden Ring Tarnished 8/28</b><br/>今日无新阵容、无改期。</div>
+<div class="watch"><b>可跟｜arXiv 周六列表未出；Codex 0.150 仅 alpha</b><br/>/new 仍停在 Fri 21 Aug。0.150.0-alpha.3 / .5 / .6 无独立 notes，待稳定 tag。</div>
+</div>
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://www.gamespress.com/en-US/Venture-Into-an-Icy-Frontier-to-Discover-a-Familiar-Operator-in-Dreams" rel="noopener" target="_blank">Games Press · 终末地 1.5「雪淞幽梦」通稿</a></li>
+<li><a href="https://www.youtube.com/watch?v=wESj_smGb98" rel="noopener" target="_blank">YouTube · 终末地「雪淞幽梦」前瞻节目</a></li>
+<li><a href="https://www.youtube.com/watch?v=4f3PxzS5iFc" rel="noopener" target="_blank">YouTube · 终末地 1.5 官方影片</a></li>
+<li><a href="https://x.ai/news/grok-bot-more-plans" rel="noopener" target="_blank">x.ai · Grok Bot 套餐扩容</a></li>
+<li><a href="https://openai.com/index/gpt-5-6/" rel="noopener" target="_blank">OpenAI · GPT-5.6 产品页（Sol 降价更新）</a></li>
+<li><a href="https://developers.openai.com/api/docs/pricing" rel="noopener" target="_blank">OpenAI Developers · API 定价</a></li>
+<li><a href="https://www.gematsu.com/2026/08/marvels-wolverine-goes-gold" rel="noopener" target="_blank">Gematsu · Marvel's Wolverine 金盘</a></li>
+<li><a href="https://campaign.theduskbloods.jp/p/event/networktest/" rel="noopener" target="_blank">The Duskbloods · Network Test</a></li>
+<li><a href="https://blog.playstation.com/2026/08/21/call-of-duty-modern-warfare-4-new-multiplayer-and-early-access-beta-details/" rel="noopener" target="_blank">PlayStation Blog · MW4 Early Access Beta</a></li>
+<li><a href="https://news.xbox.com/en-us/2026/08/21/pre-order-call-of-duty-modern-warfare-4-and-play-the-beta-today/" rel="noopener" target="_blank">Xbox Wire · MW4 预购与 Beta</a></li>
+<li><a href="https://www.devolverdigital.com/" rel="noopener" target="_blank">Devolver Digital · Shroom and Gloom</a></li>
+<li><a href="https://store.steampowered.com/app/3271280/Shroom_and_Gloom/" rel="noopener" target="_blank">Steam · Shroom and Gloom（3271280）</a></li>
+<li><a href="https://www.taptap.cn/app/281223" rel="noopener" target="_blank">TapTap · 诡秘之主（对照快照）</a></li>
+</ul>
+<p class="footnote">时间边界：线上已发 8/21，本期左开右闭（2026-08-21，2026-08-22]，覆盖 1 天。今日无新旗舰。今日无新 MCP/Skill 推荐。游戏开发 0 Signal，未渲染 Tab。补入核：Wolverine 金盘（Gematsu 8/21 11:00 AM EDT = 23:00 CST）、Duskbloods 首场关停（8/21 晚间）。待核：终末地中文干员名 / 地图名、战双音乐会、台北相伴庆典、Duskbloods 后续场、NPPA 8 月批次、Pokopia 预告内容。窗外不复述：网易 Q2 / 2XKO / Edgerunners II / BL4 SP2 / 鸣潮 3.6 / Codex 0.149 / SkillGate 等论文 / 雷鸟 iO。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📥</span><h2>AI 观察</h2></div>
+<p>今日无新旗舰。今日无新 MCP/Skill 推荐。两条是产品分发与 API 价格，不是模型发布。</p>
+<div class="lib-stats">
+<span><b>2</b> 独立 Signal</span>
+<span><b>2/6</b> 轴有信号</span>
+<span class="level">偏低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>💡 AI 应用</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://x.ai/news/grok-bot-more-plans" rel="noopener" target="_blank">Grok Bot 现纳入 SuperGrok Plus、Cursor Pro+ 与全部 Cursor Teams 套餐</a></h4></div>
+<p>x.ai 落款 Aug 21, 2026。Grok Bot（8/11 beta：自带云电脑、浏览器 / 终端、可并行多个 Bot）现包含于 SuperGrok Plus、SuperGrok Heavy、Cursor Pro+、Cursor Ultra、Cursor Teams（Standard 与 Premium）。企业仍 waitlist。9to5Mac 转 X @bot 称对其他用户有 limited usage 免费试用；x.ai 页未写清配额，试用额度待核。这是分发扩容，不是新模型，也不是可安装 MCP/Skill 包。</p>
+<p class="signal-note">Seeking Alpha 8/21 14:47 ET = 8/22 02:47 CST。美东周五下午跨过沪上周六，8/21 扫描截稿未收。</p>
+<div class="tags"><span>Grok Bot</span><span>xAI</span><span>套餐</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏭 行业 / 国内</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://openai.com/index/gpt-5-6/" rel="noopener" target="_blank">GPT-5.6 Sol short-context 从 $5/$30 调至 $4/$20 per 1M tokens，至少至 11/21</a></h4></div>
+<p>产品页「Update on August 21, 2026」：API 与符合条件的 ChatGPT Work / Codex credits 降价逾 20%，Promotional 至少到 <b>November 21, 2026</b>。定价表 short-context Sol 现为 <code>$4</code> input / <code>$0.40</code> cached / <code>$20</code> output（原 $5 / $30）；长上下文 $8 / $30。Reuters：Pro / Plus / Business <b>订阅价不变</b>。不是 Astra / GPT-6 发布。</p>
+<p class="signal-note">Reuters/AOL 21:29 UTC 8/21 = 8/22 05:29 CST。定价：<a href="https://developers.openai.com/api/docs/pricing" rel="noopener" target="_blank">developers.openai.com/api/docs/pricing</a></p>
+<div class="tags"><span>GPT-5.6 Sol</span><span>API</span><span>定价</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p>终末地 1.5 前瞻已播，官方定档 9/2。雷达其他作无新落地。星铁 4.5 仍锁 8/26，进观察清单。中文干员名待 Hypergryph，核心只用英文名。</p>
+<div class="lib-stats">
+<span><b>2</b> 独立 Signal</span>
+<span><b>2/12</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.gamespress.com/en-US/Venture-Into-an-Icy-Frontier-to-Discover-a-Familiar-Operator-in-Dreams" rel="noopener" target="_blank">《明日方舟：终末地》1.5「雪淞幽梦」前瞻已播，官方定档 9/2</a></h4></div>
+<p>昨 8/21 19:30（UTC+8）「雪淞幽梦」版本前瞻特别节目已播出。GRYPHLINE 通稿（Games Press，署期 2026-08-21，Shanghai）：下一内容更新 <b>Dreamscape of Wind and Snow / 雪淞幽梦</b> will launch on <b>Sept. 2, 2026</b>。头条干员 <b>Typhoeus</b>（Nature Striker，通稿写 familiar Operator from the original Arknights）；管理员进入应龙关外超自然 <b>Snowy Forest</b>。版本后期 <b>Sept. 24</b> 开放解谜探索图 <b>Suiming</b>（15 分钟潮汐时间循环），并可免费招募 <b>Purrchena</b>（Physical Defender）及推荐武器 Dessert Moment。区域 Boss：Gloomwald's Rage。配乐与芬兰电子音乐人 Vilma Jää 合作。制作人 Light Zhong（钟光）表态将继续开发与优化。通稿另写 Steam 即将上线（wishlist 已开，具体 Steam 上线日未写死）。</p>
+<p>直播福利（官方影片简介，<b>无兑换码</b>）：嵌晶玉×1000、折金票×10000、初级认知载体×8、武器检查套组×4，经游戏内信件发放；发放时间 2026/08/21 19:30（UTC+8）；领取条件 2026/09/04 19:30 前登录；邮件有效期 14 天。</p>
+<p class="signal-note">截至扫描，CN 官网 <a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">endfield.hypergryph.com/news</a> 仍无「雪淞幽梦」回顾帖；中文干员名 / 地图名待 Hypergryph，核心只用 Typhoeus / Purrchena。通稿只写 additional player-experience improvements，无逐条优化清单。对照：《诡秘之主》TapTap 展示分 8.1 / 关注 268 万，页面快照非流水；开服句昨报已写，不点火苗。</p>
+<div class="tags"><span>终末地</span><span>1.5</span><span>雪淞幽梦</span><span>9/2</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎭 角色 / 世界观</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.gamespress.com/en-US/Venture-Into-an-Icy-Frontier-to-Discover-a-Familiar-Operator-in-Dreams" rel="noopener" target="_blank">Typhoeus（Nature Striker）与 Purrchena（Physical Defender，9/24 活动免费）</a></h4></div>
+<p><b>Typhoeus</b>｜阶段：前瞻实机 / 版本 PV，未开池。通稿：罗德岛来的冰原猎手，对萨米传说近乎偏执的好奇；在应龙关外雪林与管理员、总工程师 Andre 相遇，被循环迷雾困住。武器为与人等高的弓。定位 Nature Striker：可跃起对多目标射击、规避地面攻击，部署 Barrage Array 减速，空中机动 + 陷阱 + Nature Burst。<b>不写强度结论、不写卡池抽取建议。</b></p>
+<p><b>Purrchena</b>｜阶段：前瞻点名 / 9/24 活动。通稿：Physical Defender；Ætherside Syndrome Relief Foundation 品牌大使；举盾保护附近队友，投掷礼物盒治疗或触发支援效果。Purrchena Tribute Event 自 9/24 起，完成全部 6 个活动任务可拉满其与武器 Dessert Moment 的潜能。不写强度结论。</p>
+<p>同通稿地图：Snowy Forest 积雪会可见地积在身体与头发上；Suiming 把整座城做成解谜，潮涨时间回溯但已收集零件保留，目标是在 Blight Tide 到来前修好 Waking Bell。</p>
+<p class="signal-note">中文正式名待 Hypergryph 新闻页。核心只用英文名 Typhoeus / Purrchena。</p>
+<div class="tags"><span>Typhoeus</span><span>Purrchena</span><span>未开池</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p>主线 Wolverine 金盘 + MW4 EA Beta。Duskbloods 首场故障关停。雷达公司（腾讯 / 网易 / 米哈游）今日无公司层。高权重财报 / 主机 / 出海 / 版号空。</p>
+<div class="lib-stats">
+<span><b>4</b> 独立 Signal</span>
+<span><b>4/18</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🏭 重点工作室雷达</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.gematsu.com/2026/08/marvels-wolverine-goes-gold" rel="noopener" target="_blank">Insomniac《Marvel's Wolverine》官方宣布已金盘，仍定档 9/15 PS5</a></h4></div>
+<p>Sony / Insomniac 宣布《Marvel's Wolverine》已 gold（开发完成、进入量产）。工作室同步放出可解锁装备「Gold Claws」预览。发售日未改：PlayStation 5 独占 <b>2026-09-15</b>。非今日改档、无评测解禁、无销量。PlayStation Blog 无同日独立金盘长文。</p>
+<p class="signal-note">Gematsu 8/21 11:00 AM EDT = 23:00 CST，属昨窗但昨报未收，本期按补入核处理。</p>
+<div class="tags"><span>Wolverine</span><span>Insomniac</span><span>金盘</span><span>PS5</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🚀 新游 / 测试 / 定档</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://campaign.theduskbloods.jp/p/event/networktest/" rel="noopener" target="_blank">《The Duskbloods》Network Test 首场官方关停：登录失败</a></h4></div>
+<p>FromSoftware 官方账号道歉：因 game server issues，「today's session is now closed」；将继续改善服务器，「will announce future schedules at a later date」。多源核实玩家普遍卡在主菜单「Failed to log in to The Duskbloods game server」。官网日程页未发 8/22 二次官宣。不把原日程复述成新闻。不是发售。</p>
+<p class="signal-note">8/21 扫描写「截稿首场未开」；首场故障是测试目标（服务器负载）的负向结果，今日记新事实。</p>
+<div class="tags"><span>The Duskbloods</span><span>FromSoftware</span><span>Network Test</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏟️ 大作观察</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://blog.playstation.com/2026/08/21/call-of-duty-modern-warfare-4-new-multiplayer-and-early-access-beta-details/" rel="noopener" target="_blank">《Call of Duty: Modern Warfare 4》Early Access Beta 现已开测，Open Beta 仍 8/28</a></h4></div>
+<p>Activision 官方：Call of Duty: Next 已结束。Early Access Beta「available now」于 PS5 / Xbox Series / Xbox on PC / Steam / Battle.net；资格为预购或 Beta Code。Weekend One 至 8/25 10:00 AM PT；Weekend Two Open Beta 8/28 10:00 AM PT–9/1 10:00 AM PT，全员可进、进度继承，Switch 2 从 Open Beta 起加入。官方口径：22 把枪、6 张 6v6 图（Rooftops / Silkworm / Transit 213 / Cachette / Lotus / Lithium）、新模式 Inflation / Hijack、Kill Block 模块化战场、24v24 Ground War: Combat Outpost；史上首次 Beta 含战役任务 Entrenched；Open Beta 加 Warzone Resurgence 新图 Zodiac。发售仍 <b>10/23</b>。不编造同时在线 / 预购数。</p>
+<p class="signal-note">11:00 AM PDT 8/21 = 02:00 CST 8/22。日程本身 8/21 已预告，今日是「现已可玩」落地。Xbox Wire：<a href="https://news.xbox.com/en-us/2026/08/21/pre-order-call-of-duty-modern-warfare-4-and-play-the-beta-today/" rel="noopener" target="_blank">预购与 Beta</a></p>
+<div class="tags"><span>MW4</span><span>Early Access Beta</span><span>Activision</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.devolverdigital.com/" rel="noopener" target="_blank">Devolver《Shroom and Gloom》官方定档 Steam Early Access 9/10</a></h4></div>
+<p>Devolver Digital 首页置顶「Emerging into Early Access on September 10」+ Team Lazerbeam 新 Dev Diary。Steam app <b>3271280</b> 写死 Sep 10, 2026；开发者口径 EA 约 12–24 个月；EA 版两条通路、每条约 300 张探索 / 战斗卡，关键系统已实装，正式版拟加第三条通路。Demo 2025-05 已有。第一人称双卡组（Explore + Combat）。非今日上线。</p>
+<p class="signal-note">Gematsu 12:05 PM EDT 8/21 = 00:05 CST 8/22。Steam：<a href="https://store.steampowered.com/app/3271280/Shroom_and_Gloom/" rel="noopener" target="_blank">store.steampowered.com/app/3271280</a></p>
+<div class="tags"><span>Shroom and Gloom</span><span>Devolver</span><span>EA</span><span>9/10</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
