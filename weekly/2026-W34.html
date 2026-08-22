@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合周报 · 2026-W34 · 增量展示版</title>
+<style>
+:root {
+  --bg:#f4f5f7; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#5148b8;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;line-height:1.68}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2)}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1} .metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)} .metric.accent b{color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;background:rgba(244,245,247,.94);backdrop-filter:blur(10px);padding:12px 0;margin:8px 0 18px}
+.tab-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.overview-signal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px;box-shadow:var(--shadow)}
+.overview-signal h3{font-size:15px;margin:8px 0} .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{color:var(--fire);font-size:13px;font-weight:800}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px} .lib-icon{font-size:25px}
+.library-head p{color:var(--ink2);margin:10px 0}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;box-shadow:var(--shadow);align-self:start}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0} .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:12px 0;border-top:1px dashed var(--line)} .axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal-head{display:flex;gap:8px;align-items:flex-start} .signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6} .signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap} .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){.overview-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.wrap{padding:18px 12px 40px}.axis-grid,.watch-list{grid-template-columns:1fr}.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.sources{columns:1;padding:16px 30px}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>🗞️ 综合周报 · 2026-W34 · 增量展示版</h1>
+<div class="meta">2026-08-17 – 2026-08-22 · Saturday 截稿 · W34（周日 pending）</div>
+</div>
+<div class="window">本周 W34（周一至周六，周日未发生）</div>
+</div>
+<div class="lede">
+本周从「多旗舰同发」切到交付与验真——鸣潮 3.6 落地、网易 Q2 接上腾讯财报季、阿里确认卖灵犀；鹰角把终末地 1.5 锁到 9/2，Riot 则宣布《2XKO》日落。<b>本周无新旗舰。本周无新 MCP/Skill 推荐。</b>覆盖周一至周六，周日 pending。8/18 日报是 8 天窗，W33 旗舰 / 原神 7.0 / 腾讯 Q2 只进跨周对比。补搜进了 Claude 平台 GA 与 UEFN MCP，不冲掉二游 / 行业主线。
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>5</b><span>本周大事</span></div>
+<div class="metric accent"><b>4</b><span>显示观察库</span></div>
+<div class="metric"><b>3</b><span>跨周对比</span></div>
+<div class="metric"><b>5</b><span>本周日报</span></div>
+<div class="metric"><b>6</b><span>补搜遗漏</span></div>
+<div class="metric"><b>6</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="周报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI</button>
+<button class="tab-btn" data-tab="anime">二次元</button>
+<button class="tab-btn" data-tab="dev">游戏开发</button>
+<button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">本周大事</h2>
+<div class="overview-grid">
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://wutheringwaves.kurogames.com/en/main/news/detail/5245" rel="noopener" target="_blank">鸣潮 3.6「蜃云灯影，凡尘剑心」开服</a></h3>
+<p>本周雷达九作里唯一落地的开放世界大更；W33 是原神 7.0 开门，本周换成库洛交付清宵上半 + 官方写死的 DLSS 4.5。未见延期，也未见「现已开放」二次官宣与首日流水。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://ir.netease.com/news-releases/news-release-details/netease-announces-second-quarter-and-interim-2026-unaudited" rel="noopener" target="_blank">网易 Q2：营收 301 亿 +7.9%，游戏 250 亿 +9.7%</a></h3>
+<p>财报季从 W33 腾讯国内游戏 473 亿接到本周网易稳健增长；同一份 IR 写环比游戏收入略降、投资净亏损 29.54 亿，不是「全面高增」复述。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://www.yicai.com/news/103320607.html" rel="noopener" target="_blank">阿里确认出售灵犀互娱给信宸资本</a></h3>
+<p>本周公司层最硬的交割确认（8/17 内部信）。金额官方未披露，媒体对价维持待核，不进点评数字。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://www.gamespress.com/en-US/Venture-Into-an-Icy-Frontier-to-Discover-a-Familiar-Operator-in-Dreams" rel="noopener" target="_blank">终末地 1.5「雪淞幽梦」定档 9/2</a></h3>
+<p>鹰角雷达作完成「预告→前瞻→官方回顾」闭环，并点名 Typhoeus / Purrchena；CN 官网至 8/22 扫描仍无中文回顾页，中文干员名待 Hypergryph。与星铁 4.5（仍锁 8/26）构成下周连击。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3><a href="https://www.riotgames.com/en/news/2xko-active-development-ends-december-2026" rel="noopener" target="_blank">Riot《2XKO》12 月结束主动研发</a></h3>
+<p>比「又一个 DLC 按期上线」更能代表本周行业判断：live-service 格斗在留存不足以覆盖成本后选择日落、退款、锁内容。Wolverine 金盘 / MW4 开测 / Duskbloods 首测翻车是同一周的大作验证噪声，不另占大事席。</p>
+</article>
+</div>
+
+<h2 class="section-title">跨周对比（W33 → W34）</h2>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>延续</h3><span class="density">对照 W33</span></div>
+<div class="analysis-box">上周已经出现、本周继续发展。W33 证据日落 8/11–16；本周证据日落 8/17–22。</div>
+<div class="axis-body">
+<p>工作马模型进入用量层，而不是再发一版。W33 放出 Qwen3.8-2.4T-A95B、Gemini 3.7 Flash、DeepSeek-V4-Pro、Grok 4.6；本周无新旗舰，改成 DeepSeek 峰谷价 8/17 生效、Cursor Origin 托管、Grok Bot 套餐扩容、GPT-5.6 Sol API 降价。</p>
+<p>财报季未断：W33 腾讯 Q2 国内游戏 473 亿 +17%；本周网易 Q2 游戏 250 亿 +9.7%。两家雷达公司的季度数字现在可以并读。</p>
+<p>二游大版本节奏未断，只是换产品：W33 原神 7.0 开门 + 星铁 4.5 前瞻；本周鸣潮 3.6 落地、终末地 1.5 定档，星铁 4.5 仍锁 8/26。</p>
+<p>Gamescom 临近：W33 网易已公布可玩阵容（8/11）；本周仍无新阵容、无改期，ONL 8/25 / 展会 8/26–30 原日程保持。Wolverine 9/15 未改档——上周是预告后舆情反弹，本周是金盘。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>反转</h3><span class="density">对照 W33</span></div>
+<div class="analysis-box">上周判断或趋势在本周出现变化、降温或反向信号。</div>
+<div class="axis-body">
+<p>模型发布密度反转。W33 是开源 Max 级权重 + 多工作马同周；本周扫描连续写「无新旗舰」，Astra / GPT-6 / Grok 4.7 / 下一代 Claude 均未锁期落地。</p>
+<p>Agent 自改进叙事降温。W33 还在推记忆 / Skill / 导入竞品配置；本周 Salesforce 2608.18066 给出 71% 设定放大方差、打乱任务序后平均由 +1.5% 变为 −4.5%；SkillGate 指出 outcome RL 教不会「读哪个 skill」。</p>
+<p>live-service 乐观叙事被官方打脸：W33 无同等体量日落，本周 Riot 自己宣布《2XKO》主动研发结束。From 测试从「按期开窗」变成负向结果——8/21 还只能写「今日开窗、截稿未见现已开测」，8/22 记首场因服务器登录失败官方关停，后续 later date。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>新增</h3><span class="density">本周首次</span></div>
+<div class="analysis-box">本周首次出现、值得后续跟踪。含两条补搜新增，不另占大事席。</div>
+<div class="axis-body">
+<p>阿里确认出售灵犀互娱（8/17）。Etched 推理专用硬件完成首客闭环（沪上 8/19）。Cursor Origin 代码托管 early beta（8/17）——W33 的 Cursor 故事是 Grok 4.6 分发，不是托管面。</p>
+<p>鸣潮 3.6 作为新开的大版本窗（8/20）。终末地 1.5 官方定档 9/2 + 干员点名（8/22）；W33 该作仍停在 7/16「向渊行」。MW4 Early Access Beta 开测（沪上 8/22）；Open Beta 仍 8/28。《诡秘之主》公测（8/21，对照，非雷达）。</p>
+<p><b>补搜新增：</b>Claude Platform computer use / browser use / Skills API / Files API 出 beta（8/19–20，工作流 / 平台，不是可装推荐）。UEFN 内嵌 Unreal MCP（8/20，引擎官方向增量，不是 Marketplace 新 MCP）。</p>
+</div>
+</section>
+</div>
+
+<h2 class="section-title">专题更新</h2>
+<div class="watch-list">
+<div class="watch"><b>鸣潮 3.6「蜃云灯影，凡尘剑心」</b><br/>本周：8/20 04:00–11:00（UTC+8）维护后开服；上半清宵实装；下半景燃整周未开池；PC DLSS 4.5 与「更换编程语言」写进官方维护正文。前瞻约 +10fps 未进官方正文，不进结论。扫描至 8/22 仍未见「维护完成 / 现已开放」二次官宣，未见七麦 / 点点 / ST 署期本周的畅销或流水。继续跟踪：景燃下半开池、首周流水、社区口径。</div>
+<div class="watch"><b>终末地 1.5「雪淞幽梦」</b><br/>本周：8/19 仅有密境行者「六方巧境」与台湾 7-ELEVEN 思乐冰开跑（版本仍是 7/16「向渊行」）；8/21 19:30 前瞻播出；8/22 GRYPHLINE 通稿锁 9/2，点名 Typhoeus（Nature Striker）与 9/24 免费 Purrchena；Suiming 9/24 开。直播福利走信件、无兑换码。CN 官网至 8/22 扫描无「雪淞幽梦」回顾；中文干员名 / 地图名待 Hypergryph。Steam「即将上线」无具体日。台北相伴庆典 8/22–23 扫描时未开场，现场 pending。继续跟踪：9/2 上线、中文名对齐、Steam 日。</div>
+<div class="watch"><b>FromSoftware《The Duskbloods》Network Test</b><br/>本周：下载码 8/18 已发（W33/本周交界）；8/21 开窗；首场 18:00–22:00 CST 因 game server 登录失败，官方宣布 today's session closed，后续 later date。官网日程页未改。不是发售。继续跟踪：补测日程是否公布；Elden Ring Tarnished Edition 仍 8/28，不与测试混写。</div>
+<div class="watch"><b>网易 / 腾讯财报季</b><br/>W33：腾讯 8/12 Q2（国内游戏 473 亿 +17%），本周不复述为大事。本周：网易 IR 8/20 16:58 CST 落地，8/21 日报补入核。游戏口径点名梦幻西游系列、第五人格、蛋仔派对、逆水寒、燕云十六声；《遗忘之海》7 月国内上线；Ananta / 归唐按计划。不写股息（官方亮点段未列）。继续跟踪：电话会细节是否另有官方逐字稿；无新的腾讯游戏战略稿。</div>
+<div class="watch"><b>Gamescom 临近</b><br/>展会仍 8/26–30，Opening Night Live 8/25。本周无新阵容、无改期。W33 网易阵容与任天堂 9 作预告保持有效，不重开。继续跟踪：ONL 当晚、Xbox 双直播 8/26–27、PlaySide 称《权力的游戏：War for Westeros》实机上 ONL（附带于 8/20 财报，事件本身在下周）。</div>
+</div>
+
+<h2 class="section-title">下周观察</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜星铁 4.5「挥掷千星的筹码」8/26</b><br/>本周锁期未变；落地后才写卡池 / SP / 冬季×绝区零形态。不把锁期复述当新闻。</div>
+<div class="watch"><b>必跟｜Gamescom 8/26–30，Opening Night Live 8/25</b><br/>本周无新阵容；ONL 是改档 / 新作窗口。</div>
+<div class="watch"><b>必跟｜终末地 1.5 9/2 倒计时与中文官方回顾</b><br/>通稿已锁日；CN 官网缺口不关闭跟踪。</div>
+<div class="watch"><b>必跟｜Wolverine 仍 9/15</b><br/>已金盘，看评测解禁 / 预载，不预期本周再改档。</div>
+<div class="watch"><b>必跟｜Duskbloods 补测日程</b><br/>From 写 later date；不把原 8/21–23 五场复述成仍有效。</div>
+<div class="watch"><b>必跟｜Grok 4.7 仍未锁期</b><br/>xAI 未给官方日；Musk 8/12「3–4 周」不作日程。本周无新旗舰，下一代仍空。</div>
+<div class="watch"><b>可跟｜GTA6 Extended Look 8/27</b><br/>Netflix 六小时独家。档期本周未改；外泄素材自 8/18 起未确认，不升格。</div>
+<div class="watch"><b>可跟｜Elden Ring Tarnished Edition Switch 2 8/28；MW4 Open Beta 8/28</b><br/>Open Beta 全员可进；Switch 2 从 Open Beta 加入；MW4 发售仍 10/23。</div>
+<div class="watch"><b>可跟｜NPPA 8 月国产网游审批批次</b><br/>最新可见仍为 7/23 公示的 7 月批次；8 月截稿未出。</div>
+<div class="watch"><b>可跟｜鸣潮 3.6 首周流水 / 景燃下半</b><br/>有七麦 / 点点 / ST 署期数字再写。</div>
+<div class="watch"><b>可跟｜战双音乐会「于频率中相汇」8/22 19:00 · 待核</b><br/>属本周六晚，不是下周。扫描时未开播，截稿无法写入曲目 / 礼包，不预写。</div>
+<div class="watch"><b>可跟｜已锁硬日期：Control Resonant 9/24、Borderlands 4 SP2 9/10、Shroom and Gloom EA 9/10、Edgerunners II 10/20</b><br/>下周只看是否改档。arXiv 周六列表 / Codex 0.150 稳定 tag：8/22 /new 仍停在 Fri 21 Aug；0.150 仅 alpha，待稳定。</div>
+</div>
+
+<h2 class="section-title">本周日报回看</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>日期</th><th>星期</th><th>是否有日报</th><th>周报如何用</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>8/17</td><td>一</td><td>无独立篇</td><td>从 8/18 八日文件抽取 8/17–18</td><td>灵犀、Cursor Origin、峰谷价生效</td></tr>
+<tr><td>8/18</td><td>二</td><td>有（8 天窗）</td><td>过滤 W33；只留 8/17–18</td><td>导语四股主线多数是 8/11–16，不可当本周大事</td></tr>
+<tr><td>8/19</td><td>三</td><td>有</td><td>全量聚合</td><td>运营日；Etched；战双 / ZZZ 下半；cs.GR</td></tr>
+<tr><td>8/20</td><td>四</td><td>有</td><td>全量聚合</td><td>鸣潮 3.6；网易数字当晚才出、未入该日正文</td></tr>
+<tr><td>8/21</td><td>五</td><td>有本地 HTML</td><td>全量聚合</td><td>Pages 未发布；开发 0 Signal；网易 Q2 补入核</td></tr>
+<tr><td>8/22</td><td>六</td><td>有本地 HTML</td><td>全量聚合</td><td>Pages 未发布；终末地 1.5 回顾、Wolverine 金盘、MW4 开测、Duskbloods 关停</td></tr>
+<tr><td>8/23</td><td>日</td><td>无</td><td>未发生，pending</td><td>不预写周日事件；战双音乐会本身在周六晚、截稿时亦 pending</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">8/21、8/22 未因 Pages 未发而降权：本地 HTML 与扫描稿齐全，周报按已核 Signal 收录。本周日报 5 篇（8/18–22）；8/17 无独立篇。</p>
+
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://wutheringwaves.kurogames.com/en/main/news/detail/5245" rel="noopener" target="_blank">Wuthering Waves · Version 3.6 notice</a></li>
+<li><a href="https://ir.netease.com/news-releases/news-release-details/netease-announces-second-quarter-and-interim-2026-unaudited" rel="noopener" target="_blank">NetEase IR · Q2 / H1 2026 业绩稿</a></li>
+<li><a href="https://www.yicai.com/news/103320607.html" rel="noopener" target="_blank">第一财经 · 阿里出售灵犀互娱</a></li>
+<li><a href="https://www.gamespress.com/en-US/Venture-Into-an-Icy-Frontier-to-Discover-a-Familiar-Operator-in-Dreams" rel="noopener" target="_blank">Games Press · 终末地 1.5「雪淞幽梦」通稿</a></li>
+<li><a href="https://www.riotgames.com/en/news/2xko-active-development-ends-december-2026" rel="noopener" target="_blank">Riot · 2XKO 结束主动研发</a></li>
+<li><a href="https://claude.com/blog/computer-use-skills-api-files-api" rel="noopener" target="_blank">Claude · computer use / Skills API / Files API</a></li>
+<li><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener" target="_blank">Claude Platform · Release Notes（August 19, 2026）</a></li>
+<li><a href="https://forums.unrealengine.com/t/unreal-mcp-is-now-available-in-uefn/2745278" rel="noopener" target="_blank">Unreal Engine Forums · Unreal MCP in UEFN</a></li>
+<li><a href="https://cursor.com/changelog/origin-code-hosting" rel="noopener" target="_blank">Cursor · Origin 代码托管</a></li>
+<li><a href="https://www.etched.com/progress/from-zero-to-one" rel="noopener" target="_blank">Etched · From Zero to One</a></li>
+<li><a href="https://arxiv.org/abs/2608.18852" rel="noopener" target="_blank">arXiv · 2608.18852 SkillGate</a></li>
+<li><a href="https://arxiv.org/abs/2608.18066" rel="noopener" target="_blank">arXiv · 2608.18066 Self-Improving Agents</a></li>
+<li><a href="https://openai.com/index/offering-zero-data-retention-for-frontier-models/" rel="noopener" target="_blank">OpenAI · Zero Data Retention for frontier models</a></li>
+<li><a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" rel="noopener" target="_blank">Claude · Mythos 5 进入 Claude Security</a></li>
+<li><a href="https://api-docs.deepseek.com/updates/" rel="noopener" target="_blank">DeepSeek API · Change Log（V4-Flash-Vision-Exp）</a></li>
+<li><a href="https://www.taptap.cn/game-event/12451" rel="noopener" target="_blank">TapTap · 战双「歧海循光」</a></li>
+</ul>
+<p class="footnote">血缘：聚合本周 5 篇日报（8/18–22；8/17 无独立篇，从 8/18 八日窗抽取 8/17–18）+ 补搜遗漏 6 条，提炼升维，不是日报堆叠。本周无新旗舰。本周无新 MCP/Skill 推荐。覆盖 Mon–Sat，Sunday 2026-08-23 pending，不预写。8/21、8/22 Pages 未发布，本地 HTML 存在。待核（短表）：灵犀对价未官宣；终末地中文干员名 / 地图名；战双 8/22 19:00 音乐会内容；台北相伴庆典现场；Duskbloods later date；NPPA 8 月批次；Newzoo GGMR 2026 公开数字；鸣潮 3.6 首周流水；GTA6 外泄真实性；Codex 0.150 稳定 tag；arXiv 8/22 周六列表；Sunday 全日。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📦</span><h2>AI 观察</h2></div>
+<p><b>本周无新旗舰。本周无新 MCP/Skill 推荐。</b>本周从 W33 的「一周多旗舰」切到落地与验真：GPT / Claude / Gemini / Qwen / DeepSeek / Grok 均无新旗舰；Agent 产品面没有新的可安装 MCP/Skill 包。能代表一周的是三条平行线——Cursor Origin 把 IDE 伸向代码托管、Etched 走完推理芯片「测试→首客→领投」、论文连续打到 Agent 选 skill / 自改进的可靠性。补搜补上 Claude 平台 GA 与安全产品化，不改「无新旗舰 / 无新推荐」结论。周末只有套餐扩容与 Sol API 降价，不是模型面。</p>
+<div class="lib-stats">
+<span><b>6</b> 显示轴</span>
+<span class="level">落地与验真</span>
+<span>补搜 5 条折入轴，不占大事</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔧 Agent / MCP / Skill（工作流 / 平台，非推荐）</h3><span class="density">补搜增量</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://claude.com/blog/computer-use-skills-api-files-api" rel="noopener" target="_blank">Claude Platform：computer use / browser use / Skills API / Files API 出 beta</a></h4></div>
+<p>平台 Release Notes 落款 8/19；产品博文落款 8/20。computer use 改为 <code>computer_toolset_20260801</code>（无 beta header、batch actions、zoom 默认开）；新 <code>browser_toolset_20260801</code>；Skills API <code>/v1/skills</code> 与 Files API 出 beta。旧 beta header 仍可用。<b>不是新旗舰，也不是一条可装 Skill 包。</b></p>
+<p class="signal-note">日报一线扫的是 anthropic.com/news（Newsroom 停在 8/14 watermark）。GA 写在 Claude Platform notes + claude.com/blog。平台 notes：<a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener" target="_blank">release-notes/overview</a></p>
+<div class="tags"><span>Claude</span><span>GA</span><span>非推荐</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://cursor.com/changelog/origin-code-hosting" rel="noopener" target="_blank">Cursor Origin 代码托管进入 early beta（8/17）</a></h4></div>
+<p>官方 changelog「Aug 17, 2026」：付费计划滚动 early beta（仓 / PR / 浏览 / GitHub 双向同步；企业管理员可 opt-out）。8/18 日报已收，属本周编程轴，不是上周。W33 的 Cursor 故事是 Grok 4.6 分发，不是托管面。</p>
+<div class="tags"><span>Cursor</span><span>Origin</span><span>8/17</span></div>
+</article>
+<article class="signal">
+<div class="signal-head"><h4><a href="https://cursor.com/changelog/08-19-26" rel="noopener" target="_blank">Cursor Custom Mode / Cloud Agents / /goal（8/19）</a></h4></div>
+<p>changelog 产品工作流，<b>不是新可安装包</b>，不记推荐。Codex 0.149.0 的 skill catalog / MCP policy 收紧同属编程轴版本列车，不记推荐。</p>
+<div class="tags"><span>Custom Mode</span><span>非新包</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📄 论文精选</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.18852" rel="noopener" target="_blank">SkillGate：outcome RL 教不会「读哪个 skill」（8/20）</a></h4></div>
+<p>arXiv:2608.18852。selector credit starvation：读哪个 SKILL.md 只占轨迹约 0.14% token，outcome RL 会把选对但执行失败的选择打成负分。SkillGate 把选择 token 与执行 token 拆成两条学分。9B 在 16 候选 slate 上从 40.8% 提到 53.2%。</p>
+<div class="tags"><span>arXiv:2608.18852</span><span>Skills</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.18066" rel="noopener" target="_blank">On the Fragility of Self-Improving Agents（8/19）</a></h4></div>
+<p>Salesforce，arXiv:2608.18066。71% 设定放大方差；打乱任务序后平均由 +1.5% 变为 −4.5%。与 SkillGate 一起，把 W33 的「自改进 / Skill」叙事压到验真层。</p>
+<div class="tags"><span>arXiv:2608.18066</span><span>自改进</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏭 行业动态 / AI 安全</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.etched.com/progress/from-zero-to-one" rel="noopener" target="_blank">Etched 融资 7 亿美元、估值 210 亿美元；首套推理机架交付 Jane Street</a></h4></div>
+<p>官方落款 8/18，沪上 8/19。走完推理芯片「测试→首客→领投」。资本事件，不是旗舰模型，不占本周大事席。</p>
+<div class="tags"><span>Etched</span><span>推理芯片</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://openai.com/index/offering-zero-data-retention-for-frontier-models/" rel="noopener" target="_blank">OpenAI：前沿模型 Zero Data Retention + Private Safety Processing 预览（8/19）</a></h4></div>
+<p>给合格 API 客户的 ZDR 承诺上，预览跨会话自动化安全处理，人员仍看不到原文。预览，更广 rollout + 白皮书计划 9 月。范围是 API / ZDR，不是 ChatGPT Enterprise 座。补搜折入，不占大事。</p>
+<div class="tags"><span>ZDR</span><span>PSP</span><span>预览</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" rel="noopener" target="_blank">Claude Mythos 5 进入 Claude Security；Defender Advantage Fund $35M（8/21）</a></h4></div>
+<p>Mythos 5 不是新模型（已有 Glasswing 通道）。Enterprise 公测：Claude Security 扫描改跑 Mythos 5，返回 CWE / 置信 / 严重度 / 建议补丁，不给直接 prompt 面。另：$35M Claude credits 的 Defender Advantage Fund（0xDAF）。</p>
+<div class="tags"><span>Mythos 5</span><span>Security</span><span>非新旗舰</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🧠 模型发布（非旗舰）</h3><span class="density">无新旗舰</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://api-docs.deepseek.com/updates/" rel="noopener" target="_blank">DeepSeek-V4-Flash-Vision-Exp 实验视觉 API（8/21）</a></h4></div>
+<p><code>model='deepseek-v4-flash-vision-exp'</code>。官方写纯文本能力与 V4-Flash 持平；需视觉的 agent 评测相对 Flash「显著跃升」，多模态 agent「接近 Opus-4.8」。<b>实验（Exp），不是新旗舰。</b>不改「本周无新旗舰」结论。本周相关但非旗舰：DeepSeek 峰谷价 8/17 生效（计价，不是新权重）。</p>
+<div class="tags"><span>DeepSeek</span><span>Exp</span><span>非旗舰</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>💡 AI 应用</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://openai.com/index/chatgpt-for-teens/" rel="noopener" target="_blank">ChatGPT for Teens（8/18）</a></h4></div>
+<p>13–17 / 系统估计 &lt;18 自动进 Teens 体验；年龄保护 + 可选家长控制。全球 Free / 个人付费滚动；澳洲全文预计 9/8。不是新模型。8/18 日报未升格，补搜折入应用轴一句。</p>
+<div class="tags"><span>Teens</span><span>治理</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://x.ai/news/grok-bot-more-plans" rel="noopener" target="_blank">Grok Bot 套餐扩容（8/21）</a></h4></div>
+<p>纳入 SuperGrok Plus / Cursor Pro+ / 全部 Cursor Teams。分发扩容，不是新模型，也不是可安装 MCP/Skill 包。不占大事。</p>
+<div class="tags"><span>Grok Bot</span><span>套餐</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://openai.com/index/gpt-5-6/" rel="noopener" target="_blank">GPT-5.6 Sol short-context API $4/$20，至少至 11/21</a></h4></div>
+<p>产品页 Update on August 21, 2026。短上下文从 $5/$30 调至 $4/$20 per 1M。不是新旗舰。不占大事。</p>
+<div class="tags"><span>Sol</span><span>定价</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p>本周主线是 <b>库洛交付大版本 + 鹰角定档下一版本 + 米系静默等 8/26</b>。鸣潮 3.6 是雷达九作里唯一本周落地的开放世界大更；战双「歧海循光」与绝区零 3.1 下半是运营日，不是大版本首发。终末地 1.5 前瞻在 8/21 播出、8/22 用 GRYPHLINE 通稿锁 9/2。原神 7.0 开门与星铁 4.5 前瞻属 W33，正文不复述；本周只看到 7.0 周期活动（幽境危战）和 4.5 锁期未变。七麦 / 点点 / Sensor Tower 署期本周的日终流水整周缺席，不编造。</p>
+<div class="lib-stats">
+<span><b>3</b> 显示轴卡</span>
+<span class="level">交付 + 定档</span>
+<span>流水整周无数字</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新</h3><span class="density">周级主线</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://wutheringwaves.kurogames.com/en/main/news/detail/5245" rel="noopener" target="_blank">鸣潮 3.6「蜃云灯影，凡尘剑心」8/20 维护后开服；清宵上半实装</a></h4></div>
+<p>官方维护 2026-08-20 04:00–11:00（UTC+8）。扫描未见延期。上半清宵（气动·迅刀）随版本实装；下半景燃整周未开池。PC 端升级 NVIDIA DLSS 4.5 插帧，官方维护正文另写「更换编程语言」。未见「维护完成 / 现已开放」二次官宣；未见署期本周的畅销或流水。前瞻约 +10fps 未进官方正文，不进结论。</p>
+<div class="tags"><span>鸣潮</span><span>3.6</span><span>清宵</span><span>库洛</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎮 新游 / 定档</h3><span class="density">周级主线</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.gamespress.com/en-US/Venture-Into-an-Icy-Frontier-to-Discover-a-Familiar-Operator-in-Dreams" rel="noopener" target="_blank">终末地 1.5「雪淞幽梦」前瞻已播，官方定档 9/2</a></h4></div>
+<p>8/21 19:30 前瞻播出；8/22 GRYPHLINE 通稿锁 Sept. 2, 2026。点名 Typhoeus（Nature Striker）与 9/24 免费 Purrchena（Physical Defender）；Suiming 9/24 开。直播福利走信件、无兑换码。CN 官网至 8/22 扫描无「雪淞幽梦」回顾；中文干员名 / 地图名待 Hypergryph，核心只用英文名。Steam「即将上线」无具体日。</p>
+<p class="signal-note">不把 Typhoeus / Purrchena 写成已开池。台北相伴庆典 8/22–23 扫描时未开场，现场 pending。</p>
+<div class="tags"><span>终末地</span><span>1.5</span><span>雪淞幽梦</span><span>9/2</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📅 运营日</h3><span class="density">8/19</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>战双「歧海循光」+ 绝区零 3.1 下半：同日运营，不是大版本首发</h4></div>
+<p>8/19：战双「歧海循光」上线，卡列尼娜·烬航实装（<a href="https://www.taptap.cn/game-event/12451" rel="noopener" target="_blank">TapTap 活动页</a>）。绝区零 3.1 下半希格莉德「直到天空沉落」开池（<a href="https://zenless.hoyoverse.com/zh-cn/news/165737" rel="noopener" target="_blank">官方新闻</a>）；3.1 本体 7/29 在窗外。二者是运营日，不升格为本周大事。</p>
+<p class="signal-note">战双音乐会「于频率中相汇」8/22 19:00 截稿未开播，曲目 / 礼包 pending，不预写。原神 7.0 开门与星铁 4.5 前瞻属 W33，不复述正文；本周只看到 7.0 周期「幽境危战」和 4.5 锁期未变。流水整周无数字。</p>
+<div class="tags"><span>战双</span><span>绝区零</span><span>运营日</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="dev">
+<div class="library-head">
+<div><span class="lib-icon">🛠️</span><h2>游戏开发观察</h2></div>
+<p>引擎官方博客整周几乎空：UE / Unity 无 8/17–22 发版日。补搜后，<b>本周唯一引擎官方向增量是 UEFN 内嵌 Unreal MCP（8/20）</b>——不是 Cursor Marketplace 新 MCP 推荐，也不改「本周无新 MCP/Skill 推荐」。密度来自 8/19 cs.GR：可接 IPC 的布料 r-adaptivity 与面向实时弹性的稀疏 handle。相对 W33 的 RGBX-Next / Amulet / Marionette，本周从「世界模型论文锚点」切到「可进物理管线的仿真 / 降阶」。8/21–22 开发轴日报 0 Signal、未渲染 Tab；周报因 UEFN + cs.GR 趋势显示本 Tab。Godot 4.7.2（8/18，57 个修复）是维护版，不拔高。Immens 新引擎只有 GI 访谈，无公开 demo / 版本号，不拔高。</p>
+<div class="lib-stats">
+<span><b>2</b> 显示轴</span>
+<span class="level">引擎空 + 补搜 MCP</span>
+<span>非 Marketplace 推荐</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎮 引擎与工具链</h3><span class="density">补搜增量</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://forums.unrealengine.com/t/unreal-mcp-is-now-available-in-uefn/2745278" rel="noopener" target="_blank">UEFN 内嵌 Unreal MCP（v42.00，8/20）</a></h4></div>
+<p>Epic 论坛帖 8/20。UE 5.8 已有 Unreal MCP；本条是 <b>UEFN 内嵌 MCP server</b>（Verse / 设备 / Scene Graph / UMG），Cursor / Claude Code / Codex 可连。不用另装插件，Project Settings → Beta Access 开 UEFN MCP Toolset。非全部 5.8 toolset 兼容。<b>不要当 Cursor Marketplace 新 MCP 推荐。</b></p>
+<p class="signal-note">8/20 开发扫描只查了 unrealengine.com tech-blog（仍停在 6/23 UE5.8 / 8/12 GASP），结论「引擎官方空」。MCP 写在 Fortnite / UEFN 发行说明与论坛。Godot 4.7.2 官方 18 August，维护版，不升格。</p>
+<div class="tags"><span>UEFN</span><span>Unreal MCP</span><span>非推荐</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎤 GDC / 论文（cs.GR）</h3><span class="density">8/19 趋势</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.17833" rel="noopener" target="_blank">Variational r-Adaptive Cloth Simulation（arXiv:2608.17833）</a></h4></div>
+<p>8/19 cs.GR。可接 IPC 的布料 r-adaptivity：参考网格顶点移动、拓扑不变。相对 W33 生成式正逆渲染锚点，本周切到可进物理管线的仿真。</p>
+<div class="tags"><span>cs.GR</span><span>布料</span><span>IPC</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.17930" rel="noopener" target="_blank">Handles: Decimation for Deformation Handles（arXiv:2608.17930）</a></h4></div>
+<p>8/19 cs.GR。面向实时弹性的稀疏 handle / 降阶。与布料篇一起构成本周开发轴趋势，不是引擎发版。</p>
+<div class="tags"><span>cs.GR</span><span>Handles</span><span>降阶</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p>本周是 <b>财报季第二棒 + 资本交割 + 大作验证周</b>。雷达公司层：腾讯数字停在 W33；本周落地的是网易 Q2（游戏 250 亿 +9.7%）和阿里确认出售灵犀（金额仍待核）。工作室 / 大作层进入 Gamescom 前夜：Wolverine 金盘且 9/15 未改、MW4 EA Beta 开测、From Duskbloods 首测因登录失败关停——收在一张「大作验证」卡，不另占大事。运营层出现明确反例：Riot 宣布《2XKO》12 月结束主动研发。Gamescom 8/26–30 / ONL 8/25 本周无新阵容、无改期。NPPA 8 月批次截稿未出。Newzoo GGMR 2026 付费版标 8/20，官网仍预登记、无公开大盘数字。</p>
+<div class="lib-stats">
+<span><b>4</b> 显示轴卡</span>
+<span class="level">财报 + 交割 + 日落</span>
+<span>NPPA 未出 · Gamescom 无改期</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎯 重点公司雷达 / 财报</h3><span class="density">周级主线</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://ir.netease.com/news-releases/news-release-details/netease-announces-second-quarter-and-interim-2026-unaudited" rel="noopener" target="_blank">网易 2026 Q2 / H1：营收 301 亿 +7.9%，游戏 250 亿 +9.7%，归母净利 70 亿</a></h4></div>
+<p>IR 落款 8/20 16:58 CST，8/21 日报补入核。游戏口径点名梦幻西游系列、第五人格、蛋仔派对、逆水寒、燕云十六声；《遗忘之海》7 月国内上线；Ananta / 归唐按计划。环比游戏收入略降，官方写「若干自研及授权游戏净收入略有下降」；投资净亏损 29.54 亿写进同一份 IR。不写股息（官方亮点段未列）。腾讯 Q2 属 W33，本周不复述为大事。</p>
+<div class="tags"><span>网易</span><span>Q2</span><span>H1</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>💼 资本 / 并购</h3><span class="density">周级主线</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.yicai.com/news/103320607.html" rel="noopener" target="_blank">阿里确认出售灵犀互娱给信宸资本（金额未官宣）</a></h4></div>
+<p>8/17 内部信确认交易，一手落款 2026年8月17日。金额官方未披露；媒体对价维持待核，不进核心数字。W33 无此交割确认。</p>
+<div class="tags"><span>灵犀互娱</span><span>信宸资本</span><span>阿里</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 运营 / live-service</h3><span class="density">周级主线</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.riotgames.com/en/news/2xko-active-development-ends-december-2026" rel="noopener" target="_blank">Riot《2XKO》12 月结束主动研发</a></h4></div>
+<p>官方落款 Aug 20, 2026（美东下午 = 沪上 8/21）。留存 / 新增不足以支撑；运营成本显著高于收入。服务器 2026 年后仍在线。8/20 起停售 KO Points 并退款。比按期 DLC 更能代表本周行业判断。</p>
+<div class="tags"><span>2XKO</span><span>Riot</span><span>日落</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏟️ 大作验证</h3><span class="density">并列观察</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>Wolverine 金盘 / MW4 EA Beta 开测 / Duskbloods 首场关停</h4></div>
+<p>三件同周、不另占大事席。<a href="https://www.gematsu.com/2026/08/marvels-wolverine-goes-gold" rel="noopener" target="_blank">Insomniac《Marvel's Wolverine》已金盘</a>，仍 9/15 PS5，档期未改。<a href="https://blog.playstation.com/2026/08/21/call-of-duty-modern-warfare-4-new-multiplayer-and-early-access-beta-details/" rel="noopener" target="_blank">《COD: MW4》Early Access Beta 现已开测</a>；Open Beta 仍 8/28，发售仍 10/23。<a href="https://campaign.theduskbloods.jp/p/event/networktest/" rel="noopener" target="_blank">From《The Duskbloods》Network Test</a> 首场因 game server 登录失败官方关停，后续 later date；官网日程页未改。不是发售。</p>
+<p class="signal-note">Gamescom 8/26–30 / ONL 8/25 本周无新阵容、无改期。NPPA 8 月批次截稿未出（最新可见仍为 7/23 公示的 7 月批次）。</p>
+<div class="tags"><span>Wolverine</span><span>MW4</span><span>Duskbloods</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
