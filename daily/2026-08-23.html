@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-23 · 增量展示版</title>
+<style>
+:root {
+  --bg:#f4f5f7; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#5148b8;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;line-height:1.68}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2)}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1} .metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)} .metric.accent b{color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;background:rgba(244,245,247,.94);backdrop-filter:blur(10px);padding:12px 0;margin:8px 0 18px}
+.tab-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.overview-signal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px;box-shadow:var(--shadow)}
+.overview-signal h3{font-size:15px;margin:8px 0} .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{color:var(--fire);font-size:13px;font-weight:800}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px} .lib-icon{font-size:25px}
+.library-head p{color:var(--ink2);margin:10px 0}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;box-shadow:var(--shadow);align-self:start}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0} .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:12px 0;border-top:1px dashed var(--line)} .axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal-head{display:flex;gap:8px;align-items:flex-start} .signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6} .signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap} .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){.overview-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.wrap{padding:18px 12px 40px}.axis-grid,.watch-list{grid-template-columns:1fr}.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.sources{columns:1;padding:16px 30px}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>🗞️ 综合日报 · 增量展示版</h1>
+<div class="meta">2026-08-23 · Sunday · W34</div>
+</div>
+<div class="window">窗口：（2026-08-22，2026-08-23]</div>
+</div>
+<div class="lede">
+主线是终末地 CN 官网补上「雪凇幽梦」研发通讯，干员中文正式名 <b>提弗洛斯 / 噗切娜</b>（昨晨还没有）。<b>今日无新旗舰。今日无新 MCP/Skill 推荐。</b>AI / 开发 / 行业 0 Signal，不渲染 Tab。
+<strong>本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</strong>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>2</b><span>独立 Signal</span></div>
+<div class="metric"><b>7</b><span>主要信源</span></div>
+<div class="metric hot"><b>1</b><span>高 Attention</span></div>
+<div class="metric accent"><b>1</b><span>显示观察库</span></div>
+<div class="metric"><b>53</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>终末地 CN「雪凇幽梦」研发通讯：提弗洛斯 / 噗切娜</h3>
+<p>昨晨 news 头条仍是 8/08「晨星于此闪耀」。本晨 CN / 全球 / 繁中三站头条已是 8/22 研发通讯。干员中文正式名挂官网。属补入核。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>提弗洛斯官网中文档案（罗德岛 / 萨卡兹）</h3>
+<p>Hypergryph 干员页：CV 皛四白 / 大空直美。噗切娜仅确认中文名，独立档案本轮未抓到。</p>
+</article>
+</div>
+<h2 class="section-title">各方向信号密度</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
+<tbody>
+<tr><td>二次元游戏观察</td><td><b>2</b></td><td>中</td><td>CN 研发通讯补上中文名闭环；雷达其他作无新官方节点</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜星铁 4.5「挥掷千星的筹码」仍锁 8/26</b><br/>Games Press 2026-08-14 通稿未改期。本窗口未见延期 / 提前。不把锁期未变写成独立 Signal。</div>
+<div class="watch"><b>必跟｜战双音乐会「于频率中相汇」官方回顾仍无</b><br/>已于 8/22 19:00 开播。截至扫描未见官方曲目表、官方回顾、官方兑换码正文。不预写。</div>
+<div class="watch"><b>必跟｜台北相伴庆典 8/23 13:00 场未开；8/22 场无官方现场稿</b><br/>西门地下市三号广场 13:00–17:00。扫描时尚末开始。8/22 场未见官方现场稿 / 照片。不写出席。高雄 8/29–8/30。</div>
+<div class="watch"><b>必跟｜研发通讯正文 / 优化清单 / 中文地图名</b><br/>站点为 SPA，本轮未解析到稳定文章 CID。二线地图 / 技能名未在 Hypergryph 新闻正文核到，不升格。</div>
+<div class="watch"><b>必跟｜Gamescom 8/26–30，ONL 8/25；GTA6 Extended Look 8/27；Elden Ring Tarnished 8/28</b><br/>今日无新阵容、无改期。</div>
+<div class="watch"><b>可跟｜Duskbloods 后续场次 later date 仍无</b><br/>首场关停后官方只说 later date。截稿无二次官宣。不把原日程复述成新闻。</div>
+<div class="watch"><b>可跟｜NPPA 8 月批次未出</b><br/>国产网游审批目录最新仍为 2026 年 7 月份（7/23 公示）。</div>
+<div class="watch"><b>可跟｜Codex 0.150 仅 alpha.7 待核</b><br/>窗内预发布 0.150.0-alpha.7（8/23 05:26 CST），prerelease、无独立 notes。待稳定 tag。</div>
+</div>
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">Hypergryph · 终末地 CN 新闻</a></li>
+<li><a href="https://endfield.hypergryph.com/operator" rel="noopener" target="_blank">Hypergryph · 终末地干员列表</a></li>
+<li><a href="https://endfield.hypergryph.com/operator/typhoeus" rel="noopener" target="_blank">Hypergryph · 提弗洛斯档案</a></li>
+<li><a href="https://endfield.gryphline.com/en-us/news" rel="noopener" target="_blank">GRYPHLINE · Endfield EN 新闻</a></li>
+<li><a href="https://endfield.gryphline.com/zh-tw/news" rel="noopener" target="_blank">GRYPHLINE · 終末地繁中新闻</a></li>
+<li><a href="https://www.yfchuhai.com/enterprise/product/rank/marketId-11_country-125_rankType-2_genreId-38_date-20260823" rel="noopener" target="_blank">扬帆出海 · 点点台服 iOS 动作畅销 2026-08-23</a></li>
+<li><a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/" rel="noopener" target="_blank">国家新闻出版署 · 国产网络游戏审批信息</a></li>
+</ul>
+<p class="footnote">时间边界：本期左开右闭（2026-08-22，2026-08-23]，覆盖 1 天。今日无新旗舰。今日无新 MCP/Skill 推荐。AI / 游戏开发 / 游戏行业 0 Signal，未渲染 Tab。补入核：CN / 全球 / 繁中三站 8/22 研发通讯 + 提弗洛斯 / 噗切娜中文名（昨晨 09:30 扫描时 CN 新闻头条仍为 8/08）。独立 Signal 2，不含二游对比、不含台服动作榜。待核：研发通讯正文 / 优化清单 / 中文地图名、噗切娜独立档案、战双音乐会官方回顾、台北相伴现场、Duskbloods 后续场、NPPA 8 月批次、Codex 0.150 稳定 tag。窗外不复述：1.5 前瞻 9/2 定档与英文 kit、鸣潮 3.6 开服 / 清宵 / DLSS、星铁 4.5 前瞻正文、Wolverine 金盘、MW4 EA Beta、Duskbloods 首场关停。</p>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p>CN 研发通讯补上中文名闭环。雷达其他作无新官方落地。星铁 4.5 仍锁 8/26，进观察清单。台服动作畅销快照记在商业化轴，不是国服流水，不计入独立 Signal。</p>
+<div class="lib-stats">
+<span><b>2</b> 独立 Signal</span>
+<span><b>3/12</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">《明日方舟：终末地》CN 官网已挂「雪凇幽梦」版本研发通讯｜干员中文正式名 提弗洛斯 / 噗切娜</a></h4></div>
+<p>昨晨 8/22 约 09:30 扫描时，<a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">endfield.hypergryph.com/news</a> 最新条仍为 2026.08.08「晨星于此闪耀」。本晨同页头条已是 <b>新闻 2026.08.22「雪凇幽梦」版本研发通讯</b>。全球站 <a href="https://endfield.gryphline.com/en-us/news" rel="noopener" target="_blank">endfield.gryphline.com/en-us/news</a> 同步为 2026-08-22 <i>Arknights: Endfield [Dreamscape of Wind and Snow] Version DEV Comm</i>；繁中站 <a href="https://endfield.gryphline.com/zh-tw/news" rel="noopener" target="_blank">endfield.gryphline.com/zh-tw/news</a> 为 2026/08/22《明日方舟：終末地》「雪淞幽夢」版本開發組通訊。封面图 CDN 路径署期 20260820，列表日期为 8/22——属昨晨截止后首次可核，记补入核。</p>
+<p>中文正式名（Hypergryph <a href="https://endfield.hypergryph.com/operator" rel="noopener" target="_blank">干员情报页</a>）：<b>提弗洛斯 // Typhoeus</b>、<b>噗切娜 // Purrchena</b>，并列官网干员列表 01 / 02。后续核心只用这对中英对照。方舟本体狙击干员与终末地此名不是同一条目。</p>
+<p class="signal-note">站点为 SPA，本轮未解析到稳定文章 CID。研发通讯正文、逐条优化清单、中文地图名未进核心。B 站官号本轮检索未见对应「研发通讯」动态。不复述已报前瞻通稿。</p>
+<div class="tags"><span>终末地</span><span>雪凇幽梦</span><span>研发通讯</span><span>补入核</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎭 角色 / 世界观</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://endfield.hypergryph.com/operator/typhoeus" rel="noopener" target="_blank">提弗洛斯（Typhoeus）中文档案已上官网｜噗切娜仅确认中文名</a></h4></div>
+<p><b>提弗洛斯</b>｜阶段：官网干员页（仍未开池）。Hypergryph <code>operator/typhoeus</code>：阵营 <b>罗德岛</b>、种族 <b>萨卡兹</b>；中文 CV <b>皛四白</b>、日文 CV <b>大空直美</b>。官方介绍：来自罗德岛的荒野猎手，在塔卫二整理残缺萨米传说，追逐「也可以发生在你我身边」的故事。金句：「好故事和好猎手一样，先瞄准的，都是心脏。」不写强度结论、不写抽取建议、不复述昨条英文机制。</p>
+<p><b>噗切娜</b>｜阶段：名册点名。官网列表确认中文名 <b>噗切娜 // Purrchena</b>；本轮打开 <code>operator/purrchena</code> 仍落到提弗洛斯档案（SPA 默认 01），独立中文档案正文未抓到，不编技能 / 活动名。</p>
+<p class="signal-note">档案页：<a href="https://endfield.hypergryph.com/operator/typhoeus" rel="noopener" target="_blank">operator/typhoeus</a> · 列表：<a href="https://endfield.hypergryph.com/operator" rel="noopener" target="_blank">operator</a></p>
+<div class="tags"><span>提弗洛斯</span><span>噗切娜</span><span>罗德岛</span><span>萨卡兹</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>💰 商业化 / 榜单</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.yfchuhai.com/enterprise/product/rank/marketId-11_country-125_rankType-2_genreId-38_date-20260823" rel="noopener" target="_blank">点点数据（扬帆出海转载）2026-08-23 中国台湾 iOS「动作游戏」畅销：鸣潮 #1</a></h4></div>
+<p>页眉写平台 App Store、地区 <b>中国台湾</b>、分类 <b>动作游戏</b>、时间 <b>2026-08-23</b>，数据来源「点点数据实时海外数据收录」。畅销榜可见：1 鳴潮（HK KURO GAMES LIMITED）、2 異環、3 燕雲十六聲、4 傳說對決、5 三角洲行動、7 戰雙帕彌什、9 崩壞3rd。这是区域 + 品类快照，<b>不是中国大陆 iOS 总榜，不是 Sensor Tower 流水美元，不把名次写成收入</b>。</p>
+<p class="signal-note">台湾 iOS 动作品类，不是国服流水。未见七麦公开页、点点国服、ST 署期 8/23 的大陆畅销或流水数字。不计入独立 Signal。</p>
+<div class="tags"><span>台服</span><span>iOS 动作</span><span>鸣潮</span><span>点点数据</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
