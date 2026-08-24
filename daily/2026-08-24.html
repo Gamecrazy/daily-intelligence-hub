@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-24 · 增量展示版</title>
+<style>
+:root {
+  --bg:#f4f5f7; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#5148b8;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;line-height:1.68}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2)}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1} .metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)} .metric.accent b{color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;background:rgba(244,245,247,.94);backdrop-filter:blur(10px);padding:12px 0;margin:8px 0 18px}
+.tab-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.overview-signal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px;box-shadow:var(--shadow)}
+.overview-signal h3{font-size:15px;margin:8px 0} .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{color:var(--fire);font-size:13px;font-weight:800}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px} .lib-icon{font-size:25px}
+.library-head p{color:var(--ink2);margin:10px 0}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;box-shadow:var(--shadow);align-self:start}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0} .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:12px 0;border-top:1px dashed var(--line)} .axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal-head{display:flex;gap:8px;align-items:flex-start} .signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6} .signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap} .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){.overview-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.wrap{padding:18px 12px 40px}.axis-grid,.watch-list{grid-template-columns:1fr}.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.sources{columns:1;padding:16px 30px}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>🗞️ 综合日报 · 增量展示版</h1>
+<div class="meta">2026-08-24 · Monday · W35</div>
+</div>
+<div class="window">窗口：（2026-08-23，2026-08-24]</div>
+</div>
+<div class="lede">
+主线是终末地「雪凇幽梦」研发通讯<b>正文</b>首次可核（优化清单 + 重构寻访 / 申领均 9/24）。开发库周一 cs.GR 三篇（MaxEnt 光照、CubicSplat、Roblox MultiCube）。行业空库不渲染。<b>今日无新旗舰。今日无新 MCP/Skill 推荐。</b>Codex 0.149.1 是稳定补丁，记编程轴。绝区零 3.2 官网新闻仍停 8/21。
+<strong>本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</strong>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>8</b><span>独立 Signal</span></div>
+<div class="metric"><b>14</b><span>主要信源</span></div>
+<div class="metric hot"><b>3</b><span>高 Attention</span></div>
+<div class="metric accent"><b>3</b><span>显示观察库</span></div>
+<div class="metric"><b>53</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="dev">游戏开发观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>终末地「雪凇幽梦」研发通讯正文可核</h3>
+<p>CN <code>/news/4776</code> 抽出优化清单与重构寻访「绚丽异彩」#1 / 重构申领「点绘申领」#1，均 9/24。6★ 伊冯 / 武器艺术暴君。属补入核。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>MaxEnt 能量加权球面矩光照 · arXiv:2608.20429</h3>
+<p>西工大。线性可加、旋转协变的紧凑方向编码；981 张 HDRI 上 MaxEnt-5 对 stored QZH 胜率 78.7%。面向实时光照表示，非引擎发版。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>MultiCube 部件级可控 3D 生成 · arXiv:2608.20448</h3>
+<p>Roblox + CMU + Stanford。全局文本 + 部件 schema + AABB，两阶段扩散。PartObjaverse-Tiny 部件级 CD 0.040。非运行时 NPC/PCG 发版。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>终末地 × 优衣库 UTme! 官微宣布 8/25 上线</h3>
+<p>官方微博 8/23 12:00 CST 发帖，昨晨截稿后首次可核。官网新闻列表仍未挂。不写价格 / 店单 / 结束日。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>arXiv 周一 24 Aug dump + 抽查论文</h3>
+<p>cs.AI/CL/LG/CR <code>/new</code> 均写 Monday 24 August。抽查 OWMI、DSGC、Aegis、Why2Speak、P3Bench、CMB-0.1。不是旗舰。</p>
+</article>
+</div>
+<h2 class="section-title">各方向信号密度</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>2</b></td><td>中低</td><td>无新旗舰、无新 MCP/Skill；周一论文清单 + Codex 稳定补丁</td></tr>
+<tr><td>二次元游戏观察</td><td><b>3</b></td><td>中偏低</td><td>研发通讯正文闭环；优衣库官微补入；战双仅线下返图</td></tr>
+<tr><td>游戏开发观察</td><td><b>3</b></td><td>中</td><td>引擎官方博客空；cs.GR 周一首发三篇</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜星铁 4.5「挥掷千星的筹码」仍锁 8/26</b><br/>Games Press 2026-08-14 通稿未改期。本窗口未见延期 / 提前。不把锁期未变写成独立 Signal。</div>
+<div class="watch"><b>必跟｜绝区零 3.2 前瞻官网仍未发</b><br/>zenless 新闻列表最新可见条仍为 2026/08/21。二线曾指「下周一」；克拉蕾 / 洛克茜在官方新闻点名前不当官宣。</div>
+<div class="watch"><b>必跟｜终末地 × 优衣库 UTme! 8/25 上线日</b><br/>官微已锁 8/25。CN 官网新闻列表是否补挂待核。价格 / 店单 / 结束日仍未在官方微博正文写死。</div>
+<div class="watch"><b>必跟｜Gamescom ONL 8/25；本体 8/26–30；GTA6 Extended Look 8/27；Elden Ring Tarnished 8/28</b><br/>今日无新阵容、无改期。</div>
+<div class="watch"><b>必跟｜高雄相伴 8/29–8/30</b><br/>驳二 Pinway 8 号仓库 13:00–17:00。台北场已过、无官方回顾。不预写出席。</div>
+<div class="watch"><b>可跟｜Duskbloods later date 仍无</b><br/>首场关停后官方只说 later date。原第五场 10:00–14:00 CST 8/24 在截稿后。不把原日程复述成新闻。</div>
+<div class="watch"><b>可跟｜NPPA 8 月批次仍未出</b><br/>国产网游审批目录最新仍为 2026 年 7 月份（7/23 公示）。</div>
+<div class="watch"><b>可跟｜Codex 0.150 仍仅 alpha；Copilot CLI 1.0.81-8 预发布待核</b><br/>0.150.0-alpha.7 无独立 notes。Copilot CLI 1.0.81-8 为 pre-release（8/23 22:46 CST），待非预发布 / Changelog 页。</div>
+</div>
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://endfield.hypergryph.com/news/4776" rel="noopener" target="_blank">Hypergryph · 终末地「雪凇幽梦」研发通讯正文</a></li>
+<li><a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">Hypergryph · 终末地 CN 新闻列表</a></li>
+<li><a href="https://endfield.hypergryph.com/operator" rel="noopener" target="_blank">Hypergryph · 终末地干员列表</a></li>
+<li><a href="https://weibo.com/7745672941/ReHI9aIo3" rel="noopener" target="_blank">官方微博 · 终末地 × 优衣库 UTme!</a></li>
+<li><a href="https://www.sina.cn/news/detail/5334845058188537.html" rel="noopener" target="_blank">新浪转载 · 战双线下活动返图</a></li>
+<li><a href="https://github.com/openai/codex/releases/tag/rust-v0.149.1" rel="noopener" target="_blank">GitHub · Codex rust-v0.149.1</a></li>
+<li><a href="https://arxiv.org/list/cs.AI/new" rel="noopener" target="_blank">arXiv · cs.AI/new（Mon 24 Aug）</a></li>
+<li><a href="https://arxiv.org/list/cs.GR/new" rel="noopener" target="_blank">arXiv · cs.GR/new（Mon 24 Aug）</a></li>
+<li><a href="https://arxiv.org/abs/2608.20429" rel="noopener" target="_blank">arXiv:2608.20429 · MaxEnt 球面矩光照</a></li>
+<li><a href="https://arxiv.org/abs/2608.20803" rel="noopener" target="_blank">arXiv:2608.20803 · CubicSplat</a></li>
+<li><a href="https://arxiv.org/abs/2608.20448" rel="noopener" target="_blank">arXiv:2608.20448 · MultiCube</a></li>
+<li><a href="https://arxiv.org/abs/2608.20569" rel="noopener" target="_blank">arXiv:2608.20569 · OWMI</a></li>
+<li><a href="https://zenless.hoyoverse.com/zh-cn/news" rel="noopener" target="_blank">HoYoverse · 绝区零新闻</a></li>
+<li><a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/" rel="noopener" target="_blank">国家新闻出版署 · 国产网络游戏审批信息</a></li>
+</ul>
+<p class="footnote">时间边界：本期左开右闭（2026-08-23，2026-08-24]，覆盖 1 天。今日无新旗舰。今日无新 MCP/Skill 推荐。行业空库未渲染 Tab。补入核：终末地研发通讯正文（<code>/news/4776</code>）、优衣库官微 8/23 12:00、战双 8/22 22:40 线下返图。独立 Signal 8。高 Attention 3（研发通讯正文、MaxEnt、MultiCube）；周一 arXiv dump 为 🔥，计入独立 Signal、不计入高 Attention。待核：噗切娜独立档案、优衣库价格/店单/结束日、绝区零 3.2 官网前瞻、战双曲目/礼包码、Duskbloods 后续场、NPPA 8 月批次、Codex 0.150 稳定 tag、Copilot CLI 1.0.81-8。窗外不复述：已报前瞻通稿与英文 kit、研发通讯「存在」与中文名确认本身、星铁前瞻正文、周五 21 Aug 论文、Codex 既有稳定线。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📥</span><h2>AI 观察</h2></div>
+<p><b>今日无新旗舰。今日无新 MCP/Skill 推荐。</b>模型发布轴空，不渲染卡片。实验室产品静默。Hugging Face Daily Papers 截稿仍停 Aug 21。窗内是周一论文清单 + Codex 0.149.1 稳定补丁（编程轴，不是推荐包）。</p>
+<div class="lib-stats">
+<span><b>2</b> 独立 Signal</span>
+<span><b>2/6</b> 轴有信号</span>
+<span class="level">中低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>📄 论文</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/list/cs.AI/new" rel="noopener" target="_blank">arXiv Monday 24 Aug 清单放出；抽查高价值新投</a></h4></div>
+<p>截稿时 <a href="https://arxiv.org/list/cs.AI/new" rel="noopener" target="_blank">cs.AI/new</a>（290：新投 88 / cross 112 / replaced 90）、<a href="https://arxiv.org/list/cs.CL/new" rel="noopener" target="_blank">cs.CL/new</a>（139）、<a href="https://arxiv.org/list/cs.LG/new" rel="noopener" target="_blank">cs.LG/new</a>（195）、<a href="https://arxiv.org/list/cs.CR/new" rel="noopener" target="_blank">cs.CR/new</a>（50）均写 <b>Monday, 24 August 2026</b>。昨日扫描仍停 Fri 21 Aug；Sat 22 / Sun 23 列表仍未出，属周末惯例。不把 Friday 21 Aug 升格。抽查并打开 abs 的高相关新投：</p>
+<p><a href="https://arxiv.org/abs/2608.20569" rel="noopener" target="_blank">2608.20569</a> OWMI：对 8 个开源权重模型做掩蔽内省，7.8 万次测量下口头报告相对 sham 的 AUROC≈0.5007；同激活上线性探针可 75–95.8% 检出干预。</p>
+<p><a href="https://arxiv.org/abs/2608.20400" rel="noopener" target="_blank">2608.20400</a> DSGC：智能体记忆「检索前失败」——结构间接前提被预算驱逐；全链保留从 0.03 提到 0.90（词法编码器）。</p>
+<p><a href="https://arxiv.org/abs/2608.20481" rel="noopener" target="_blank">2608.20481</a> Aegis：MCP 跨模态资源滥用的策略执行（IBM Research，DSN-S 2026 preprint）。</p>
+<p><a href="https://arxiv.org/abs/2608.20670" rel="noopener" target="_blank">2608.20670</a> Why2Speak：可弃权动作策略上的忠实推理，能力–可审计性权衡。</p>
+<p><a href="https://arxiv.org/abs/2608.21209" rel="noopener" target="_blank">2608.21209</a> Repair / P3Bench：个性化隐私披露 + 注意力头干预。</p>
+<p><a href="https://arxiv.org/abs/2608.20729" rel="noopener" target="_blank">2608.20729</a> CMB-0.1：准则修订的测量校准（非能力排名）。</p>
+<p class="signal-note">关注度 4 · 🔥（周一放量本身，非旗舰）。不把 Fri 21 列表或 HF Aug 21 日刊混进本条。部分 abs 的 Submitted 日早于 listing 日，以 Monday 24 Aug listing 为窗口依据。</p>
+<div class="tags"><span>arXiv</span><span>Monday dump</span><span>cs.AI</span><span>非旗舰</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal">
+<div class="signal-head"><b class="fire">补丁</b><h4><a href="https://github.com/openai/codex/releases/tag/rust-v0.149.1" rel="noopener" target="_blank">Codex 0.149.1 稳定补丁｜8/24 08:28 CST</a></h4></div>
+<p>GitHub 稳定 tag <code>0.149.1</code>，<code>published_at</code> 2026-08-24T00:28:28Z = <b>8/24 08:28 CST</b>，<code>prerelease=false</code>。Release 正文几乎为空（仅 compare）。<a href="https://github.com/openai/codex/compare/rust-v0.149.0...rust-v0.149.1" rel="noopener" target="_blank">compare rust-v0.149.0...rust-v0.149.1</a> 可见 5 commit：exec 调用方可把新线程标类；remote compaction 对保留图像做预算；detached memory 请求识别为 memory consolidation。相对既有稳定线为补丁级，<b>不是 MCP/Skill 推荐</b>，不与 0.150 alpha 列车混淆。</p>
+<p class="signal-note">关注度 2 · 无火焰。Cursor changelog 仍停 Aug 19。0.150.0-alpha.7 与 Copilot CLI 1.0.81-8 均为预发布，不单列 Signal。</p>
+<div class="tags"><span>Codex</span><span>0.149.1</span><span>稳定补丁</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p>终末地「雪凇幽梦」研发通讯正文首次可核；优衣库 UTme! 官微补入；战双仅线下返图。干员现文 <b>提弗洛斯 // Typhoeus</b>、<b>噗切娜 // Purrchena</b>（对照用，不作为本条新信号）。雷达其他作无新官方节点。星铁 4.5 仍锁 8/26；绝区零 3.2 官网新闻仍停 8/21。</p>
+<div class="lib-stats">
+<span><b>3</b> 独立 Signal</span>
+<span><b>3/12</b> 轴有信号</span>
+<span class="level">中偏低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://endfield.hypergryph.com/news/4776" rel="noopener" target="_blank">终末地 CN「雪凇幽梦」研发通讯正文可核｜优化清单 + 重构寻访 / 申领 9/24</a></h4></div>
+<p>昨晨 SPA 未解析到稳定 CID，正文未进核心。本晨列表头条仍是新闻 2026.08.22「雪凇幽梦」版本研发通讯（不复述「存在」本身）。同站 <a href="https://endfield.hypergryph.com/news/4776" rel="noopener" target="_blank">/news/4776</a> 现可抽出正文。开篇：「穿过雪与雾，踏入幽暗深林，「雪凇幽梦」版本即将开启。」<b>官方正文未出现「雪松林 / 遂明」等地名汉字</b>——二线地图名仍不升格。</p>
+<p>集成工业：新增【连续放置】（设备 / 装饰 / 田块，背包有物即可连续确认、不退出建造）；批量框选做蓝图时，若数量超蓝图可保存上限，界面实时显示当前数量与上限。</p>
+<p>交互：剧情对话【隐藏界面】（可与自动播放同时开）；会客室【快速填入】可填线索、【快速赠予重复线索】（自有库同一线索 &gt;2 条可一键赠友）；干员信赖已满仍可送礼；蚀刻章图鉴页签随浏览进度自动切换；好友列表名片背景显示范围扩大。</p>
+<p>战斗及养成：【培养总览】统一查看已拥有 / 未拥有 / 前瞻干员与武器及养成资源；「战争回响」难度界面可直接切关；通关「战争回响」「影拓丰碑」后返回关卡选择不再触发加载；部分关卡结算新增通关用时。画面：雪天材质强化（角色及部分工业设备 / 装饰积雪附着）。属正文技术段，不单开画面轴。</p>
+<p>「绚丽异彩」重构寻访#1：<b>2026-09-24 开启</b>，6★【伊冯】概率提升；可能出现的 6★ 为 伊冯 / 余烬 / 黎风 / 艾尔黛拉 / 别礼 / 骏卫。新类型「重构寻访」可用特许寻访凭证或嵌晶玉；最多 10 次必出 5★+、最多 80 次必出 6★（所有重构寻访共享 6★ 保底、出货后重置）。同名内：累计 30/60/90 次各额外 10 次加急招募（免费十连，同名只生效 1 次）；前 120 次必出概率提升 6★（同名只生效 1 次）；每累计 240 次额外【概率提升的 6★ 干员信物】×1。加急招募十连不计入保底与累计次数。</p>
+<p>「点绘申领」重构申领#1：<b>2026-09-24 开启</b>，6★ 武器【艺术暴君】概率提升；可能出现的 6★ 武器：艺术暴君（手铳）/ 楔子（手铳）/ 扶摇（单手剑）/ 白夜新星（单手剑）/ J.E.T.（长柄武器）/ 骑士精神（施术单元）/ 破碎君王（双手剑）。新类型「重构申领」：每次随机 10 件、必含 5★+。同名内：连续 3 次无 6★ 则第 4 次必出 6★（<b>不</b>继承到其他申领）；前 7 次无概率提升 6★ 则第 8 次必出（同名只生效 1 次、可继承后续同名）；累计 10 次额外【补充武库箱】×1、累计 18 次额外概率提升 6★ 武器 ×1，之后每 8 次交替给箱或 UP 6★。</p>
+<p>仍在开发（预览、未实装）：【装备方案】一键切换；【装备精锻】新增【待制造】页签，提前精锻成功则停造并返还未用材料。</p>
+<p>对照用现文（<a href="https://endfield.hypergryph.com/operator" rel="noopener" target="_blank">干员列表</a>，不作为本条新信号）：<b>提弗洛斯 // Typhoeus</b>、<b>噗切娜 // Purrchena</b>。<code>/operator/purrchena</code> 仍落到提弗洛斯档案，独立档案正文仍未抓到。</p>
+<p class="signal-note">补入核。不复述已报前瞻通稿、英文 kit、前瞻信件福利、研发通讯挂网存在、中文名确认本身。</p>
+<div class="tags"><span>终末地</span><span>雪凇幽梦</span><span>研发通讯正文</span><span>补入核</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🤝 IP / 联动</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://weibo.com/7745672941/ReHI9aIo3" rel="noopener" target="_blank">终末地 × 优衣库 UNIQLO UTme!｜官微 8/23 12:00 宣布 8/25 上线</a></h4></div>
+<p>昨晨官方新闻列表未见。本晨 <a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">endfield.hypergryph.com/news</a> <b>仍无</b>该条。官方微博账号「明日方舟终末地」于 <b>2026-08-23 12:00</b>（上海）发帖，属昨晨 09:30 后首次可核，记补入核。</p>
+<p>原文要点：《明日方舟：终末地》× 优衣库_UNIQLO「自由开拓，定格今夏」UTme! 合作活动将于 <b>8月25日正式上线</b>；多款联名图案即将登陆 UTme! 系统；欢迎前往指定门店 DIY 专属联动服装；提示留意官方账号、错峰到店。帖含长图（本轮未逐像素转写店单 / 价签）。</p>
+<p class="signal-note">不写价格、店单、结束日、一日店长——二线未核。官网新闻列表是否补挂进观察清单。</p>
+<div class="tags"><span>优衣库</span><span>UTme!</span><span>补入核</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>💬 社区</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.sina.cn/news/detail/5334845058188537.html" rel="noopener" target="_blank">战双官方微博 8/22 22:40「于频率中相汇」线下活动返图</a></h4></div>
+<p>昨晨检索仍写「未见官方回顾」。官方微博认证账号于 <b>2026-08-22 22:40</b> 发「『于频率中相汇』音乐会线下活动返图」：「线下活动今日圆满落幕，感谢各位指挥官的陪伴～ 现场返图已送达」。这是<b>线下观影 / 游园返图</b>，不是曲目表、不是礼包码正文、不是官方完整音乐会综述。因昨窗应覆盖而漏检，今日补入；不据此编出席人数。</p>
+<p class="signal-note">截至本晨：Kuro / PGR 站点、B 站、TapTap 仍未见官方曲目回顾或官方兑换码长文。南都 / 21 财经等二线不升格。</p>
+<div class="tags"><span>战双帕弥什</span><span>线下返图</span><span>补入核</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="dev">
+<div class="library-head">
+<div><span class="lib-icon">🧩</span><h2>游戏开发观察</h2></div>
+<p>一线官方引擎博客窗内空（UE / Unity 无 8/23–24 稿；Godot 3.6.3 为 8/22 昨窗，不进核心）。<a href="https://arxiv.org/list/cs.GR/new" rel="noopener" target="_blank">cs.GR/new</a> 已切到 Monday 24 August：新投 3 / 交叉 2 / 替换 1。Sat 22 / Sun 23 清单仍不存在。设计理论、物理/动画、网络、性能发版、运行时 NPC/PCG、GDC、中间件、教程、postmortem 全空，不渲染卡片。</p>
+<div class="lib-stats">
+<span><b>3</b> 独立 Signal</span>
+<span><b>2/17</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎨 图形 / 渲染</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.20429" rel="noopener" target="_blank">MaxEnt 能量加权球面矩光照编码｜arXiv:2608.20429</a></h4></div>
+<p>西工大。公告 Mon 24 Aug（Submitted 20 Aug 2026）。I4/N4/C5/R5。把路径样本写成能量加权方向特征，用总能量 + 一阶方向矩 + 无迹二阶矩（1+3+5）做线性可加、旋转协变编码；Lebesgue 参考测度下 MaxEnt 闭包给出方向概率 ∝ g<sup>−3</sup>、角能量密度 ∝ g<sup>−4</sup>，并保证可归一化时严格非负辐照度。纯偶极四参数子族给出解析余弦响应与零拒绝逆采样；同轴五参数子族用离线 LUT + 单次三线性采样做漫反射重建。</p>
+<p>981 张 Poly Haven HDRI：MaxEnt-5 对 stored QZH 场景胜率 78.7%、平均亮度 RMSE −15.8%，高方向性桶（ρ≥0.6，392 景）胜率 91.3% 且中位误差低于全 9-DOF SH-2；MaxEnt 全场景负辐照度为 0，SH/QZH 在 52–579 景出现负值。RTX 4060 Laptop 解码微基准：32³ R16F LUT 相对 QZH 开销接近，端到端收益保留率中位 0.9997。</p>
+<p class="signal-note">局限：闭包只到 l≤2；同轴子族对隧道/多源非同轴室内系统误差高；实验是静态环境光 + Lambert，非完整帧管线。面向实时紧凑光照表示，非引擎发版。</p>
+<div class="tags"><span>cs.GR</span><span>MaxEnt</span><span>光照</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://arxiv.org/abs/2608.20803" rel="noopener" target="_blank">CubicSplat：误差有界前向松弛的可微矢量图形｜arXiv:2608.20803</a></h4></div>
+<p>中科大认知智能国重。公告 Mon 24 Aug（Submitted 21 Aug 2026）。I3/N4/C5/R3。把可微矢量光栅的「前向保真 vs 梯度质量」命名为 gradient seesaw：精确 Bézier 最近点求解会病态，过粗前向又优化错目标。用均匀折线代理 Π<sub>S</sub> 把距离查询变成闭式点到线段，几何误差 O(S<sup>−2</sup>)，计算图静态；Porter–Duff 合成的可见性统计做 Gini 剪枝。</p>
+<p>DIV2K 200 张、N=1024：闭填充 25.78 dB / 开描边 25.93 dB，相对 Bézier Splatting +2.33 / +0.48 dB，训练约 4×（闭）/ 1.8×（开）更快；256 条曲线已达 DiffVG 1024 条的 PSNR。单步 2040×1344 / 2048 曲线相对 DiffVG 约 120×。论文自称代码 <code>github.com/CubicSplat/repo</code>（仓库可达性未核，不单列信源）。</p>
+<p class="signal-note">偏图像矢量化 / 可微 2D 渲染研究，非游戏引擎运行时；UI/2D 风格化管线可借鉴。开描边 LPIPS 有时不如点采样 splatting。</p>
+<div class="tags"><span>cs.GR</span><span>CubicSplat</span><span>可微矢量</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>💡 跨界灵感</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.20448" rel="noopener" target="_blank">MultiCube：部件语义 + 空间双可控 3D 生成｜arXiv:2608.20448</a></h4></div>
+<p>Roblox + CMU + Stanford（Maneesh Agrawala）。公告 Mon 24 Aug（Submitted 20 Aug 2026）。I4/N4/C5/R4。在 CubePart/VecSet 上做部件语义+空间双可控：输入全局文本、部件 schema、每部件 AABB，两阶段扩散先生成对齐 layout 的整体网格，再交叉注意力同时分解部件；Stage 1 用 Part Layout Adapter 独立编码每部件（Qwen-VL + Fourier box + Q-Former），避免部件条件纠缠。</p>
+<p>PartObjaverse-Tiny 部件级 CD 0.040 / F-score 0.948 / Box IoU 0.847，超过 CubePart / FullPart / PartPacker；端到端 Box IoU 0.717 接近带 GT 渲染的 FullPart（0.723），语义/几何 VLM 胜率 82.9% / 89.0%。应用：LLM 自动 layout、场景级推广、部件定制、刚体关节。</p>
+<p class="signal-note">失败：严重错 box 会畸变；偶发部件碰撞；不支持局部迭代改一零件。面向游戏/动画组合资产，非运行时 NPC/PCG 发版。</p>
+<div class="tags"><span>cs.GR</span><span>MultiCube</span><span>Roblox</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
