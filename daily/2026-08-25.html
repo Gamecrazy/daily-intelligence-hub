@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-25 · 增量展示版</title>
+<style>
+:root {
+  --bg:#f4f5f7; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#5148b8;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;line-height:1.68}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2)}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1} .metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)} .metric.accent b{color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;background:rgba(244,245,247,.94);backdrop-filter:blur(10px);padding:12px 0;margin:8px 0 18px}
+.tab-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.overview-signal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px;box-shadow:var(--shadow)}
+.overview-signal h3{font-size:15px;margin:8px 0} .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{color:var(--fire);font-size:13px;font-weight:800}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)} tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px} .lib-icon{font-size:25px}
+.library-head p{color:var(--ink2);margin:10px 0}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;box-shadow:var(--shadow);align-self:start}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0} .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:12px 0;border-top:1px dashed var(--line)} .axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal-head{display:flex;gap:8px;align-items:flex-start} .signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6} .signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap} .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){.overview-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.wrap{padding:18px 12px 40px}.axis-grid,.watch-list{grid-template-columns:1fr}.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.sources{columns:1;padding:16px 30px}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>🗞️ 综合日报 · 增量展示版</h1>
+<div class="meta">2026-08-25 · Tuesday · W35</div>
+</div>
+<div class="window">窗口：（2026-08-24，2026-08-25]</div>
+</div>
+<div class="lede">
+主线是绝区零 3.2「她与她的隐秘往事」前瞻官网落地（8/28 19:30；官方点名工坊主克拉蕾、助手洛克茜）。行业侧 CDPR《巫师4》首次给出 2028 年窗。<b>今日无新旗舰。今日无新 MCP/Skill 推荐。</b>GPT-5.6 进 Kiro 是渠道接入，不是新模型。星铁 4.5 仍锁 8/26；Gamescom ONL 02:00 CST 8/26，不预写。
+<strong>本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</strong>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>5</b><span>独立 Signal</span></div>
+<div class="metric"><b>12</b><span>主要信源</span></div>
+<div class="metric hot"><b>2</b><span>高 Attention</span></div>
+<div class="metric accent"><b>4</b><span>显示观察库</span></div>
+<div class="metric"><b>53</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="dev">游戏开发观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>绝区零 3.2「她与她的隐秘往事」前瞻官网落地</h3>
+<p>官网 + 米游社官方 2026/08/24 新闻：前瞻特别节目 8/28 19:30。官方点名工坊主克拉蕾、助手洛克茜。属补入核。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥🔥</div>
+<h3>CDPR《The Witcher IV》瞄准 2028 年窗</h3>
+<p>联合 CEO 展前视频：科隆不展主线，暂不给精确日，targeting 2028。Gematsu 11:36 AM EDT 8/24 = 23:36 CST。不预写 ONL。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">🔥</div>
+<h3>Godot：修复 Windows 高轮询鼠标堵主线程</h3>
+<p>官方博文 24 Aug 14:00 UTC = 22:00 CST，昨晨 09:30 后首见。Hugo Locurcio。修复进 4.7.2 / 4.8.dev3。属补入核，不是 8/25 日稿。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">补入核</div>
+<h3>GPT-5.6 家族接入 Kiro</h3>
+<p>官方 Aug 24：Sol / Terra / Luna 可在 AWS 侧 Kiro 选用。渠道接入，不是新旗舰。Terra 官方自报 Terminal-Bench 2.1 成本约降 82%。</p>
+</article>
+<article class="overview-signal">
+<div class="ov-fire">补入核</div>
+<h3>CVE-2026-76841 Xinference ≤2.11.0</h3>
+<p>Published 8/24 22:17 CST。加载器硬编码 <code>trust_remote_code</code>；2.12.0 门控。CVSS 8.8 HIGH。需模型启动权限，不是未授权 RCE。</p>
+</article>
+</div>
+<h2 class="section-title">各方向信号密度</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>2</b></td><td>低</td><td>无新旗舰、无新 MCP/Skill；Kiro 渠道接入 + CVE 补入核</td></tr>
+<tr><td>二次元游戏观察</td><td><b>1</b></td><td>低</td><td>绝区零 3.2 前瞻官网落地；星铁 4.5 仍锁观察清单</td></tr>
+<tr><td>游戏开发观察</td><td><b>1</b></td><td>低</td><td>引擎补入核 Godot 高轮询鼠标；cs.GR 周二未出</td></tr>
+<tr><td>游戏行业观察</td><td><b>1</b></td><td>中偏低</td><td>巫师4 首次给出 2028 年窗；ONL 截稿后不预写</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜星铁 4.5「挥掷千星的筹码」仍锁 8/26</b><br/>官方预下载已开；维护 8/26 06:00 起约 5 小时。Games Press 通稿未改期。锁期未变 + 预下载操作帖 ≠ 独立 Signal。不复述前瞻角色 / 活动正文。</div>
+<div class="watch"><b>必跟｜绝区零 3.2 前瞻节目 8/28 19:30</b><br/>官网 + 米游社已锁时段与工坊主克拉蕾、助手洛克茜点名。S 级 / 属性 / 卡池顺序仍非官方，待节目或后续档案。</div>
+<div class="watch"><b>必跟｜Gamescom ONL 20:00 CEST 8/25 = 02:00 CST 8/26</b><br/>截稿后，不预写结果。本体 8/26–30；Xbox 双直播仍 8/26–27。今日无新阵容、无改期。</div>
+<div class="watch"><b>必跟｜GTA6 Extended Look 8/27；Elden Ring Tarnished Edition 8/28</b><br/>GTA6 发售仍 11/19。Tarnished 仍 Switch 2、官方页未改档。今日无新阵容。</div>
+<div class="watch"><b>必跟｜优衣库 UTme! 上线日无官网开业 / 价 / 店单</b><br/>CN 官网新闻列表仍未挂该条。未见 8/25 上午官方「现已上线 / 开业确认」帖。价格 / 店单仍未在官方正文写死。</div>
+<div class="watch"><b>必跟｜高雄相伴 8/29–8/30</b><br/>驳二 Pinway 8 号仓库 13:00–17:00。台北场已过、无官方回顾。不预写出席。</div>
+<div class="watch"><b>可跟｜NPPA 8 月批次仍未出</b><br/>国产网游审批目录最新仍为 2026 年 7 月份（7/23 公示）。</div>
+<div class="watch"><b>可跟｜Codex 0.150 仍 alpha.8；Duskbloods 测试已闭合无补场</b><br/>0.150.0-alpha.8 为预发布、无独立 notes，待稳定 tag。Duskbloods 官网问卷写 test concluded，无 later date 新档、无补测场。</div>
+</div>
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://zenless.hoyoverse.com/zh-cn/news" rel="noopener" target="_blank">HoYoverse · 绝区零新闻列表</a></li>
+<li><a href="https://zenless.hoyoverse.com/m/zh-cn/news" rel="noopener" target="_blank">HoYoverse · 绝区零移动端新闻</a></li>
+<li><a href="https://www.miyoushe.com/zzz/article/77716261" rel="noopener" target="_blank">米游社 · 绝区零 3.2 前瞻特别节目预告</a></li>
+<li><a href="https://www.gematsu.com/2026/08/the-witcher-iv-launches-in-2028" rel="noopener" target="_blank">Gematsu · The Witcher IV targeting 2028</a></li>
+<li><a href="https://openai.com/index/gpt-5-6-in-kiro/" rel="noopener" target="_blank">OpenAI · GPT-5.6 in Kiro</a></li>
+<li><a href="https://kiro.dev/" rel="noopener" target="_blank">Kiro · 起步页</a></li>
+<li><a href="https://www.cve.org/CVERecord?id=CVE-2026-76841" rel="noopener" target="_blank">CVE.org · CVE-2026-76841</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76841" rel="noopener" target="_blank">NVD · CVE-2026-76841</a></li>
+<li><a href="https://github.com/xorbitsai/inference/pull/5027" rel="noopener" target="_blank">GitHub · Xinference PR 5027</a></li>
+<li><a href="https://godotengine.org/article/fixing-high-polling-rate-mice-on-windows/" rel="noopener" target="_blank">Godot · Fixing high polling rate mice on Windows</a></li>
+<li><a href="https://www.miyoushe.com/sr/article/77718196" rel="noopener" target="_blank">米游社 · 星铁 4.5 预下载与更新预告</a></li>
+<li><a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/" rel="noopener" target="_blank">国家新闻出版署 · 国产网络游戏审批信息</a></li>
+</ul>
+<p class="footnote">时间边界：本期左开右闭（2026-08-24，2026-08-25]，覆盖 1 天。今日无新旗舰。今日无新 MCP/Skill 推荐。补入核：绝区零 3.2 前瞻官网 8/24、GPT-5.6 × Kiro（官方 Aug 24）、CVE-2026-76841（8/24 22:17 CST）、Godot 高轮询鼠标（24 Aug 14:00 UTC = 22:00 CST，昨晨后首见）。独立 Signal 5。高 Attention 2（绝区零前瞻、巫师4 2028 年窗）。待核：绝区零稀有度/属性/卡池顺序、优衣库开业/价/店单、噗切娜独立档案、arXiv Tue 25 listing、Codex 0.150 稳定 tag、NPPA 8 月批次、ONL 实际片单。已报正文不复述。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📥</span><h2>AI 观察</h2></div>
+<p><b>今日无新旗舰。今日无新 MCP/Skill 推荐。</b>模型发布轴空，不渲染卡片。实验室产品静默。窗内两条均为 8/24 下午 CST 缺口补入：编程轴 GPT-5.6 家族接入 Kiro（渠道，不是新模型）；行业/安全轴 CVE-2026-76841。周二 arXiv <code>/new</code> 截稿仍停 Monday 24 Aug，周一 dump 已报不复述。Hugging Face Daily Papers 已追上 Aug 24，不是周二表。</p>
+<div class="lib-stats">
+<span><b>2</b> 独立 Signal</span>
+<span><b>2/6</b> 轴有信号</span>
+<span class="level">低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal">
+<div class="signal-head"><b class="fire">补入核</b><h4><a href="https://openai.com/index/gpt-5-6-in-kiro/" rel="noopener" target="_blank">OpenAI：GPT-5.6 家族接入 Kiro｜官方 Aug 24</a></h4></div>
+<p>官方 index 落款 <b>August 24, 2026</b>。昨 09:30 扫描因 Cloudflare 未拉到 <code>/index</code>，交叉检索也未报此帖，属 8/24 截稿缺口，记补入核。GPT-5.6 家族（Sol / Terra / Luna）现可在 AWS 软件开发 Agent <a href="https://kiro.dev/" rel="noopener" target="_blank">Kiro</a> 中选用。文称 OpenAI 与 AWS 共同优化环境；在 Terminal-Bench 2.1 上，GPT-5.6 Terra 在 Kiro 中完成成功任务的成本约降 <b>82%</b>（官方自报，非独立复测）。</p>
+<p class="signal-note">关注度 3 · 无火焰。渠道接入，<b>不是新旗舰、不是 MCP/Skill 推荐</b>，不与 Sol 8/22 降价混写。Cursor changelog 仍停 Aug 19。Codex 0.150.0-alpha.8 为预发布，不单列。</p>
+<div class="tags"><span>GPT-5.6</span><span>Kiro</span><span>渠道接入</span><span>补入核</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🛡️ 行业 / 安全</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal">
+<div class="signal-head"><b class="fire">补入核</b><h4><a href="https://www.cve.org/CVERecord?id=CVE-2026-76841" rel="noopener" target="_blank">CVE-2026-76841：Xinference ≤2.11.0 硬编码 trust_remote_code</a></h4></div>
+<p>VulnCheck CNA Published <b>2026-08-24 14:17:01 UTC = 8/24 22:17 CST</b>（昨 09:30 之后），记补入核。开源推理服务 Xinference（xorbitsai/inference）至 2.11.0 在多处加载器把 Hugging Face <code>trust_remote_code</code> 设为恒真且无关闭开关。具备<b>模型启动权限</b>的调用方可走到远程代码执行路径。<b>2.12.0</b> 改为 <code>allow_trust_remote_code</code> / <code>XINFERENCE_TRUST_REMOTE_CODE</code> 门控，仅内置模型默许。CNA CVSS 3.1 <b>8.8 HIGH</b>（CVSS 4.0 8.7）。需要模型启动权限（PR:L），<b>不是未授权匿名 RCE</b>。</p>
+<p class="signal-note">关注度 2 · 无火焰。不写利用步骤。NVD：<a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76841" rel="noopener" target="_blank">nvd.nist.gov</a>；修复 PR：<a href="https://github.com/xorbitsai/inference/pull/5027" rel="noopener" target="_blank">#5027</a>。</p>
+<div class="tags"><span>CVE-2026-76841</span><span>Xinference</span><span>CVSS 8.8</span><span>补入核</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p>绝区零 3.2「她与她的隐秘往事」前瞻特别节目预告官网 + 米游社官方落地，属补入核。雷达其他作无新官方节点。星铁 4.5 仍锁 8/26（预下载进观察清单，不另计 Signal）。空轴不渲染。</p>
+<div class="lib-stats">
+<span><b>1</b> 独立 Signal</span>
+<span><b>1/12</b> 轴有信号</span>
+<span class="level">低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://zenless.hoyoverse.com/zh-cn/news" rel="noopener" target="_blank">绝区零 3.2「她与她的隐秘往事」前瞻特别节目预告｜官网 2026/08/24</a></h4></div>
+<p>昨晨 <a href="https://zenless.hoyoverse.com/zh-cn/news" rel="noopener" target="_blank">zenless.hoyoverse.com/zh-cn/news</a> 与 <a href="https://zenless.hoyoverse.com/m/zh-cn/news" rel="noopener" target="_blank">移动端列表</a>最新可见条仍为 2026/08/21。本晨两条官网新闻列表头条均为 <b>2026/08/24 新闻《绝区零》3.2版本「她与她的隐秘往事」前瞻特别节目预告</b>，列表摘要：「将于8月28日 19:30 (UTC+8)正式开启！」属昨晨 09:30 后首次可核官方，记补入核。</p>
+<p>米游社「绝区零」官方账号、版块「官方」<a href="https://www.miyoushe.com/zzz/article/77716261" rel="noopener" target="_blank">同文</a>：节目 <b>8月28日 19:30</b> 开启；操控邦布的幕后黑手仍未落网，失去业核的德蕾琪娜大人伤情未愈；线索指向矗立在<b>维尔乌姆</b>的<b>弗林特工坊</b>；<b>工坊主克拉蕾与助手洛克茜</b>将带发现新线索；更多情报由 <b>Z 先生与两位代理人</b>在前瞻节目揭晓；直播期间发放兑换码福利，并抽取数位幸运绳匠送出神秘礼品。</p>
+<p>官方原文把克拉蕾 / 洛克茜写作「工坊主 / 助手」和「两位代理人」。不把社区稀有度、属性、卡池顺序写入核心。</p>
+<p class="signal-note">补入核。不复述 8/21「极危通缉与悠游假期」。S 级 / 元素 / 上下半顺序仍非官方。</p>
+<div class="tags"><span>绝区零</span><span>3.2</span><span>前瞻节目</span><span>补入核</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="dev">
+<div class="library-head">
+<div><span class="lib-icon">🧩</span><h2>游戏开发观察</h2></div>
+<p>引擎轴补入核：Godot 官方博文「Fixing high polling rate mice on Windows in Godot」（24 Aug 14:00 UTC = 22:00 CST，昨晨 09:30 后首见）。UE / Unity 窗内空。cs.GR <code>/new</code> 仍停 Monday 24 August，周二清单未出；周一三篇已报，不复述。设计理论、图形新稿、物理/动画、网络、性能发版、运行时 NPC/PCG、GDC、中间件、教程、postmortem 全空，不渲染卡片。</p>
+<div class="lib-stats">
+<span><b>1</b> 独立 Signal</span>
+<span><b>1/17</b> 轴有信号</span>
+<span class="level">低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎮 引擎与工具链</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://godotengine.org/article/fixing-high-polling-rate-mice-on-windows/" rel="noopener" target="_blank">Godot：Fixing high polling rate mice on Windows｜Hugo Locurcio</a></h4></div>
+<p>官方博文日期 24 August 2026，pubDate <b>Mon, 24 Aug 2026 14:00:00 +0000 = 22:00 CST</b>。昨晨 09:30 扫描时尚为 3.6.3 条目，此文为截稿后上架、今日首见。窗口规则允许 8/24 下午首次可核补入，<b>记补入核，不当作 8/25 日稿</b>。</p>
+<p>Windows ≥2 kHz 鼠标在 <code>WM_INPUT</code>+<code>WM_MOUSEMOVE</code> 双通道下会堵主线程。<code>DisplayServerWindows::process_raw_input()</code> 改为缓冲读，<code>PeekMessageW</code> 不立即派发 raw input，legacy move 每帧最多一次。修复进入 <b>4.7.2.stable / 4.8.dev3</b>（GH-109639）；4.7.1 无此修复。</p>
+<p>9950X3D + RTX 5090 + 480 Hz：8 kHz captured、无 V-Sync 从 &lt;1 FPS 到 1703 FPS；V-Sync 480 Hz 从 &lt;1 到 477 FPS。</p>
+<p class="signal-note">关注度中 · 🔥。官方工程博文，不是引擎大版本发版。3.6.3（22 Aug）与 4.7.2 发版公告（18 Aug）不重核。</p>
+<div class="tags"><span>Godot</span><span>Windows</span><span>高轮询鼠标</span><span>补入核</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p>大作轴：CDPR《The Witcher IV》首次给出 2028 年窗，科隆不展主线。Gamescom ONL 20:00 CEST 8/25 = 02:00 CST 8/26，截稿后，不预写结果。雷达公司 / 工作室 / 财报 / 版号 / 主机空轴不渲染。</p>
+<div class="lib-stats">
+<span><b>1</b> 独立 Signal</span>
+<span><b>1/18</b> 轴有信号</span>
+<span class="level">中偏低密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🏟️ 大作观察</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.gematsu.com/2026/08/the-witcher-iv-launches-in-2028" rel="noopener" target="_blank">CDPR 联合 CEO：《The Witcher IV》瞄准 2028 年窗，科隆不展主线</a></h4></div>
+<p>Gematsu <b>11:36 AM EDT 8/24 = 23:36 CST</b>。CD Projekt RED 联合 CEO Michał Nowakowski 展前视频：Ciri 领衔新 saga，超 500 人研发，自称「biggest, boldest, and most ambitious」；「we're not showing The Witcher IV at the event and we're not ready to share an exact date」；「targeting a 2028 release window」。平台 PS5 / Xbox Series / PC。</p>
+<p>同条确认科隆 Hall 8 展台 + 每日 RED 直播主打《巫师3》资料片 Songs of the Past（2027 发售、ONL 已确认，不另开 Signal）。Nowakowski 称「might even have a surprise or two」。不把 2028 写成精确发售日，不预写今晚 ONL 片长 / 内容。</p>
+<p class="signal-note">美东 8/24 午 = 沪上 8/25 窗。The Verge / Kotaku / Siliconera 跟进。Project Sirius 裁员属更早项，不并入。</p>
+<div class="tags"><span>The Witcher IV</span><span>CDPR</span><span>2028</span><span>Gamescom</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
