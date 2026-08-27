@@ -85,7 +85,14 @@ tr:last-child td{border-bottom:0}
 .library-head>div:first-child{display:flex;align-items:center;gap:10px}
 .library-head h2{margin:0;font-size:24px}
 .lib-icon{font-size:25px}
-.library-head p{color:var(--ink2);margin:10px 0}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:15px;color:var(--ink);margin:10px 0 8px;font-weight:550}
+.lib-note{font-size:13px;color:var(--ink2);margin:10px 0 0}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:13px;font-weight:550;color:var(--ink)}
+.overview-signal .kv{grid-template-columns:repeat(2,minmax(0,1fr))}
 .lib-stats{display:flex;gap:10px;flex-wrap:wrap}
 .lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
 .lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
@@ -189,37 +196,83 @@ Xbox @ gamescom Day 1 已播：<b>Disc to Digital</b>（Insiders 8/31 开测）+
 </nav>
 <main>
 <div class="tab-pane active" id="overview">
+<div class="pane-digest">
+<p class="lib-lede">今日有新旗舰：GLM-5.3-Flash（官方认领 Ox Alpha）。今日无新 MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>14</dd></div>
+<div><dt>高 Attention</dt><dd>6</dd></div>
+<div><dt>显示观察库</dt><dd>3</dd></div>
+<div><dt>覆盖</dt><dd>1 天</dd></div>
+<div><dt>窗口</dt><dd>（2026-08-26，2026-08-27]</dd></div>
+</dl>
+<ul class="facts">
+<li>AI：旗舰 GLM-5.3-Flash；无新 MCP/Skill 推荐；HF 事件报告 + Qwen 架构预览 + Transcribe 专用 STT + Chrome/Cowork 产品 + Codex 0.150 稳定</li>
+<li>二次元：星铁 4.5 已开启；终末地×优衣库 UTme! 全国门店 8/27 起扩开</li>
+<li>行业：Xbox Disc to Digital + X25 套装锁价档 + 燕云 1 亿 / Ch.3 9/16 + Day 1 小品定档</li>
+<li>游戏开发空库未出 Tab</li>
+</ul>
+<p class="lib-note">GTA6 Extended Look 截稿未播，不预写。Qwen3.8-Flash-Next 不是旗舰。</p>
+</div>
 <h2 class="section-title">跨方向最高 Attention 信号</h2>
 <div class="overview-grid">
 <article class="overview-signal high">
 <div class="ov-fire">🔥🔥</div>
 <h3>GLM-5.3-Flash</h3>
-<p>Z.ai 官方 8/26。GLM-5 系列首个原生多模态；320B/18B；官方认领 ox-alpha。权重 MIT 开源 zai-org/GLM-5.3-Flash。基准为厂商自报。</p>
+<p class="ov-lede">Z.ai 官方 8/26 发布 GLM-5 系列首个原生多模态。</p>
+<dl class="kv">
+<div><dt>规模</dt><dd>320B/18B</dd></div>
+<div><dt>认领</dt><dd>ox-alpha</dd></div>
+<div><dt>许可</dt><dd>MIT</dd></div>
+<div><dt>基准</dt><dd>厂商自报</dd></div>
+</dl>
 </article>
 <article class="overview-signal high">
 <div class="ov-fire">🔥🔥</div>
 <h3>Xbox Disc to Digital</h3>
-<p>One / Series X 实体盘可领数字授权。Insiders 8/31 开测；首批数千款，并非全库。一般玩家公开日未写死。</p>
+<p class="ov-lede">One / Series X 实体盘可领数字授权。</p>
+<dl class="kv">
+<div><dt>测试</dt><dd>Insiders 8/31</dd></div>
+<div><dt>范围</dt><dd>首批数千款，并非全库</dd></div>
+<div><dt>公开日</dt><dd>未写死</dd></div>
+</dl>
 </article>
 <article class="overview-signal high">
 <div class="ov-fire">🔥🔥</div>
 <h3>Xbox 25th Anniversary Collection</h3>
-<p>大众预购 8/27 07:00 PDT；11/13 发售，美区 MSRP $899.99。含 Series X25 + 手柄 + Halo: Campaign Evolved。</p>
+<p class="ov-lede">大众预购 8/27 07:00 PDT。</p>
+<dl class="kv">
+<div><dt>发售</dt><dd>11/13</dd></div>
+<div><dt>美区 MSRP</dt><dd>$899.99</dd></div>
+<div><dt>含量</dt><dd>Series X25 + 手柄 + Halo: Campaign Evolved</dd></div>
+</dl>
 </article>
 <article class="overview-signal high">
 <div class="ov-fire">🔥🔥</div>
 <h3>OpenAI Hugging Face 事件技术报告</h3>
-<p>官方 Aug 26 完整技术报告。内部评测模型 IM1 为主因。官方口径：未影响客户数据 / 产品可用性。不是模型发布。</p>
+<p class="ov-lede">官方 Aug 26 完整技术报告。</p>
+<dl class="kv">
+<div><dt>主因</dt><dd>内部评测模型 IM1</dd></div>
+<div><dt>口径</dt><dd>未影响客户数据 / 产品可用性</dd></div>
+<div><dt>性质</dt><dd>不是模型发布</dd></div>
+</dl>
 </article>
 <article class="overview-signal high">
 <div class="ov-fire">🔥🔥</div>
 <h3>星铁 4.5「挥掷千星的筹码」已开启</h3>
-<p>官方微博 8/26 11:00。限定 5 星知更鸟•晴歌（记忆•风）上半已开。开拓者可登录体验新版本。</p>
+<p class="ov-lede">官方微博 8/26 11:00 确认已开启。</p>
+<dl class="kv">
+<div><dt>上半</dt><dd>知更鸟•晴歌（记忆•风）</dd></div>
+<div><dt>状态</dt><dd>可登录体验新版本</dd></div>
+</dl>
 </article>
 <article class="overview-signal high">
 <div class="ov-fire">🔥🔥</div>
 <h3>《燕云十六声》1 亿玩家 + Ch.3 9/16</h3>
-<p>Where Winds Meet 全球超 1 亿玩家。Hidden Mountain Chapter 3 终章锁 9/16。Xbox Day 1 同期播预告。</p>
+<p class="ov-lede">Where Winds Meet 全球超 1 亿玩家。</p>
+<dl class="kv">
+<div><dt>Hidden Mountain Ch.3</dt><dd>终章 9/16</dd></div>
+<div><dt>Xbox Day 1</dt><dd>同期播预告</dd></div>
+</dl>
 </article>
 </div>
 <h2 class="section-title">各方向信号密度</h2>
@@ -276,7 +329,23 @@ Xbox @ gamescom Day 1 已播：<b>Disc to Digital</b>（Insiders 8/31 开测）+
 <div class="tab-pane" id="ai">
 <div class="library-head">
 <div><span class="lib-icon">📥</span><h2>AI 观察</h2></div>
-<p><b>今日有新旗舰：GLM-5.3-Flash（官方认领 Ox Alpha）。今日无新 MCP/Skill 推荐。</b>Qwen3.8-Flash-Next 是开源架构预览（自称将 underpin Qwen4），不是旗舰落款；Gemini 3.5 Transcribe 是专用 speech-to-text，不是 Gemini 旗舰 LLM。Claude in Chrome / Cowork 内置浏览器是平台/产品能力，Chrome Web Store 扩展不算可安装 MCP/Skill 包。Codex 0.150.0 稳定记编程轴，内含 MCP 修复也不写作推荐。另记但不单列：<a href="https://x.ai/news/grok-bot-more-plans" rel="noopener" target="_blank">xAI Grok Bot 纳入更多套餐</a>（Aug 26；现含 SuperGrok / Plus / Heavy 与 Cursor Pro / Pro+ / Ultra 及 Cursor Teams Standard/Premium；用量与 Grok/Cursor 套餐分开计量；非新模型）；<a href="https://arxiv.org/list/cs.AI/new" rel="noopener" target="_blank">arXiv 周三 26 Aug 列表首见上线</a>（昨 09:36 CST 仍停 Tuesday）：cs.AI 352（新投 117）、cs.CL 163（53）、cs.LG 277（85）、cs.CR 49（21）。抽查不单列：AgentRoom 2608.23740、SkillForge 2608.24747、Semantic Overlays 2608.23873、Automata from Agent Traces 2608.23670、AI Agents Push Humans Out of the Loop 2608.23642、Poisoning Agentic Alpha 2608.24069。周四 27 Aug 扫描时 /new 仍停 Wednesday；Sat 22 / Sun 23 仍缺席。Codex 0.150-alpha / 0.151.0-alpha 仅登记，不升 Signal。</p>
+<p class="lib-lede">今日有新旗舰：GLM-5.3-Flash（官方认领 Ox Alpha）。今日无新 MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>8</dd></div>
+<div><dt>有信号轴</dt><dd>6/6</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+<div><dt>旗舰</dt><dd>GLM-5.3-Flash</dd></div>
+<div><dt>MCP/Skill</dt><dd>无新推荐</dd></div>
+</dl>
+<ul class="facts">
+<li>Qwen3.8-Flash-Next 是开源架构预览（自称将 underpin Qwen4），不是旗舰落款</li>
+<li>Gemini 3.5 Transcribe 是专用 speech-to-text，不是 Gemini 旗舰 LLM</li>
+<li>Claude in Chrome / Cowork 内置浏览器是平台/产品能力，Chrome Web Store 扩展不算可安装 MCP/Skill 包</li>
+<li>Codex 0.150.0 稳定记编程轴，内含 MCP 修复也不写作推荐</li>
+<li>另记但不单列：<a href="https://x.ai/news/grok-bot-more-plans" rel="noopener" target="_blank">xAI Grok Bot 纳入更多套餐</a>（Aug 26；现含 SuperGrok / Plus / Heavy 与 Cursor Pro / Pro+ / Ultra 及 Cursor Teams Standard/Premium；用量与 Grok/Cursor 套餐分开计量；非新模型）</li>
+<li><a href="https://arxiv.org/list/cs.AI/new" rel="noopener" target="_blank">arXiv 周三 26 Aug 列表首见上线</a>（昨 09:36 CST 仍停 Tuesday）：cs.AI 352（新投 117）、cs.CL 163（53）、cs.LG 277（85）、cs.CR 49（21）。抽查不单列：AgentRoom 2608.23740、SkillForge 2608.24747、Semantic Overlays 2608.23873、Automata from Agent Traces 2608.23670、AI Agents Push Humans Out of the Loop 2608.23642、Poisoning Agentic Alpha 2608.24069</li>
+</ul>
+<p class="lib-note">周四 27 Aug 扫描时 /new 仍停 Wednesday；Sat 22 / Sun 23 仍缺席。Codex 0.150-alpha / 0.151.0-alpha 仅登记，不升 Signal。</p>
 <div class="lib-stats">
 <span><b>8</b> 独立 Signal</span>
 <span><b>6/6</b> 轴有信号</span>
@@ -484,7 +553,20 @@ Xbox @ gamescom Day 1 已播：<b>Disc to Digital</b>（Insiders 8/31 开测）+
 <div class="tab-pane" id="anime">
 <div class="library-head">
 <div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
-<p>星铁 4.5「挥掷千星的筹码」官方微博 8/26 11:00 确认<b>已开启</b>；知更鸟•晴歌（记忆•风）上半已开。终末地×优衣库 UTme! 官方微博 8/26 18:00：系列联名图案 8/27 起登录 P3 图示 UTme! 定制服务门店，全国门店开放上线——是已报联动的全国扩店确认，不是二次「现已开启」。不复述维护说明 / 现已开启正文。砂金•戏浪本窗口未见新官方跃迁帖。绝区零 3.2 前瞻仍锁 8/28 19:30，无新帖。鸣潮 3.6 无新版本官帖。学园偶像大师 / 蔚蓝档案未见一线「開催中」。NPPA 8 月批次仍未公示。</p>
+<p class="lib-lede">星铁 4.5「挥掷千星的筹码」已开启；终末地×优衣库 UTme! 全国门店 8/27 起扩开。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>2</dd></div>
+<div><dt>有信号轴</dt><dd>2/12</dd></div>
+<div><dt>密度</dt><dd>中</dd></div>
+</dl>
+<ul class="facts">
+<li>官方微博 8/26 11:00 确认 4.5 已开启；知更鸟•晴歌（记忆•风）上半已开</li>
+<li>终末地×优衣库 UTme! 官方微博 8/26 18:00：系列联名图案 8/27 起登录 P3 图示 UTme! 定制服务门店，全国门店开放上线——是已报联动的全国扩店确认，不是二次「现已开启」</li>
+<li>不复述维护说明 / 现已开启正文。砂金•戏浪本窗口未见新官方跃迁帖</li>
+<li>绝区零 3.2 前瞻仍锁 8/28 19:30，无新帖。鸣潮 3.6 无新版本官帖</li>
+<li>学园偶像大师 / 蔚蓝档案未见一线「開催中」。NPPA 8 月批次仍未公示</li>
+</ul>
+<p class="lib-note">正名 提弗洛斯 // Typhoeus；噗切娜 // Purrchena。绝不写提丰。</p>
 <div class="lib-stats">
 <span><b>2</b> 独立 Signal</span>
 <span><b>2/12</b> 轴有信号</span>
@@ -553,7 +635,20 @@ Xbox @ gamescom Day 1 已播：<b>Disc to Digital</b>（Insiders 8/31 开测）+
 <div class="tab-pane" id="industry">
 <div class="library-head">
 <div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
-<p>Xbox @ gamescom Day 1 已播（16:00 CEST 8/26 = 22:00 CST 8/26，昨截稿后、本窗内）。官方无单一「everything announced」长文；以 Xbox Wire 一手稿 + Pure Xbox / Gematsu 交叉。只收新日期 / 新作 / 新平台政策；已定档游戏的深潜预告 ≠ Signal。<b>GTA6 Extended Look 未播</b>：Netflix 仍 8/27 15:00 ET（= 8/28 03:00 CST），官网仍标 Coming August 27，禁止预写。Tarnished Edition 仍 8/28。NPPA 国产目录最新仍 2026 年 7 月（7/23）。另记但不单列：State of Decay 3 年内扩至 closed beta（发售仍 2027）；《Warhammer 40,000: Boltgun II》锁 10/14；Chosen by Odin 2027 Steam / Neon Abyss 2 今秋结束 EA 并上主机——小品或测试阶梯，避免通胀。</p>
+<p class="lib-lede">Xbox @ gamescom Day 1 已播；GTA6 Extended Look 截稿未播。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>4</dd></div>
+<div><dt>有信号轴</dt><dd>5/18</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+<div><dt>Day 1</dt><dd>16:00 CEST 8/26 = 22:00 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>官方无单一 everything announced 长文；以 Xbox Wire 一手稿 + Pure Xbox / Gematsu 交叉。只收新日期 / 新作 / 新平台政策；已定档游戏的深潜预告 ≠ Signal</li>
+<li>GTA6 Extended Look 未播：Netflix 仍 8/27 15:00 ET（= 8/28 03:00 CST），官网仍标 Coming August 27，禁止预写</li>
+<li>Tarnished Edition 仍 8/28。NPPA 国产目录最新仍 2026 年 7 月（7/23）</li>
+<li>另记但不单列：State of Decay 3 年内扩至 closed beta（发售仍 2027）；《Warhammer 40,000: Boltgun II》锁 10/14；Chosen by Odin 2027 Steam / Neon Abyss 2 今秋结束 EA 并上主机</li>
+</ul>
+<p class="lib-note">小品或测试阶梯不升 Signal，避免通胀。</p>
 <div class="lib-stats">
 <span><b>4</b> 独立 Signal</span>
 <span><b>5/18</b> 轴有信号</span>
