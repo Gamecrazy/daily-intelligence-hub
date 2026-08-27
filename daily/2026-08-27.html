@@ -19,11 +19,11 @@ html{scroll-behavior:smooth}
 body{
   margin:0;background:var(--bg);color:var(--ink);
   font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
-  line-height:1.68;-webkit-font-smoothing:antialiased
+  line-height:1.75;-webkit-font-smoothing:antialiased
 }
 a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
 a:hover{text-decoration:underline}
-.wrap{max-width:1240px;margin:auto;padding:30px 22px 60px}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
 .hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
 .hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
 h1{margin:0;font-size:30px;letter-spacing:-.5px}
@@ -70,7 +70,7 @@ h1{margin:0;font-size:30px;letter-spacing:-.5px}
 .overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
 .overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
 .overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
-.overview-signal h3{font-size:15px;margin:8px 0}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
 .overview-signal p{font-size:13px;color:var(--ink2);margin:0}
 .ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
 .table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
@@ -91,16 +91,16 @@ tr:last-child td{border-bottom:0}
 .lib-icon{font-size:25px}
 .library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
 .pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
-.lib-lede,.ov-lede{font-size:15px;color:var(--ink);margin:10px 0 8px;font-weight:550}
-.lib-note{font-size:13px;color:var(--ink2);margin:10px 0 0}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
 .library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px;grid-template-columns:1fr}
 .overview-signal p{margin:8px 0}
-.overview-signal .ov-lede{font-size:13px;font-weight:550;color:var(--ink)}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
 .overview-signal .kv{grid-template-columns:1fr}
 .lib-stats{display:flex;gap:10px;flex-wrap:wrap}
 .lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
 .lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
-.axis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
 .axis-card{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
   padding:17px 18px;box-shadow:var(--shadow);align-self:start;
@@ -111,7 +111,7 @@ tr:last-child td{border-bottom:0}
 .axis-title h3{font-size:15px;margin:0}
 .density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
 .subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
-.signal{padding:12px 0;border-top:1px dashed var(--line)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
 .axis-body>.signal:first-child{border-top:0;padding-top:0}
 .signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
 .signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
@@ -127,16 +127,16 @@ tr:last-child td{border-bottom:0}
 .tags{display:flex;gap:5px;flex-wrap:wrap}
 .tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
 
-.signal-lede{font-size:14px;color:var(--ink);margin:8px 0 10px;font-weight:550}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
 .signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
 .signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
 .signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
 .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
-.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:12.5px;background:var(--surface2);border-radius:8px;padding:7px 9px;min-width:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
 .kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
-.kv dd{margin:0;color:var(--ink);overflow-wrap:anywhere;word-break:normal;min-width:0}
-.facts{margin:0 0 10px;padding:0 0 0 1.15em;color:var(--ink2);font-size:13px}
-.facts li{margin:4px 0}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
 .compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
 .compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
 .compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
@@ -188,10 +188,14 @@ tr:last-child td{border-bottom:0}
 <div><dt>覆盖</dt><dd>1 天</dd></div>
 </dl>
 <ul class="facts">
-<li>Xbox @ gamescom Day 1 已播：<b>Disc to Digital</b>（Insiders 8/31 开测）+ X25 周年套装锁 11/13、美区 MSRP $899.99。</li>
+<li>Xbox @ gamescom Day 1 已播：<b>Disc to Digital</b>（Insiders 8/31 开测）。</li>
+<li>X25 周年套装锁 11/13，美区 MSRP $899.99。</li>
 <li>OpenAI 正式发布 Hugging Face 事件技术报告。</li>
 <li>二次元侧《崩坏：星穹铁道》4.5「挥掷千星的筹码」官方微博 8/26 11:00 确认<b>已开启</b>。</li>
-<li>Qwen3.8-Flash-Next 是架构预览，不是 Qwen4 旗舰；Gemini 3.5 Transcribe 是专用 STT，不是 Gemini 旗舰 LLM。Claude in Chrome / Cowork 内置浏览器是产品能力，不是可安装推荐。Codex 0.150.0 稳定记编程轴。</li>
+<li>Qwen3.8-Flash-Next 是架构预览，不是 Qwen4 旗舰。</li>
+<li>Gemini 3.5 Transcribe 是专用 STT，不是 Gemini 旗舰 LLM。</li>
+<li>Claude in Chrome / Cowork 内置浏览器是产品能力，不是可安装推荐。</li>
+<li>Codex 0.150.0 稳定记编程轴。</li>
 </ul>
 <p class="lib-note">GTA6 Extended Look 截稿未播，不预写。游戏开发空库未出 Tab。本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</p>
 </div>
@@ -222,7 +226,8 @@ tr:last-child td{border-bottom:0}
 <div><dt>窗口</dt><dd>（2026-08-26，2026-08-27]</dd></div>
 </dl>
 <ul class="facts">
-<li>AI：旗舰 GLM-5.3-Flash；无新 MCP/Skill 推荐；HF 事件报告 + Qwen 架构预览 + Transcribe 专用 STT + Chrome/Cowork 产品 + Codex 0.150 稳定</li>
+<li>AI：旗舰 GLM-5.3-Flash；今日无新 MCP/Skill 推荐。</li>
+<li>AI 另有：HF 事件报告、Qwen 架构预览、Transcribe 专用 STT、Chrome/Cowork 产品、Codex 0.150 稳定。</li>
 <li>二次元：星铁 4.5 已开启；终末地×优衣库 UTme! 全国门店 8/27 起扩开</li>
 <li>行业：Xbox Disc to Digital + X25 套装锁价档 + 燕云 1 亿 / Ch.3 9/16 + Day 1 小品定档</li>
 <li>游戏开发空库未出 Tab</li>
@@ -359,7 +364,9 @@ tr:last-child td{border-bottom:0}
 <li>Claude in Chrome / Cowork 内置浏览器是平台/产品能力，Chrome Web Store 扩展不算可安装 MCP/Skill 包</li>
 <li>Codex 0.150.0 稳定记编程轴，内含 MCP 修复也不写作推荐</li>
 <li>另记但不单列：<a href="https://x.ai/news/grok-bot-more-plans" rel="noopener" target="_blank">xAI Grok Bot 纳入更多套餐</a>（Aug 26；现含 SuperGrok / Plus / Heavy 与 Cursor Pro / Pro+ / Ultra 及 Cursor Teams Standard/Premium；用量与 Grok/Cursor 套餐分开计量；非新模型）</li>
-<li><a href="https://arxiv.org/list/cs.AI/new" rel="noopener" target="_blank">arXiv 周三 26 Aug 列表首见上线</a>（昨 09:36 CST 仍停 Tuesday）：cs.AI 352（新投 117）、cs.CL 163（53）、cs.LG 277（85）、cs.CR 49（21）。抽查不单列：AgentRoom 2608.23740、SkillForge 2608.24747、Semantic Overlays 2608.23873、Automata from Agent Traces 2608.23670、AI Agents Push Humans Out of the Loop 2608.23642、Poisoning Agentic Alpha 2608.24069</li>
+<li><a href="https://arxiv.org/list/cs.AI/new" rel="noopener" target="_blank">arXiv 周三 26 Aug 列表首见上线</a>（昨 09:36 CST 仍停 Tuesday）。</li>
+<li>当日新投规模：cs.AI 352（新投 117）、cs.CL 163（53）、cs.LG 277（85）、cs.CR 49（21）。</li>
+<li>抽查不单列：AgentRoom 2608.23740、SkillForge 2608.24747、Semantic Overlays 2608.23873、Automata from Agent Traces 2608.23670、AI Agents Push Humans Out of the Loop 2608.23642、Poisoning Agentic Alpha 2608.24069。</li>
 </ul>
 <p class="lib-note">周四 27 Aug 扫描时 /new 仍停 Wednesday；Sat 22 / Sun 23 仍缺席。Codex 0.150-alpha / 0.151.0-alpha 仅登记，不升 Signal。</p>
 <div class="lib-stats">
@@ -608,7 +615,9 @@ tr:last-child td{border-bottom:0}
 <div><dt>状态</dt><dd>已开启</dd></div>
 </dl>
 <ul class="facts">
-<li>限定 5 星「<b>知更鸟•晴歌（记忆•风）</b>」跃迁成功概率限时提升；开拓者<b>可登录游戏体验新版本内容</b>。「超限：狂飙大奖赛」也已开启；「差分战争•乐园漫记」赛季扩充；「狸狸通信」报社事务新功能 + 「畅销计划」「狸狸送福利」等级更新；「巡星之礼」7 日签到累计星轨专票*10；「方寸大冒险」等将陆续开启。</li>
+<li>限定 5 星「<b>知更鸟•晴歌（记忆•风）</b>」跃迁成功概率限时提升；开拓者<b>可登录游戏体验新版本内容</b>。</li>
+<li>「超限：狂飙大奖赛」也已开启；「差分战争•乐园漫记」赛季扩充。</li>
+<li>「狸狸通信」报社事务新功能 + 「畅销计划」「狸狸送福利」等级更新；「巡星之礼」7 日签到累计星轨专票*10；「方寸大冒险」等将陆续开启。</li>
 <li>对照 4.4：7/15 07:00 更新说明 → 11:00 已开启，节奏一致。媒体页见 <a href="https://www.sina.cn/media/7643376782" rel="noopener" target="_blank">sina.cn/media/7643376782</a>；账号 <a href="https://weibo.com/u/7643376782" rel="noopener" target="_blank">weibo.com/u/7643376782</a>。</li>
 <li>跃迁（其一）官方微博 8/25 14:00：<b>2026/08/26 4.5版本更新后 – 2026/09/12 11:59</b>，限定 5 星「知更鸟•晴歌（记忆•风）」「风堇（记忆•风）」。</li>
 <li>砂金•戏浪本窗口未见新官方跃迁帖，不从 8/14 前瞻回灌。开服兑换码：官方微博 8/26 07:00–15:09 全列未见新兑换码帖。</li>
@@ -662,7 +671,9 @@ tr:last-child td{border-bottom:0}
 <li>官方无单一 everything announced 长文；以 Xbox Wire 一手稿 + Pure Xbox / Gematsu 交叉。只收新日期 / 新作 / 新平台政策；已定档游戏的深潜预告 ≠ Signal</li>
 <li>GTA6 Extended Look 未播：Netflix 仍 8/27 15:00 ET（= 8/28 03:00 CST），官网仍标 Coming August 27，禁止预写</li>
 <li>Tarnished Edition 仍 8/28。NPPA 国产目录最新仍 2026 年 7 月（7/23）</li>
-<li>另记但不单列：State of Decay 3 年内扩至 closed beta（发售仍 2027）；《Warhammer 40,000: Boltgun II》锁 10/14；Chosen by Odin 2027 Steam / Neon Abyss 2 今秋结束 EA 并上主机</li>
+<li>另记但不单列：State of Decay 3 年内扩至 closed beta（发售仍 2027）。</li>
+<li>另记但不单列：《Warhammer 40,000: Boltgun II》锁 10/14。</li>
+<li>另记但不单列：Chosen by Odin 2027 Steam；Neon Abyss 2 今秋结束 EA 并上主机。</li>
 </ul>
 <p class="lib-note">小品或测试阶梯不升 Signal，避免通胀。</p>
 <div class="lib-stats">
