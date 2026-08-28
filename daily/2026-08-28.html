@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-28</title>
+<style>
+/* daily report 2026-08-28 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px;grid-template-columns:1fr}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+.show-slate .compare{min-width:520px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>综合日报</h1>
+<div class="meta">2026-08-28 · Friday · W35</div>
+</div>
+<div class="window">窗口：（2026-08-27，2026-08-28]</div>
+</div>
+<div class="lede">
+<p class="lib-lede">今日无新旗舰。今日无新 MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>无新旗舰</dd></div>
+<div><dt>MCP/Skill</dt><dd>无新推荐</dd></div>
+<div><dt>窗口</dt><dd>（2026-08-27，2026-08-28]</dd></div>
+<div><dt>覆盖</dt><dd>1 天</dd></div>
+</dl>
+<ul class="facts">
+<li>主线是《侠盗猎车手VI（Grand Theft Auto VI）》An Extended Look：Netflix 8/27 15:00 ET（= 8/28 03:00 CST）已播，约 26 分钟，片尾标明标准 PS5 实机。</li>
+<li>《艾尔登法环 褪色者版（ELDEN RING Tarnished Edition）》Switch 2 今日发售；同日其他平台上架 Tarnished Pack。</li>
+<li>《星球大战 零号连队（STAR WARS Zero Company）》与《共鸣：瘟疫传说传承（Resonance: A Plague Tale Legacy）》8/27 发售，口碑已出。</li>
+<li>AI：Anthropic 开 Model Hardware Standard 研究预览（不是可安装 MCP/Skill）；Cursor Cloud Agents 可不接 GitHub；Claude Code 2.1.248 加 <code>--restricted</code>。</li>
+<li>展会周继续：Xbox Day 2 已播，世界首发补《破烂捡上天（What Goes Up）》与 Rogue Fortune；Awesome Indies 已播但一线完整片单待核，不编造。</li>
+<li>二次元、游戏开发窗内空库，未出 Tab。</li>
+</ul>
+<p class="lib-note">Xbox Day 2 / Anthropic MHS / 科学家席位 / Cursor Origin 落在昨窗 9:30 截稿后，今日补入核。本版按“全轴扫描、增量展示”：53 个轴 / 子轴完成扫描，页面只显示有新增 Signal 的模块。</p>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>11</b><span>独立 Signal</span></div>
+<div class="metric"><b>16</b><span>主要信源</span></div>
+<div class="metric hot"><b>4</b><span>高 Attention</span></div>
+<div class="metric accent"><b>2</b><span>显示观察库</span></div>
+<div class="metric"><b>53</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<div class="pane-digest">
+<p class="lib-lede">今日无新旗舰。今日无新 MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>11</dd></div>
+<div><dt>高 Attention</dt><dd>4</dd></div>
+<div><dt>显示观察库</dt><dd>2</dd></div>
+<div><dt>覆盖</dt><dd>1 天</dd></div>
+<div><dt>窗口</dt><dd>（2026-08-27，2026-08-28]</dd></div>
+</dl>
+<ul class="facts">
+<li>AI：无新旗舰；无新 MCP/Skill 推荐。MHS 硬件标准研究预览 + 科学家 1 万席 + Cursor Origin + Claude Code <code>--restricted</code>。</li>
+<li>二次元：空库未出 Tab。绝区零 3.2 前瞻今晚 19:30 未播，不预写。</li>
+<li>游戏开发：空库未出 Tab。Godot / Unity / Unreal 官方与周五 cs.GR 均空。</li>
+<li>行业：GTA6 Extended Look 已播；褪色者版今日发售；零号连队 / 瘟疫传说传承发售口碑；Day 2 世界首发两作进片单与独立轴。</li>
+</ul>
+<p class="lib-note">游戏开发空库未出 Tab。Awesome Indies 片单待核。</p>
+</div>
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3>侠盗猎车手VI（Grand Theft Auto VI）：An Extended Look</h3>
+<p class="ov-lede">Netflix 专场已播；约 26 分钟标准 PS5 实机，6 小时后上 YouTube / 官网。</p>
+<dl class="kv">
+<div><dt>发售</dt><dd>2026-11-19 · PS5 / Xbox Series</dd></div>
+<div><dt>片长</dt><dd>约 26 分钟（一线）</dd></div>
+<div><dt>实机</dt><dd>标准 PS5（片尾）</dd></div>
+<div><dt>定价</dt><dd>$79.99，无实体盘（The Verge）</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>艾尔登法环 褪色者版（ELDEN RING Tarnished Edition）</h3>
+<p class="ov-lede">Switch 2 今日发售；本体 + 黄金树幽影 + 新职业 / 防具 / 灵马外观。</p>
+<dl class="kv">
+<div><dt>平台</dt><dd>Switch 2 完整版；他平台 Tarnished Pack 同日</dd></div>
+<div><dt>发行</dt><dd>Bandai Namco / FromSoftware</dd></div>
+<div><dt>日期</dt><dd>2026-08-28</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>星球大战 零号连队（STAR WARS Zero Company）发售</h3>
+<p class="ov-lede">Bit Reactor / EA 回合制战术 8/27 上线；Steam 简中店名已坐实。</p>
+<dl class="kv">
+<div><dt>Steam</dt><dd>多半好评 72%（2,313）</dd></div>
+<div><dt>OpenCritic</dt><dd>88（发售日）</dd></div>
+<div><dt>定价</dt><dd>$49.99</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>Anthropic Model Hardware Standard 研究预览</h3>
+<p class="ov-lede">面向实验室与制造设备的模型无关硬件规范；MCP 只是三条控制路径之一，不是可安装推荐。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-27</dd></div>
+<div><dt>状态</dt><dd>研究预览，计划开源</dd></div>
+<div><dt>控制</dt><dd>MCP / CLI / 代码文件（API）</dd></div>
+</dl>
+</article>
+</div>
+<h2 class="section-title">各方向信号密度</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>结构性判断</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>4</b></td><td>中</td><td>无新旗舰；无新 MCP/Skill 推荐。MHS 研究预览 + 科学家 1 万席 + Cursor Origin / 无 SCM Cloud Agents + Claude Code 2.1.248 <code>--restricted</code></td></tr>
+<tr><td>二次元游戏观察</td><td><b>0</b></td><td>空</td><td>空库未出 Tab。3.2 前瞻今晚 19:30 未播</td></tr>
+<tr><td>游戏开发观察</td><td><b>0</b></td><td>空</td><td>空库未出 Tab。引擎官方与周五 cs.GR 均空</td></tr>
+<tr><td>游戏行业观察</td><td><b>7</b></td><td>高</td><td>GTA6 Extended Look + 褪色者版发售 + 零号连队 / 瘟疫传说传承口碑 + Day 2 片单增量 + 独立世界首发两作</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜绝区零 3.2 前瞻特别节目今晚 19:30（UTC+8）</b><br/>版本名「她与她的隐秘往事」。8/24 预告已报，本窗口无新官方。未播不预写兑换码 / 角色包。</div>
+<div class="watch"><b>必跟｜高雄相伴 8/29–8/30 13:00–17:00 驳二 Pinway 8 号仓库</b><br/>本窗口无新官帖，不预写出席。</div>
+<div class="watch"><b>必跟｜Awesome Indies 完整片单</b><br/>8/28 02:00 CST 已播，一线（Gematsu / IGN 完整名单）待核，不编造。</div>
+<div class="watch"><b>可跟｜NPPA 2026 年 8 月国产网游审批批次</b><br/>目录最新仍 2026 年 7 月份 / 公示 2026-07-23。</div>
+<div class="watch"><b>可跟｜Grok 4.7 / 下一档旗舰</b><br/>Grok 4.6 仍是现役。4.7 无官方 model card / API id。Gemini 3.5 Pro、GPT-6、非 Flash GLM-5.3 均无新官方锁期。</div>
+<div class="watch"><b>可跟｜星铁 4.5 下半砂金•戏浪跃迁官帖</b><br/>本窗口未见新官方跃迁帖。上半「其一」至 2026/09/12 11:59。</div>
+<div class="watch"><b>可跟｜噗切娜独立干员页</b><br/>独立页正文、CV、技能仍待核。</div>
+<div class="watch"><b>可跟｜FGS Best of Gamescom / TGS 9/16</b><br/>SEGA / Konami 已发 TGS 阵容稿，不复述已报科隆名单。</div>
+</div>
+</div>
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">🤖</span><h2>AI 观察</h2></div>
+<p class="lib-lede">今日无新旗舰。今日无新 MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>4</dd></div>
+<div><dt>有信号轴</dt><dd>3/18</dd></div>
+<div><dt>密度</dt><dd>中</dd></div>
+<div><dt>旗舰</dt><dd>无</dd></div>
+</dl>
+<ul class="facts">
+<li>Grok 4.6 仍是现役；4.7 无官方落款。Gemini 3.5 Pro / GPT-6 / 非 Flash GLM-5.3 / Qwen4 均无新官方稿。</li>
+<li>MHS 把 MCP 列为三条控制路径之一，不是可安装 MCP 推荐。Claude Code 2.1.248 的 MCP listing / headersHelper 修复记编程轴。</li>
+<li>Cursor Origin / 无 SCM Cloud Agents 是产品能力，不是 Skill 推荐。</li>
+<li>Codex 0.150.1（27 Aug 01:56Z = 09:56 CST 8/27）是 0.150.0 后的远程压缩预算补丁，不升格 Signal。GitHub MCP 仍停在 v1.11.0（8/25，已报）。</li>
+<li>arXiv <code>/new</code> 截稿仍是周四 27 Aug 清单；周五新表未出。周四论文昨已报。</li>
+</ul>
+<p class="lib-note">另记但不单列：Anthropic 同期 $5M wellbeing 评估资助、科学家项目里 Fable/Mythos 生命科学限制——不是模型发布。</p>
+<div class="lib-stats">
+<span><b>4</b> 独立 Signal</span>
+<span><b>3/18</b> 轴有信号</span>
+<span class="level">中密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔧 Agent / MCP / Skill</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" rel="noopener" target="_blank">Anthropic Model Hardware Standard（MHS）研究预览</a></h4></div>
+<p class="signal-lede">8/27 官方开研究预览：让 Agent 安全操作可编程实验室 / 制造设备的共享规范。模型无关，计划开源。不是可安装 MCP/Skill。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-27</dd></div>
+<div><dt>起点</dt><dd>Anthropic × HHMI Janelia</dd></div>
+<div><dt>控制路径</dt><dd>MCP / CLI / 代码文件（API）</dd></div>
+<div><dt>范围</dt><dd>有可编程接口的设备；无接口硬件暂不覆盖</dd></div>
+</dl>
+<ul class="facts">
+<li>标准化 driver：read / write 原语 + 自然语言标签生成设备参考文件，缩短数周级集成。</li>
+<li>早期伙伴包括 Genentech、UW Baker/Pinglay、CMU、Janelia、QuEra；AWS 将经 Strands Robots 支持；Hugging Face LeRobot / Raspberry Pi 为早期采用方。</li>
+<li>官方写明 Claude 空间 / 物理推理仍有限，需专家监督。研究预览期间做安全评估与 physical safety roadmap，再开源。</li>
+<li>申请走官方 waitlist。这是 Agent 基础设施标准，不是 MCP 目录里的新 server，也不进「🔧 推荐」。</li>
+</ul>
+<p class="signal-note">高权重轴。规格预览，不是推荐条。关注度 · 🔥🔥。</p>
+<div class="tags"><span>MHS</span><span>Anthropic</span><span>Agent</span><span>非推荐</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🧪 应用 / 科学</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.anthropic.com/news/expanding-support-for-scientists" rel="noopener" target="_blank">Anthropic：科学家团队计划 1 万席</a></h4></div>
+<p class="signal-lede">8/27 起为全球科研 PI 开 Claude 科学家团队计划：Standard 免费，Premium $15/月（5× 用量），为期一年。</p>
+<dl class="kv">
+<div><dt>席位</dt><dd>首批 10,000，后续扩</dd></div>
+<div><dt>资格</dt><dd>学术 / 非营利 PI 或同等，核验后可加实验室成员</dd></div>
+<div><dt>超额</dt><dd>可申请 AI for Science，单项目至多 $50,000 credits</dd></div>
+</dl>
+<ul class="facts">
+<li>Standard 免费；Premium 5× 用量 $15/月，一年。</li>
+<li>生物学 / 化学目前仍限 Opus 级；Fable 继续拦截职业生物学与药物研发查询。Mythos 级生命科学准入与美国政府合作，已有首批，细节未核。</li>
+<li>不是新模型发布，也不是 MCP/Skill 推荐。</li>
+</ul>
+<p class="signal-note">应用轴。关注度克制 · 🔥。</p>
+<div class="tags"><span>Claude Science</span><span>席位</span><span>Anthropic</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>⌨️ 编程 / IDE</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://cursor.com/changelog/start-from-scratch" rel="noopener" target="_blank">Cursor：Cloud Agents 可不接 GitHub，落到 Origin 仓库</a></h4></div>
+<p class="signal-lede">8/27 changelog：Cloud Agents 不再要求已连接 GitHub / 第三方 SCM。可从空白 prompt 起，再存到 Cursor Origin 仓库；浏览器预览 + 可接 Vercel 发布。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-27</dd></div>
+<div><dt>入口</dt><dd>repo picker → Start from scratch</dd></div>
+<div><dt>Origin</dt><dd>early beta，付费计划（企业管理员可退出）</dd></div>
+<div><dt>发布</dt><dd>接 Vercel 账户后一键 live URL</dd></div>
+</dl>
+<ul class="facts">
+<li>Agent 构建满意后 Create repo：自定名或建议名，可见性 private / internal。</li>
+<li>Codebase 页是 Origin 仓库首页；可把 GitHub 仓同步进来，GitHub 仍是从那边起的源。</li>
+<li>产品能力，不是可安装 MCP/Skill 推荐。</li>
+</ul>
+<p class="signal-note">编程轴。关注度克制 · 🔥。</p>
+<div class="tags"><span>Cursor</span><span>Origin</span><span>Cloud Agents</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.248" rel="noopener" target="_blank">Claude Code 2.1.248：<code>--restricted</code> 模式</a></h4></div>
+<p class="signal-lede">27 Aug 22:12 UTC = 28 Aug 06:12 CST。新开关去掉会跑命令 / 代码的内置工具和 WebFetch（除非写进 <code>--tools</code>），文件工具锁在工作目录，拒绝 bypassPermissions，忽略用户 / 项目 / 本地 settings。</p>
+<dl class="kv">
+<div><dt>版本</dt><dd>v2.1.248</dd></div>
+<div><dt>开关</dt><dd><code>--restricted</code> 或 <code>CLAUDE_CODE_RESTRICTED=1</code></dd></div>
+<div><dt>续</dt><dd>v2.1.250（28 Aug 00:49 UTC = 08:49 CST）仅 bugfix，不单开</dd></div>
+</dl>
+<ul class="facts">
+<li>同版还有 agent frontmatter <code>experimental.cacheTtl</code>、self-hosted-runner 标签覆盖、Enterprise <code>/usage-credits</code>、同机跨会话 SendMessage（Bedrock/Vertex/Foundry）。</li>
+<li>changelog 里 MCP listing 与 headersHelper 的修复记编程轴，不冒充 MCP 推荐。</li>
+<li>Workflow 工具描述从约 5.7k token 压到约 1k，脚本参考挪到捆绑 <code>workflow-authoring</code> skill——仍是产品内置，不是新推荐条。</li>
+</ul>
+<p class="signal-note">编程轴列车。关注度克制 · 🔥。</p>
+<div class="tags"><span>Claude Code</span><span>2.1.248</span><span>restricted</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p class="lib-lede">GTA6 Extended Look 已播。褪色者版今日发售。Xbox Day 2 已播，Awesome Indies 片单待核。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>7</dd></div>
+<div><dt>有信号轴</dt><dd>4/18</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+<div><dt>展会</dt><dd>Gamescom 周至 8/30</dd></div>
+</dl>
+<ul class="facts">
+<li>ONL / Xbox Day 1 / FGS 见 2026-08-27，不复述长名单。Day 2 世界首发进表；已定档深潜压表。</li>
+<li>今日有独立游戏观察：破烂捡上天（What Goes Up）/ Rogue Fortune（展会周世界首发即达门槛）。</li>
+<li>NPPA 国产目录最新仍 2026 年 7 月（7/23）。</li>
+</ul>
+<p class="lib-note">未播不预写。Awesome Indies 一线完整名单未核，不编标题。</p>
+<div class="lib-stats">
+<span><b>7</b> 独立 Signal</span>
+<span><b>4/18</b> 轴有信号</span>
+<span class="level">高密度</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>📢 大作 / 宣发</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://www.rockstargames.com/VI" rel="noopener" target="_blank">侠盗猎车手VI（Grand Theft Auto VI）：An Extended Look</a></h4></div>
+<p class="signal-lede">Netflix 8/27 15:00 ET（= 8/28 03:00 CST）全球首播；6 小时后上 Rockstar YouTube 与官网 Now Playing。约 26 分钟，片尾标明标准 PS5 实机。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-28/gta6-extended-look.jpg" alt="侠盗猎车手VI An Extended Look 官方静帧，Rockstar Games"/>
+<figcaption>官方图 · Rockstar</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>发售</dt><dd>2026-11-19 · PS5 / Xbox Series X|S</dd></div>
+<div><dt>主角</dt><dd>Jason Duval / Lucia Caminos</dd></div>
+<div><dt>片长</dt><dd>约 26 分钟（The Verge / Netflix 描述）</dd></div>
+<div><dt>定价</dt><dd>$79.99 起，无实体盘（The Verge）</dd></div>
+<div><dt>中文名</dt><dd>Take-Two 中文稿 + PS Store 简中正文：侠盗猎车手VI</dd></div>
+</dl>
+<ul class="facts">
+<li>双主角可随时切换；也可让一人跟随或只玩一人。是否恋爱线由玩家决定（IGN 预览，二线）。</li>
+<li>六星通缉回归；警察会记住外观，可能要换装才能甩掉（IGN）。Snapmatic 回归但不能发帖——两人在逃（IGN）。</li>
+<li>纽约时报预览（经 The Verge）：Rob Nelson 称 2 月通关含主线与部分支线约 80 小时；地图约 RDR2 可玩面积的 3 倍。</li>
+<li>未官宣泄露不进正文。CyberLeek 素材不引用。</li>
+</ul>
+<p class="signal-note">昨截稿未播，今日补入核。关注度 · 🔥🔥🔥。</p>
+<div class="tags"><span>GTA6</span><span>Rockstar</span><span>Extended Look</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🆕 新游 / 发售</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://en.bandainamcoent.eu/elden-ring/elden-ring-tarnished-edition" rel="noopener" target="_blank">艾尔登法环 褪色者版（ELDEN RING Tarnished Edition）今日发售</a></h4></div>
+<p class="signal-lede">Switch 2 完整版今日解锁：本体 + 《黄金树幽影》+ 新职业 / 防具 / 灵马托雷特外观。同日他平台上架 Tarnished Pack。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-28/elden-ring-tarnished-header.png" alt="艾尔登法环 褪色者版 官方主视觉，Bandai Namco"/>
+<figcaption>官方图 · Bandai Namco</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>档期</dt><dd>2026-08-28</dd></div>
+<div><dt>Switch 2</dt><dd>完整版（任天堂香港店：艾爾登法環 褪色者版）</dd></div>
+<div><dt>他平台</dt><dd>Tarnished Pack 同日</dd></div>
+<div><dt>开发 / 发行</dt><dd>FromSoftware / Bandai Namco</dd></div>
+</dl>
+<ul class="facts">
+<li>官方欧页写明含 ELDEN RING 本体、SHADOW OF THE ERDTREE、新防具与 Torrent 外观自定义。</li>
+<li>简中用万代中文稿「艾尔登法环 褪色者版」；港服店名为繁体同结构。</li>
+<li>OpenCritic 发售日侧栏显示 88，独立页条数未核，不把侧栏当终局均分。</li>
+</ul>
+<p class="signal-note">发售日 Signal。关注度 · 🔥🔥。</p>
+<div class="tags"><span>艾尔登法环 褪色者版</span><span>Switch 2</span><span>FromSoftware</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://store.steampowered.com/app/2075800/?l=schinese" rel="noopener" target="_blank">星球大战 零号连队（STAR WARS Zero Company）发售</a></h4></div>
+<p class="signal-lede">Bit Reactor / EA 单人回合制战术，克隆人战争末期。Steam 简中名称：星球大战 零号连队™。8/27 发售。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-28/zero-company-kv.jpg" alt="星球大战 零号连队 官方主视觉，EA / Lucasfilm"/>
+<figcaption>官方图 · EA</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>发售</dt><dd>2026-08-27 · PS5 / Xbox Series / PC</dd></div>
+<div><dt>Steam</dt><dd>app/2075800 · $49.99</dd></div>
+<div><dt>用户评</dt><dd>多半好评 72%（2,313）</dd></div>
+<div><dt>OpenCritic</dt><dd>88（发售日）</dd></div>
+</dl>
+<ul class="facts">
+<li>玩家扮演前共和国指挥官霍克斯，率领零号连队对抗新威胁。永久死亡可关。</li>
+<li>Steam 用户评测与 OpenCritic 发售日均分并列：媒体高、玩家中上，不把「最佳星战」二线标题写进判定。</li>
+<li>Metacritic 86 见 Polygon 综述，作二线交叉，不单开。</li>
+</ul>
+<p class="signal-note">发售 + 口碑。关注度 · 🔥🔥。</p>
+<div class="tags"><span>星球大战 零号连队</span><span>Bit Reactor</span><span>EA</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://store.steampowered.com/app/2713000/?l=schinese" rel="noopener" target="_blank">共鸣：瘟疫传说传承（Resonance: A Plague Tale Legacy）发售</a></h4></div>
+<p class="signal-lede">Asobo / Focus 瘟疫传说世界观衍生。Steam 简中名称：共鸣：瘟疫传说传承。8/27 发售，Game Pass 首日。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-28/resonance-capsule.jpg" alt="共鸣：瘟疫传说传承 官方封面，Steam 简中 header"/>
+<figcaption>官方图 · Steam 简中</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>发售</dt><dd>2026-08-27</dd></div>
+<div><dt>Steam</dt><dd>app/2713000</dd></div>
+<div><dt>OpenCritic</dt><dd>83 · 85% 推荐 · 74 篇</dd></div>
+<div><dt>Pass</dt><dd>Day one Game Pass</dd></div>
+</dl>
+<ul class="facts">
+<li>FGS 只复播发售预告，昨片单表 C 已记；今日升格为发售口碑，不复述预告内容。</li>
+<li>OpenCritic 83 / 85% 推荐（74 篇）。PC 启动崩溃等二线攻略不进正文。</li>
+</ul>
+<p class="signal-note">发售口碑。关注度克制 · 🔥。</p>
+<div class="tags"><span>共鸣：瘟疫传说传承</span><span>Asobo</span><span>Focus</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎬 展会片单</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.gematsu.com/2026/08/co-op-physics-based-building-game-what-goes-up-announced-for-ps5-xbox-series-and-pc" rel="noopener" target="_blank">Gamescom 片单：Xbox Day 2 已播（ONL / Day 1 / FGS 见 8/27）</a></h4></div>
+<p class="signal-lede">Day 2 世界首发两作进表。Awesome Indies 已播，一线完整名单待核，不编造。已定档深潜压表。</p>
+<dl class="kv">
+<div><dt>场次</dt><dd>Xbox Day 2（8/27 22:00 CST）</dd></div>
+<div><dt>待核</dt><dd>Awesome Indies 完整片单</dd></div>
+<div><dt>规则</dt><dd>世界首发进表，深潜不单开；已报名单不复述</dd></div>
+</dl>
+<div class="show-slate compare-wrap">
+<table class="compare">
+<caption>世界首发 / 新作公布（本窗新核）</caption>
+<thead><tr><th>作品</th><th>窗</th><th>场次 / 轴</th></tr></thead>
+<tbody>
+<tr><td><a href="https://www.gematsu.com/2026/08/co-op-physics-based-building-game-what-goes-up-announced-for-ps5-xbox-series-and-pc" rel="noopener" target="_blank">破烂捡上天（What Goes Up）</a></td><td>2026（无日历日）· GP</td><td>Xbox Day 2 · 已单列独立</td></tr>
+<tr><td><a href="https://www.gematsu.com/2026/08/fast-paced-roguelite-action-game-rogue-fortune-announced-for-ps5-xbox-series-switch-2-and-pc" rel="noopener" target="_blank">Rogue Fortune</a></td><td>2027</td><td>Xbox Day 2 · 已单列独立</td></tr>
+</tbody>
+</table>
+</div>
+<p class="compare-src">表 A：Gematsu。ONL / Day 1 / FGS 见 2026-08-27。</p>
+<div class="show-slate compare-wrap">
+<table class="compare">
+<caption>新锁日期 / 窗口（本窗新核，不是首发）</caption>
+<thead><tr><th>作品</th><th>新锁</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><a href="https://www.gematsu.com/2026/08/son-of-thanjai-launches-in-spring-2027" rel="noopener" target="_blank">Son of Thanjai</a></td><td>2027 春 · GP</td><td>Ayelet Studio；只进片单</td></tr>
+</tbody>
+</table>
+</div>
+<p class="compare-src">表 B：Gematsu 11:32 AM EDT 8/27 = 23:32 CST</p>
+<div class="show-slate compare-wrap">
+<table class="compare">
+<caption>已定档深潜，不单开</caption>
+<thead><tr><th>作品</th><th>已定档</th><th>本场</th></tr></thead>
+<tbody>
+<tr><td><a href="https://www.gematsu.com/2026/08/stuntman-hollywood-adds-jurassic-world-inspired-action-sequences" rel="noopener" target="_blank">Stuntman: Hollywood</a></td><td>先前已宣</td><td>Day 2 补侏罗纪世界灵感关</td></tr>
+<tr><td><a href="https://news.xbox.com/en-us/2026/08/27/gravhounds-revealed-co-op-chaos-bio-engineered-dogs-in-space/" rel="noopener" target="_blank">Gravhounds</a></td><td>Game Preview 2026-11-02</td><td>Xbox Wire 8/27 工作室深潜；档期 ONL / 8/25 已报，不是新首发</td></tr>
+</tbody>
+</table>
+</div>
+<p class="compare-src">表 C：Gematsu / Xbox Wire。Dumpster Gang Xbox Wire 8/27 是 Day 1 已报作品的开发者稿，不进新表。</p>
+<p class="signal-note">规范 5.17。Awesome Indies 待核。关注度克制 · 🔥。</p>
+<div class="tags"><span>Gamescom</span><span>Xbox Day 2</span><span>片单</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.gematsu.com/2026/08/co-op-physics-based-building-game-what-goes-up-announced-for-ps5-xbox-series-and-pc" rel="noopener" target="_blank">破烂捡上天（What Goes Up）</a></h4></div>
+<p class="signal-lede">Bossa Games / Team17 物理合作建造；Xbox Day 2 世界首发。Steam 简中名称：破烂捡上天。年窗 2026，无日历日；Game Pass。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-28/what-goes-up-capsule.jpg" alt="破烂捡上天（What Goes Up）官方封面，Steam header"/>
+<figcaption>官方图 · Steam</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>年窗</dt><dd>2026（无日历日）</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / Steam / Microsoft Store</dd></div>
+<div><dt>发行</dt><dd>Team17</dd></div>
+<div><dt>开发</dt><dd>Bossa Games</dd></div>
+<div><dt>Steam</dt><dd>app/2987600</dd></div>
+<div><dt>日期</dt><dd>Gematsu 12:02 PM EDT 8/27 = 00:02 CST 8/28</dd></div>
+</dl>
+<ul class="facts">
+<li>1–4 人：银河垃圾公司雇员，用重力枪 / 悬浮包把地球垃圾堆成塔，好运上回收船。</li>
+<li>Steam 简中「名称」为破烂捡上天，按 5.18 第 1 步采用；不自译。</li>
+</ul>
+<p class="signal-note">展会周独立世界首发即达门槛。关注度克制 · 🔥。</p>
+<div class="tags"><span>破烂捡上天</span><span>Team17</span><span>Day 2</span><span>独立</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.gematsu.com/2026/08/fast-paced-roguelite-action-game-rogue-fortune-announced-for-ps5-xbox-series-switch-2-and-pc" rel="noopener" target="_blank">Rogue Fortune</a></h4></div>
+<p class="signal-lede">Glowmade 高速 roguelite 动作。Xbox Day 2 世界首发。Steam 简中店名仍是英文，查完链无官方简中，留英文。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-28/rogue-fortune-capsule.jpg" alt="Rogue Fortune 官方封面，Steam header"/>
+<figcaption>官方图 · Steam</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>年窗</dt><dd>2027</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / Switch 2 / Steam</dd></div>
+<div><dt>开发</dt><dd>Glowmade</dd></div>
+<div><dt>Steam</dt><dd>app/4891150</dd></div>
+<div><dt>日期</dt><dd>Gematsu 10:02 AM EDT 8/27 = 22:02 CST 8/27</dd></div>
+</dl>
+<ul class="facts">
+<li>官方定位：贪婪遇上不停战斗，要更强构筑、更大牺牲。</li>
+<li>Steam <code>?l=schinese</code> 标题仍 Rogue Fortune；厂商中文稿 / 主机店页未核到简中名称，按 5.18 留英文。</li>
+</ul>
+<p class="signal-note">展会周独立世界首发。关注度克制 · 🔥。</p>
+<div class="tags"><span>Rogue Fortune</span><span>Glowmade</span><span>Day 2</span><span>独立</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+<h2 class="section-title">主要来源</h2>
+<ol class="sources">
+<li><a href="https://www.rockstargames.com/VI" rel="noopener" target="_blank">Rockstar · Grand Theft Auto VI</a></li>
+<li><a href="https://www.theverge.com/games/983941/grand-theft-auto-vi-gta-netflix-extended-look" rel="noopener" target="_blank">The Verge · GTA VI Extended Look</a></li>
+<li><a href="https://en.bandainamcoent.eu/elden-ring/elden-ring-tarnished-edition" rel="noopener" target="_blank">Bandai Namco · ELDEN RING Tarnished Edition</a></li>
+<li><a href="https://store.nintendo.com.hk/70010000097555" rel="noopener" target="_blank">Nintendo HK · 艾爾登法環 褪色者版</a></li>
+<li><a href="https://store.steampowered.com/app/2075800/?l=schinese" rel="noopener" target="_blank">Steam 简中 · 星球大战 零号连队</a></li>
+<li><a href="https://store.steampowered.com/app/2713000/?l=schinese" rel="noopener" target="_blank">Steam 简中 · 共鸣：瘟疫传说传承</a></li>
+<li><a href="https://opencritic.com/game/20803/resonance-a-plague-tale-legacy" rel="noopener" target="_blank">OpenCritic · Resonance</a></li>
+<li><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" rel="noopener" target="_blank">Anthropic · Model Hardware Standard</a></li>
+<li><a href="https://www.anthropic.com/news/expanding-support-for-scientists" rel="noopener" target="_blank">Anthropic · Expanding support for scientists</a></li>
+<li><a href="https://cursor.com/changelog/start-from-scratch" rel="noopener" target="_blank">Cursor changelog · Start from scratch</a></li>
+<li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.248" rel="noopener" target="_blank">Claude Code v2.1.248</a></li>
+<li><a href="https://www.gematsu.com/2026/08/co-op-physics-based-building-game-what-goes-up-announced-for-ps5-xbox-series-and-pc" rel="noopener" target="_blank">Gematsu · What Goes Up</a></li>
+<li><a href="https://store.steampowered.com/app/2987600/?l=schinese" rel="noopener" target="_blank">Steam 简中 · 破烂捡上天</a></li>
+<li><a href="https://www.gematsu.com/2026/08/fast-paced-roguelite-action-game-rogue-fortune-announced-for-ps5-xbox-series-switch-2-and-pc" rel="noopener" target="_blank">Gematsu · Rogue Fortune</a></li>
+<li><a href="https://www.gematsu.com/2026/08/son-of-thanjai-launches-in-spring-2027" rel="noopener" target="_blank">Gematsu · Son of Thanjai</a></li>
+<li><a href="https://news.xbox.com/en-us/2026/08/27/gravhounds-revealed-co-op-chaos-bio-engineered-dogs-in-space/" rel="noopener" target="_blank">Xbox Wire · Gravhounds</a></li>
+</ol>
+<p class="footnote">窗口（2026-08-27，2026-08-28] Asia/Shanghai。空库：二次元游戏观察、游戏开发观察未出 Tab。生成于 2026-08-28 09:30 档日常规整理。</p>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
