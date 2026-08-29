@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-29</title>
+<style>
+/* daily report 2026-08-29 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px;grid-template-columns:1fr}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+.show-slate .compare{min-width:520px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>综合日报</h1>
+<div class="meta">2026-08-29 · 星期六 · W35</div>
+</div>
+<div class="window">窗口：（2026-08-28，2026-08-29]</div>
+</div>
+<div class="lede">
+<p class="lib-lede">今日无新旗舰。今日无新 MCP/Skill 推荐。主线在二次元与展会收尾：绝区零 3.2 前瞻已播；gamescom award 2026 颁奖；金刚狼功能片与神鬼寓言战斗实机补深度。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>无</dd></div>
+<div><dt>MCP/Skill</dt><dd>无新推荐</dd></div>
+<div><dt>窗口</dt><dd>（2026-08-28，2026-08-29] · 含昨 9:30 后补入核</dd></div>
+<div><dt>显示库</dt><dd>二次元、游戏行业（AI / 游戏开发空库未出 Tab）</dd></div>
+</dl>
+<ul class="facts">
+<li>绝区零 3.2「她与她的隐秘往事」前瞻特别节目已播：9/9 上线，新专精锋御（Armorer），S 级克拉蕾 / 洛克茜分上下半。</li>
+<li>gamescom award 2026：CDPR 与 SEGA 各三奖；鬼武者 Way of the Sword 拿下最佳玩法与最佳 PS；燕云十六声获最佳移动。</li>
+<li>PlayStation Blog 发《漫威金刚狼》功能预告；Xbox 发《神鬼寓言》16 分钟战斗实机；MW4 公开测试已开。</li>
+<li>今日无新展会世界首发片单；Awesome Indies 一线完整名单仍待核。</li>
+</ul>
+<p class="lib-note">AI 观察、游戏开发观察空库未出 Tab。不复述已报的 GTA6 Extended Look / Xbox Day1–2 长名单 / 褪色者版发售。</p>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>7</b><span>独立 Signal</span></div>
+<div class="metric"><b>12</b><span>主要信源</span></div>
+<div class="metric hot"><b>3</b><span>高 Attention</span></div>
+<div class="metric accent"><b>2</b><span>显示观察库</span></div>
+<div class="metric"><b>18</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<section class="pane-digest">
+<p class="lib-lede">跨库最高 Attention 落在绝区零 3.2 前瞻落款、gamescom 颁奖，以及金刚狼功能片。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>7</dd></div>
+<div><dt>高 Attention</dt><dd>3</dd></div>
+<div><dt>空库</dt><dd>AI 观察、游戏开发观察未出 Tab</dd></div>
+<div><dt>旗舰 / MCP</dt><dd>均无新增</dd></div>
+</dl>
+<ul class="facts">
+<li>二次元：1 条高 Attention（3.2 前瞻）。</li>
+<li>行业：6 条（颁奖、金刚狼、神鬼寓言、Warlock、MW4 公测、展会收尾说明）。</li>
+<li>不预写兑换码具体字符串（待核一线完整码表）。</li>
+</ul>
+<p class="lib-note">观察清单：高雄相伴今日进行中；Awesome Indies 片单；TGS 9/16。</p>
+</section>
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>绝区零 3.2「她与她的隐秘往事」前瞻已播</h3>
+<p class="ov-lede">9/9 上线；新专精锋御；S 级克拉蕾（电·锋御）上半、洛克茜（风·击破）下半。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28 19:30 CST</dd></div>
+<div><dt>库</dt><dd>二次元游戏观察</dd></div>
+<div><dt>状态</dt><dd>官方特别节目 + Gematsu 综述</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>gamescom award 2026 颁奖</h3>
+<p class="ov-lede">CDPR 与 SEGA 各三奖；鬼武者双料；燕云十六声最佳移动；终末地获观众最佳展台。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>官方 Games Press 名单</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>《漫威金刚狼》功能预告</h3>
+<p class="ov-lede">战斗 / Rage / 适配 / 无障碍与暴力开关；9/15 PS5 发售前功能切片。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>PlayStation Blog 一线</dd></div>
+</dl>
+</article>
+</div>
+<h2 class="section-title">库密度一览</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>0</b></td><td>空</td><td>空库未出 Tab。今日无新旗舰；今日无新 MCP/Skill 推荐</td></tr>
+<tr><td>二次元游戏观察</td><td><b>1</b></td><td>高</td><td>3.2 前瞻落款</td></tr>
+<tr><td>游戏开发观察</td><td><b>0</b></td><td>空</td><td>空库未出 Tab。引擎官方无新；cs.GR 教育/可视化向，不入核</td></tr>
+<tr><td>游戏行业观察</td><td><b>6</b></td><td>高</td><td>颁奖 + 深潜实机 + 公测 + 展会收尾</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜高雄相伴 8/29–8/30</b><br/>驳二 Pinway 8 号仓库 13:00–17:00。今日进行中，出席与现场官帖待核。</div>
+<div class="watch"><b>必跟｜Awesome Indies 完整片单</b><br/>已播，一线（Gematsu / IGN 完整名单）仍待核，不编造。</div>
+<div class="watch"><b>可跟｜绝区零 3.2 兑换码完整表</b><br/>前瞻期间发放，具体字符串待官方公告页 / 社媒一线核对后再写。</div>
+<div class="watch"><b>可跟｜TGS 2026（9/16–9/21）</b><br/>SEGA 等阵容已报，展会周临近再开片单轴。</div>
+<div class="watch"><b>可跟｜Grok 4.7 / 非 Flash GLM-5.3 权重</b><br/>窗内无新官方锁期。</div>
+<div class="watch"><b>可跟｜Disc to Digital Insiders 8/31</b><br/>已报节点，临近再核。</div>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<section class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p class="lib-lede">绝区零 3.2 前瞻特别节目落地，版本锁 9/9。今日有版本级新角色与新专精落款。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>1</dd></div>
+<div><dt>有信号轴</dt><dd>版本 / 角色</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+</dl>
+<ul class="facts">
+<li>3.2「她与她的隐秘往事」：克拉蕾、洛克茜 + 锋御专精。</li>
+<li>登录累计 10 加密母带 + 10 邦布券；妄想天使系列时装可经 3.2/3.3 活动免费获取。</li>
+</ul>
+<p class="lib-note">不复述星铁 4.5 / 终末地×优衣库已报条。兑换码具体字符串待核。</p>
+<div class="lib-stats"><span class="level">高 Attention</span><span>1 Signal</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>📅 版本 / 角色</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/08/zenless-zone-zero-version-3-2-update-their-secret-histories-launches-september-9" rel="noopener" target="_blank">绝区零 3.2「她与她的隐秘往事」前瞻特别节目</a></h4></div>
+<p class="signal-lede">《绝区零》3.2 版本前瞻特别节目于 8/28 19:30（UTC+8）播出，版本定档 9/9，并公布新专精与两名 S 级代理人。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-29/zzz-32-kv.jpg" alt="绝区零 3.2 版本预告 KV"/>
+<img src="../media/2026-08-29/zzz-special.jpg" alt="3.2 特别节目画面"/>
+<figcaption>官方版本预告 / 特别节目公开画面（YouTube 封面）</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28</dd></div>
+<div><dt>主体</dt><dd>HoYoverse / miHoYo</dd></div>
+<div><dt>版本</dt><dd>3.2「她与她的隐秘往事」· 9/9</dd></div>
+<div><dt>新专精</dt><dd>锋御（Armorer）</dd></div>
+<div><dt>上半</dt><dd>克拉蕾（Claret）· 电 · S · 锋御</dd></div>
+<div><dt>下半</dt><dd>洛克茜（Roxy）· 风 · S · 击破</dd></div>
+</dl>
+<ul class="facts">
+<li>克拉蕾为弗林特工坊主事人，首位锋御代理人；技能以防御力为伤害基底，含伤痕 / 重创（Gash / Maim）与暴击率溢出的多重暴击机制。</li>
+<li>洛克茜为工坊首席锻匠，风属性击破；核心围绕「风暴之眼」龙卷生成与引爆。</li>
+<li>复刻：上半南宫羽、下半普罗米娅及专属音擎。</li>
+<li>版本登录累计赠 10 加密母带 + 10 邦布券；制作人手写信确认妄想天使系列时装可经 3.2–3.3 相关活动免费获取。</li>
+<li>「百吉饼行动」标准赛季更新：新战术棱镜、锋御通用装备、保本信标等。</li>
+<li>系统：新人自选补简、柯蕾妲增强、完美支援金/红闪判定统一；City Fund 新音擎 Bloodmarrow Coffer。</li>
+</ul>
+<p class="signal-note">落款：Gematsu 转官方综述 + 米游社代理人档案名（克拉蕾 / 洛克茜）。兑换码字符串待官方码表，不编造。关注度 · 🔥🔥。</p>
+<div class="tags"><span>绝区零</span><span>3.2</span><span>锋御</span><span>克拉蕾</span><span>洛克茜</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://www.gematsu.com/2026/08/zenless-zone-zero-version-3-2-update-their-secret-histories-launches-september-9" rel="noopener" target="_blank">Gematsu · ZZZ 3.2</a></li>
+<li><a href="https://zenless.hoyoverse.com/zh-tw/news/165573" rel="noopener" target="_blank">官方 · 代理人档案｜克拉蕾</a></li>
+<li><a href="https://www.miyoushe.com/zzz/" rel="noopener" target="_blank">米游社 · 绝区零</a></li>
+<li><a href="https://www.youtube.com/watch?v=4O-Iq8lj9_k" rel="noopener" target="_blank">YouTube · 3.2 版本预告</a></li>
+</ol>
+</section>
+</div>
+
+<div class="tab-pane" id="industry">
+<section class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p class="lib-lede">展会周收尾日：颁奖落定，金刚狼与神鬼寓言补深潜。今日无新展会世界首发；今日无独立游戏观察新增达门槛世界首发。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>6</dd></div>
+<div><dt>有信号轴</dt><dd>展会 / 新游深潜 / 平台测试</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+</dl>
+<ul class="facts">
+<li>gamescom award 2026 完整名单已出。</li>
+<li>《漫威金刚狼》功能片；《神鬼寓言》16 分钟战斗；Warlock: D&amp;D 试玩观感；MW4 公开测试开闸。</li>
+</ul>
+<p class="lib-note">不复述 Xbox Day1/2 长名单与 GTA6 Extended Look。Awesome Indies 片单仍待核。</p>
+<div class="lib-stats"><span class="level">高 Attention</span><span>6 Signal</span></div>
+</section>
+<div class="axis-grid">
+
+<article class="axis-card">
+<div class="axis-title"><h3>🏆 展会 / 奖项</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gamespress.com/gamescom-award-2026-the-winners-are" rel="noopener" target="_blank">gamescom award 2026 获奖名单</a></h4></div>
+<p class="signal-lede">8/28 于 gamescom studio（IGN）公布 19 个类别获奖结果；CD PROJEKT RED 与 SEGA 各获三奖。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28</dd></div>
+<div><dt>主体</dt><dd>gamescom / game / Koelnmesse</dd></div>
+<div><dt>并列最多</dt><dd>CDPR · SEGA（各 3）</dd></div>
+</dl>
+<ul class="facts">
+<li>最佳玩法 + 最佳 PlayStation：《鬼武者 Way of the Sword》（Capcom）。</li>
+<li>最佳 Xbox：《极限竞速：地平线6》；最佳 PC：《Total War: WARHAMMER 40,000》；最佳 Switch 2：Rayman Legends Retold；最佳移动：《燕云十六声》。</li>
+<li>最佳视效：METRO 2039；最佳音频：《异形：Isolation 2》。</li>
+<li>评审最佳展台 / 最佳周边 / 最佳预告：皆属《巫师3：狂猎》重制与 Songs of the Past；观众最佳展台：《明日方舟：终末地》。</li>
+<li>HEART OF GAMING 特别奖：Games Done Quick（欧洲首办 gamescom GDQ 8/28–30）。</li>
+</ul>
+<div class="compare-wrap show-slate">
+<table class="compare">
+<caption>平台类获奖（摘）</caption>
+<thead><tr><th>类别</th><th>作品</th><th>厂商</th></tr></thead>
+<tbody>
+<tr><td>Best Xbox</td><td>极限竞速：地平线6（Forza Horizon 6）</td><td>Playground / Xbox</td></tr>
+<tr><td>Best PC</td><td>Total War: WARHAMMER 40,000</td><td>CA / SEGA</td></tr>
+<tr><td>Best PlayStation</td><td>鬼武者 Way of the Sword</td><td>Capcom</td></tr>
+<tr><td>Best Switch 2</td><td>Rayman Legends Retold</td><td>Ubisoft</td></tr>
+<tr><td>Best Mobile</td><td>燕云十六声（Where Winds Meet）</td><td>Everstone / 网易</td></tr>
+</tbody>
+</table>
+</div>
+<p class="signal-note">信源：Games Press 官方稿。关注度 · 🔥🔥。</p>
+<div class="tags"><span>gamescom</span><span>奖项</span><span>鬼武者</span><span>燕云十六声</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🎬 新游 / 深潜</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://blog.playstation.com/2026/08/28/marvels-wolverine-details-on-logans-mutant-abilities-game-features-and-more/" rel="noopener" target="_blank">漫威金刚狼（Marvel’s Wolverine）功能预告</a></h4></div>
+<p class="signal-lede">Insomniac / PlayStation Blog 发布功能预告，拆战斗动量、Rage、适配、套装爪刃与无障碍选项；9/15 PS5 发售。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-29/wolverine-features.jpg" alt="漫威金刚狼功能预告"/>
+<figcaption>官方功能预告公开画面</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28</dd></div>
+<div><dt>主体</dt><dd>Insomniac Games / SIE</dd></div>
+<div><dt>平台</dt><dd>PS5</dd></div>
+<div><dt>档期</dt><dd>2026-09-15</dd></div>
+</dl>
+<ul class="facts">
+<li>战斗强调近身动量；可同时装备 4 个 Special Techniques（如 Tornado Spin / Knee Breaker / Spiral Strike）。</li>
+<li>Adaptations 放大动量；Rage 为三档肾上腺素池（存活→韧性→狂暴）。</li>
+<li>故事对抗 Bolivar Trask，与 Jean Grey、Team X 同行；可遇 Omega Red、Deathstrike。</li>
+<li>Nightmare Doors / 威士忌收藏 / 材料箱做套装；可选 Weapon X、Old Man Logan 等灵感外观与多种爪型。</li>
+<li>日一更新含照片模式；100+ 无障碍选项；新增暴力与成人语言开关。</li>
+</ul>
+<p class="signal-note">一线：PlayStation Blog。关注度 · 🔥🔥。</p>
+<div class="tags"><span>金刚狼</span><span>PS5</span><span>Insomniac</span></div>
+</div>
+
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/08/fable-gamescom-2026-combat-gameplay" rel="noopener" target="_blank">神鬼寓言（Fable）Gamescom 战斗实机 16 分钟</a></h4></div>
+<p class="signal-lede">Playground / Xbox 放出约 16 分钟战斗实机：近战、远程与魔法无缝切换，定档 2027-02-23 并进 Game Pass。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-29/fable-combat.jpg" alt="神鬼寓言战斗实机"/>
+<figcaption>官方 Gamescom 战斗实机公开画面</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28</dd></div>
+<div><dt>主体</dt><dd>Playground Games / Xbox Game Studios</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox / PC</dd></div>
+<div><dt>档期</dt><dd>2027-02-23 · Game Pass</dd></div>
+</dl>
+<ul class="facts">
+<li>官方概述：在阿尔比恩面对经典生物与新威胁，实验配装与法术组合。</li>
+<li>属已定档作品的展会深潜，不单开世界首发。</li>
+</ul>
+<p class="signal-note">Steam 简中店名「神鬼寓言」。关注度克制 · 🔥。</p>
+<div class="tags"><span>神鬼寓言</span><span>Gamescom</span><span>深潜</span></div>
+</div>
+
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://news.xbox.com/en-us/2026/08/28/warlock-dungeons-dragons-magic-explained/" rel="noopener" target="_blank">Warlock: Dungeons &amp; Dragons 魔法系统试玩观感</a></h4></div>
+<p class="signal-lede">Xbox Wire 于 Gamescom 观摩 Invoke Studios 作品：开放法术组合与无路点谜题探索；2027 登 Xbox。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28</dd></div>
+<div><dt>主体</dt><dd>Invoke Studios / Wizards of the Coast</dd></div>
+<div><dt>平台</dt><dd>Xbox Series</dd></div>
+<div><dt>档期</dt><dd>2027</dd></div>
+</dl>
+<ul class="facts">
+<li>主角 Kaatri：剑术 + 魔契；法术可组合解决同一场景（念力、黑触手、雾步等）。</li>
+<li>任务无传统路点，靠对话与环境线索推进「Mystery」支线。</li>
+<li>Ritual 可改天气等环境，再与导电场景连打。</li>
+</ul>
+<p class="signal-note">店名/官译未核简中店页，标题暂留英文副标题。关注度 · 🔥。</p>
+<div class="tags"><span>D&amp;D</span><span>Xbox</span><span>Gamescom</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🧪 平台 / 测试</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.callofduty.com/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-weekend-two" rel="noopener" target="_blank">使命召唤：现代战争 4 公开测试开闸</a></h4></div>
+<p class="signal-lede">全平台 Open Beta（Weekend Two）自 8/28 10:00 PT 起对所有玩家开放，至 9/1 10:00 PT；无需预购。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28</dd></div>
+<div><dt>主体</dt><dd>Infinity Ward / Activision</dd></div>
+<div><dt>窗口</dt><dd>8/28–9/1 10:00 PT</dd></div>
+<div><dt>正作</dt><dd>2026-10-23</dd></div>
+</dl>
+<ul class="facts">
+<li>平台：Xbox Series / Xbox PC / PS5 / Steam / Battle.net / Switch 2。</li>
+<li>含多人、Ground War: Combat Outpost、Warzone Resurgence 新图 Zodiac 等。</li>
+<li>Xbox Wire 同日 Free Play Days / Next Week 日历另见，不单开凑数。</li>
+</ul>
+<p class="signal-note">官方名 Modern Warfare 4；中文沿用系列「现代战争」。关注度 · 🔥。</p>
+<div class="tags"><span>现代战争4</span><span>公开测试</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🎬 展会片单</h3><span class="density">说明</span></div>
+<div class="axis-body">
+<div class="signal">
+<div class="signal-head"><span class="fire">·</span><h4>展会周收尾：无新世界首发</h4></div>
+<p class="signal-lede">Xbox 官方两场直播已在前两日报完。本日无新世界首发进片单；Awesome Indies 一线完整名单仍待核。</p>
+<dl class="kv">
+<div><dt>状态</dt><dd>无新增世界首发</dd></div>
+<div><dt>待核</dt><dd>Awesome Indies 完整片单</dd></div>
+</dl>
+<ul class="facts">
+<li>已定档深潜（《神鬼寓言》战斗等）记入「新游/深潜」轴，不重复片单。</li>
+<li>展台仍开放至 8/30，无新官方秀次则不预写。</li>
+</ul>
+<p class="signal-note">规范 5.17。独立游戏观察：今日无达门槛新增。</p>
+<div class="tags"><span>展会片单</span><span>空增量</span></div>
+</div>
+</div>
+</article>
+
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://www.gamespress.com/gamescom-award-2026-the-winners-are" rel="noopener" target="_blank">Games Press · gamescom award 2026</a></li>
+<li><a href="https://blog.playstation.com/2026/08/28/marvels-wolverine-details-on-logans-mutant-abilities-game-features-and-more/" rel="noopener" target="_blank">PlayStation Blog · Wolverine</a></li>
+<li><a href="https://www.gematsu.com/2026/08/marvels-wolverine-game-features-trailer" rel="noopener" target="_blank">Gematsu · Wolverine</a></li>
+<li><a href="https://www.gematsu.com/2026/08/fable-gamescom-2026-combat-gameplay" rel="noopener" target="_blank">Gematsu · Fable combat</a></li>
+<li><a href="https://news.xbox.com/en-us/2026/08/28/warlock-dungeons-dragons-magic-explained/" rel="noopener" target="_blank">Xbox Wire · Warlock</a></li>
+<li><a href="https://www.callofduty.com/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-weekend-two" rel="noopener" target="_blank">Call of Duty Blog · MW4 Open Beta</a></li>
+<li><a href="https://news.xbox.com/en-us/2026/08/28/next-week-on-xbox-new-games-for-august-31-to-september-4/" rel="noopener" target="_blank">Xbox Wire · Next Week</a></li>
+<li><a href="https://llm-stats.com/llm-updates" rel="noopener" target="_blank">LLM Stats · 模型时间线（交叉：无 8/28–29 新旗舰）</a></li>
+</ol>
+</section>
+</div>
+
+</main>
+<p class="footnote">窗口（2026-08-28，2026-08-29] Asia/Shanghai，含昨 9:30 后补入核。空库：AI 观察、游戏开发观察未出 Tab。今日无新旗舰；今日无新 MCP/Skill 推荐。生成于 2026-08-29 09:30 档日常规整理。</p>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
