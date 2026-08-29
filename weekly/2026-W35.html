@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合周报 · 2026-W35</title>
+<style>
+  并保留最小骨架（wrap / hero / signal 等）。未新造 CSS 规则。
+  Drive 原件另存：日报样式.drive原件-2026-05-31.html
+  2026-08-26: live template <style> refreshed (auto-fit overview, Attention fire bars, library rails, tabs/print). Class skeleton unchanged.
+  2026-08-27: add .signal-lede / .kv / .facts / .compare for structured signal body + new-model compare table.
+  2026-08-27b: add .signal-media for official stills (character KV, covers, gameplay).
+  2026-08-27c: add .lib-lede / .lib-note / .ov-lede / .pane-digest for structured tab overviews.
+  2026-08-27d: hero .lede uses same four blocks as tab digest.
+  2026-08-27e: h1 is 综合日报 only; date-nav.js for date switching.
+  2026-08-27f: fix overview .kv collapse (single-col cards, minmax 320px, no 0-width columns).
+  2026-08-27g: readability — single-col axes, larger lede/facts, wrap 1080.
+  2026-08-27h: 展会片单复用 .compare；caption 写「已定档深潜，不单开」或「世界首发 / 新锁」。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+#overview .axis-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+#overview .axis-card .axis-body p{font-size:13.5px;color:var(--ink2);margin:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>综合周报</h1>
+<div class="meta">2026-W35 · 2026-08-24 – 2026-08-29 · Saturday 截稿 · 周日 pending</div>
+</div>
+<div class="window">本周 W35（周一至周六，周日未发生）</div>
+</div>
+<div class="lede">
+<p class="lib-lede">本周从 W34 的「交付与验真」切到展会周：Opening Night Live、Xbox Day 1/2 与 Future Games Show 已播，侠盗猎车手VI 的 Extended Look 也落地。<b>本周有新旗舰：GLM-5.3-Flash。</b> <b>本周有新 MCP/Skill 推荐：OpenAI Admin plugin。</b></p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>GLM-5.3-Flash（Ox Alpha）</dd></div>
+<div><dt>MCP/Skill</dt><dd>Admin plugin（可安装）</dd></div>
+<div><dt>窗口</dt><dd>2026-08-24（一）至 2026-08-30（日）</dd></div>
+<div><dt>截稿</dt><dd>2026-08-29 10:00 CST · 覆盖 Mon–Sat</dd></div>
+</dl>
+<ul class="facts">
+<li>展会周是行业主线：ONL 惊喜在《巫师3 Remastered》9/29 免费升级，以及米哈游新 IP Nodusfall 世界首发。</li>
+<li>GTA6 Extended Look 约 26 分钟标准 PS5 实机；发售仍锁 2026-11-19。</li>
+<li>二次元：星铁 4.5「挥掷千星的筹码」8/26 已开启；绝区零 3.2 前瞻锁 9/9。</li>
+<li>主机平台：Xbox Disc to Digital（Insiders 8/31 开测）；褪色者版 8/28 发售。</li>
+</ul>
+<p class="lib-note">覆盖周一至周六，周日 8/30 pending，不预写。W34 周日（8/23）当时 pending，本周把终末地中文名与鸣潮台服 iOS #1 折入专题，不另占大事。补搜未发现新的达门槛大事；鸣潮七麦预估仅二线转载。Grok 4.7 / NPPA 8 月批次 / Duskbloods 官方补测日仍空。</p>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>5</b><span>本周大事</span></div>
+<div class="metric accent"><b>4</b><span>显示观察库</span></div>
+<div class="metric"><b>3</b><span>跨周对比</span></div>
+<div class="metric"><b>6</b><span>本周日报</span></div>
+<div class="metric"><b>4</b><span>补搜确认</span></div>
+<div class="metric"><b>6</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="周报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI</button>
+<button class="tab-btn" data-tab="anime">二次元</button>
+<button class="tab-btn" data-tab="dev">游戏开发</button>
+<button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">本周大事</h2>
+<div class="overview-grid">
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://gameinformer.com/gamescom-2026/2026/08/25/everything-announced-at-gamescom-opening-night-live-2026" rel="noopener" target="_blank">Gamescom 周落地：ONL + Xbox / FGS</a></h3>
+<p class="ov-lede">W34 还只写「无新阵容、无改期」；本周秀已播完主场。</p>
+<dl class="kv">
+<div><dt>ONL</dt><dd>8/25 约 2 小时正片</dd></div>
+<div><dt>惊喜</dt><dd>巫师3 Remastered 9/29；Nodusfall 世界首发</dd></div>
+<div><dt>收尾</dt><dd>gamescom award 8/28；周日未发生</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3><a href="https://www.rockstargames.com/VI" rel="noopener" target="_blank">侠盗猎车手VI（Grand Theft Auto VI）：An Extended Look</a></h3>
+<p class="ov-lede">Netflix 专场已播，不是改档。</p>
+<dl class="kv">
+<div><dt>播出</dt><dd>8/27 15:00 ET ＝ 8/28 03:00 CST</dd></div>
+<div><dt>片长</dt><dd>约 26 分钟 · 片尾标标准 PS5 实机</dd></div>
+<div><dt>发售</dt><dd>2026-11-19 · PS5 / Xbox Series</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://z.ai/blog/glm-5.3-flash" rel="noopener" target="_blank">GLM-5.3-Flash：本周唯一新旗舰</a></h3>
+<p class="ov-lede">W34 连续写「无新旗舰」在这里反转。GPT / Claude / Gemini / Qwen / DeepSeek / Grok 仍无新旗舰档。</p>
+<dl class="kv">
+<div><dt>规模</dt><dd>320B / 18B 激活 · MIT</dd></div>
+<div><dt>认领</dt><dd>ox-alpha</dd></div>
+<div><dt>日期</dt><dd>官方 2026-08-26</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://www.sina.cn/news/detail/5336118276393269.html" rel="noopener" target="_blank">星铁 4.5「挥掷千星的筹码」已开启</a></h3>
+<p class="ov-lede">W34 必跟的锁期落地。8/26 晨仍维护，官方微博 11:00 确认已开启。</p>
+<dl class="kv">
+<div><dt>开门</dt><dd>2026-08-26 11:00</dd></div>
+<div><dt>主体</dt><dd>崩坏：星穹铁道</dd></div>
+<div><dt>对照</dt><dd>绝区零 3.2 锁 9/9，不抢这席</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://news.xbox.com/en-us/2026/08/26/your-discs-now-also-digital/" rel="noopener" target="_blank">Xbox Disc to Digital：实体盘领数字授权</a></h3>
+<p class="ov-lede">比又一款发售更能代表本周主机平台判断。褪色者版 / 零号连队是同周发售噪声，不另占大事。</p>
+<dl class="kv">
+<div><dt>测试</dt><dd>Insiders 8/31</dd></div>
+<div><dt>范围</dt><dd>首批数千款，并非全库</dd></div>
+<div><dt>公开日</dt><dd>未写死</dd></div>
+</dl>
+</article>
+</div>
+
+<h2 class="section-title">跨周对比（W34 → W35）</h2>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>延续</h3><span class="density">对照 W34</span></div>
+<div class="analysis-box">上周已经出现、本周继续发展。W34 证据日落 8/17–22；本周证据日落 8/24–29。</div>
+<div class="axis-body">
+<p>Gamescom 日程未改，只是从「临近」变成「已播」：ONL 8/25、展会 8/26–30 原窗口保持。</p>
+<p>终末地 1.5「雪凇幽梦」仍锁 9/2。W34 还缺中文干员名；8/23–24 CN 官网补上提弗洛斯 / 噗切娜，寻访 / 申领仍 9/24。</p>
+<p>金刚狼仍 9/15：上周金盘，本周出功能片，档期未改。MW4 从 EA Beta 接到 Open Beta（8/28–9/1 PT）。</p>
+<p>Cursor Origin 从 W34 的 early beta 托管，接到本周 Cloud Agents 可不接 GitHub、落到 Origin 仓。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>反转</h3><span class="density">对照 W34</span></div>
+<div class="analysis-box">上周判断或趋势在本周出现变化、升温或反向信号。</div>
+<div class="axis-body">
+<p>旗舰密度反转。W34 扫描连续写「无新旗舰」；本周 GLM-5.3-Flash 落官方档。GPT-6 / Grok 4.7 / 下一代 Claude / Gemini 旗舰 LLM 仍未锁期。</p>
+<p>MCP/Skill 推荐轴反转。W34 无新可装包；本周 OpenAI Admin plugin 进 ChatGPT Work 与 Codex，是本周唯一推荐条。WebMCP / Claude in Chrome / MHS 仍是平台能力，不当推荐。</p>
+<p>行业主线从财报 / 交割 / 日落，切到展会片单与发售验证。W34 的网易 Q2 / 灵犀 / 2XKO 不复述。本周同类日落体量更小：1047 Games 停更 Empulse 与 Splitgate: Arena Reloaded。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>新增</h3><span class="density">本周首次</span></div>
+<div class="analysis-box">本周首次出现、值得后续跟踪。</div>
+<div class="axis-body">
+<p>米哈游新 IP Nodusfall 世界首发（平台与档期未宣，无官方简中，留英文）。《巫师3 Remastered》9/29 既有玩家免费升级。</p>
+<p>Xbox Disc to Digital；X25 周年套装锁 11/13、美区 MSRP $899.99。Ananta 锁 2027-01-15。彩虹六号 Tactics 世界首发。</p>
+<p>GTA6 Extended Look 已播（约 26 分钟）。SME 入股 GungHo 23.29%（约 286.4 亿日元，交割计划 12/30）。OpenAI Jalapeño 自研推理芯片首测。Newzoo 公开口径 2026 全球游戏消费 $213.9B、同比 +6.1%（全文仍标 9/10）。</p>
+</div>
+</section>
+</div>
+
+<h2 class="section-title">专题更新</h2>
+<div class="watch-list">
+<div class="watch"><b>Gamescom 2026</b><br/>本周：ONL 8/25 已播；Xbox Day 1/2、FGS 已播；Awesome Indies 已播但一线完整片单仍待核，只核 Usual June 10/28。8/28 颁奖：CDPR 与 SEGA 各三奖；鬼武者 Way of the Sword 最佳玩法 + 最佳 PS；燕云十六声最佳移动；终末地观众最佳展台。周日 8/30 未发生。继续跟踪：TGS 9/16；不把已报长名单再开一遍。</div>
+<div class="watch"><b>GLM-5.3-Flash / 下一代旗舰</b><br/>本周：Z.ai 8/26 官方认领 ox-alpha；320B/18B、MIT、HF zai-org/GLM-5.3-Flash。基准为厂商自报（见 AI 轴对比表）。Qwen3.8-Flash-Next 是架构预览，不是 Qwen4 旗舰。Gemini 3.5 Transcribe 是专用 STT。Grok 4.7 仍无官方日（补搜：xAI 文档现役仍到 Grok 4.6）。继续跟踪：非 Flash 的 GLM-5.3 权重、Grok 4.7、GPT-6。</div>
+<div class="watch"><b>崩坏：星穹铁道 4.5「挥掷千星的筹码」</b><br/>本周：8/26 06:00 起维护，官方微博 11:00「已开启」。砂金•戏浪跃迁本周未见新官方帖，不编。继续跟踪：卡池 / SP 是否另有官方锁；不把锁期复述当新闻。</div>
+<div class="watch"><b>明日方舟：终末地 1.5「雪凇幽梦」</b><br/>本周：8/23 CN 官网补研发通讯，干员中文正式名提弗洛斯 / 噗切娜（W34 待核关闭一档）；8/24 正文可核优化清单 + 重构寻访 / 申领 9/24；×优衣库 UTme! 8/25「现已开启」、8/27 全国门店扩开。版本仍锁 9/2。继续跟踪：9/2 上线、Steam 日、噗切娜独立页。</div>
+<div class="watch"><b>侠盗猎车手VI</b><br/>本周：An Extended Look 已播；一线约 26 分钟，片尾标准 PS5 实机；The Verge 交叉 $79.99、无实体盘。发售仍 2026-11-19。不把片中细节升格成系统说明书。继续跟踪：是否改档 / 预载，不预期下周再出同等体量片。</div>
+<div class="watch"><b>Xbox Disc to Digital + X25</b><br/>本周：Xbox Wire 8/26 官宣实体盘可领数字授权，Insiders 8/31 起测，首批数千款并非全库，公开日未写死。X25 周年套装大众预购 8/27 07:00 PDT，发售 11/13，美区 MSRP $899.99。继续跟踪：8/31 测试是否如期、覆盖游戏名单。</div>
+</div>
+
+<h2 class="section-title">下周观察</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜终末地 1.5「雪凇幽梦」9/2</b><br/>通稿已锁日；看是否准时上线、Steam 是否补具体日、中文回顾是否再更新。</div>
+<div class="watch"><b>必跟｜Xbox Disc to Digital Insiders 8/31</b><br/>测试窗已写死。看首批名单与公开日是否一并公布。</div>
+<div class="watch"><b>必跟｜绝区零 3.2「她与她的隐秘往事」9/9</b><br/>前瞻已播：新专精锋御（Armorer）；S 级克拉蕾（电·锋御）上半、洛克茜（风·击破）下半。不把前瞻复述当开门。</div>
+<div class="watch"><b>必跟｜漫威金刚狼（Marvel’s Wolverine）9/15</b><br/>功能片已出，档期未改。看评测解禁 / 预载，不预期再改档。</div>
+<div class="watch"><b>必跟｜燕云十六声 Hidden Mountain Ch.3 9/16 · TGS 同日</b><br/>全球超 1 亿已报。只看章节是否改档，以及 TGS 是否另有官方秀。</div>
+<div class="watch"><b>必跟｜Grok 4.7 仍未锁期</b><br/>补搜确认 xAI 现役仍到 Grok 4.6。Musk 8/12「3–4 周」不作日程。</div>
+<div class="watch"><b>可跟｜《巫师3 Remastered》9/29 免费升级</b><br/>既有玩家免费升；HoS+BaW 对本体免费已从 ONL 日起。巫师4 瞄准 2028，本周科隆未展主线。</div>
+<div class="watch"><b>可跟｜GTA6 11/19 档期是否改</b><br/>Extended Look 已播完，下周只看官方改期，不复述片。</div>
+<div class="watch"><b>可跟｜NPPA 8 月国产网游审批批次</b><br/>补搜：官网最新仍是 2026 年 7 月份（7/22 批准公示）。8 月批次未出。</div>
+<div class="watch"><b>可跟｜Duskbloods 官方补测日</b><br/>W34 记 later date。本周日未再报官方新日程；三线「后续场次已跑」不升格。</div>
+<div class="watch"><b>可跟｜Awesome Indies 完整片单</b><br/>本周只核 Usual June 锁 10/28。完整一线片单仍待核，不编造。</div>
+<div class="watch"><b>可跟｜已锁硬日期：守墓人2 9/22、Control Resonant 9/24、X25 11/13、Ananta 2027-01-15、神鬼寓言 2027-02-23、Exodus 2027-04-07</b><br/>下周只看是否改档。高雄相伴 8/29–30 截稿进行中，现场不预写。鸣潮 3.6 首周：二线转七麦预估中国大陆 iOS 周收入 136.7 万美元（约 919 万人民币，游娱fan 8/24）；未回对七麦原页，不进大事。8/23 点点台湾 iOS 动作畅销 #1。ST 署期仍无。</div>
+</div>
+
+<h2 class="section-title">本周日报回看</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>日期</th><th>星期</th><th>是否有日报</th><th>周报如何用</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>8/23</td><td>日（W34）</td><td>有</td><td>W34 截稿时 pending；本周折入终末地专题</td><td>CN「雪凇幽梦」中文名；鸣潮台服 iOS 动作 #1</td></tr>
+<tr><td>8/24</td><td>一</td><td>有</td><td>全量聚合</td><td>终末地通讯正文；cs.GR 三篇；Codex 0.149.1</td></tr>
+<tr><td>8/25</td><td>二</td><td>有</td><td>全量聚合</td><td>绝区零 3.2 前瞻预告；巫师4 2028 窗；Godot 高回报率鼠标</td></tr>
+<tr><td>8/26</td><td>三</td><td>有</td><td>全量聚合</td><td>ONL；Admin plugin；Jalapeño；星铁 4.5 维护中</td></tr>
+<tr><td>8/27</td><td>四</td><td>有</td><td>全量聚合</td><td>GLM-5.3-Flash；星铁已开启；Disc to Digital；展会片单</td></tr>
+<tr><td>8/28</td><td>五</td><td>有</td><td>全量聚合</td><td>GTA6 Extended Look；褪色者版发售；MHS</td></tr>
+<tr><td>8/29</td><td>六</td><td>有</td><td>全量聚合</td><td>SME×GungHo；3.2 前瞻；颁奖；金刚狼功能片</td></tr>
+<tr><td>8/30</td><td>日</td><td>无</td><td>未发生，pending</td><td>不预写周日事件</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">本周日报 6 篇（8/24–29），全部已推观察台。8/23 属 W34 周日，W34 截稿未覆盖，本周只把关闭待核的终末地中文名与一条榜单折入专题。周日 8/30 未发生。</p>
+
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://z.ai/blog/glm-5.3-flash" rel="noopener" target="_blank">Z.ai · GLM-5.3-Flash</a></li>
+<li><a href="https://huggingface.co/zai-org/GLM-5.3-Flash" rel="noopener" target="_blank">Hugging Face · zai-org/GLM-5.3-Flash</a></li>
+<li><a href="https://openai.com/index/introducing-admin-plugin/" rel="noopener" target="_blank">OpenAI · Introducing Admin plugin</a></li>
+<li><a href="https://openai.com/index/jalapeno-first-results/" rel="noopener" target="_blank">OpenAI · Jalapeño first results</a></li>
+<li><a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/" rel="noopener" target="_blank">OpenAI · Hugging Face incident 技术报告</a></li>
+<li><a href="https://claude.com/blog/claude-in-chrome-generally-available" rel="noopener" target="_blank">Claude · in Chrome generally available</a></li>
+<li><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" rel="noopener" target="_blank">Anthropic · Model Hardware Standard</a></li>
+<li><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" rel="noopener" target="_blank">Hugging Face · Qwen3.8-Flash-Next</a></li>
+<li><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/" rel="noopener" target="_blank">Google · Gemini 3.5 Transcribe</a></li>
+<li><a href="https://www.sina.cn/news/detail/5336118276393269.html" rel="noopener" target="_blank">官方微博转载 · 星铁 4.5 已开启</a></li>
+<li><a href="https://www.gematsu.com/2026/08/zenless-zone-zero-version-3-2-update-their-secret-histories-launches-september-9" rel="noopener" target="_blank">Gematsu · 绝区零 3.2 9/9</a></li>
+<li><a href="https://endfield.hypergryph.com/news/4776" rel="noopener" target="_blank">Hypergryph · 雪凇幽梦研发通讯</a></li>
+<li><a href="https://gameinformer.com/gamescom-2026/2026/08/25/everything-announced-at-gamescom-opening-night-live-2026" rel="noopener" target="_blank">Game Informer · ONL 2026 全部宣布</a></li>
+<li><a href="https://www.gematsu.com/2026/08/the-witcher-3-wild-hunt-remastered-announced-for-ps5-xbox-series-switch-2-and-pc-expansion-songs-of-the-past-teaser-trailer" rel="noopener" target="_blank">Gematsu · 巫师3 Remastered</a></li>
+<li><a href="https://nodusfall.hoyoverse.com/en-us/news/165735?ch=1349" rel="noopener" target="_blank">HoYoverse · Nodusfall 世界首发</a></li>
+<li><a href="https://www.rockstargames.com/VI" rel="noopener" target="_blank">Rockstar · Grand Theft Auto VI</a></li>
+<li><a href="https://en.bandainamcoent.eu/elden-ring/elden-ring-tarnished-edition" rel="noopener" target="_blank">Bandai Namco · 褪色者版</a></li>
+<li><a href="https://news.xbox.com/en-us/2026/08/26/your-discs-now-also-digital/" rel="noopener" target="_blank">Xbox Wire · Disc to Digital</a></li>
+<li><a href="https://news.xbox.com/en-us/2026/08/26/pre-orders-begin-today-xbox-25th-anniversary-collection/" rel="noopener" target="_blank">Xbox Wire · X25 周年套装</a></li>
+<li><a href="https://www.gamespress.com/gamescom-award-2026-the-winners-are" rel="noopener" target="_blank">Games Press · gamescom award 2026</a></li>
+<li><a href="https://blog.playstation.com/2026/08/28/marvels-wolverine-details-on-logans-mutant-abilities-game-features-and-more/" rel="noopener" target="_blank">PlayStation Blog · 金刚狼功能预告</a></li>
+<li><a href="https://www.gematsu.com/2026/08/sony-music-entertainment-japan-and-gungho-online-entertainment-to-form-capital-and-business-alliance" rel="noopener" target="_blank">Gematsu · SME × GungHo</a></li>
+<li><a href="https://www.gamespress.com/Where-Winds-Meet-Reaches-100-Million-Players-Worldwide-and-Announces-H" rel="noopener" target="_blank">Games Press · 燕云十六声 1 亿</a></li>
+<li><a href="https://www.gamesindustry.biz/newzoo-global-games-market-to-generate-2139bn-in-2026-up-61-yoy" rel="noopener" target="_blank">GamesIndustry.biz · Newzoo $213.9B</a></li>
+<li><a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/202607/t20260723_1000636.html" rel="noopener" target="_blank">国家新闻出版署 · 2026 年 7 月份国产网游审批（8 月未出）</a></li>
+<li><a href="https://arxiv.org/abs/2608.20429" rel="noopener" target="_blank">arXiv:2608.20429 MaxEnt 光照</a></li>
+<li><a href="https://godotengine.org/article/fixing-high-polling-rate-mice-on-windows/" rel="noopener" target="_blank">Godot · high polling rate mice</a></li>
+<li><a href="https://store.steampowered.com/app/2530470/?l=schinese" rel="noopener" target="_blank">Steam 简中 · 魔女庭院</a></li>
+<li><a href="https://www.163.com/dy/article/L54BCETS05466ZM9.html" rel="noopener" target="_blank">游娱fan / 网易号 · 鸣潮 3.6 七麦 iOS 周预估（二线）</a></li>
+</ul>
+<p class="footnote">血缘：聚合本周 6 篇日报（8/24–29）+ W34 周日 8/23 补入终末地专题 + 补搜 4 条：鸣潮 3.6 七麦预估（二线，不进大事）；阴性确认 Grok 4.7 未锁、NPPA 8 月未出、Duskbloods 官方补测日未改，提炼升维，不是日报堆叠。<b>本周有新旗舰：GLM-5.3-Flash。本周有新 MCP/Skill 推荐：Admin plugin。</b>覆盖 Mon–Sat，Sunday 2026-08-30 pending，不预写。待核：Awesome Indies 完整片单；噗切娜独立页；砂金•戏浪跃迁；鸣潮 3.6 大陆 / ST 流水；Duskbloods 官方补测日；Nodusfall 官方简中 / 平台档期；Disc to Digital 公开日；Sunday 全日。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📦</span><h2>AI 观察</h2></div>
+<p class="lib-lede"><b>本周有新旗舰：GLM-5.3-Flash。</b> <b>本周有新 MCP/Skill 推荐：OpenAI Admin plugin。</b> 其余是芯片首测、浏览器产品化、硬件标准预览和编程列车，不冲掉这两条。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>GLM-5.3-Flash（8/26）</dd></div>
+<div><dt>推荐</dt><dd>Admin plugin（可装进 ChatGPT Work + Codex）</dd></div>
+<div><dt>非推荐</dt><dd>WebMCP / Chrome GA / Cowork 浏览器 / MHS</dd></div>
+<div><dt>未到</dt><dd>Grok 4.7 / GPT-6 / Claude 下一代</dd></div>
+</dl>
+<ul class="facts">
+<li>W34 的「无新旗舰 / 无新推荐」在本周各反转一次，且都不是美系现役旗舰换代。</li>
+<li>Jalapeño 是自研推理芯片首测，不是模型档。</li>
+<li>Codex 0.150.0 稳定、Claude Code 2.1.248/251 是版本列车，不当推荐条。</li>
+</ul>
+<p class="lib-note">Qwen3.8-Flash-Next 与 Gemini 3.5 Transcribe 本周都有官方落款，但分别是架构预览和专用 STT，不改「本周唯一新旗舰」结论。</p>
+<div class="lib-stats">
+<span><b>5</b> 显示轴</span>
+<span class="level">旗舰回归 + 一条推荐</span>
+<span>Grok 4.7 仍空</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🧠 模型发布</h3><span class="density">本周唯一旗舰</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://z.ai/blog/glm-5.3-flash" rel="noopener" target="_blank">Z.ai 发布 GLM-5.3-Flash，官方认领 Ox Alpha</a></h4></div>
+<p class="signal-lede">GLM-5 系列首个原生多模态。发布前以 ox-alpha 在 OpenCode / OpenRouter 匿名测试。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-26</dd></div>
+<div><dt>规模</dt><dd>320B 总参 / 18B 激活（45 层）</dd></div>
+<div><dt>许可</dt><dd>MIT · zai-org/GLM-5.3-Flash</dd></div>
+<div><dt>对照</dt><dd>文内对比 GLM-4.5：355B / 32B、92 层</dd></div>
+</dl>
+<ul class="facts">
+<li>稀疏注意力 + 线性注意力混合，并用 mHC；预训练约 30T token 多模态。</li>
+<li>长上下文用 IndexPool，服务目标 1M。</li>
+<li>已对全部 GLM Coding Plan 用户开放，额度写为 GLM-5.3 的 3 倍。</li>
+<li>基准为厂商自报，不从二手图估。</li>
+</ul>
+<div class="compare-wrap">
+<table class="compare">
+<caption>与主流模型对比（厂商自报，Z.ai 2026-08-26 博文）</caption>
+<thead><tr><th>评测项</th><th>GLM-5.3-Flash</th><th>GLM-5.2</th><th>Claude Opus 4.8</th><th>Gemini 3.7 Flash</th></tr></thead>
+<tbody>
+<tr><td>DeepSWE v1.1</td><td>63.4</td><td>46.2</td><td>58.0</td><td>65.3</td></tr>
+<tr><td>AutomationBench v1.0.6</td><td>48.8</td><td>26.2</td><td>41.0</td><td>52.3</td></tr>
+<tr><td>Terminal Bench 2.1</td><td>84.3</td><td>81.0</td><td>85.0</td><td>85.8</td></tr>
+<tr><td>Z.ai Code Bench max effort</td><td>29.0</td><td>未核</td><td>29.5</td><td>未核</td></tr>
+<tr><td>AA Index v4.1.1</td><td>57</td><td>未核</td><td>未核</td><td>未核</td></tr>
+<tr><td>OfficeQA Pro</td><td>62.4</td><td>未核</td><td>48.9</td><td>未核</td></tr>
+</tbody>
+</table>
+</div>
+<p class="compare-src">数字来源：厂商自报（Z.ai 2026-08-26 博文）。缺格写「未核」。</p>
+<div class="tags"><span>GLM-5.3-Flash</span><span>Ox Alpha</span><span>旗舰</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" rel="noopener" target="_blank">Qwen3.8-Flash-Next：架构预览，不是旗舰</a></h4></div>
+<p>125B / 6B 激活。官方定位 experimental preview，将 underpin Qwen4。生产对应物是 Qwen3.8-Flash。不改「本周唯一新旗舰」结论。</p>
+<div class="tags"><span>Qwen</span><span>非旗舰</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/" rel="noopener" target="_blank">Gemini 3.5 Transcribe：专用语音转写</a></h4></div>
+<p>8/26 专用 STT，不是 Gemini 旗舰 LLM。不附表。</p>
+<div class="tags"><span>STT</span><span>非旗舰</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🔧 Agent / MCP / Skill</h3><span class="density">本周有推荐</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://openai.com/index/introducing-admin-plugin/" rel="noopener" target="_blank">OpenAI Admin plugin：本周唯一可安装推荐</a></h4></div>
+<p class="signal-lede">可装进 ChatGPT Work 与 Codex。这是推荐轴本周唯一达标条。</p>
+<ul class="facts">
+<li>WebMCP 是网站向 Agent 暴露工具的平台能力，不是可安装包。</li>
+<li>Claude in Chrome GA + Cowork 内置浏览器是产品能力，不是推荐。</li>
+<li>Anthropic MHS 是硬件标准研究预览，不是 MCP 包。</li>
+<li>codex mcp-server 弃用改走 Codex app server，记编程轴，不冒充推荐。</li>
+</ul>
+<div class="tags"><span>Admin plugin</span><span>可安装</span><span>推荐</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">版本列车</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://cursor.com/changelog/start-from-scratch" rel="noopener" target="_blank">Cursor Cloud Agents 可不接 GitHub，落到 Origin</a></h4></div>
+<p>接上 W34 Origin 托管面：本周 changelog 允许 Cloud Agents 从空白落到 Origin 仓。Claude Code 2.1.248 加 <code>--restricted</code>；2.1.251 是后续补丁。Codex 0.150.0 稳定。都不是新可装 Skill。</p>
+<div class="tags"><span>Cursor Origin</span><span>Claude Code</span><span>Codex 0.150</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏭 行业 / 芯片 / 安全</h3><span class="density">有信号</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://openai.com/index/jalapeno-first-results/" rel="noopener" target="_blank">OpenAI Jalapeño：自研推理芯片首测</a></h4></div>
+<p>官方 August 25, 2026。芯片首测，不是新模型，不占大事。</p>
+<div class="tags"><span>Jalapeño</span><span>芯片</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/" rel="noopener" target="_blank">OpenAI 正式发布 Hugging Face 事件技术报告</a></h4></div>
+<p>官方 August 26, 2026。安全复盘，不是模型档。MCP 相关 CVE 与 PraisonAI / Xinference 漏洞群本周补入核，不拔高。</p>
+<div class="tags"><span>HF 事件</span><span>安全</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" rel="noopener" target="_blank">Anthropic Model Hardware Standard 研究预览 + 科学家 1 万席</a></h4></div>
+<p>MHS 不是可安装 MCP。科学家团队计划 1 万席是应用 / 科学通道，不占大事。</p>
+<div class="tags"><span>MHS</span><span>非推荐</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📄 论文</h3><span class="density">周内有列表，不拔高</span></div>
+<div class="axis-body">
+<p>cs.AI 周一 / 周四列表如期放出，无单篇升格为本周 AI 主线。图形论文进开发库，不在这里复述。</p>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p class="lib-lede">本周主线是 <b>星铁 4.5 开门 + 绝区零 3.2 定档 + 终末地中文名闭环</b>。鸣潮 3.6 属 W34 落地，本周不复述为大事；只看到 8/23 点点台湾 iOS 动作畅销 #1，没有七麦 / 点点大陆 / ST 署期流水。</p>
+<dl class="kv">
+<div><dt>开门</dt><dd>星铁 4.5 8/26 11:00</dd></div>
+<div><dt>前瞻</dt><dd>绝区零 3.2 锁 9/9</dd></div>
+<div><dt>倒计时</dt><dd>终末地 1.5 仍 9/2</dd></div>
+<div><dt>流水</dt><dd>七麦预估仅二线转载，不进大事</dd></div>
+</dl>
+<ul class="facts">
+<li>Nodusfall 是米哈游新 IP，但落点在行业展会首发，不进二游版本轴。</li>
+<li>原神本周是限时活动，不是大版本。</li>
+<li>战双音乐会属 W34 周六晚，8/24 只见返图，不重开。</li>
+</ul>
+<p class="lib-note">高雄相伴 8/29–30 截稿进行中，不预写现场。</p>
+<div class="lib-stats">
+<span><b>3</b> 显示轴卡</span>
+<span class="level">开门 + 定档</span>
+<span>流水无数字</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新</h3><span class="density">周级主线</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.sina.cn/news/detail/5336118276393269.html" rel="noopener" target="_blank">星铁 4.5「挥掷千星的筹码」已开启</a></h4></div>
+<p class="signal-lede">W34 锁期落地。8/26 晨维护中，不能把官网换皮写成可登录。</p>
+<dl class="kv">
+<div><dt>维护</dt><dd>约 06:00 起 5 小时</dd></div>
+<div><dt>已开启</dt><dd>官方微博 8/26 11:00</dd></div>
+<div><dt>待核</dt><dd>砂金•戏浪跃迁未见新官方帖</dd></div>
+</dl>
+<div class="tags"><span>星铁</span><span>4.5</span><span>米哈游</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.gematsu.com/2026/08/zenless-zone-zero-version-3-2-update-their-secret-histories-launches-september-9" rel="noopener" target="_blank">绝区零 3.2「她与她的隐秘往事」前瞻已播，锁 9/9</a></h4></div>
+<p class="signal-lede">8/25 预告，8/28 19:30 CST 特别节目落地。不是开门。</p>
+<dl class="kv">
+<div><dt>上线</dt><dd>2026-09-09</dd></div>
+<div><dt>新专精</dt><dd>锋御（Armorer）</dd></div>
+<div><dt>上半 / 下半</dt><dd>克拉蕾（电·锋御） / 洛克茜（风·击破）</dd></div>
+</dl>
+<div class="tags"><span>绝区零</span><span>3.2</span><span>9/9</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎮 定档 / 联动</h3><span class="density">终末地闭环</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://endfield.hypergryph.com/news/4776" rel="noopener" target="_blank">终末地「雪凇幽梦」：中文名落地，版本仍 9/2</a></h4></div>
+<p>8/23 CN 官网补通讯；8/24 正文可核优化清单 + 重构寻访 / 申领 9/24。干员中文正式名提弗洛斯（Typhoeus）/ 噗切娜（Purrchena）。×优衣库 UTme! 8/25 现已开启，8/27 全国门店扩开。不把干员写成已开池。</p>
+<div class="tags"><span>终末地</span><span>雪凇幽梦</span><span>9/2</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📅 运营日</h3><span class="density">不升格</span></div>
+<div class="axis-body">
+<p>原神限时活动「险境征者竞锋大赛」开启，不是大版本。鸣潮 3.6 属 W34 落地。补搜：游娱fan 8/24 转七麦，预估中国大陆 iOS 周收入 136.7 万美元（约 919 万人民币），模型运算、非官方流水，未回对七麦原页。8/23 点点台湾 iOS 动作畅销 #1。不进大事。</p>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="dev">
+<div class="library-head">
+<div><span class="lib-icon">🛠️</span><h2>游戏开发观察</h2></div>
+<p class="lib-lede">引擎官方发版整周几乎空：UE / Unity 无 8/24–29 新版本日。能撑起本 Tab 的是 <b>周一 cs.GR 三篇 + 周四两篇 + 一篇 Godot 工程博文</b>。NVIDIA DLSS 4.5 Ray Reconstruction 对全系 RTX 开放写在行业展会，不把营销键帽再记一次引擎发版。</p>
+<dl class="kv">
+<div><dt>引擎发版</dt><dd>无 UE / Unity 新版本日</dd></div>
+<div><dt>Godot</dt><dd>高回报率鼠标的 Windows 修复文</dd></div>
+<div><dt>论文</dt><dd>cs.GR 周一 3 + 周四 2</dd></div>
+</dl>
+<ul class="facts">
+<li>相对 W34 的 UEFN 内嵌 Unreal MCP，本周没有新的引擎官方向 MCP。</li>
+<li>8/26、8/28、8/29 开发轴日报空库未出 Tab；周报因 cs.GR 趋势 + Godot 文显示本 Tab。</li>
+</ul>
+<p class="lib-note">不把 Gamescom 独立世界首发算进开发库。</p>
+<div class="lib-stats">
+<span><b>2</b> 显示轴</span>
+<span class="level">论文密度 &gt; 发版</span>
+<span>无新引擎 MCP</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎮 引擎与工具链</h3><span class="density">工程，不拔高</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://godotengine.org/article/fixing-high-polling-rate-mice-on-windows/" rel="noopener" target="_blank">Godot：Fixing high polling rate mice on Windows</a></h4></div>
+<p>Hugo Locurcio 工程博文，不是小版本号。不升格。</p>
+<div class="tags"><span>Godot</span><span>Windows</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🎨 图形 / 仿真（cs.GR）</h3><span class="density">周一 + 周四</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://arxiv.org/abs/2608.20429" rel="noopener" target="_blank">MaxEnt 能量加权球面矩光照编码（arXiv:2608.20429）</a></h4></div>
+<p>8/24 cs.GR。同日还有 CubicSplat（2608.20803）与 Roblox MultiCube（2608.20448）。周四补 Hamiltonian 双向耦合（2608.25203）与 GLOSS 纹理填充（2608.25461）。相对 W34 布料 r-adaptivity / Handles，本周切到光照编码、可微矢量图形和部件级 3D 生成。</p>
+<div class="tags"><span>cs.GR</span><span>MaxEnt</span><span>MultiCube</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p class="lib-lede">本周是 <b>展会周 + 发售验证 + 一条资本入股</b>。片单只留世界首发 / 新锁；已定档深潜压成表。GTA6 Extended Look 和 Disc to Digital 是行业判断，褪色者版是完整包发售，不是重制。</p>
+<dl class="kv">
+<div><dt>展会</dt><dd>ONL / Xbox Day 1–2 / FGS 已播</dd></div>
+<div><dt>发售</dt><dd>褪色者版 8/28；零号连队 / 瘟疫传说传承 8/27</dd></div>
+<div><dt>资本</dt><dd>SME × GungHo 23.29%</dd></div>
+<div><dt>版号</dt><dd>NPPA 8 月批次未出</dd></div>
+</dl>
+<ul class="facts">
+<li>Ananta 锁 2027-01-15，把 W34 网易「按计划」写成了日。</li>
+<li>1047 停更是 live-service 射击的小体量续集，不另占大事。</li>
+<li>Awesome Indies 完整片单待核，只核 Usual June 10/28。</li>
+</ul>
+<p class="lib-note">不复述 W34 网易 Q2 / 灵犀 / 2XKO。巫师4 瞄准 2028，科隆未展主线。</p>
+<div class="lib-stats">
+<span><b>5</b> 显示轴卡</span>
+<span class="level">展会周</span>
+<span>NPPA 未出</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎬 展会片单</h3><span class="density">已播，不预写周日</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://gameinformer.com/gamescom-2026/2026/08/25/everything-announced-at-gamescom-opening-night-live-2026" rel="noopener" target="_blank">ONL 惊喜：巫师3 Remastered + Nodusfall</a></h4></div>
+<p>约 2 小时正片。会前已确认八作仅播出，不等于独立 Signal。CDPR《巫师3 Remastered》9/29，既有玩家免费升级；今起 HoS+BaW 对本体免费。平台 PS5 / Xbox Series / Switch 2 / PC。米哈游 Nodusfall：UE5 多神话协力，玩家为 Weaver，平台与档期未宣，无官方简中留英文。</p>
+<div class="tags"><span>ONL</span><span>巫师3</span><span>Nodusfall</span></div>
+</article>
+<div class="compare-wrap show-slate">
+<table class="compare">
+<caption>世界首发 / 新作公布（已核，周级合并）</caption>
+<thead><tr><th>作品</th><th>场合</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>Nodusfall</td><td>ONL</td><td>米哈游新 IP；无官方简中</td></tr>
+<tr><td>彩虹六号 Tactics（Rainbow Six Tactics）</td><td>ONL</td><td>Ubisoft Paris 回合战术</td></tr>
+<tr><td>破烂捡上天（What Goes Up）</td><td>Xbox Day 2</td><td>Steam 简中名称</td></tr>
+<tr><td>Rogue Fortune</td><td>Xbox Day 2</td><td>无官方简中，留英文</td></tr>
+<tr><td>格雷克大冒险 2（Greak 2）等 FGS 独立五作</td><td>FGS</td><td>展会周独立世界首发达门槛</td></tr>
+<tr><td>征服纪：臣民之心（CONQUISTA: Tide of Wills）</td><td>Gamescom 试玩</td><td>集英社 × MicroSimulation · 2027 夏</td></tr>
+</tbody>
+</table>
+</div>
+<div class="compare-wrap show-slate">
+<table class="compare">
+<caption>新锁日期 / 已定档深潜（不单开）</caption>
+<thead><tr><th>作品</th><th>日期</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>巫师3 Remastered</td><td>9/29</td><td>既有玩家免费升级</td></tr>
+<tr><td>Ananta</td><td>2027-01-15</td><td>网易 F2P 都市开放世界</td></tr>
+<tr><td>Exodus</td><td>2027-04-07</td><td>Archetype / WotC</td></tr>
+<tr><td>异形：Deathstorm（Alien Deathstorm）</td><td>春 2027</td><td>日一 Game Pass</td></tr>
+<tr><td>Usual June</td><td>2026-10-28</td><td>Awesome Indies 首条可核；无官方简中</td></tr>
+<tr><td>永泉传说（FOUNTAINS）主机</td><td>9/17</td><td>DLC「破碎之形」同日</td></tr>
+<tr><td>神鬼寓言（Fable）</td><td>2027-02-23</td><td>16 分钟战斗实机 · Game Pass</td></tr>
+<tr><td>漫威金刚狼</td><td>9/15 未改</td><td>功能预告，不是改档</td></tr>
+</tbody>
+</table>
+</div>
+<p class="compare-src">前一日已报的父级秀次日不复述长名单。守墓人2 9/22、王国III：开疆拓土、霓虹深渊2、浣熊模拟器等独立定档见独立轴，不在此堆。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📢 大作 / 发售</h3><span class="density">验证周</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://www.rockstargames.com/VI" rel="noopener" target="_blank">侠盗猎车手VI：An Extended Look 已播</a></h4></div>
+<p>Netflix 8/27 15:00 ET 专场，约 26 分钟，片尾标明标准 PS5 实机；6 小时后上 YouTube / 官网。发售仍 2026-11-19。The Verge 交叉 $79.99、无实体盘。不把片中镜头写成系统列表。</p>
+<div class="tags"><span>GTA6</span><span>11/19</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://en.bandainamcoent.eu/elden-ring/elden-ring-tarnished-edition" rel="noopener" target="_blank">艾尔登法环 褪色者版今日发售（8/28）</a></h4></div>
+<p>完整包：本体 + 《黄金树幽影》+ 新职业 / 防具 / 灵马托雷特外观。Switch 2 完整版；其他平台 Tarnished Pack 同日。不是重制，也不是新地图。</p>
+<div class="tags"><span>褪色者版</span><span>完整包</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4>零号连队 / 瘟疫传说传承发售；MW4 公开测试开闸</h4></div>
+<p><a href="https://store.steampowered.com/app/2075800/?l=schinese" rel="noopener" target="_blank">星球大战 零号连队</a>与<a href="https://store.steampowered.com/app/2713000/?l=schinese" rel="noopener" target="_blank">共鸣：瘟疫传说传承</a> 8/27 发售，口碑已出，不另占大事。<a href="https://www.callofduty.com/blog/2026/08/call-of-duty-modern-warfare-4-open-beta-weekend-two" rel="noopener" target="_blank">MW4 Open Beta</a> 8/28 10:00 PT 至 9/1 10:00 PT，无需预购；正作仍 10/23。</p>
+<div class="tags"><span>发售</span><span>MW4</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🖥️ 主机 / 平台</h3><span class="density">周级主线</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://news.xbox.com/en-us/2026/08/26/your-discs-now-also-digital/" rel="noopener" target="_blank">Xbox Disc to Digital + X25 周年套装</a></h4></div>
+<p>One / Series X 实体盘可领数字授权；Insiders 8/31 起测；首批数千款并非全库，公开日未写死。X25 套装大众预购 8/27 07:00 PDT，发售 11/13，美区 MSRP $899.99。NVIDIA DLSS 4.5 Ray Reconstruction 对全系 RTX 开放，记展会键帽，不单开引擎发版。</p>
+<div class="tags"><span>Xbox</span><span>Disc to Digital</span><span>X25</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>💼 资本 / 大盘</h3><span class="density">一条入股</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.gematsu.com/2026/08/sony-music-entertainment-japan-and-gungho-online-entertainment-to-form-capital-and-business-alliance" rel="noopener" target="_blank">索尼音乐日本入股 GungHo 23.29%</a></h4></div>
+<p>场外双边交易，总价约 286.4 亿日元（2,385 日元/股）；计划 2026-12-30 交割，SME 成第一大股东，GungHo 维持东证 Prime 与经营独立。非全面收购。一线：GungHo IR + Gematsu。</p>
+<div class="tags"><span>GungHo</span><span>SME</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.gamesindustry.biz/newzoo-global-games-market-to-generate-2139bn-in-2026-up-61-yoy" rel="noopener" target="_blank">Newzoo：2026 全球游戏消费 $213.9B，同比 +6.1%</a></h4></div>
+<p>W34 还写官网预登记、无公开大盘。本周 GamesIndustry.biz 给出公开口径。全文仍标 9/10。燕云十六声全球超 1 亿 + Hidden Mountain Ch.3 锁 9/16，折入观察，不另占大事。</p>
+<div class="tags"><span>Newzoo</span><span>燕云</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">展会周放宽</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://store.steampowered.com/app/2530470/?l=schinese" rel="noopener" target="_blank">魔女庭院（Garden of Witches）1.0；Usual June 锁 10/28</a></h4></div>
+<p>魔女庭院 8/28 结束抢先体验出 1.0，达独立门槛。Usual June 是 Awesome Indies 目前首条一线可核日期，Steam 简中名称仍英文，留英文。另：浣熊模拟器 12 月 GP、Terrible Lizards 10/29、守墓人2 9/22、王国III：开疆拓土、FGS 世界首发五作。展会周独立世界首发本身即达门槛。</p>
+<div class="tags"><span>魔女庭院</span><span>Usual June</span><span>独立</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
