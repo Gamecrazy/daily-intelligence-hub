@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-30</title>
+<style>
+/* daily report 2026-08-30 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px;grid-template-columns:1fr}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+.show-slate .compare{min-width:520px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>综合日报</h1>
+<div class="meta">2026-08-30 · 星期日 · W35</div>
+</div>
+<div class="window">窗口：（2026-08-29，2026-08-30]</div>
+</div>
+<div class="lede">
+<p class="lib-lede">今日无新旗舰。今日无新 MCP/Skill 推荐。主线：OpenAI 拟终止向 Cursor 供应模型（SpaceX 收购后补入核）；美欧零售观察 PS5 Pro 紧缺/加价；《巫师3：狂猎》Songs of the Past 预览深潜。二次元为运营向近闻与日区联动。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>无</dd></div>
+<div><dt>MCP/Skill</dt><dd>无新推荐</dd></div>
+<div><dt>窗口</dt><dd>（2026-08-29，2026-08-30] · 含昨 9:30 后补入核</dd></div>
+<div><dt>显示库</dt><dd>AI、二次元、游戏行业（游戏开发空库未出 Tab）</dd></div>
+</dl>
+<ul class="facts">
+<li>OpenAI 官方 8/28 决定：拟 2026-11-12 切断 Cursor 模型供应，且不提供未来模型（含未发布下一代 Astra）；CNBC 8/29 交叉 Cursor ~5% 流量、仍在谈。</li>
+<li>Grok Bot 接通 X（第一方 connector）；Codex 0.151.0 编程列车——均非 MCP/Skill 推荐。</li>
+<li>原神下半「聚星源动」近闻预热 9/1；日区 × サーティワン（31 冰淇淋）首次联动；绝区零克拉蕾养成指南上新 + 周边两 SKU 锁预售。</li>
+<li>行业：PS5 Pro 美欧零售紧缺（二线零售观察，非索尼官方全球断货声明）；巫师3 SoP 预览；TARAE / 龙之信条2：黑暗觉者展会深潜；片单无新世界首发 / 无新锁。</li>
+<li>今日无独立游戏观察新增。游戏开发观察空库未出 Tab。</li>
+</ul>
+<p class="lib-note">不复述已报：SME×GungHo、ZZZ 3.2 前瞻、gamescom 颁奖、金刚狼、Claude Code 2.1.251、原神限时活动、魔女庭院 1.0、Usual June、征服纪、永泉传说、神鬼寓言、MW4、GTA6 Extended Look、Tarnished、Xbox Day1/2。</p>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>13</b><span>独立 Signal</span></div>
+<div class="metric"><b>18</b><span>主要信源</span></div>
+<div class="metric hot"><b>3</b><span>高 Attention</span></div>
+<div class="metric accent"><b>3</b><span>显示观察库</span></div>
+<div class="metric"><b>16</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<section class="pane-digest">
+<p class="lib-lede">跨库最高 Attention 落在 OpenAI×Cursor 供应切断、PS5 Pro 零售紧缺，以及《巫师3：狂猎》Songs of the Past 预览。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>13</dd></div>
+<div><dt>高 Attention</dt><dd>3</dd></div>
+<div><dt>空库</dt><dd>游戏开发观察未出 Tab</dd></div>
+<div><dt>旗舰 / MCP</dt><dd>均无新增</dd></div>
+</dl>
+<ul class="facts">
+<li>AI：3 条（行业切断 + Grok Bot×X + Codex 0.151.0）；无新旗舰 / 无新 MCP·Skill 推荐。</li>
+<li>二次元：4 条运营向（伊涅芙近闻、克拉蕾材料预告、周边预售、31 冰淇淋联动）。</li>
+<li>行业：6 条内容 + 展会片单空增量；今日无独立游戏观察新增；片单无新世界首发 / 无新锁。</li>
+</ul>
+<p class="lib-note">观察清单：Grok 4.7 未锁；Astra 仅作「不提供给 Cursor 的未发布下一代」出现；终末地 9/2；TGS 9/16。</p>
+</section>
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3>OpenAI 拟终止向 Cursor 供应模型</h3>
+<p class="ov-lede">SpaceX 收购后官方决定：拟 11/12 切断，且不提供未来模型；Cursor 称 OpenAI 模型约占用户流量 5%，仍在协商。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28 官宣 · 8/29 CNBC 交叉 · 补入核</dd></div>
+<div><dt>库</dt><dd>AI 观察</dd></div>
+<div><dt>状态</dt><dd>OpenAI 官方 + CNBC</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>PS5 Pro 美欧零售紧缺 / 加价</h3>
+<p class="ov-lede">Best Buy / Target / Amazon 缺货或三方约 $1,300（MSRP ~$900）；PS Direct 常见仍 MSRP。二线零售观察，非索尼官方全球断货。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>Push Square 零售观察</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>《巫师3：狂猎》Songs of the Past 预览</h3>
+<p class="ov-lede">Fool's Theory + CDPR；新区域 Letten；链武器与 Thornblooms / Swarmions。重制 9/29 免费、扩展 2027 已锁——本条仅预览增量。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>Xbox Wire 一线</dd></div>
+</dl>
+</article>
+</div>
+<h2 class="section-title">库密度一览</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>3</b></td><td>高</td><td>无新旗舰；无新 MCP/Skill 推荐；Cursor 切断 + Grok Bot×X + Codex 0.151.0</td></tr>
+<tr><td>二次元游戏观察</td><td><b>4</b></td><td>中</td><td>无新版本/新池开门；下半近闻 + 日区联动 + 养成/周边</td></tr>
+<tr><td>游戏开发观察</td><td><b>0</b></td><td>空</td><td>空库未出 Tab</td></tr>
+<tr><td>游戏行业观察</td><td><b>6</b></td><td>高</td><td>硬件零售 + 深潜 + 规模；无独立新增；片单空增量</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜Grok 4.7</b><br/>窗内仍无官方锁期；Astra 非今日旗舰，仅作 Cursor 切断语境中的未发布下一代。</div>
+<div class="watch"><b>必跟｜终末地 9/2</b><br/>已报节点，临近再核。</div>
+<div class="watch"><b>可跟｜原神「聚星源动」9/1</b><br/>近闻已确认开启；池开门当日再核。</div>
+<div class="watch"><b>可跟｜TGS 2026（9/16–9/21）</b><br/>gamescom 收尾后下一展会周，临近再开片单轴。</div>
+<div class="watch"><b>可跟｜巫师3 重制 9/29 / SoP 扩展 2027</b><br/>档期已锁；本窗仅为预览增量。</div>
+<div class="watch"><b>可跟｜Disc to Digital Insiders 8/31</b><br/>已报节点，临近再核。</div>
+</div>
+</div>
+
+
+<div class="tab-pane" id="ai">
+<section class="library-head">
+<div><span class="lib-icon">📦</span><h2>AI 观察</h2></div>
+<p class="lib-lede">今日无新旗舰。今日无新 MCP/Skill 推荐。主线为 OpenAI 对 Cursor 的供应切断（补入核）；另有 Grok Bot 接通 X、Codex 0.151.0 编程列车。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>3</dd></div>
+<div><dt>有信号轴</dt><dd>行业 / AI 应用 / AI 编程</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+</dl>
+<ul class="facts">
+<li>🧠 模型发布无新旗舰；🔧 Agent/MCP/Skill 无新推荐；论文周末无新公告列表。</li>
+<li>Grok Bot×X 为第一方 connector，不当推荐条；Codex changelog 含 MCP 字样 ≠ 推荐。</li>
+</ul>
+<p class="lib-note">不复述 Claude Code 2.1.251 / MHS / Cursor Origin。观察：Grok 4.7 未锁；Astra 仅出现在切断声明语境。</p>
+<div class="lib-stats"><span>无新旗舰</span><span>无新 MCP/Skill 推荐</span><span class="level">高 Attention</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>🏭 行业 / 国内</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/" rel="noopener" target="_blank">OpenAI 拟终止向 Cursor 供应模型（SpaceX 收购后）</a></h4></div>
+<p class="signal-lede">OpenAI 于 2026-08-28 官方发文：在 SpaceX 收购 Cursor 后，拟于 2026-11-12 终止向 Cursor 供应模型，并明确不提供未来模型（文中点名即将到来的 Astra——非今日旗舰发布）。理由是无法确信 SpaceX 会持续遵守服务条款，并提及马斯克系公司过往合同履约记录。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-28 官宣 · CNBC 2026-08-29 · 补入核（昨 09:30 未收）</dd></div>
+<div><dt>主体</dt><dd>OpenAI / Cursor / SpaceX</dd></div>
+<div><dt>切断拟期</dt><dd>2026-11-12</dd></div>
+<div><dt>交叉轴</dt><dd>可交叉 🛠️ AI 编程</dd></div>
+</dl>
+<ul class="facts">
+<li>官方：将停止供应，且「will not supply future models」；Astra 仅作为未发布下一代出现，不记今日旗舰。</li>
+<li>CNBC 8/29：Cursor CEO Michael Truell 称 OpenAI 模型约占 Cursor 用户流量 ~5%，双方仍在协商。</li>
+<li>Anthropic Tom Brown：将继续增加 Cursor 内 Claude 算力供应。</li>
+<li>SpaceX 收购 Cursor 约 $60B 量级（8/14 相关 filings 交叉）。</li>
+</ul>
+<p class="signal-note">一线：OpenAI 官方帖 + CNBC。关注度 · 🔥🔥🔥。非产品 KV，不配图。</p>
+<div class="tags"><span>OpenAI</span><span>Cursor</span><span>SpaceX</span><span>供应政策</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>💡 AI 应用</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://x.ai/news/grok-bot-and-x" rel="noopener" target="_blank">Grok Bot 接通 X</a></h4></div>
+<p class="signal-lede">xAI 宣布 Grok Bot 可连接 X：必要时自动创建开发者账号；付费用户获免费 X API 额度，可搜帖、时间线与提及。属第一方 connector，不是 MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29</dd></div>
+<div><dt>主体</dt><dd>xAI</dd></div>
+<div><dt>能力</dt><dd>搜帖 / 时间线 / mentions · 付费用户免费 API 额度</dd></div>
+</dl>
+<ul class="facts">
+<li>Connect X in Grok Bot；无账号时创建 developer account。</li>
+<li>官方新闻页同步列入 x.ai/news。</li>
+</ul>
+<p class="signal-note">第一方 connector，明确不当 🔧 MCP/Skill 推荐。关注度 · 🔥。</p>
+<div class="tags"><span>Grok Bot</span><span>X</span><span>connector</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://github.com/openai/codex/releases/tag/rust-v0.151.0" rel="noopener" target="_blank">Codex 0.151.0</a></h4></div>
+<p class="signal-lede">OpenAI Codex CLI/客户端 rust-v0.151.0 于 2026-08-29T09:55:39Z 发布：MCP 启动宽限可配、扩展可检查/替换 MCP 工具结果、每仓插件目录——changelog 含 MCP 字样，记编程列车，不当推荐。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29T09:55:39Z</dd></div>
+<div><dt>主体</dt><dd>OpenAI</dd></div>
+<div><dt>版本</dt><dd>rust-v0.151.0</dd></div>
+</dl>
+<ul class="facts">
+<li>MCP startup grace 可配置。</li>
+<li>Extensions 可 inspect / replace MCP tool results。</li>
+<li>Per-repo plugin catalog。</li>
+</ul>
+<p class="signal-note">明确不是 MCP/Skill 推荐。关注度 · 🔥。</p>
+<div class="tags"><span>Codex</span><span>编程</span><span>changelog</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/" rel="noopener" target="_blank">OpenAI · Decision on Cursor after SpaceX acquisition</a></li>
+<li><a href="https://www.cnbc.com/2026/08/29/openai-cursor-spacex-model-access.html" rel="noopener" target="_blank">CNBC · OpenAI / Cursor / SpaceX</a></li>
+<li><a href="https://x.ai/news/grok-bot-and-x" rel="noopener" target="_blank">xAI · Grok Bot and X</a></li>
+<li><a href="https://x.ai/news" rel="noopener" target="_blank">xAI News</a></li>
+<li><a href="https://github.com/openai/codex/releases/tag/rust-v0.151.0" rel="noopener" target="_blank">GitHub · Codex rust-v0.151.0</a></li>
+</ol>
+</section>
+</div>
+
+<div class="tab-pane" id="anime">
+<section class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p class="lib-lede">今日无新版本/新池开门；3.2 次日运营向。下半近闻预热 9/1；另有日区 31 冰淇淋首次联动与绝区零养成/周边。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>4</dd></div>
+<div><dt>有信号轴</dt><dd>近闻 / 养成 / 周边 / 联动</dd></div>
+<div><dt>密度</dt><dd>中</dd></div>
+</dl>
+<ul class="facts">
+<li>原神「伊涅芙」近闻确认「聚星源动」9/1 开启（非新角色、非今日开池）。</li>
+<li>绝区零养成指南上新克拉蕾材料预告；周边两 SKU 锁 9/3 20:00 预售。</li>
+<li>原神 × サーティワン（31 冰淇淋）日区首次联动（补入核）。</li>
+</ul>
+<p class="lib-note">不复述 3.2 版本锁与锋御/克拉蕾/洛克茜角色档。高雄相伴已过窗，不复述。</p>
+<div class="lib-stats"><span>无新版本/新池</span><span>4 Signal</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>📅 近闻 / 活动</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.miyoushe.com/ys/article/77841577" rel="noopener" target="_blank">原神「轰隆雷鸣波·伊涅芙」·近闻（下半「聚星源动」预热）</a></h4></div>
+<p class="signal-lede">米游社 2026-08-29 12:00 发近闻：确认「聚星源动」于 9/1 开启，限定五星「轰隆雷鸣波·伊涅芙（雷）」UP。角色已出，非新角色、非今日开池——仅为下半预热。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29 12:00</dd></div>
+<div><dt>主体</dt><dd>HoYoverse / miHoYo</dd></div>
+<div><dt>开启</dt><dd>聚星源动 · 2026-09-01</dd></div>
+<div><dt>UP</dt><dd>轰隆雷鸣波·伊涅芙（雷）· 限定五星</dd></div>
+</dl>
+<ul class="facts">
+<li>米游社 + HoYoLAB 同步近闻。</li>
+<li>不记新角色首发；池开门当日再核。</li>
+</ul>
+<p class="signal-note">官方立绘本窗未稳定取到，按 5.10 不配图。关注度 · 🔥。</p>
+<div class="tags"><span>原神</span><span>伊涅芙</span><span>聚星源动</span><span>近闻</span></div>
+</div>
+
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://prtimes.jp/main/html/rd/p/000000352.000023547.html" rel="noopener" target="_blank">原神 × サーティワン（31 冰淇淋）日区首次联动</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-08-30/genshin-31icecream-kv.jpg" alt="原神 × サーティワン 联动主视觉"/>
+<figcaption>PR TIMES 官方稿主视觉</figcaption>
+</figure>
+<p class="signal-lede">日区首次与 サーティワン アイスクリーム（31 冰淇淋）联动：预约自 8/28 11:00 JST 起；售卖 9/8–10/6，移动点单限定。补入核（昨 09:30 未收）。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>预约 2026-08-28 11:00 JST · 售卖 9/8–10/6</dd></div>
+<div><dt>主体</dt><dd>原神（日区）× サーティワン</dd></div>
+<div><dt>渠道</dt><dd>移动点单限定</dd></div>
+</dl>
+<ul class="facts">
+<li>官方稿：PR Times（サーティワン / 原神联动）。</li>
+<li>游戏名用「原神」；联动方保留日文官方名 サーティワン。</li>
+</ul>
+<p class="signal-note">补入核。关注度 · 🔥。</p>
+<div class="tags"><span>原神</span><span>サーティワン</span><span>联动</span><span>日区</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🛠️ 养成 / 周边</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.miyoushe.com/zzz/article/77842651" rel="noopener" target="_blank">绝区零养成指南上新：克拉蕾材料预告</a></h4></div>
+<p class="signal-lede">米游社 2026-08-29 13:00：养成指南已加入克拉蕾（智能/自定义计算）；尚未公布具体材料名与数量。不复述 3.2 版本锁。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29 13:00</dd></div>
+<div><dt>主体</dt><dd>绝区零官方</dd></div>
+<div><dt>范围</dt><dd>克拉蕾 · 材料预告（未定量）</dd></div>
+</dl>
+<ul class="facts">
+<li>指南支持智能与自定义计算。</li>
+<li>具体材料名/数量未公布。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。不展开 3.2 角色档。</p>
+<div class="tags"><span>绝区零</span><span>克拉蕾</span><span>养成</span></div>
+</div>
+
+<div class="signal">
+<div class="signal-head"><span class="fire">·</span><h4><a href="https://www.miyoushe.com/zzz/article/77841839" rel="noopener" target="_blank">绝区零官方周边两 SKU 锁 9/3 20:00 预售</a></h4></div>
+<p class="signal-lede">GSC 粘土人「爱芮」369 元；LIMEPIE 星见雅 1/8「晓 Ver.」269 元。预售锁 9/3 20:00。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>预售 2026-09-03 20:00</dd></div>
+<div><dt>SKU</dt><dd>粘土人 爱芮 369 元 · 星见雅 1/8 晓 Ver. 269 元</dd></div>
+</dl>
+<ul class="facts">
+<li>米游社两帖同步（爱芮 / 星见雅）。</li>
+</ul>
+<p class="signal-note">SKU 向，关注度较低。</p>
+<div class="tags"><span>绝区零</span><span>周边</span><span>预售</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://www.miyoushe.com/ys/article/77841577" rel="noopener" target="_blank">米游社 · 原神伊涅芙近闻</a></li>
+<li><a href="https://www.hoyolab.com/article/46495079" rel="noopener" target="_blank">HoYoLAB · Ineffa teaser</a></li>
+<li><a href="https://www.miyoushe.com/zzz/article/77842651" rel="noopener" target="_blank">米游社 · 克拉蕾养成指南</a></li>
+<li><a href="https://www.miyoushe.com/zzz/article/77841839" rel="noopener" target="_blank">米游社 · 粘土人爱芮</a></li>
+<li><a href="https://www.miyoushe.com/zzz/article/77841579" rel="noopener" target="_blank">米游社 · 星见雅 1/8</a></li>
+<li><a href="https://prtimes.jp/main/html/rd/p/000000352.000023547.html" rel="noopener" target="_blank">PR TIMES · 原神 × サーティワン</a></li>
+</ol>
+</section>
+</div>
+
+<div class="tab-pane" id="industry">
+<section class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p class="lib-lede">硬件零售与展会深潜并行。今日无独立游戏观察新增；🎬 展会片单：无新世界首发 / 无新锁（gamescom 收尾）。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>6</dd></div>
+<div><dt>有信号轴</dt><dd>硬件 / 深潜 / 规模 / SKU</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+</dl>
+<ul class="facts">
+<li>PS5 Pro 美欧零售紧缺/加价（二线观察，措辞不下索尼官方全球断货结论）。</li>
+<li>《巫师3：狂猎》Songs of the Past Xbox Wire 预览；TARAE / 龙之信条2：黑暗觉者展会访谈深潜；绝对魔权 Switch 2 中文实体盒 9/17。</li>
+<li>gamescom 日本出展 +25%、展区首次订满（主办访谈）。</li>
+</ul>
+<p class="lib-note">不复述 GTA6 Extended Look 内容、Xbox Day1/2 长名单、Tarnished 发售、颁奖与金刚狼。片单仅空增量卡。</p>
+<div class="lib-stats"><span class="level">高 Attention</span><span>无独立新增</span><span>片单空增量</span></div>
+</section>
+<div class="axis-grid">
+
+<article class="axis-card">
+<div class="axis-title"><h3>🖥️ 硬件</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.pushsquare.com/news/2026/08/usd900-ps5-pro-selling-out-during-playstation-blackout-amid-gta-6-fever" rel="noopener" target="_blank">PS5 Pro 美欧零售紧缺 / 加价（GTA6 余波）</a></h4></div>
+<p class="signal-lede">Push Square 等二线零售观察：美国 Best Buy / Target / Amazon 等渠道售罄或三方标价约 $1,300（相对 MSRP ~$900）；PlayStation Direct 常见仍可按 MSRP 购得。本条不复述 Extended Look 内容，也不宣称索尼官方全球断货。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29</dd></div>
+<div><dt>主体</dt><dd>零售观察（非索尼官方库存声明）</dd></div>
+<div><dt>MSRP</dt><dd>约 $900 · 三方可见约 $1,300</dd></div>
+</dl>
+<ul class="facts">
+<li>美渠：Best Buy / Target / Amazon 售罄或抬价三方。</li>
+<li>PS Direct 仍多见官方价。</li>
+<li>置信度：二线零售观察；措辞不下「索尼官方全球断货」。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。不复述 Extended Look 片内容。</p>
+<div class="tags"><span>PS5 Pro</span><span>零售</span><span>硬件</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🎥 深潜 / 预览</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://news.xbox.com/en-us/2026/08/29/the-witcher-3-songs-of-the-past-preview/" rel="noopener" target="_blank">《巫师3：狂猎》Songs of the Past — Xbox Wire 预览</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-08-30/witcher3-sop-swarmion.jpg" alt="巫师3 Songs of the Past 预览实机"/>
+<figcaption>Xbox Wire 官方预览静帧（Swarmion 战）</figcaption>
+</figure>
+<p class="signal-lede">Fool's Theory 与 CDPR 合作扩展预览：新区域 Letten（Dandelion 故乡）、链武器，以及 Thornblooms / Swarmions 等新敌。重制版 2026-09-29 对本体持有者免费、扩展 2027——档期早已锁定，本条只记预览增量。英文副标题暂无已核官方简中，保留 Songs of the Past。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29</dd></div>
+<div><dt>主体</dt><dd>Fool's Theory + CDPR</dd></div>
+<div><dt>中文名</dt><dd>《巫师3：狂猎》· Songs of the Past（副标题留英）</dd></div>
+<div><dt>档期</dt><dd>重制 2026-09-29 免费 · 扩展 2027（已锁）</dd></div>
+</dl>
+<ul class="facts">
+<li>新区域 Letten；链武器；Thornblooms / Swarmions。</li>
+<li>Xbox Wire 一线预览深潜，非新锁。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。预览增量 only。</p>
+<div class="tags"><span>巫师3</span><span>Songs of the Past</span><span>预览</span></div>
+</div>
+
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/08/tarae-the-unbound-gamescom-2026-gameplay-preview-trailer" rel="noopener" target="_blank">TARAE: The Unbound Gamescom 5 分钟实机预览</a></h4></div>
+<p class="signal-lede">Gematsu 2026-08-29：KRAFTON / Boundary；PS5 / Xbox / PC；约 5 分钟 gameplay。档期仍未锁——非新世界首发、非新锁。无官方简中店名，留英文。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29</dd></div>
+<div><dt>主体</dt><dd>KRAFTON / Boundary</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox / PC</dd></div>
+<div><dt>档期</dt><dd>未锁</dd></div>
+</dl>
+<ul class="facts">
+<li>展会实机预览增量；不进片单世界首发/新锁行。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。</p>
+<div class="tags"><span>TARAE</span><span>Gamescom</span><span>预览</span></div>
+</div>
+
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.4gamer.net/games/015/G101558/20260829011/" rel="noopener" target="_blank">《龙之信条2：黑暗觉者》展会访谈深潜</a></h4></div>
+<p class="signal-lede">Capcom Asia 简中名《龙之信条2：黑暗觉者》。IGN / 4Gamer 展会访谈：遗战品、追加地下城、硬模式等同日深潜。发售仍 2026-10-09——已锁档，本条仅预览/访谈增量。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29</dd></div>
+<div><dt>主体</dt><dd>Capcom</dd></div>
+<div><dt>档期</dt><dd>2026-10-09（已锁）</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox / PC / Switch 2</dd></div>
+</dl>
+<ul class="facts">
+<li>4Gamer：遗战品（随机词条装备）、可反复挑战的追加地下城、硬模式等。</li>
+<li>IGN JP 同步访谈（木下 / 大山 / 平林）。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。非新锁。</p>
+<div class="tags"><span>龙之信条2</span><span>黑暗觉者</span><span>访谈</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>📊 展会规模 / SKU</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.4gamer.net/games/991/G999110/20260829024/" rel="noopener" target="_blank">gamescom 规模：日本出展 +25%、展区首次订满</a></h4></div>
+<p class="signal-lede">4Gamer 主办访谈：日本出展社同比约 +25%；出展面积/展区今年首次订满。规模向收尾观察，非片单条目。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-29</dd></div>
+<div><dt>主体</dt><dd>gamescom 主办（4Gamer 访谈）</dd></div>
+</dl>
+<ul class="facts">
+<li>日本出展 +25%；展区首次完全订满。</li>
+<li>早期注册连续三年刷新纪录（访谈口径）。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。</p>
+<div class="tags"><span>gamescom</span><span>规模</span></div>
+</div>
+
+<div class="signal">
+<div class="signal-head"><span class="fire">·</span><h4><a href="https://kn.gamme.com.tw/20260829273923.html" rel="noopener" target="_blank">《绝对魔权》（Absolum）Switch 2 中文实体盒定档 9/17</a></h4></div>
+<p class="signal-lede">ARC SYSTEM WORKS ASIA 2026-08-29：Nintendo Switch 2 中文实体盒装版 9/17 上市。数字版已发——本条仅为实体 SKU。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>实体 2026-09-17</dd></div>
+<div><dt>主体</dt><dd>ARC SYSTEM WORKS ASIA</dd></div>
+<div><dt>SKU</dt><dd>Switch 2 中文实体盒</dd></div>
+</dl>
+<ul class="facts">
+<li>官方简中名《绝对魔权》；预购或附数字原声带 + 美术画册（以商家为准）。</li>
+</ul>
+<p class="signal-note">SKU only。</p>
+<div class="tags"><span>绝对魔权</span><span>Switch 2</span><span>实体</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🎬 展会片单</h3><span class="density">说明</span></div>
+<div class="axis-body">
+<div class="signal">
+<div class="signal-head"><span class="fire">·</span><h4>展会周收尾：无新世界首发 / 无新锁</h4></div>
+<p class="signal-lede">本窗无新世界首发、无新锁。gamescom 收尾；已定档作品仅深潜（巫师3 SoP / 龙之信条2：黑暗觉者 / TARAE 预览），不单开世界首发行。</p>
+<dl class="kv">
+<div><dt>世界首发</dt><dd>无</dd></div>
+<div><dt>新锁</dt><dd>无</dd></div>
+<div><dt>说明</dt><dd>gamescom 收尾空增量</dd></div>
+</dl>
+<div class="compare-wrap show-slate">
+<table class="compare">
+<caption>已定档深潜（不单开世界首发）</caption>
+<thead><tr><th>类型</th><th>作品</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>深潜</td><td>《巫师3：狂猎》Songs of the Past</td><td>Xbox Wire 预览；重制 9/29 / 扩展 2027 已锁</td></tr>
+<tr><td>深潜</td><td>《龙之信条2：黑暗觉者》</td><td>IGN/4Gamer 访谈；档期仍 10/09</td></tr>
+<tr><td>预览</td><td>TARAE: The Unbound</td><td>5 分钟实机；档期未锁 · 非新世界首发</td></tr>
+</tbody>
+</table>
+</div>
+<ul class="facts">
+<li>今日无独立游戏观察新增。</li>
+<li>不复述已报 Day1/2 长名单与颁奖。</li>
+</ul>
+<p class="signal-note">规范 5.17。空增量卡。</p>
+<div class="tags"><span>展会片单</span><span>空增量</span></div>
+</div>
+</div>
+</article>
+
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://www.pushsquare.com/news/2026/08/usd900-ps5-pro-selling-out-during-playstation-blackout-amid-gta-6-fever" rel="noopener" target="_blank">Push Square · PS5 Pro retail</a></li>
+<li><a href="https://news.xbox.com/en-us/2026/08/29/the-witcher-3-songs-of-the-past-preview/" rel="noopener" target="_blank">Xbox Wire · Witcher 3 Songs of the Past</a></li>
+<li><a href="https://www.gematsu.com/2026/08/tarae-the-unbound-gamescom-2026-gameplay-preview-trailer" rel="noopener" target="_blank">Gematsu · TARAE</a></li>
+<li><a href="https://www.4gamer.net/games/015/G101558/20260829011/" rel="noopener" target="_blank">4Gamer · 龙之信条2：黑暗觉者访谈</a></li>
+<li><a href="https://jp.ign.com/dragons-dogma-2-dark-arisen/84175/2" rel="noopener" target="_blank">IGN JP · Dark Arisen 访谈</a></li>
+<li><a href="https://www.4gamer.net/games/991/G999110/20260829024/" rel="noopener" target="_blank">4Gamer · gamescom 主办访谈</a></li>
+<li><a href="https://kn.gamme.com.tw/20260829273923.html" rel="noopener" target="_blank">巴哈姆特 · 绝对魔权 Switch 2 实体</a></li>
+</ol>
+</section>
+</div>
+
+</main>
+<p class="footnote">窗口（2026-08-29，2026-08-30] Asia/Shanghai，含昨 9:30 后补入核。空库：游戏开发观察未出 Tab。今日无新旗舰；今日无新 MCP/Skill 推荐；今日无独立游戏观察新增；展会片单无新世界首发 / 无新锁。生成于 2026-08-30 09:30 档日常规整理。</p>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
