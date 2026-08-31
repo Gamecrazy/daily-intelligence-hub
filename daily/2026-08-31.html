@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-08-31</title>
+<style>
+/* daily report 2026-08-31 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px;grid-template-columns:1fr}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+.show-slate .compare{min-width:520px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>综合日报</h1>
+<div class="meta">2026-08-31 · 星期一 · W36</div>
+</div>
+<div class="window">窗口：（2026-08-30，2026-08-31]</div>
+</div>
+<div class="lede">
+<p class="lib-lede">今日无新旗舰。今日无新 MCP/Skill 推荐。主线是《英雄萨姆：破碎宇宙》计划今日三端发售（截稿 Steam 尚未解锁），以及原神「菲林斯」·侧记预热 9/1 复刻。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>无</dd></div>
+<div><dt>MCP/Skill</dt><dd>无新推荐</dd></div>
+<div><dt>窗口</dt><dd>（2026-08-30，2026-08-31] · 含昨 9:30 后补入核</dd></div>
+<div><dt>显示库</dt><dd>二次元、游戏行业（AI / 游戏开发空库未出 Tab）</dd></div>
+</dl>
+<ul class="facts">
+<li>行业：《英雄萨姆：破碎宇宙》（Serious Sam: Shatterverse）Steam 简中名已核，计划 8/31 登陆 Steam / PS5 / Xbox Series；截稿仍 coming_soon、无评测。</li>
+<li>《呼吸边缘2》（Breathedge 2）Steam 抢先体验同日计划上线，截稿尚未解锁。</li>
+<li>二次元：原神官方「菲林斯」·侧记（8/30 12:00）点名 9/1 18:00「孤灯夜访」复刻，与昨报伊涅芙近闻成对。</li>
+<li>今日无新旗舰、无新 MCP/Skill 推荐、无独立游戏观察新增；gamescom 已闭幕，展会片单无新世界首发 / 无新锁。</li>
+</ul>
+<p class="lib-note">不复述已报：OpenAI×Cursor 切断、PS5 Pro 零售、巫师3 SoP、ZZZ 3.2 前瞻、伊涅芙近闻、Codex 0.151.0。AI 与游戏开发窗内无一线达门槛 Signal，空库未出 Tab。</p>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>3</b><span>独立 Signal</span></div>
+<div class="metric"><b>6</b><span>主要信源</span></div>
+<div class="metric hot"><b>1</b><span>高 Attention</span></div>
+<div class="metric accent"><b>2</b><span>显示观察库</span></div>
+<div class="metric"><b>16</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<section class="pane-digest">
+<p class="lib-lede">跨库最高 Attention 落在《英雄萨姆：破碎宇宙》计划今日发售；二次元是原神复刻侧记，没有新池开门。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>3</dd></div>
+<div><dt>高 Attention</dt><dd>1</dd></div>
+<div><dt>空库</dt><dd>AI 观察、游戏开发观察未出 Tab</dd></div>
+<div><dt>旗舰 / MCP</dt><dd>均无新增</dd></div>
+</dl>
+<ul class="facts">
+<li>行业：2 条（三端发售计划 + EA 续作计划）；今日无独立游戏观察新增；片单无新世界首发 / 无新锁。</li>
+<li>二次元：1 条（菲林斯侧记，复刻预热，不要写成已开池）。</li>
+<li>AI：无新旗舰、无新 MCP/Skill 推荐、无稳定编程版本条；Codex 0.152 仅 alpha，进观察清单。</li>
+</ul>
+<p class="lib-note">观察清单：Grok 4.7 未锁；Disc to Digital Insiders 8/31 未核 go-live；终末地 9/2；TGS 9/17–9/21。</p>
+</section>
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>《英雄萨姆：破碎宇宙》（Serious Sam: Shatterverse）计划今日发售</h3>
+<p class="ov-lede">Behaviour + Devolver；Steam / PS5 / Xbox Series。截稿 Steam 仍 coming_soon、无用户评测。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>计划 2026-08-31</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>Steam 简中名已核 · 尚未解锁</dd></div>
+</dl>
+</article>
+<article class="overview-signal medium">
+<div class="ov-fire">🔥</div>
+<h3>原神「菲林斯」·侧记：9/1 复刻预热</h3>
+<p class="ov-lede">米游社 8/30 12:00 官方侧记，点名 9/1 18:00「孤灯夜访」。非新角色，与昨报伊涅芙近闻成对。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-30 12:00 CST · 补入核</dd></div>
+<div><dt>库</dt><dd>二次元游戏观察</dd></div>
+<div><dt>状态</dt><dd>米游社 + HoYoLAB 官方</dd></div>
+</dl>
+</article>
+<article class="overview-signal medium">
+<div class="ov-fire">🔥</div>
+<h3>《呼吸边缘2》（Breathedge 2）抢先体验计划今日上线</h3>
+<p class="ov-lede">RedRuins / HypeTrain；Steam EA。截稿尚未解锁、无评测。不进独立观察。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>计划 2026-08-31</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>Steam 简中名已核 · 尚未解锁</dd></div>
+</dl>
+</article>
+</div>
+<h2 class="section-title">库密度一览</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>0</b></td><td>空</td><td>无新旗舰；无新 MCP/Skill 推荐；空库未出 Tab</td></tr>
+<tr><td>二次元游戏观察</td><td><b>1</b></td><td>低</td><td>菲林斯侧记；无新版本/新池开门</td></tr>
+<tr><td>游戏开发观察</td><td><b>0</b></td><td>空</td><td>空库未出 Tab（周末无引擎/cs.GR 新落款）</td></tr>
+<tr><td>游戏行业观察</td><td><b>2</b></td><td>中</td><td>两作计划发售；无独立新增；片单空增量</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜Grok 4.7</b><br/>窗内仍无官方锁期；x.ai/news 现役仍为 4.6。</div>
+<div class="watch"><b>必跟｜原神 9/1「孤灯夜访」</b><br/>菲林斯侧记 + 昨报伊涅芙近闻；池开门当日再核，不要提前写成已开。</div>
+<div class="watch"><b>必跟｜终末地 9/2</b><br/>已报节点，临近再核。</div>
+<div class="watch"><b>可跟｜Xbox Disc to Digital Insiders</b><br/>Xbox Wire 仍停 8/26 预告，截稿未核 8/31 go-live。</div>
+<div class="watch"><b>可跟｜TGS 2026（9/17–9/21）</b><br/>gamescom 已闭；未播不预写片单。</div>
+<div class="watch"><b>可跟｜Switch 2 美加欧 MSRP 9/1</b><br/>5 月已宣布的日历落地，不是今日新稿。</div>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<section class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p class="lib-lede">本库只有一条运营向侧记：原神「菲林斯」复刻预热。无新版本开门、无新联动、无新游。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>1</dd></div>
+<div><dt>有信号轴</dt><dd>角色 / 版本</dd></div>
+<div><dt>密度</dt><dd>低</dd></div>
+</dl>
+<ul class="facts">
+<li>「菲林斯」·侧记补入核；9/1 18:00 才开「孤灯夜访」，本条不是开池。</li>
+<li>绝区零爱丽丝生日漫画、千星奇域创作者面对面预告不进核心。</li>
+</ul>
+<p class="lib-note">不复述伊涅芙近闻、ZZZ 3.2 前瞻、星铁 4.5 已开。待核：鸣潮 3.1 周边致歉仅见二线转载、一线帖 ID 未核；NPPA 8 月批次仍未出；砂金·戏浪 9/12。</p>
+<div class="lib-stats"><span>无新池开门</span><span>无新联动</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>🎭 角色 / 世界观 · 🔄 版本</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.miyoushe.com/ys/article/77863846" rel="noopener" target="_blank">让我们来讲点古老的故事，权当消遣｜「菲林斯」·侧记</a></h4></div>
+<p class="signal-lede">米游社官方 8/30 12:00 发出「菲林斯」·侧记，点名 9/1 18:00 开启「孤灯夜访」，「诡灯陌影·菲林斯（雷）」概率 UP。这是 7.0 下半复刻预热，不是新角色，也不要写成已经开池。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-31/flins-sidenote.jpg" alt="原神「菲林斯」·侧记官方静帧"/>
+<figcaption>官方侧记静帧（HoYoLAB / 米游社同源官图）</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-08-30 12:00 CST · 昨 9:30 后补入核</dd></div>
+<div><dt>主体</dt><dd>原神 / 米哈游</dd></div>
+<div><dt>角色</dt><dd>诡灯陌影·菲林斯（雷，复刻）</dd></div>
+<div><dt>档期</dt><dd>2026-09-01 18:00–09-22 14:59</dd></div>
+</dl>
+<ul class="facts">
+<li>侧记台词：「午夜才是我的时间，趁着月亮还挂在天上，让我们来讲点古老的故事权当消遣。」</li>
+<li>祈愿公告 8/27 已出，本条增量是侧记官宣；同期 4 星爱诺 / 伊安珊 / 蓝砚。</li>
+<li>HoYoLAB 同步官方英文侧记（Genshin Impact Official）。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。复刻预热，非新角、非开池。</p>
+<div class="tags"><span>原神</span><span>菲林斯</span><span>侧记</span><span>复刻</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://www.miyoushe.com/ys/article/77863846" rel="noopener" target="_blank">米游社 · 「菲林斯」·侧记</a></li>
+<li><a href="https://www.hoyolab.com/article/46508017" rel="noopener" target="_blank">HoYoLAB · Flins: Side Notes</a></li>
+</ol>
+</section>
+</div>
+
+<div class="tab-pane" id="industry">
+<section class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p class="lib-lede">今日无独立游戏观察新增。展会片单无新世界首发 / 无新锁。主线是两作计划今日上线，截稿时 Steam 均尚未解锁。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>2</dd></div>
+<div><dt>有信号轴</dt><dd>大作观察 / 新游定档</dd></div>
+<div><dt>密度</dt><dd>中</dd></div>
+</dl>
+<ul class="facts">
+<li>《英雄萨姆：破碎宇宙》三端计划发售；《呼吸边缘2》Steam EA 计划上线。</li>
+<li>gamescom 8/30 已闭幕；本日无 TGS 等官方秀，不预写片单。</li>
+<li>Young Suns 1.0 / Game Pass 仅有 8/28 周历，截稿未核 live，不入核。</li>
+</ul>
+<p class="lib-note">不复述 PS5 Pro 零售、巫师3 SoP、TARAE、绝对魔权实体。Xbox Disc to Digital Insiders 未核 go-live。厂商 / 版号 / 工作室空。</p>
+<div class="lib-stats"><span>无独立新增</span><span>片单空增量</span><span class="level">高 Attention 1</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>🏟️ 大作观察</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/2067210/Serious_Sam_Shatterverse/?l=schinese" rel="noopener" target="_blank">《英雄萨姆：破碎宇宙》（Serious Sam: Shatterverse）计划今日三端发售</a></h4></div>
+<p class="signal-lede">Behaviour Interactive 开发、Devolver Digital 发行的 1–5 人合作轻度 Rogue FPS，计划 2026-08-31 登陆 Steam / PS5 / Xbox Series。截稿时 Steam 仍显示尚未推出，无用户评测。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-31/sam-shatterverse.jpg" alt="英雄萨姆：破碎宇宙 Steam 官方封面"/>
+<figcaption>Steam 官方 header（简中店页）</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>计划 2026-08-31</dd></div>
+<div><dt>主体</dt><dd>Behaviour Interactive / Devolver Digital</dd></div>
+<div><dt>中文名</dt><dd>英雄萨姆：破碎宇宙（Steam 名称字段）</dd></div>
+<div><dt>平台</dt><dd>Steam / PS5 / Xbox Series / Microsoft Store</dd></div>
+<div><dt>状态</dt><dd>coming_soon · 无评测</dd></div>
+</dl>
+<ul class="facts">
+<li>Steam 简中名称「英雄萨姆：破碎宇宙」；界面/字幕含简体中文，无中文配音。</li>
+<li>定位：跨宇宙合作射击，叠恩典、run modifier，打五个副官。</li>
+<li>Gematsu 8/7 已锁 8/31 三端；官网 serioussam.com 写 Coming August 31，并挂 PS / Xbox / Steam 店链。</li>
+<li>截稿 Steam API coming_soon=true，本条记计划发售日，不写成已经开卖。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。发售日日历 + 店页核名；主机厂当日首发稿未核到。</p>
+<div class="tags"><span>英雄萨姆</span><span>Shatterverse</span><span>发售</span><span>Devolver</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🚀 新游 / 上线 / 测试 / 定档</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://store.steampowered.com/app/2412960/Breathedge_2/?l=schinese" rel="noopener" target="_blank">《呼吸边缘2》（Breathedge 2）抢先体验计划今日上线</a></h4></div>
+<p class="signal-lede">RedRuins Softworks / HypeTrain Digital 太空生存续作，Steam 抢先体验计划 2026-08-31 上线。截稿尚未解锁、无评测。不进独立观察。</p>
+<figure class="signal-media">
+<img src="../media/2026-08-31/breathedge2.jpg" alt="呼吸边缘2 Steam 官方封面"/>
+<figcaption>Steam 官方简中 header</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>计划 2026-08-31</dd></div>
+<div><dt>主体</dt><dd>RedRuins Softworks / HypeTrain Digital</dd></div>
+<div><dt>中文名</dt><dd>呼吸边缘2（Steam 名称字段）</dd></div>
+<div><dt>平台</dt><dd>PC（Steam 抢先体验）</dd></div>
+<div><dt>EA 时长</dt><dd>开发者自报约 16–20 个月</dd></div>
+</dl>
+<ul class="facts">
+<li>Steam 简中名称「呼吸边缘2」；界面/字幕简中，英语/俄语有配音。</li>
+<li>EA 上线含第一个大型剧情章节 + 广阔可探索区；完整版计划加行星表面、载具、建造。</li>
+<li>开发者写正式版将涨价；截稿「此游戏尚未在 Steam 上推出」。</li>
+<li>日常窗口独立门槛（初期评价 / 一线策展 / 节展）截稿均未核到，故不进独立轴。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。计划 EA 上线，非完整版、非独立观察。</p>
+<div class="tags"><span>呼吸边缘2</span><span>抢先体验</span><span>Steam</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://store.steampowered.com/app/2067210/Serious_Sam_Shatterverse/?l=schinese" rel="noopener" target="_blank">Steam · 英雄萨姆：破碎宇宙</a></li>
+<li><a href="https://www.gematsu.com/2026/08/serious-sam-shatterverse-launches-august-31" rel="noopener" target="_blank">Gematsu · Shatterverse launches August 31</a></li>
+<li><a href="https://www.serioussam.com/" rel="noopener" target="_blank">Serious Sam 官网</a></li>
+<li><a href="https://store.steampowered.com/app/2412960/Breathedge_2/?l=schinese" rel="noopener" target="_blank">Steam · 呼吸边缘2</a></li>
+</ol>
+</section>
+</div>
+
+</main>
+<p class="footnote">窗口（2026-08-30，2026-08-31] Asia/Shanghai，含昨 9:30 后补入核。空库：AI 观察、游戏开发观察未出 Tab。今日无新旗舰；今日无新 MCP/Skill 推荐；今日无独立游戏观察新增；展会片单无新世界首发 / 无新锁。生成于 2026-08-31 09:30 档日常规整理。</p>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
