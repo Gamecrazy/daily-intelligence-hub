@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-02</title>
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>综合日报</h1>
+<div class="meta">2026-09-02 · 星期三 · W36</div>
+</div>
+<div class="window">窗口：（2026-09-01，2026-09-02]</div>
+</div>
+<div class="lede">
+<p class="lib-lede">今日有新旗舰：Claude Fable 5.1。今日无新 MCP/Skill 推荐。主线是 Anthropic 把 Fable 5.1 推到一般可用，以及《夜勤人2：无尽宝库》今晚 21:00 CST 出 1.0（截稿仍 EA）。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>Claude Fable 5.1（<code>claude-fable-5-1</code>）</dd></div>
+<div><dt>MCP/Skill</dt><dd>无新推荐</dd></div>
+<div><dt>窗口</dt><dd>（2026-09-01，2026-09-02] · 含昨 9:30 后补入核</dd></div>
+<div><dt>显示库</dt><dd>AI、二次元、游戏行业（游戏开发空库未出 Tab）</dd></div>
+</dl>
+<ul class="facts">
+<li>AI：Fable 5.1 一般可用；Mythos 5.1 同权重、仅受信访问。OpenAI Astra 达 Preparedness Critical 网络安全阈值，尚未公开发布，不是今日旗舰。</li>
+<li>行业：《夜勤人2：无尽宝库》今晚 21:00 CST 解锁 1.0，截稿 Steam 仍抢先体验。《恶意不息》1.0 延至 2027/3。Crimson Moon 已解锁，Steam 褒贬不一。</li>
+<li>二次元：原神 7.0 下半「孤灯夜访 / 聚星源动」已于昨 18:00 开门。终末地「雪凇幽梦」官方今日发版本更新说明，维护预告至 12:00 CST。</li>
+<li>今日有独立游戏观察新增（夜勤人2、Grail、龟龟潜海记、Crimson Moon）。展会片单无新世界首发 / 无新锁。</li>
+</ul>
+<p class="lib-note">不复述：DeepSeek Vision 权重、OpenAI Ads $1B、Anthropic 8/31 对齐长文、OpenAI×Cursor 切断、Grok 4.7（仍未发布）、State of Play 片单、英雄萨姆 / 呼吸边缘2 / Disc to Digital。游戏开发空库未出 Tab。gamescom 不重建。Claude Code MCP 修复不是推荐。</p>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>16</b><span>独立 Signal</span></div>
+<div class="metric"><b>24</b><span>主要信源</span></div>
+<div class="metric hot"><b>5</b><span>高 Attention</span></div>
+<div class="metric accent"><b>3</b><span>显示观察库</span></div>
+<div class="metric"><b>20</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<section class="pane-digest">
+<p class="lib-lede">跨库最高 Attention 落在 Claude Fable 5.1 旗舰，以及《夜勤人2：无尽宝库》今晚 1.0 窗口与《恶意不息》延期。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>16</dd></div>
+<div><dt>高 Attention</dt><dd>5</dd></div>
+<div><dt>空库</dt><dd>游戏开发观察未出 Tab</dd></div>
+<div><dt>旗舰 / MCP</dt><dd>有新旗舰 Fable 5.1 · 无新 MCP/Skill 推荐</dd></div>
+</dl>
+<ul class="facts">
+<li>AI：5 条。旗舰是 Fable 5.1；Astra 预发布不升格旗舰；Gemini Flash 线 agentic video 是能力上线。</li>
+<li>行业：9 条（新游 / 独立 / 厂商秀 / Game Pass）。今日有独立游戏观察新增；展会片单无新世界首发 / 无新锁。</li>
+<li>二次元：2 条（原神下半已开门；终末地版本日，截稿维护未结束）。</li>
+</ul>
+<p class="lib-note">观察清单：Grok 4.7 未锁；Astra 正式 launch；夜勤人2 今晚翻牌；黎明行者之血 9/3；State of Play / Konami 9/3 未播不预写。Young Suns / 浪漫沙加3 仍待核。</p>
+</section>
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3>今日有新旗舰：Claude Fable 5.1</h3>
+<p class="ov-lede">Anthropic 把 Fable 5.1 推到一般可用，API id <code>claude-fable-5-1</code>。Mythos 5.1 同权重、仅受信访问。不是游戏《神鬼寓言》。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01 美西晚 ≈ 09-02 CST 补入核</dd></div>
+<div><dt>库</dt><dd>AI 观察</dd></div>
+<div><dt>状态</dt><dd>一般可用 · 旗舰</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>OpenAI Astra：Critical 网络安全阈值，未公开发布</h3>
+<p class="ov-lede">官方《Path to Astra》认定达 Preparedness Critical cybersecurity。计划 soon 可用，不是今日旗舰。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01 官宣 ≈ 09-02 CST</dd></div>
+<div><dt>库</dt><dd>AI 观察</dd></div>
+<div><dt>状态</dt><dd>预发布 · 非旗舰</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>《夜勤人2：无尽宝库》今晚 21:00 CST 出 1.0，截稿仍 EA</h3>
+<p class="ov-lede">Digital Sun / 11 bit 定今晚全球 1.0 + 主机 + Game Pass。截稿 Steam 仍标抢先体验，不要写成已经 1.0 live。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02 21:00 CST</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>截稿仍 EA</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>《恶意不息》1.0 延至 2027 年 3 月</h3>
+<p class="ov-lede">Moon Studios 9/1 官方：原 2026/10 的 1.0 改到 2027/3，先 PS5 + PC。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>定档变更</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>Crimson Moon 已解锁，Steam 褒贬不一</h3>
+<p class="ov-lede">昨报计划发售、截稿未解锁。现已开卖。1177 篇、好评 54.5%。Steam 简中名称仍是 Crimson Moon。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01 解锁</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>已开卖 · Mixed</dd></div>
+</dl>
+</article>
+<article class="overview-signal medium">
+<div class="ov-fire">🔥</div>
+<h3>原神 7.0 下半已开门</h3>
+<p class="ov-lede">「孤灯夜访」菲林斯 + 「聚星源动」伊涅芙，昨 18:00 已过官方开门点。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01 18:00 CST</dd></div>
+<div><dt>库</dt><dd>二次元游戏观察</dd></div>
+<div><dt>状态</dt><dd>已开门</dd></div>
+</dl>
+</article>
+</div>
+<h2 class="section-title">库密度一览</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>5</b></td><td>高</td><td>今日有新旗舰 Fable 5.1；今日无新 MCP/Skill 推荐</td></tr>
+<tr><td>二次元游戏观察</td><td><b>2</b></td><td>中</td><td>原神下半已开门；终末地版本日，截稿维护未结束</td></tr>
+<tr><td>游戏开发观察</td><td><b>0</b></td><td>空</td><td>游戏开发空库未出 Tab</td></tr>
+<tr><td>游戏行业观察</td><td><b>9</b></td><td>高</td><td>有独立新增；片单空增量</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜夜勤人2 1.0 翻牌</b><br/>今晚 21:00 CST。翻牌后再核主机店页与 Steam 是否去掉抢先体验。</div>
+<div class="watch"><b>必跟｜黎明行者之血 9/3</b><br/>评测已出，截稿未发售。不要写成已经开卖。</div>
+<div class="watch"><b>必跟｜State of Play / Konami Press Start 9/3</b><br/>SoP 21:00 CST；Konami 23:00 CST。未播不预写片单。</div>
+<div class="watch"><b>必跟｜Grok 4.7</b><br/>docs.x.ai 现役仍为 4.6。无 model id / 模型卡不升旗舰。</div>
+<div class="watch"><b>必跟｜Astra 正式 launch</b><br/>system card、公开可用性、Daybreak 准入。launch 日再写对比表。</div>
+<div class="watch"><b>可跟｜终末地维护关窗</b><br/>官方预告维护至今日 12:00 CST。关窗后再核是否可进服。</div>
+<div class="watch"><b>可跟｜Capcom Spotlight 9/16 22:00 CST</b><br/>TGS 展台六作已公布，不是世界首发。</div>
+<div class="watch"><b>待核｜Young Suns 1.0 / 浪漫沙加3：Destinies United</b><br/>Young Suns Steam 仍 coming_soon；SE 未官宣 Destinies United。鸣潮 3.1 周边致歉一线帖 ID 仍未核。</div>
+</div>
+</div>
+
+<div class="tab-pane" id="ai">
+<section class="library-head">
+<div><span class="lib-icon">📦</span><h2>AI 观察</h2></div>
+<p class="lib-lede">今日有新旗舰：Claude Fable 5.1。今日无新 MCP/Skill 推荐。窗内主线是 Fable 版本列车落地；Astra 只是预发布安全阈值。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>5</dd></div>
+<div><dt>有信号轴</dt><dd>模型发布 / 应用 / 编程</dd></div>
+<div><dt>旗舰 / MCP</dt><dd>有 Fable 5.1 · 无新推荐</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+</dl>
+<ul class="facts">
+<li>Fable 5.1 一般可用；Mythos 5.1 同底层、CVP / LSVP 受信访问。Claude Code v2.1.257 默认 Fable 切到 5.1，不另开条。</li>
+<li>OpenAI Astra 达 Critical 网络安全阈值，尚未公开发布，不升格今日旗舰。</li>
+<li>Gemini Flash 线落地 agentic video，是能力上线，不是新旗舰。</li>
+<li>Copilot 代码审查可批准 PR（公开预览）；ChatGPT for Healthcare 接 EHR。两者都不是 MCP/Skill 推荐。</li>
+</ul>
+<p class="lib-note">不复述 DeepSeek Vision 权重、OpenAI Ads、Anthropic 8/31 对齐长文、OpenAI×Cursor。Grok 4.7 仍未锁。Claude Code changelog 里的 MCP 修复不是推荐。</p>
+<div class="lib-stats"><span class="level">有新旗舰</span><span>无新 MCP/Skill</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>🧠 模型发布</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" rel="noopener" target="_blank">Claude Fable 5.1 一般可用（今日有新旗舰）</a></h4></div>
+<p class="signal-lede">Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1。二者同一底层、不同护栏。Fable 5.1 一般可用，API id <code>claude-fable-5-1</code>。Mythos 5.1 仅受信访问。不要和游戏《神鬼寓言 / Fable》混淆。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/fable-51.jpg" alt="Anthropic Claude Fable 5.1 官方公告主视觉"/>
+<img src="../media/2026-09-02/fable-51-chart.jpg" alt="Anthropic 官方 Fable 5.1 成本对比图"/>
+<figcaption>Anthropic 官方公告页 OG 与成本图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01 滚动发布 · 09-02 CST 入核</dd></div>
+<div><dt>主体</dt><dd>Anthropic</dd></div>
+<div><dt>API</dt><dd><code>claude-fable-5-1</code></dd></div>
+<div><dt>定价</dt><dd>输入 $10 / 输出 $50 / MTok；cache read $0.25（−75%）</dd></div>
+<div><dt>平台</dt><dd>Claude API / apps / Claude Code · Bedrock / Google Cloud / Azure</dd></div>
+</dl>
+<ul class="facts">
+<li>厂商自报：典型负载总成本约 −25%，重 agent 负载最高约 −45%。输入输出价与 Fable 5 持平，降的是 cache read。</li>
+<li>Mythos 5.1 走 Cyber Verification Program（CVP）与 Life Sciences Verification Program（LSVP）；官方写与美国政府合作的生命科学受信访问，此处只记产品事实。</li>
+<li>Claude Code v2.1.257（09-01 17:53Z ≈ 09-02 01:53 CST）加入该模型并改为默认 Fable。网关别名 <code>fable</code> / <code>best</code> 暂仍解析到 Fable 5，需 <code>/model</code> 显式选 5.1。</li>
+<li>changelog 里的 MCP allow/deny 一致性修复、插件 symlink 拒绝等是产品修补，不是 MCP/Skill 推荐。</li>
+<li>Enterprise Frontier Safeguards 今秋分阶段；EU AI Act 水印 + detection API 私有预览。System Card PDF 已发布。</li>
+</ul>
+<div class="compare-wrap">
+<table class="compare">
+<caption>与主流模型对比</caption>
+<thead>
+<tr><th>评测项</th><th>Fable 5.1</th><th>Fable 5</th><th>Opus 5</th><th>GPT-5.6 Sol</th></tr>
+</thead>
+<tbody>
+<tr><td>Terminal-Bench-Science 0.1</td><td>52.6%</td><td>24.7%</td><td>29.0%</td><td>22.4%</td></tr>
+<tr><td>Terminal-Bench 4.0</td><td>55.8%（Mythos 60.9%）</td><td>42.0%</td><td>52.3%</td><td>37.3%</td></tr>
+<tr><td>GDPval-AA v2</td><td>1853</td><td>1723</td><td>1824</td><td>1711</td></tr>
+<tr><td>OSWorld 2.0 partial</td><td>77.9%</td><td>72.9%</td><td>75.4%</td><td>未核</td></tr>
+<tr><td>OSWorld 2.0 strict</td><td>41.7%</td><td>36.1%</td><td>39.6%</td><td>未核</td></tr>
+<tr><td>HLE no tools</td><td>60.9%</td><td>57.8%</td><td>56.6%</td><td>未核</td></tr>
+<tr><td>HLE with tools</td><td>65.0%</td><td>63.8%</td><td>63.6%</td><td>未核</td></tr>
+<tr><td>AutomationBench</td><td>31.4%</td><td>17.1%</td><td>26.9%</td><td>19.6%</td></tr>
+<tr><td>CursorBench 3.2.0</td><td>73.4%</td><td>70.5%</td><td>70.0%</td><td>67.2%</td></tr>
+</tbody>
+</table>
+</div>
+<p class="compare-src">数字来源：Anthropic 官方公告表。厂商自报，生产护栏开启。缺格写未核，不编。</p>
+<p class="signal-note">关注度 · 🔥🔥🔥。今日旗舰。今日无新 MCP/Skill 推荐。</p>
+<div class="tags"><span>Claude</span><span>Fable 5.1</span><span>旗舰</span><span>Mythos</span></div>
+</div>
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://openai.com/index/path-to-astra/" rel="noopener" target="_blank">OpenAI Astra：达 Critical 网络安全阈值（未公开发布）</a></h4></div>
+<p class="signal-lede">OpenAI 发布《Path to Astra》：认定 Astra 达到 Preparedness Framework 的 Critical cybersecurity 阈值。官方写计划 soon 可用，最强网络能力访问受限。这不是今日旗舰。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/astra.png" alt="OpenAI Path to Astra 官方 OG 图"/>
+<figcaption>OpenAI 官方 OG</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01 官宣 · 09-02 CST 入核</dd></div>
+<div><dt>主体</dt><dd>OpenAI</dd></div>
+<div><dt>状态</dt><dd>预发布 · 非旗舰</dd></div>
+<div><dt>阈值</dt><dd>Preparedness Critical cybersecurity</dd></div>
+</dl>
+<ul class="facts">
+<li>官方口径：可在无人逐步引导下发现未知漏洞，或按高层目标对加固系统执行端到端攻击策略。此处只记产品级事实，不写利用步骤或 payload。</li>
+<li>厂商自报相对 GPT-5.6 Sol：ExploitBench 100%。内部评估提到 2 个 zero-day 正披露给维护方。</li>
+<li>先进网络能力先给测试者，再经 Daybreak Blue 扩防御用途。System Card 等 launch 时再补。</li>
+<li>因 Hugging Face 事件等强化护栏；称 Astra 为「迄今最对齐」并加 CoT 监控（厂商自报）。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。预发布安全阈值，不升格旗舰，不附表，不进 MCP/Skill 推荐。</p>
+<div class="tags"><span>OpenAI</span><span>Astra</span><span>预发布</span><span>非旗舰</span></div>
+</div>
+</div>
+</article>
+<article class="axis-card">
+<div class="axis-title"><h3>💡 AI 应用</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/" rel="noopener" target="_blank">Gemini Flash 线落地 Agentic Video Understanding</a></h4></div>
+<p class="signal-lede">Google 给 Gemini 3.7 Flash / 3.6 Flash / 3.5 Flash-Lite 加上 agentic 视频理解。这是既有 Flash 线的能力上线，不是新旗舰。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01</dd></div>
+<div><dt>主体</dt><dd>Google DeepMind</dd></div>
+<div><dt>API</dt><dd><code>processing: "agentic"</code></dd></div>
+<div><dt>状态</dt><dd>能力上线 · 非旗舰</dd></div>
+</dl>
+<ul class="facts">
+<li>厂商自报相对静态 FPS 摄入：最长视频分析 token −88%、成本 −66%、准确率 +7%。3.7 Flash + agentic 自称处在准确率–成本 Pareto 前沿。</li>
+<li>今日可用：Gemini API / AI Studio / Gemini Enterprise Agent Platform（上传视频 + YouTube）。标准 token 计价，无附加功能费。</li>
+<li>消费端 Gemini app「soon」；YouTube Ask YouTube「coming months」。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。专用能力，不是新旗舰，无已核对照旗舰表。</p>
+<div class="tags"><span>Gemini</span><span>Flash</span><span>视频</span><span>非旗舰</span></div>
+</div>
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/" rel="noopener" target="_blank">ChatGPT for Healthcare 接 EHR 与公开医疗数据</a></h4></div>
+<p class="signal-lede">OpenAI 宣布 ChatGPT for Healthcare 可在授权后接入 Epic EHR，并提供 Healthcare Public Data 插件，结构化接入 ClinicalTrials.gov、CMS Coverage、RxNorm、DailyMed、PubMed 等公开数据集。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01</dd></div>
+<div><dt>主体</dt><dd>OpenAI</dd></div>
+<div><dt>状态</dt><dd>产品能力 · 企业档</dd></div>
+</dl>
+<ul class="facts">
+<li>EHR 集成不对个人账户开放。Clinicians 个人档可装公开数据插件。</li>
+<li>官方强调企业管控与审计日志。这是产品能力，不是新模型，也不是 MCP/Skill 推荐。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。应用落地。不升格旗舰或推荐。</p>
+<div class="tags"><span>OpenAI</span><span>Healthcare</span><span>EHR</span></div>
+</div>
+</div>
+</article>
+<article class="axis-card">
+<div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests" rel="noopener" target="_blank">GitHub Copilot 代码审查现可批准 PR（公开预览）</a></h4></div>
+<p class="signal-lede">Copilot code review 的 overview 现含 approval assessment。默认不自动 approve。企业 / 组织 / 仓库三级开关打开后，approve 可计入 required-approvals；新 push 会 dismiss，与人类评审相同。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01</dd></div>
+<div><dt>主体</dt><dd>GitHub</dd></div>
+<div><dt>范围</dt><dd>Pro / Pro+ / Max / Business / Enterprise 公开预览</dd></div>
+<div><dt>默认</dt><dd>不自动批准</dd></div>
+</dl>
+<ul class="facts">
+<li>approval assessment 单独出现在每条 Copilot review 的总评里，不等于已经批准。</li>
+<li>仓库管理员可限制 Copilot 允许批准的文件路径。</li>
+<li>这是 IDE / 代码审查产品能力，不是 MCP/Skill 推荐，也不另开 Fable 条。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。公开预览。Claude Code 默认切 5.1 已并入旗舰条。</p>
+<div class="tags"><span>Copilot</span><span>PR</span><span>公开预览</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" rel="noopener" target="_blank">Anthropic · Claude Fable 5.1 / Mythos 5.1</a></li>
+<li><a href="https://platform.claude.com/docs/en/models/fable-5-1/overview" rel="noopener" target="_blank">Claude Docs · Fable 5.1 overview</a></li>
+<li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.257" rel="noopener" target="_blank">Claude Code v2.1.257</a></li>
+<li><a href="https://openai.com/index/path-to-astra/" rel="noopener" target="_blank">OpenAI · Path to Astra</a></li>
+<li><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/" rel="noopener" target="_blank">Google · Agentic video in Gemini</a></li>
+<li><a href="https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests" rel="noopener" target="_blank">GitHub Changelog · Copilot approve PR</a></li>
+<li><a href="https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/" rel="noopener" target="_blank">OpenAI · ChatGPT for Healthcare</a></li>
+</ol>
+</section>
+</div>
+
+<div class="tab-pane" id="anime">
+<section class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p class="lib-lede">本库两条运营向落地：原神 7.0 下半已开门；终末地「雪凇幽梦」官方今日发版本更新说明，截稿维护窗未关。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>2</dd></div>
+<div><dt>有信号轴</dt><dd>版本 / 角色</dd></div>
+<div><dt>密度</dt><dd>中</dd></div>
+</dl>
+<ul class="facts">
+<li>原神「孤灯夜访」「聚星源动」官方档期 9/1 18:00 起，昨报截稿未到点，本条改已开门。</li>
+<li>终末地官网 9/2 已挂「雪凇幽梦」版本更新说明；预告停机 06:00–12:00 CST，截稿约 11:00 不写成玩家已可进服。</li>
+<li>绝区零 3.2 仍锁 9/9；星铁 4.5 不复述。</li>
+</ul>
+<p class="lib-note">待核：鸣潮 3.1 周边致歉一线帖 ID 仍未核。砂金·戏浪 9/12。</p>
+<div class="lib-stats"><span>下半已开门</span><span>终末地版本日</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新 · 🎭 角色</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://genshin.hoyoverse.com/zh-tw/news/detail/165901" rel="noopener" target="_blank">原神 7.0 下半已开门：孤灯夜访 / 聚星源动</a></h4></div>
+<p class="signal-lede">官方第二期祈愿档期 2026-09-01 18:00–09-22 14:59。「孤灯夜访」诡灯陌影·菲林斯（雷）与「聚星源动」轰隆雷鸣波·伊涅芙（雷）同开。昨报截稿未到点；现已过官方开门点。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/flins-sidenote.jpg" alt="原神「菲林斯」官方侧记静帧"/>
+<figcaption>官方侧记静帧（HoYoLAB / 米游社同源官图）</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01 18:00 CST 已开门</dd></div>
+<div><dt>主体</dt><dd>原神 / 米哈游</dd></div>
+<div><dt>五星</dt><dd>菲林斯 · 伊涅芙（均为复刻）</dd></div>
+<div><dt>档期</dt><dd>2026-09-01 18:00–09-22 14:59</dd></div>
+</dl>
+<ul class="facts">
+<li>同期四星：爱诺（水）、伊安珊（雷）、蓝砚（风）。两池保底共享。</li>
+<li>武器池「神铸赋形」：长柄武器「血染荒城」「支离轮光」概率 UP。</li>
+<li>官方公告 8/27 已出。本条增量是开门日本身，不复述机制。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。复刻开门日，非新角。昨报日历落地，本报改为已开门。</p>
+<div class="tags"><span>原神</span><span>菲林斯</span><span>伊涅芙</span><span>复刻</span></div>
+</div>
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">终末地「雪凇幽梦」版本日：官方已发更新说明</a></h4></div>
+<p class="signal-lede">鹰角官网 2026-09-02 挂出「雪凇幽梦」版本更新说明。8/31 预告停机维护 06:00–12:00 CST。截稿仍在维护窗内，不写成玩家已经进服。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/endfield-xuesong.jpg" alt="明日方舟：终末地「雪凇幽梦」官方主视觉"/>
+<img src="../media/2026-09-02/endfield-tiflos.jpg" alt="终末地干员提弗洛斯官方演示静帧"/>
+<figcaption>官网新闻配图（雪凇幽梦 / 提弗洛斯）</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02</dd></div>
+<div><dt>主体</dt><dd>明日方舟：终末地 / 鹰角</dd></div>
+<div><dt>维护</dt><dd>06:00–12:00 CST（预告）</dd></div>
+<div><dt>状态</dt><dd>官方更新说明已出 · 截稿维护未结束</dd></div>
+</dl>
+<ul class="facts">
+<li>版本日历 8/31 已写 9/2 开启。新六星突击干员提弗洛斯为本版本角色。</li>
+<li>9/1 已发「冬猎」特许寻访说明、「幽寒申领」限时特卖说明。</li>
+<li>9/24 才解锁遂明城与噗切娜登录领取，不提前写成今日可领。</li>
+<li>截稿约 11:00 CST。维护关窗后再核 live。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。版本日官方稿已出；进服 live 待 12:00 后核。</p>
+<div class="tags"><span>终末地</span><span>雪凇幽梦</span><span>提弗洛斯</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://genshin.hoyoverse.com/zh-tw/news/detail/165901" rel="noopener" target="_blank">原神官网 · 7.0 活动祈愿公告第二期</a></li>
+<li><a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">终末地官网 · 新闻（9/2 版本更新说明）</a></li>
+<li><a href="https://www.taptap.cn/moment/842856634865681279" rel="noopener" target="_blank">TapTap 转载 · 雪凇幽梦预下载与更新预告（维护窗）</a></li>
+</ol>
+</section>
+</div>
+
+<div class="tab-pane" id="industry">
+<section class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p class="lib-lede">今日有独立游戏观察新增（夜勤人2、Grail、龟龟潜海记、Crimson Moon）。展会片单无新世界首发 / 无新锁。主线是夜勤人2 今晚 1.0 窗口，加上《恶意不息》延期与 Crimson Moon 解锁口碑。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>9</dd></div>
+<div><dt>有信号轴</dt><dd>新游 / 独立 / 厂商 / 主机</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+</dl>
+<ul class="facts">
+<li>《夜勤人2：无尽宝库》今晚 21:00 CST 出 1.0，截稿仍 EA。</li>
+<li>《恶意不息》1.0 从 2026/10 延至 2027/3。Crimson Moon 已解锁，Steam Mixed。</li>
+<li>《黎明行者之血》评测破禁，9/3 发售，截稿未开卖。</li>
+<li>Capcom 官宣 TGS 展台 + Spotlight 9/16 22:00 CST。Fall Showcase 已播但无可核世界首发/新锁。</li>
+</ul>
+<p class="lib-note">不复述 State of Play 片单、英雄萨姆、呼吸边缘2、Disc to Digital。昨报误用「深陷荒境2」，本报按 5.18 改回 Stranded Deep 2。gamescom 不重建。</p>
+<div class="lib-stats"><span>有独立新增</span><span>片单空增量</span><span class="level">高 Attention 3</span></div>
+</section>
+<div class="axis-grid">
+
+<article class="axis-card">
+<div class="axis-title"><h3>🚀 新游 / 上线 / 测试 / 定档</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/2350790/?l=schinese" rel="noopener" target="_blank">《夜勤人2：无尽宝库》今晚 21:00 CST 出 1.0，截稿仍 EA</a></h4></div>
+<p class="signal-lede">Digital Sun / 11 bit studios 定 2026-09-02 13:00 UTC（21:00 CST）把本作拉出 PC 抢先体验，登陆 PS5 / Xbox Series / Switch 2 / Steam / MS Store，并同步 Game Pass。截稿 Steam 仍标抢先体验，不要写成已经 1.0 live。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/moonlighter2.jpg" alt="夜勤人2：无尽宝库 Steam 官方封面"/>
+<figcaption>Steam 官方 header（简中店名）</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02 21:00 CST（截稿未到）</dd></div>
+<div><dt>主体</dt><dd>Digital Sun / 11 bit studios</dd></div>
+<div><dt>中文名</dt><dd>夜勤人2：无尽宝库（Steam 名称字段）</dd></div>
+<div><dt>评测</dt><dd>特别好评 · 85.1% / 3126（含 EA 期）</dd></div>
+<div><dt>状态</dt><dd>截稿仍 EA · 今晚解锁</dd></div>
+</dl>
+<ul class="facts">
+<li>Steam app 2350790：<code>coming_soon: false</code> 是因为 EA 早已开卖，发行日仍写 2025-11-19；genres 仍含 Early Access / 抢先体验。</li>
+<li>实体版计划 11/13（PS5 / Switch 2 / PC，Silver Lining）。</li>
+<li>口碑数字含 EA 期，1.0 翻牌后再核开售评测。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。今晚窗口；截稿仍 EA。进独立轴交叉。</p>
+<div class="tags"><span>夜勤人2</span><span>1.0</span><span>Game Pass</span></div>
+</div>
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://norestforthewicked.com/news/no-rest-for-the-wicked-1-0-delay-announcement" rel="noopener" target="_blank">《恶意不息》1.0 延至 2027 年 3 月</a></h4></div>
+<p class="signal-lede">Moon Studios 2026-09-01 官方：1.0 从原定 2026 年 10 月改到 2027 年 3 月。先 PS5 + PC Steam；Xbox Series / Switch 2 日期 TBD。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/nrftw.jpg" alt="恶意不息 Steam 官方封面"/>
+<figcaption>Steam 官方 capsule（简中店名《恶意不息》）</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01</dd></div>
+<div><dt>主体</dt><dd>Moon Studios</dd></div>
+<div><dt>中文名</dt><dd>《恶意不息》（Steam 名称字段）</dd></div>
+<div><dt>新窗口</dt><dd>2027 年 3 月 · PS5 + PC 先</dd></div>
+<div><dt>EA 口碑</dt><dd>特别好评 · 80.1% / 81264</dd></div>
+</dl>
+<ul class="facts">
+<li>官方理由：性能、职业系统打磨。12 月开放 beta。</li>
+<li>Founders Pack：Steam 购买截止延至 2027-01-01。PS 预购 2027/1 开。</li>
+<li>Steam 仍为抢先体验。本条是定档变更，不是今日发售。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。官方延期。不进独立轴（中厂 1.0 窗口变更，主记录在新游）。</p>
+<div class="tags"><span>恶意不息</span><span>延期</span><span>1.0</span></div>
+</div>
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.metacritic.com/game/the-blood-of-dawnwalker/" rel="noopener" target="_blank">《黎明行者之血》评测破禁，9/3 发售</a></h4></div>
+<p class="signal-lede">Rebel Wolves / Bandai Namco 黑暗奇幻 ARPG 锁 2026-09-03（PS5 / Xbox Series / PC）。窗内评测破禁。截稿 Steam 仍 coming_soon，不要写成已经开卖。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/dawnwalker.jpg" alt="黎明行者之血 Steam 简中官方封面"/>
+<figcaption>Steam 简中 header</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>发售 2026-09-03</dd></div>
+<div><dt>主体</dt><dd>Rebel Wolves / Bandai Namco</dd></div>
+<div><dt>中文名</dt><dd>黎明行者之血（Steam 名称字段）</dd></div>
+<div><dt>Metacritic</dt><dd>Generally Favorable · 83 / 59 评</dd></div>
+<div><dt>状态</dt><dd>评测已出 · 截稿未发售</dd></div>
+</dl>
+<ul class="facts">
+<li>Metacritic 页：Generally Favorable，基于 59 篇，综合 83。分平台样本滚动中（另见 60 评 / 83、37 评 / 84），正文用主卡 59/83。</li>
+<li>Steam 英文店页写 Sep 2、仍 coming_soon，对应美区时区；发行日历与 MC 均写 Sep 3。CST 按 9/3 计。</li>
+<li>媒体口径褒贬并存：叙事与战斗高、开放世界重复度/性能有争议。不把二线拆解写成结论。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。明日发售观察。解锁后再核玩家评测。</p>
+<div class="tags"><span>黎明行者之血</span><span>评测</span><span>9/3</span></div>
+</div>
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gamereactor.eu/stranded-deep-2-interview-trading-oceans-for-deserts-and-whats-next-for-the-project-1765313/" rel="noopener" target="_blank">Stranded Deep 2：EA 窗口锁 early 2027</a></h4></div>
+<p class="signal-lede">昨报已录 8/31 首支预告。窗内 9/1 GameReactor 访谈：创意总监明确 Early Access early 2027，EA 预计 2–3 年。本作 Steam 简中名称字段仍是英文，按 5.18 留英文；昨报「深陷荒境2」作系列黑称/旧译，本报改回。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/stranded-deep-2.jpg" alt="Stranded Deep 2 Steam 官方封面"/>
+<figcaption>Steam 官方 capsule（名称字段英文）</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>访谈 2026-09-01</dd></div>
+<div><dt>主体</dt><dd>North Beach Games</dd></div>
+<div><dt>中文名</dt><dd>Stranded Deep 2（无官方简中店名）</dd></div>
+<div><dt>状态</dt><dd>EA 窗口 · early 2027</dd></div>
+</dl>
+<ul class="facts">
+<li>Steam app 3976770：coming_soon，日期「即将宣布」。前作店名同样是 Stranded Deep，无简中名称字段。</li>
+<li>设定从海岛改到沙漠长河。本条增量是 EA 窗口，不是世界首发。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。定档补核。无官方简中，留英文。</p>
+<div class="tags"><span>Stranded Deep 2</span><span>EA</span><span>定档</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/2350790/?l=schinese" rel="noopener" target="_blank">独立轴 · 夜勤人2 今晚 1.0 窗口</a></h4></div>
+<p class="signal-lede">独立向地牢商店续作今晚出 1.0 并上主机 / Game Pass。截稿仍 EA。完整字段见「新游」轴，本条只记独立门槛：正式版窗口 + 已有特别好评。</p>
+<dl class="kv">
+<div><dt>门槛</dt><dd>正式版发售窗口 + 初期评价为正（EA 期 85.1% / 3126）</dd></div>
+<div><dt>交叉</dt><dd>详见 🚀 新游</dd></div>
+</dl>
+<ul class="facts">
+<li>达 5.15 独立门槛。不把大厂 3A 塞进本轴。</li>
+<li>翻牌前不把 EA 口碑写成 1.0 开售口碑。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。独立轴必列。主记录在新游，避免全文双开。</p>
+<div class="tags"><span>独立</span><span>夜勤人2</span></div>
+</div>
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/4317690/Crimson_Moon/?l=schinese" rel="noopener" target="_blank">Crimson Moon 已解锁，Steam 褒贬不一</a></h4></div>
+<p class="signal-lede">ProbablyMonsters 动作 RPG 2026-09-01 全球解锁（Steam 简中日期「2026 年 9 月 1 日」）。PS5 / Xbox Series / PC。昨报截稿尚未解锁。现 1177 篇、好评 54.5%，总评 Mixed / 褒贬不一。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/crimson-moon.jpg" alt="Crimson Moon Steam 官方封面"/>
+<figcaption>Steam 官方 capsule。简中名称字段仍是 Crimson Moon</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01 解锁</dd></div>
+<div><dt>主体</dt><dd>ProbablyMonsters</dd></div>
+<div><dt>中文名</dt><dd>暂无官方简中（名称字段英文）</dd></div>
+<div><dt>评测</dt><dd>褒贬不一 · 54.5% / 1177</dd></div>
+<div><dt>价格</dt><dd>$19.99</dd></div>
+</dl>
+<ul class="facts">
+<li>走完 5.18：Steam 名称、厂商中文稿、主机店名均无官方简中，留英文，不自译。</li>
+<li>媒体评测偏正面，玩家侧重性能 / 镜头 / 跳跃。口碑以 Steam 实数为准。</li>
+<li>新 IP 中坚发售，进独立轴；不升格 3A 大作卡。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。已核解锁 + Mixed。评分数仍在滚动。</p>
+<div class="tags"><span>Crimson Moon</span><span>发售</span><span>独立</span></div>
+</div>
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://store.steampowered.com/app/3597200/?l=schinese" rel="noopener" target="_blank">Grail 正式发售，特别好评（小样本）</a></h4></div>
+<p class="signal-lede">Sokpop Collective 成员 Tijmen Tio 的奇幻自动战斗卡牌 2026-09-01 Steam 正式上线。58 篇评测、好评 89.7%，总评 Very Positive / 特别好评。样本小，标样本量。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/grail.jpg" alt="Grail Steam 官方封面"/>
+<figcaption>Steam 官方 header。简中名称字段仍是 Grail</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01</dd></div>
+<div><dt>主体</dt><dd>Sokpop Collective</dd></div>
+<div><dt>中文名</dt><dd>Grail（无官方简中店名）</dd></div>
+<div><dt>评测</dt><dd>特别好评 · 89.7% / 58</dd></div>
+<div><dt>价格</dt><dd>$7.99</dd></div>
+</dl>
+<ul class="facts">
+<li>Steam 简中「名称」仍为 Grail，留英文。</li>
+<li>日常窗口：正式发售 + 初期评价明显为正，达独立门槛。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。小样本特别好评，进独立轴。</p>
+<div class="tags"><span>Grail</span><span>独立</span><span>发售</span></div>
+</div>
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://news.xbox.com/en-us/2026/09/01/xbox-game-pass-update-september-wave-1/" rel="noopener" target="_blank">《龟龟潜海记》进入 Game Pass</a></h4></div>
+<p class="signal-lede">Xbox Wire 9/1：Shelldiver 即日起上云 / 主机 / PC Game Pass。Steam 简中店名是「龟龟潜海记 Shelldiver」。压倒性好评 98.7% / 17349。这是既有作品进库，不是新作首发。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-02/shelldiver.jpg" alt="龟龟潜海记 Steam 官方封面"/>
+<figcaption>Steam 官方 header</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01</dd></div>
+<div><dt>中文名</dt><dd>龟龟潜海记（Steam 名称字段）</dd></div>
+<div><dt>评测</dt><dd>压倒性好评 · 98.7% / 17349</dd></div>
+<div><dt>交叉</dt><dd>Game Pass 波次详见主机轴</dd></div>
+</dl>
+<ul class="facts">
+<li>独立增量游戏进订阅库，达独立观察附带门槛。</li>
+<li>不把进 GP 写成新作公布。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。独立轴附带。主机波次不全文重复。</p>
+<div class="tags"><span>龟龟潜海记</span><span>Game Pass</span><span>独立</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🏢 厂商动态</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.capcom-games.com/tgs/en-us/" rel="noopener" target="_blank">Capcom TGS 2026 展台 + Spotlight 9/16 22:00 CST</a></h4></div>
+<p class="signal-lede">Capcom 2026-09-01 官宣东京电玩展（幕张 9/17–21）可玩阵容，并定线上节目 Capcom Spotlight：9/16 07:00 PDT = 22:00 CST，约 40 分钟。均为已公布作品展台，不是世界首发，不进🎬片单。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01 官宣</dd></div>
+<div><dt>Spotlight</dt><dd>2026-09-16 22:00 CST</dd></div>
+<div><dt>展会</dt><dd>TGS 9/17–21 幕张</dd></div>
+</dl>
+<ul class="facts">
+<li>展台六作：龙之信条2：黑暗觉者；洛克人 Dual Override；怪物猎人荒野扩展 Ascendance；鬼武者 Way of the Sword；PRAGMATA；街头霸王6。</li>
+<li>Spotlight 时长约 40 分钟。官方写档期可能调整。</li>
+<li>未播不预写内容。不重建 gamescom 片单。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。厂商展台 / 线上秀预告。展会片单无新世界首发 / 无新锁。</p>
+<div class="tags"><span>Capcom</span><span>TGS</span><span>Spotlight</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🎮 主机 / 硬件 / 平台</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://news.xbox.com/en-us/2026/09/01/xbox-game-pass-update-september-wave-1/" rel="noopener" target="_blank">Xbox Game Pass 9 月第一波</a></h4></div>
+<p class="signal-lede">Xbox Wire 2026-09-01：Shelldiver 即日起上云 / 主机 / PC GP。后续 SpeedRunners 2（9/3）、Dice a Million（9/4）、CoD Black Ops Cold War（9/8）、The Royal Writ + VF5 R.E.V.O. World Stage（9/10）、RuneScape: Dragonwilds（9/15）。TCG Card Shop Simulator 1.0 9/15 离开 Game Preview。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-01</dd></div>
+<div><dt>今日</dt><dd>龟龟潜海记（Shelldiver）</dd></div>
+<div><dt>退下 9/15</dt><dd>含赛博朋克2077（云+主机）等</dd></div>
+</dl>
+<ul class="facts">
+<li>NHL 27 EA Play 10 小时试玩 9/4。Aniimo 9/16 会员礼包。</li>
+<li>9/15 退下还包括 Commandos: Origins、Dead Cells、Frostpunk 2（PC）等。完整名单以 Xbox Wire 为准。</li>
+<li>《夜勤人2》主机 + GP 解锁点在今晚，本波次文未把今晚 1.0 写成已经 live。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。平台波次。龟龟潜海记进独立轴。</p>
+<div class="tags"><span>Game Pass</span><span>Xbox</span></div>
+</div>
+</div>
+</article>
+
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://store.steampowered.com/app/2350790/?l=schinese" rel="noopener" target="_blank">Steam · 夜勤人2：无尽宝库</a></li>
+<li><a href="https://www.gematsu.com/2026/08/moonlighter-2-the-endless-vault-launches-september-2" rel="noopener" target="_blank">Gematsu · Moonlighter 2 9/2</a></li>
+<li><a href="https://norestforthewicked.com/news/no-rest-for-the-wicked-1-0-delay-announcement" rel="noopener" target="_blank">Moon Studios · 恶意不息 1.0 延期</a></li>
+<li><a href="https://store.steampowered.com/app/1371980/?l=schinese" rel="noopener" target="_blank">Steam · 《恶意不息》</a></li>
+<li><a href="https://store.steampowered.com/app/4317690/Crimson_Moon/?l=schinese" rel="noopener" target="_blank">Steam · Crimson Moon</a></li>
+<li><a href="https://store.steampowered.com/app/3597200/?l=schinese" rel="noopener" target="_blank">Steam · Grail</a></li>
+<li><a href="https://www.metacritic.com/game/the-blood-of-dawnwalker/" rel="noopener" target="_blank">Metacritic · The Blood of Dawnwalker</a></li>
+<li><a href="https://store.steampowered.com/app/3751260/?l=schinese" rel="noopener" target="_blank">Steam · 黎明行者之血</a></li>
+<li><a href="https://www.capcom-games.com/tgs/en-us/" rel="noopener" target="_blank">Capcom · TGS 2026</a></li>
+<li><a href="https://www.gematsu.com/2026/09/capcom-announces-tgs-2026-lineup-capcom-spotlight" rel="noopener" target="_blank">Gematsu · Capcom Spotlight</a></li>
+<li><a href="https://news.xbox.com/en-us/2026/09/01/xbox-game-pass-update-september-wave-1/" rel="noopener" target="_blank">Xbox Wire · Game Pass 9 月第一波</a></li>
+<li><a href="https://store.steampowered.com/app/3862670/?l=schinese" rel="noopener" target="_blank">Steam · 龟龟潜海记</a></li>
+<li><a href="https://www.gamereactor.eu/stranded-deep-2-interview-trading-oceans-for-deserts-and-whats-next-for-the-project-1765313/" rel="noopener" target="_blank">GameReactor · Stranded Deep 2 访谈</a></li>
+<li><a href="https://store.steampowered.com/app/3976770/Stranded_Deep_2/?l=schinese" rel="noopener" target="_blank">Steam · Stranded Deep 2</a></li>
+</ol>
+</section>
+</div>
+
+</main>
+<p class="footnote">窗口（2026-09-01，2026-09-02] Asia/Shanghai，含昨 9:30 后补入核。空库：游戏开发观察未出 Tab。今日有新旗舰：Claude Fable 5.1。今日无新 MCP/Skill 推荐。今日有独立游戏观察新增。展会片单无新世界首发 / 无新锁。生成于 2026-09-02 11:00 档日常规整理。</p>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
