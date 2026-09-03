@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-03</title>
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>综合日报</h1>
+<div class="meta">2026-09-03 · 星期四 · W36</div>
+</div>
+<div class="window">窗口：（2026-09-02，2026-09-03]</div>
+</div>
+<div class="lede">
+<p class="lib-lede">今日有新旗舰：Gemini 3.8 Flash。今日有新 MCP/Skill 推荐：Baseten MCP + baseten-skills。主线是 Google 把 3.8 Flash 推到一般可用，以及《夜勤人2：无尽宝库》1.0 正式发售翻牌。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>Gemini 3.8 Flash（一般可用；3.8 Flash Cyber 仅 Fairwind，不当一般旗舰）</dd></div>
+<div><dt>MCP/Skill</dt><dd>Baseten backend MCP + docs MCP + baseten-skills</dd></div>
+<div><dt>窗口</dt><dd>（2026-09-02，2026-09-03] · 1 天 · Asia/Shanghai</dd></div>
+<div><dt>显示库</dt><dd>AI、二次元、游戏行业（游戏开发空库未出 Tab）</dd></div>
+</dl>
+<ul class="facts">
+<li>AI：Gemini 3.8 Flash 一般可用；同文 3.8 Flash Cyber 仅 Fairwind 受信。Baseten 三件套进推荐轴。Qwen3.8-Max-0902 为 Max 快照，不当新旗舰线。Cursor Self-hosted machines 记编程轴。</li>
+<li>行业：《夜勤人2：无尽宝库》已于 9/2 结束 EA 并 1.0 正式发售，同步主机 + Game Pass Day 1。今晚 State of Play + Japan 21:00 CST 未播，不写片单轴。</li>
+<li>二次元：终末地「雪凇幽梦」维护结束开门；官方站同日挂出版本更新说明。明日方舟本家 × 女神异闻录３ Reload「月行水上」9/4 进观察清单。</li>
+<li>今日有独立游戏观察新增（夜勤人2）。不复述：Claude Fable/Mythos 5.1、OpenAI Astra 预发布。</li>
+</ul>
+<p class="lib-note">游戏开发空库未出 Tab。展会片单：今晚 State of Play 未播，不预写。Grok 4.7 仍为预告（估 ~9/12），不当今日旗舰。Anthropic / OpenAI / xAI / DeepSeek / Zhipu 窗内无新旗舰。</p>
+</div>
+</header>
+<section class="metrics">
+<div class="metric hot"><b>6</b><span>独立 Signal</span></div>
+<div class="metric"><b>12</b><span>主要信源</span></div>
+<div class="metric hot"><b>5</b><span>高 Attention</span></div>
+<div class="metric accent"><b>3</b><span>显示观察库</span></div>
+<div class="metric"><b>8</b><span>轴 / 子轴扫描</span></div>
+<div class="metric"><b>1</b><span>覆盖天数</span></div>
+</section>
+<nav aria-label="日报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI 观察</button>
+<button class="tab-btn" data-tab="anime">二次元游戏观察</button>
+<button class="tab-btn" data-tab="industry">游戏行业观察</button>
+</nav>
+<main>
+<div class="tab-pane active" id="overview">
+<section class="pane-digest">
+<p class="lib-lede">跨库最高 Attention 落在 Gemini 3.8 Flash 旗舰，以及《夜勤人2：无尽宝库》1.0 翻牌与 Baseten MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>6</dd></div>
+<div><dt>高 Attention</dt><dd>5</dd></div>
+<div><dt>空库</dt><dd>游戏开发观察未出 Tab</dd></div>
+<div><dt>旗舰 / MCP</dt><dd>有新旗舰 Gemini 3.8 Flash · 有新 MCP/Skill 推荐</dd></div>
+</dl>
+<ul class="facts">
+<li>AI：4 条。旗舰是 Gemini 3.8 Flash；Baseten 三件套为今日 MCP/Skill 推荐；Cursor Self-hosted 记编程轴；Qwen Max-0902 快照不当旗舰。</li>
+<li>行业：1 条。夜勤人2 1.0 正式发售 + 主机 + Game Pass。今晚 SoP 未播，不写片单。</li>
+<li>二次元：1 条。终末地「雪凇幽梦」维护结束开门。</li>
+</ul>
+<p class="lib-note">观察清单：今晚 State of Play + Japan 21:00 CST；Grok 4.7 约 10 天后；Astra 正式 launch；绝区零 3.2 9/9；原神 7.1 前瞻约 9/11。Young Suns / 浪漫沙加3 / 鸣潮致歉帖仍待核。</p>
+</section>
+<h2 class="section-title">跨方向最高 Attention 信号</h2>
+<div class="overview-grid">
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3>今日有新旗舰：Gemini 3.8 Flash</h3>
+<p class="ov-lede">Google 发布 Gemini 3.8 Flash：面向软件工程与智能体的工作马模型，与 3.7 Flash 同速同入门价。同文 3.8 Flash Cyber 仅 Fairwind，不当一般旗舰。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02（官方 Sep 02）</dd></div>
+<div><dt>库</dt><dd>AI 观察</dd></div>
+<div><dt>状态</dt><dd>一般可用 · 旗舰</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>《夜勤人2：无尽宝库》1.0 正式发售</h3>
+<p class="ov-lede">昨报截稿仍 EA；本窗翻牌为正式版。同步登陆 PS5 / Xbox / Switch 2，Game Pass 首日入库。Steam Very Positive。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02</dd></div>
+<div><dt>库</dt><dd>游戏行业观察</dd></div>
+<div><dt>状态</dt><dd>1.0 live · Day 1 GP</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>今日有新 MCP/Skill：Baseten 三件套</h3>
+<p class="ov-lede">Baseten 为 Claude Code / Codex / Cursor / Gemini CLI 等发布 backend MCP、docs MCP 与 baseten-skills。厂商自报平均降本耗时约 7.5%。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02</dd></div>
+<div><dt>库</dt><dd>AI 观察</dd></div>
+<div><dt>状态</dt><dd>可安装推荐</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>Cursor：Self-hosted machines</h3>
+<p class="ov-lede">工具执行可留在内网；团队池调度、对接既有沙箱，Linux/Mac computer use。记编程轴，不冒充 MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02</dd></div>
+<div><dt>库</dt><dd>AI 观察</dd></div>
+<div><dt>状态</dt><dd>产品 / 编程轴</dd></div>
+</dl>
+</article>
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>终末地「雪凇幽梦」维护结束开门</h3>
+<p class="ov-lede">Asia 服 9/2 06:00–12:00 CST 强制更新后版本开门；官方站同日挂出版本更新说明。昨报为预告，本窗确认开门。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02</dd></div>
+<div><dt>库</dt><dd>二次元游戏观察</dd></div>
+<div><dt>状态</dt><dd>已开门</dd></div>
+</dl>
+</article>
+</div>
+<h2 class="section-title">库密度一览</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>观察库</th><th>独立 Signal</th><th>密度</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>AI 观察</td><td><b>4</b></td><td>高</td><td>今日有新旗舰 Gemini 3.8 Flash；今日有新 MCP/Skill 推荐</td></tr>
+<tr><td>二次元游戏观察</td><td><b>1</b></td><td>中</td><td>终末地「雪凇幽梦」维护结束开门</td></tr>
+<tr><td>游戏开发观察</td><td><b>0</b></td><td>空</td><td>游戏开发空库未出 Tab</td></tr>
+<tr><td>游戏行业观察</td><td><b>1</b></td><td>中</td><td>有独立新增；今晚 SoP 未播不写片单</td></tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">明日 / 后续观察清单</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜State of Play + Japan 今晚 21:00 CST</b><br/>收尾《最终幻想VII Revelation》深潜。未播不预写片单。</div>
+<div class="watch"><b>必跟｜Grok 4.7</b><br/>Musk 9/2 称约 10 天后（估 ~9/12）。x.ai/news 与 release-notes 无正式页。预告不当旗舰。</div>
+<div class="watch"><b>必跟｜Astra 正式 launch</b><br/>昨报已记 Critical 预发布。system card、公开可用性再写对比表。</div>
+<div class="watch"><b>可跟｜绝区零 3.2 版本 9/9</b><br/>版本日临近，前瞻与开门再核。</div>
+<div class="watch"><b>可跟｜原神 7.1 前瞻约 9/11</b><br/>观察档，未官宣不写死。</div>
+<div class="watch"><b>可跟｜明日方舟 × 女神异闻录３ Reload「月行水上」</b><br/>9/4 12:00 起。进观察清单。</div>
+<div class="watch"><b>待核｜Young Suns 1.0 Game Pass</b><br/>店页仍待核是否 live。</div>
+<div class="watch"><b>待核｜浪漫沙加3：Destinies United / 鸣潮 3.1 周边致歉一线帖 ID</b><br/>巴西分级未官宣；鸣潮一线帖 ID 仍未核。</div>
+</div>
+</div>
+
+<div class="tab-pane" id="ai">
+<section class="library-head">
+<div><span class="lib-icon">📦</span><h2>AI 观察</h2></div>
+<p class="lib-lede">今日有新旗舰：Gemini 3.8 Flash。今日有新 MCP/Skill 推荐：Baseten backend MCP + docs MCP + baseten-skills。窗内另有 Qwen Max 快照与 Cursor 自托管执行。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>4</dd></div>
+<div><dt>有信号轴</dt><dd>模型发布 / Agent·MCP·Skill / 编程</dd></div>
+<div><dt>旗舰 / MCP</dt><dd>有 Gemini 3.8 Flash · 有 Baseten 推荐</dd></div>
+<div><dt>密度</dt><dd>高</dd></div>
+</dl>
+<ul class="facts">
+<li>Gemini 3.8 Flash 一般可用；3.8 Flash Cyber 仅 Fairwind 受信，不当一般旗舰。</li>
+<li>Baseten 三件套属可安装 MCP/Skill 推荐，非产品内嵌改动冒充。</li>
+<li>Qwen3.8-Max-0902 为既有 Max 线日期快照，不升格新旗舰线。</li>
+<li>Cursor Self-hosted machines 记编程轴；Changelog 中 Custom Mode/Skills 为 Aug 19 旧项，不记今日新 Skill。</li>
+</ul>
+<p class="lib-note">不复述 Claude Fable/Mythos 5.1、OpenAI Astra 预发布。Grok 4.7 仍为预告。Anthropic / OpenAI / xAI / DeepSeek / Zhipu 窗内无新旗舰。</p>
+<div class="lib-stats"><span class="level">有新旗舰</span><span class="level">有新 MCP/Skill</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>🧠 模型发布</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/" rel="noopener" target="_blank">Gemini 3.8 Flash 公开发布（附 3.8 Flash Cyber Fairwind）</a></h4></div>
+<p class="signal-lede">Google 发布 Gemini 3.8 Flash：面向软件工程与智能体的工作马模型，与 3.7 Flash 同速同入门价；同文推出受信版 3.8 Flash Cyber（Fairwind），不当一般旗舰。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-03/gemini-38-flash.png" alt="Google Gemini 3.8 Flash 官方公告主视觉"/>
+<img src="../media/2026-09-03/gemini-38-evals.png" alt="Gemini 3.8 Flash 官方评测对照图"/>
+<figcaption>Google 官方 blog 主视觉与评测图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02（官方 blog 标注 Sep 02, 2026；具体钟点未核）</dd></div>
+<div><dt>主体</dt><dd>Google / Google DeepMind</dd></div>
+<div><dt>型号</dt><dd><code>gemini-3.8-flash</code>；Cyber 变体走 Fairwind</dd></div>
+<div><dt>可用性</dt><dd>Flash 一般可用（API / AI Studio / Antigravity / Gemini app Pro&amp;Ultra 等）；Cyber 仅受信防御方</dd></div>
+<div><dt>定价</dt><dd>入门价 $0.75 / $3.75 per 1M in/out，至 2026-12-31；其后 $1.50 / $7.50（厂商）</dd></div>
+<div><dt>定位</dt><dd>官方称 best reasoning &amp; coding model yet（Flash 档）；第三代六周内 Flash</dd></div>
+</dl>
+<ul class="facts">
+<li>官方 blog 2026-09-02：Gemini 3.8 Flash 一般可用；同基础智能驱动 Flash Cyber。</li>
+<li>HLE-Verified 54.9%（厂商自报）；DeepSWE v1.1 等宣称接近高价 frontier，缺独立复核写未核。</li>
+<li>入门价与 3.7 Flash 相同 $0.75/$3.75，至 2026-12-31。</li>
+<li>3.8 Flash Cyber：CyberGym 等防御向评测、自动打补丁；仅 Fairwind（政府/关键基础设施/软件维护方）。</li>
+<li>消费端：Gemini app / Search AI Mode / Sheets；开发者：Gemini API、AI Studio、Antigravity、Android Studio。</li>
+<li>昨报未收本条，今日窗按旗舰先核补入正文。Flash 带 CBRN/offensive cyber 防护；Cyber 更宽松故仅 Fairwind。</li>
+</ul>
+<div class="compare-wrap">
+<table class="compare">
+<caption>与主流模型对比</caption>
+<thead>
+<tr><th>指标</th><th>Gemini 3.8 Flash</th><th>Gemini 3.7 Flash</th><th>Claude Fable 5.1</th><th>GPT-5.6 Sol / 其他</th></tr>
+</thead>
+<tbody>
+<tr><td>HLE-Verified</td><td>54.9%（厂商自报）</td><td>未核</td><td>未核（HLE 非 Verified 口径）</td><td>未核</td></tr>
+<tr><td>API 入门价 in/out ($/1M)</td><td>0.75 / 3.75（至 2026-12-31）</td><td>同档入门价（厂商称）</td><td>10 / 50</td><td>未核</td></tr>
+<tr><td>公开一般可用</td><td>是</td><td>—</td><td>是（昨报）</td><td>Astra：否（预发布）；Cyber：否（Fairwind）</td></tr>
+</tbody>
+</table>
+</div>
+<p class="compare-src">数字来源：Google 官方 blog / model card。厂商自报。缺格写未核，不编。</p>
+<p class="signal-note">关注度 · 🔥🔥🔥。今日旗舰。3.8 Flash Cyber 同条写清：受信不当一般旗舰。</p>
+<div class="tags"><span>Gemini</span><span>3.8 Flash</span><span>旗舰</span><span>Cyber Fairwind</span></div>
+</div>
+
+<div class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4>Qwen3.8-Max-0902 快照升级（非新旗舰线）</h4></div>
+<p class="signal-lede">QwenCloud 推出 Qwen3.8-Max-0902：既有 Max 线的日期快照升级，记模型发布轴官方更新，不当新旗舰线。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02（QwenCloud changelog 快照名 0902）</dd></div>
+<div><dt>主体</dt><dd>阿里云通义 / Qwen</dd></div>
+<div><dt>类型</dt><dd>Max 快照升级</dd></div>
+<div><dt>旗舰判定</dt><dd>否——非新旗舰线，属既有 Max 列车快照</dd></div>
+</dl>
+<ul class="facts">
+<li>2026-09-02 QwenCloud changelog 出现 Max-0902 快照。</li>
+<li>按规范记官方更新，不升格为今日新旗舰。</li>
+<li>与 Gemini 3.8 Flash 一般可用旗舰发布区分权重。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。快照升级。官方 changelog 原文 URL / 变更明细待贴源链。</p>
+<div class="tags"><span>Qwen</span><span>Max-0902</span><span>快照</span><span>非旗舰</span></div>
+</div>
+
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🔧 Agent / MCP / Skill</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.baseten.co/blog/new-mcp-and-skill-for-coding-agents-to-use-baseten/" rel="noopener" target="_blank">Baseten 推出 backend MCP + docs MCP + baseten-skills</a></h4></div>
+<p class="signal-lede">Baseten 为 Claude Code / Codex / Cursor / Gemini CLI 等发布远程 backend MCP、docs MCP 与 baseten-skills，厂商自报平均降本耗时约 7.5%，后端重任务约减半。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02（blog Last updated September 2, 2026）</dd></div>
+<div><dt>主体</dt><dd>Baseten</dd></div>
+<div><dt>资产</dt><dd>api.baseten.co/mcp；docs.baseten.co/mcp；basetenlabs/baseten-skills</dd></div>
+<div><dt>能力</dt><dd>部署/扩缩容/日志/密钥/训练任务；文档检索；路由到正确资源</dd></div>
+<div><dt>安装</dt><dd>npx skills add + npx add-mcp（需 BASETEN_MCP_KEY）</dd></div>
+<div><dt>基准</dt><dd>320 runs / 16 tasks；acceptance 89%→97%（厂商自报）</dd></div>
+</dl>
+<ul class="facts">
+<li>三件套：backend MCP（REST 全包装）、docs MCP（未鉴权文档搜索）、Skill 路由部署/调试/扩缩容。</li>
+<li>厂商基准：平均 token/成本/耗时降约 7.5%；operate/overview/debug/tune 等后端重任务 wall time 与美元成本约减半。</li>
+<li>工具标注 read-only / mutating，便于 harness 审批门控。</li>
+<li>Skill 开源 basetenlabs/baseten-skills；兼容 Claude Code、Codex、Cursor、Gemini CLI、VS Code、Windsurf。</li>
+<li>属可安装 MCP/Skill 推荐轴，非产品内嵌改动冒充。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。今日有新 MCP/Skill 推荐。</p>
+<div class="tags"><span>Baseten</span><span>MCP</span><span>Skill</span><span>推荐</span></div>
+</div>
+</div>
+</article>
+
+<article class="axis-card">
+<div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.cursor.com/changelog" rel="noopener" target="_blank">Cursor Changelog：Self-hosted machines（团队池 / 自托管执行）</a></h4></div>
+<p class="signal-lede">Cursor 支持自托管机器：工具执行留在内网；动态团队池调度、对接既有沙箱，Linux/Mac computer use。记编程轴，不冒充 MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02（cursor.com/changelog）</dd></div>
+<div><dt>主体</dt><dd>Cursor</dd></div>
+<div><dt>能力</dt><dd>My Machines / Team pools / hibernate；Lambda/Coder/Cloudflare/Daytona/Modal/Namespace/Vercel/E2B</dd></div>
+<div><dt>Computer use</dt><dd>Self-hosted workers 支持 Linux/Mac 桌面操控</dd></div>
+<div><dt>归类</dt><dd>产品/编程轴，非 MCP/Skill 推荐</dd></div>
+</dl>
+<ul class="facts">
+<li>代码、构建产物与密钥可留在用户自有基础设施。</li>
+<li>Team pools 按需扩缩并支持空闲休眠后再唤醒。</li>
+<li>可在既有云沙箱上跑 Cloud Agents。</li>
+<li>自托管 worker 支持 computer use（点按/键入/截图/浏览器）。</li>
+<li>Changelog 中 Custom Mode/Skills 为 Aug 19 旧项，不记今日新 Skill 推荐。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。编程轴产品能力。不是 MCP/Skill 推荐。</p>
+<div class="tags"><span>Cursor</span><span>Self-hosted</span><span>编程轴</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/" rel="noopener" target="_blank">Google · Gemini 3.8 Flash / Flash Cyber</a></li>
+<li><a href="https://deepmind.google/discover/blog/" rel="noopener" target="_blank">DeepMind Blog · September 2026</a></li>
+<li><a href="https://deepmind.google/models/model-cards/gemini-3-8-flash/" rel="noopener" target="_blank">DeepMind · Gemini 3.8 Flash model card</a></li>
+<li><a href="https://www.baseten.co/blog/new-mcp-and-skill-for-coding-agents-to-use-baseten/" rel="noopener" target="_blank">Baseten · MCP and Skill for coding agents</a></li>
+<li><a href="https://www.cursor.com/changelog" rel="noopener" target="_blank">Cursor Changelog · Self-hosted machines</a></li>
+<li><a href="https://www.anthropic.com/news" rel="noopener" target="_blank">Anthropic News（窗内无新旗舰）</a></li>
+<li><a href="https://x.ai/news" rel="noopener" target="_blank">xAI News（现役仍 Grok 4.6）</a></li>
+</ol>
+</section>
+</div>
+
+<div class="tab-pane" id="anime">
+<section class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p class="lib-lede">本库一条运营向落地：终末地「雪凇幽梦」维护结束开门；官方站同日挂出版本更新说明。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>1</dd></div>
+<div><dt>有信号轴</dt><dd>版本 / 活动</dd></div>
+<div><dt>密度</dt><dd>中</dd></div>
+</dl>
+<ul class="facts">
+<li>昨报为预告/待核进服；本窗确认版本说明已刊与开门窗口。</li>
+<li>明日方舟本家 × 女神异闻录３ Reload「月行水上」9/4 12:00 起——进观察清单。</li>
+<li>绝区零 3.2 仍锁 9/9；原神 7.1 前瞻约 9/11（观察）。</li>
+</ul>
+<p class="lib-note">待核：鸣潮 3.1 周边致歉一线帖 ID 仍未核。</p>
+<div class="lib-stats"><span>雪凇幽梦开门</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>🔄 版本 / 活动</h3><span class="density">中</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">明日方舟：终末地「雪凇幽梦」维护结束开门</a></h4></div>
+<p class="signal-lede">终末地 Asia 服 9/2 06:00–12:00 CST 强制更新后，「雪凇幽梦」版本开门；官方站同日挂出版本更新说明。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02</dd></div>
+<div><dt>主体</dt><dd>明日方舟：终末地 / 鹰角网络 · Hypergryph</dd></div>
+<div><dt>维护</dt><dd>Asia 06:00–12:00 CST（官方更新说明）</dd></div>
+<div><dt>增量</dt><dd>昨报为预告/待核进服；本窗确认版本说明已刊与开门窗口</dd></div>
+</dl>
+<ul class="facts">
+<li>官方新闻页 2026.09.02「雪凇幽梦」版本更新说明。</li>
+<li>新区域雪松林、干员提弗洛斯寻访等随版本展开（沿用官方说明）。</li>
+<li>明日方舟本家 × 女神异闻录３ Reload「月行水上」9/4 12:00 起——进观察清单。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。版本开门确认。不配未另备今日官图。</p>
+<div class="tags"><span>终末地</span><span>雪凇幽梦</span><span>版本开门</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://endfield.hypergryph.com/news" rel="noopener" target="_blank">终末地官网新闻</a></li>
+<li><a href="https://ak.hypergryph.com/news/9681.html" rel="noopener" target="_blank">明日方舟官网新闻 9681</a></li>
+</ol>
+</section>
+</div>
+
+<div class="tab-pane" id="industry">
+<section class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p class="lib-lede">今日有独立游戏观察新增：《夜勤人2：无尽宝库》1.0 正式发售翻牌。今晚 State of Play + Japan 21:00 CST 未播，不写片单轴。</p>
+<dl class="kv">
+<div><dt>独立 Signal</dt><dd>1</dd></div>
+<div><dt>有信号轴</dt><dd>独立游戏观察</dd></div>
+<div><dt>密度</dt><dd>中</dd></div>
+<div><dt>片单</dt><dd>今晚未播，不预写</dd></div>
+</dl>
+<ul class="facts">
+<li>夜勤人2：昨报截稿仍 EA；本窗 Steam release_date 2026-09-02、coming_soon=false，正式 1.0 + 主机 + Game Pass Day 1。</li>
+<li>Steam 简中名称字段确认为「夜勤人2：无尽宝库」。</li>
+<li>展会片单：State of Play + Japan 今晚 21:00 CST，收尾《最终幻想VII Revelation》深潜；未播不预写。</li>
+</ul>
+<p class="lib-note">待核：Young Suns 1.0 Game Pass 店页；浪漫沙加3：Destinies United 巴西分级未官宣。</p>
+<div class="lib-stats"><span class="level">有独立新增</span><span>片单未播</span></div>
+</section>
+<div class="axis-grid">
+<article class="axis-card">
+<div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">高</span></div>
+<div class="axis-body">
+<div class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/2350790/" rel="noopener" target="_blank">夜勤人2：无尽宝库（Moonlighter 2: The Endless Vault）1.0 正式发售</a></h4></div>
+<p class="signal-lede">《夜勤人2：无尽宝库》于 9/2 结束抢先体验并 1.0 正式发售，同步登陆 PS5 / Xbox / Switch 2，Game Pass 首日入库。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-03/moonlighter2.jpg" alt="夜勤人2：无尽宝库 Steam / 官方封面"/>
+<figcaption>Steam / 官方店页封面</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-02（Steam 简中店页）</dd></div>
+<div><dt>主体</dt><dd>Digital Sun · 发行 11 bit studios</dd></div>
+<div><dt>平台</dt><dd>PC（Steam/MS Store）、PS5、Xbox Series、Nintendo Switch 2、Game Pass</dd></div>
+<div><dt>口碑</dt><dd>Steam Very Positive（约 85%，3189 评，截稿 API）</dd></div>
+<div><dt>定价</dt><dd>店页促销中（截稿见 Steam）</dd></div>
+</dl>
+<ul class="facts">
+<li>Steam 简中名称字段确认为「夜勤人2：无尽宝库」；release_date 2026 年 9 月 2 日，coming_soon=false。</li>
+<li>1.0：主线收束、Infinite Endless Vault 终局、Hardcore、新武器方面与商店满级等（厂商/一线报道）。</li>
+<li>昨报截稿仍 EA；本窗翻牌为正式版。</li>
+<li>实体收藏版计划 2026-11-13（二线，标观察）。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。今日有独立游戏观察新增 / 新游正式发售。</p>
+<div class="tags"><span>夜勤人2</span><span>1.0</span><span>Game Pass</span><span>独立</span></div>
+</div>
+</div>
+</article>
+</div>
+<section>
+<h2 class="section-title">主要信源</h2>
+<ol class="sources">
+<li><a href="https://store.steampowered.com/app/2350790/" rel="noopener" target="_blank">Steam · 夜勤人2：无尽宝库</a></li>
+<li><a href="https://store.steampowered.com/news/app/2350790/view/705527117835667178" rel="noopener" target="_blank">Steam News · Moonlighter 2 1.0</a></li>
+<li><a href="https://rogueliker.com/moonlighter-2-console-launch-trailer/" rel="noopener" target="_blank">Rogueliker · console launch trailer</a></li>
+</ol>
+</section>
+</div>
+
+</main>
+<p class="footnote">窗口（2026-09-02，2026-09-03] Asia/Shanghai。空库：游戏开发观察未出 Tab。今日有新旗舰：Gemini 3.8 Flash。今日有新 MCP/Skill 推荐：Baseten MCP + baseten-skills。今日有独立游戏观察新增。展会片单：今晚 State of Play 未播，不写片单轴。不复述 Fable/Mythos 5.1、Astra 预发布。生成于 2026-09-03 09:40 档日常规整理。</p>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
