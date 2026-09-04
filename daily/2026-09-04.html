@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-04</title>
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-04 · 周五 · W36 · 含昨 9:30 后补入核</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W35.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-04" aria-label="日期切换"></nav>
+      <span class="window">窗口 (2026-09-03, 2026-09-04]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是 <strong>GPT-6 Astra 旗舰正式部署</strong>，以及昨晚 State of Play + Japan（21:00 CST）补入核的展会片单。今日有新旗舰：GPT-6 Astra；今日无新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>窗口</dt><dd>(2026-09-03, 2026-09-04] · 含昨 9:30 后 SoP / Astra 正式帖</dd></div>
+      <div><dt>新旗舰</dt><dd>有 · GPT-6 Astra（<code>gpt-6-astra</code>）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐（产品内 MCP 设置改动不冒充推荐）</dd></div>
+      <div><dt>展会</dt><dd>State of Play + Japan 已播 · 出🎬展会片单</dd></div>
+      <div><dt>空库</dt><dd>游戏开发空库未出 Tab</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>OpenAI 正式放出 GPT-6 Astra：Critical 网络安全档 + 计算机使用/工程向旗舰；Trusted Access 先行，随后几天铺 Plus/API。</li>
+      <li>同日 OpenAI 宣布 Daybreak for Frontline Defenders：10 亿美元补贴级防守侧接入（行业/安全轴，非旗舰）。</li>
+      <li>SoP 双场 30+ 作：Rhapsody in Scarlet 等世界首发；最终幻想VII Revelation 锁 2027-04-08；直到黎明2 锁 2027-01-28。</li>
+      <li>二次元：鸣潮 3.7「心」「锁暝」实机昨公开；Rematch×蓝色监狱 9/24。</li>
+    </ul>
+    <p class="lib-note">判定：旗舰日 + 展会补录日。Gemini 3.8 Flash / Fable 5.1 / 夜勤人2 1.0 / Baseten 推荐不复述。预发布不当今日旗舰的旧 Astra 口径已过期。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric hot"><b>8</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>6</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>3</b><span>显示库</span></div>
+  <div class="metric"><b>1</b><span>新旗舰</span></div>
+  <div class="metric"><b>0</b><span>新 MCP/Skill</span></div>
+  <div class="metric"><b>1</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="分页">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ai">📦 AI 观察</button>
+  <button class="tab-btn" data-tab="anime">🌸 二次元</button>
+  <button class="tab-btn" data-tab="ind">🎮 游戏行业</button>
+</nav>
+
+<div id="ov" class="tab-pane active">
+  <h2 class="section-title">跨方向最高 Attention 信号</h2>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+      <div class="fire" title="高 Attention">🔥🔥🔥</div>
+      <h3>今日有新旗舰：GPT-6 Astra</h3>
+      <p class="ov-lede">OpenAI 正式部署 GPT-6 Astra，首达 Critical 网络安全能力阈值。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-03 官宣（CST 跨入 9/4）</dd></div>
+        <div><dt>主体</dt><dd>OpenAI · <code>gpt-6-astra</code></dd></div>
+        <div><dt>价格</dt><dd>$10 / $50 per MTok（厂商自报）</dd></div>
+        <div><dt>库</dt><dd>AI · 模型发布</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥🔥</div>
+      <h3>State of Play + Japan 展会片单</h3>
+      <p class="ov-lede">昨 21:00 CST 双场已播，官方总表 30+ 作；世界首发 + 新锁进片单。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-03 21:00 CST</dd></div>
+        <div><dt>主体</dt><dd>PlayStation · SoP / SoP Japan</dd></div>
+        <div><dt>库</dt><dd>行业 · 展会片单</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥🔥</div>
+      <h3>最终幻想VII Revelation 锁 2027-04-08</h3>
+      <p class="ov-lede">重制三部曲完结篇定档，SoP 以深潜收尾。</p>
+      <dl class="kv">
+        <div><dt>平台</dt><dd>PS5（多端春季叙事另见 SE 亚洲稿）</dd></div>
+        <div><dt>库</dt><dd>行业 · 新锁</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥</div>
+      <h3>直到黎明2 锁 2027-01-28</h3>
+      <p class="ov-lede">Firesprite × AdHoc；预购 9/10 开。</p>
+      <dl class="kv">
+        <div><dt>平台</dt><dd>PS5</dd></div>
+        <div><dt>库</dt><dd>行业 · 新锁</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥</div>
+      <h3>Rhapsody in Scarlet 世界首发</h3>
+      <p class="ov-lede">Konami 新 IP，1920s 纽约魔法动作；无官方简中店名，留英文。</p>
+      <dl class="kv">
+        <div><dt>平台</dt><dd>PS5（巴哈称另有 Xbox/Steam，待核）</dd></div>
+        <div><dt>库</dt><dd>行业 · 世界首发</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥</div>
+      <h3>鸣潮「心」「锁暝」实机</h3>
+      <p class="ov-lede">3.7 两位五星共鸣者实机昨公开（岁主心 + 锁暝）。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-03</dd></div>
+        <div><dt>库</dt><dd>二次元 · 角色/版本</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <h2 class="section-title">库密度一览</h2>
+  <div class="overview-grid">
+    <article class="overview-signal">
+      <h3>📦 AI 观察</h3>
+      <p class="ov-lede">旗舰 1 + 行业/安全 1；无新 MCP/Skill 推荐。</p>
+      <dl class="kv"><div><dt>轴</dt><dd>模型发布 · 行业/安全</dd></div></dl>
+    </article>
+    <article class="overview-signal">
+      <h3>🌸 二次元</h3>
+      <p class="ov-lede">鸣潮实机 + Rematch×蓝色监狱联动定档。</p>
+      <dl class="kv"><div><dt>轴</dt><dd>角色 · 联动</dd></div></dl>
+    </article>
+    <article class="overview-signal">
+      <h3>🎮 游戏行业</h3>
+      <p class="ov-lede">展会片单为主；Keeper PS5 翻牌进独立观察。</p>
+      <dl class="kv"><div><dt>轴</dt><dd>展会片单 · 独立</dd></div></dl>
+    </article>
+    <article class="overview-signal">
+      <h3>🛠️ 游戏开发</h3>
+      <p class="ov-lede">空库未出 Tab。</p>
+      <dl class="kv"><div><dt>状态</dt><dd>无达门槛 Signal</dd></div></dl>
+    </article>
+  </div>
+
+  <h2 class="section-title">明日 / 后续观察清单</h2>
+  <ul class="facts">
+    <li>GPT-6 Astra 向 Plus/Pro/API 的具体开闸时点；Daybreak 防守网络名单。</li>
+    <li>Marvel’s Wolverine 2026-09-15；Rematch×蓝色监狱 9/24；羊蹄山之魂 Complete Edition 10/01。</li>
+    <li>Hunter’s Moon 店页日：PS 专文 Oct 26 vs 总表 Oct 25（待核）。</li>
+    <li>Rhapsody in Scarlet 官方简中店名；CONQ / Uncanyon / Where the Seeds Fall 主机店页译名。</li>
+    <li>不复述：Gemini 3.8 Flash、Fable/Mythos 5.1、夜勤人2 1.0、Baseten MCP。</li>
+  </ul>
+</div>
+
+<div id="ai" class="tab-pane">
+  <section class="library-head">
+    <p class="lib-lede">今日有新旗舰：GPT-6 Astra。今日无新 MCP/Skill 推荐。Cursor changelog 窗内无新于昨日已报的 Self-hosted machines。</p>
+    <dl class="kv">
+      <div><dt>旗舰必开</dt><dd>Anthropic / OpenAI / Google / xAI / Qwen / DeepSeek / GLM / Cursor 已扫</dd></div>
+      <div><dt>MCP/Skill</dt><dd>无达推荐门槛新条</dd></div>
+      <div><dt>编程轴</dt><dd>无单独成条（Claude Code managedMcpServers 为组织设置，不冒充推荐）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>Astra 与 9/1 Path to Astra 预发布区分：本次为正式部署 + System Card。</li>
+      <li>Daybreak $1B 记行业/安全，不升格旗舰。</li>
+    </ul>
+    <p class="lib-note">判定：模型轴权重拉满；推荐轴明确写无。</p>
+  </section>
+
+  <div class="axis-grid">
+    <article class="axis-card">
+      <div class="axis-title">🧠 模型发布</div>
+      <div class="axis-body">
+        <div class="signal high">
+          <div class="signal-head">
+            <span class="fire">🔥🔥🔥</span>
+            <h3>GPT-6 Astra 正式部署</h3>
+          </div>
+          <p class="signal-lede">OpenAI 发布 GPT-6 Astra（<code>gpt-6-astra</code>），称为迄今最智能且最对齐、面向计算机使用与专业工作的旗舰，并首次达到 Preparedness Framework 的 Critical 网络安全能力档。</p>
+          <figure class="signal-media">
+            <img src="../media/2026-09-04/gpt6-astra.png" alt="GPT-6 Astra 官方主视觉"/>
+            <figcaption>来源：OpenAI 官方 og:image</figcaption>
+          </figure>
+          <dl class="kv">
+            <div><dt>日期</dt><dd>2026-09-03（官宣；Verge 标 18:00 UTC ≈ CST 9/4 02:00）</dd></div>
+            <div><dt>主体</dt><dd>OpenAI</dd></div>
+            <div><dt>Model ID</dt><dd><code>gpt-6-astra</code></dd></div>
+            <div><dt>价格</dt><dd>$10 / $50 per MTok（厂商自报）</dd></div>
+            <div><dt>上下文</dt><dd>1.05M · 知识截止 2026-04-30（厂商自报）</dd></div>
+            <div><dt>开闸</dt><dd>Trusted Access / 有限组织先行；随后几天 Plus、Pro、Business、Enterprise、API、AWS</dd></div>
+          </dl>
+          <ul class="facts">
+            <li>FrontierMath Tier 4 约 98%；ARC-AGI-3 99.9%；ExploitBench 100%（厂商自报）。</li>
+            <li>OSWorld 2.0：72.6% / 约 40 分钟每任务，对比 Sol 65.7% / 约 75 分钟（约少 47% 时延，厂商自报）。</li>
+            <li>越权范围评测：Sol 无生产防护时 48% 越权，Astra 0%（厂商自报）。</li>
+            <li>Safety overview / System Card 同日发布；强调 Critical cyber 阈值与更强拒答/对齐。</li>
+            <li>DeepSWE v1.1：二线 The New Stack 报 74.1% vs Sol 70.8%；官方页有 DeepSWE 呈现，精确表值正文以官方图表为准，缺格写未核。</li>
+          </ul>
+          <table class="compare">
+            <caption>与主流模型对比（厂商自报 / 已核；缺格未核）</caption>
+            <thead>
+              <tr><th>指标</th><th>GPT-6 Astra</th><th>GPT-5.6 Sol</th><th>Gemini 3.8 Flash</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>定位</td><td>旗舰 · Critical cyber</td><td>上一代旗舰线</td><td>Flash 工作马（昨报）</td></tr>
+              <tr><td>Input / Output</td><td>$10 / $50</td><td>$4 / $20</td><td>$0.75 / $3.75</td></tr>
+              <tr><td>Context</td><td>1.05M</td><td>1.05M</td><td>未核本条</td></tr>
+              <tr><td>FrontierMath T4</td><td>≈98%</td><td>未核</td><td>未核</td></tr>
+              <tr><td>ARC-AGI-3</td><td>99.9%</td><td>未核</td><td>未核</td></tr>
+              <tr><td>OSWorld 2.0</td><td>72.6% @~40m</td><td>65.7% @~75m</td><td>未核</td></tr>
+              <tr><td>DeepSWE v1.1</td><td>74.1%（二线）</td><td>70.8%（二线）</td><td>未核</td></tr>
+            </tbody>
+          </table>
+          <p class="signal-note">来源：<a href="https://openai.com/index/gpt-6-astra/">OpenAI GPT-6 Astra</a> · <a href="https://openai.com/index/safety-overview-gpt-6-astra/">Safety overview</a> · <a href="https://deploymentsafety.openai.com/gpt-6-astra">System Card</a> · <a href="https://developers.openai.com/api/docs/models">Models</a></p>
+          <div class="tags"><span>旗舰</span><span>OpenAI</span><span>Critical</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="axis-card">
+      <div class="axis-title">🏭 行业 / 国内 · 安全</div>
+      <div class="axis-body">
+        <div class="signal medium">
+          <div class="signal-head">
+            <span class="fire">🔥🔥</span>
+            <h3>Daybreak for Frontline Defenders · $1B</h3>
+          </div>
+          <p class="signal-lede">OpenAI 推出面向前线防守方的 Daybreak 计划，承诺 10 亿美元级补贴接入、培训与合作，服务水电、地方政府、金融等关键设施防守。</p>
+          <dl class="kv">
+            <div><dt>日期</dt><dd>2026-09-03</dd></div>
+            <div><dt>主体</dt><dd>OpenAI Daybreak</dd></div>
+            <div><dt>规模</dt><dd>$1 billion（厂商自报）</dd></div>
+          </dl>
+          <ul class="facts">
+            <li>含 Daybreak for America 与 MS-ISAC 试点叙事。</li>
+            <li>称 Defense Network 接入 35+ 企业产品/伙伴服务（厂商自报）。</li>
+            <li>与 Astra Critical cyber 同日叙事，但是防守侧项目，不当旗舰条。</li>
+          </ul>
+          <p class="signal-note">来源：<a href="https://openai.com/index/daybreak-for-frontline-defenders/">Daybreak for Frontline Defenders</a></p>
+          <div class="tags"><span>安全</span><span>Daybreak</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="axis-card">
+      <div class="axis-title">🔧 Agent / MCP / Skill</div>
+      <div class="axis-body">
+        <div class="signal">
+          <div class="signal-head"><h3>今日无新 MCP/Skill 推荐</h3></div>
+          <p class="signal-lede">窗内未核到可独立成条的新 MCP / Skill / 工作流推荐；Claude Code <code>managedMcpServers</code> 属组织托管设置，记编程产品能力，不冒充推荐。</p>
+          <ul class="facts">
+            <li>不复述昨日 Baseten backend/docs MCP + baseten-skills。</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+  <p class="lib-note">主要信源：OpenAI Index / Deployment Safety / Developers Docs；Anthropic News（窗内无新旗舰）；Google Models &amp; research（无新于昨 Flash）；Cursor changelog（无新于昨）。</p>
+</div>
+
+<div id="anime" class="tab-pane">
+  <section class="library-head">
+    <p class="lib-lede">二次元以鸣潮 3.7 角色实机与 SoP 日本向联动/主机化为主；原神 / 星铁 / 终末地窗内无新开门。</p>
+    <dl class="kv">
+      <div><dt>高权重</dt><dd>鸣潮「心」「锁暝」</dd></div>
+      <div><dt>联动</dt><dd>Rematch × 蓝色监狱 9/24</dd></div>
+      <div><dt>交叉</dt><dd>影之实力者主机作、Fate/Extra Record、龙珠超宇宙 3 见行业片单</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>不复述终末地「雪凇幽梦」开门、星铁 4.5 已开。</li>
+    </ul>
+    <p class="lib-note">判定：角色实机达门槛；大版本开门无新增。</p>
+  </section>
+  <div class="axis-grid">
+    <article class="axis-card">
+      <div class="axis-title">🎭 角色 / 实机</div>
+      <div class="axis-body">
+        <div class="signal high">
+          <div class="signal-head"><span class="fire">🔥🔥</span><h3>鸣潮 3.7：共鸣者「心」「锁暝」实机</h3></div>
+          <p class="signal-lede">库洛公开 3.7 两位五星共鸣者实机：「心」（岁主·心月狐）与「锁暝」，导电属性，演示含形态切换与协同雷击。</p>
+          <dl class="kv">
+            <div><dt>日期</dt><dd>2026-09-03</dd></div>
+            <div><dt>主体</dt><dd>鸣潮 / 库洛</dd></div>
+            <div><dt>版本</dt><dd>3.7 前瞻实机（开门日未核）</dd></div>
+          </dl>
+          <ul class="facts">
+            <li>「心」：首位可玩岁主；音感仪；通常/白狐双形态。</li>
+            <li>「锁暝」：迅刀；机关伞与十重契设定。</li>
+            <li>切换协同：锁暝→心周期性雷击；反向持续枪状物攻击（演示口径）。</li>
+          </ul>
+          <p class="signal-note">来源：库洛公开实机（二线 17173 / 巴哈姆特 9/3 交叉）；开门日与卡池时刻待核官网。</p>
+          <div class="tags"><span>鸣潮</span><span>3.7</span></div>
+        </div>
+      </div>
+    </article>
+    <article class="axis-card">
+      <div class="axis-title">🤝 联动</div>
+      <div class="axis-body">
+        <div class="signal medium">
+          <div class="signal-head"><span class="fire">🔥</span><h3>Rematch × 蓝色监狱 · 9/24</h3></div>
+          <p class="signal-lede">SoP 宣布 Sloclap《Rematch》与《蓝色监狱》联动，2026-09-24 登陆 PS5。</p>
+          <dl class="kv">
+            <div><dt>日期</dt><dd>联动上线 2026-09-24</dd></div>
+            <div><dt>平台</dt><dd>PS5</dd></div>
+          </dl>
+          <ul class="facts">
+            <li>官方总表写入 State of Play 片单交叉。</li>
+          </ul>
+          <p class="signal-note">来源：<a href="https://blog.playstation.com/2026/09/03/state-of-play-state-of-play-japan-all-announcements-trailers/">PS Blog 总表</a></p>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div id="ind" class="tab-pane">
+  <section class="library-head">
+    <p class="lib-lede">行业主轴是昨晚 State of Play + Japan：世界首发与新锁进🎬展会片单；已定档深潜收表。今日有独立游戏观察新增（Keeper PS5 发售翻牌）。</p>
+    <dl class="kv">
+      <div><dt>秀次</dt><dd>State of Play + State of Play Japan · 2026-09-03 21:00 CST</dd></div>
+      <div><dt>官方总表</dt><dd>30+ 作 · 字母序</dd></div>
+      <div><dt>独立</dt><dd>有新增 · Keeper PS5</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>世界首发优先：Rhapsody in Scarlet、CONQ、Uncanyon、Where the Seeds Fall、影之实力者：Phantom Echoes、WPCA、Maneater 2 等。</li>
+      <li>硬新锁：最终幻想VII Revelation 2027-04-08；直到黎明2 2027-01-28；Gundam Rogue Orbit 2027-03-05；Metro 2039 2027-02-04。</li>
+    </ul>
+    <p class="lib-note">判定：展会周片单强制出轴；未播规则已解除。</p>
+  </section>
+
+  <div class="axis-grid">
+    <article class="axis-card">
+      <div class="axis-title">🎬 展会片单</div>
+      <div class="axis-body">
+        <div class="signal high">
+          <div class="signal-head"><span class="fire">🔥🔥🔥</span><h3>State of Play + Japan · 世界首发 / 新锁</h3></div>
+          <p class="signal-lede">双场连播结束，PlayStation Blog 放出字母序总表与多篇专文；世界首发与新锁如下，已定档深潜见表。</p>
+          <figure class="signal-media">
+            <img src="../media/2026-09-04/sop-japan.jpg" alt="State of Play 官方主视觉"/>
+            <figcaption>来源：PlayStation.Blog 总表配图</figcaption>
+          </figure>
+          <dl class="kv">
+            <div><dt>播出</dt><dd>2026-09-03 21:00 CST</dd></div>
+            <div><dt>规模</dt><dd>两场 · 逾 30 作（官方口径）</dd></div>
+          </dl>
+          <ul class="facts show-slate">
+            <li><strong>世界首发</strong> Rhapsody in Scarlet（Konami，新 IP，档期未定）· <a href="https://blog.playstation.com/2026/09/03/rhapsody-in-scarlet-announced-for-ps5/">专文</a></li>
+            <li><strong>世界首发</strong> CONQ: Crown of No Quarter · 共享开放世界战争</li>
+            <li><strong>世界首发</strong> Uncanyon（Graceful Decay）· PS5 2027</li>
+            <li><strong>世界首发</strong> Where the Seeds Fall（CygamesEdge 首作）· PS5 2026-11-05</li>
+            <li><strong>世界首发</strong> 影之实力者：Phantom Echoes · 系列首部主机作 · PS5 2027</li>
+            <li><strong>世界首发</strong> World Phasebound Control Authority: WPCA · PS5 2028</li>
+            <li><strong>世界首发</strong> Maneater 2 · PS5 2027</li>
+            <li><strong>新锁</strong> 最终幻想VII Revelation · <strong>2027-04-08</strong> PS5</li>
+            <li><strong>新锁</strong> 直到黎明2 · <strong>2027-01-28</strong> PS5 · 预购 9/10</li>
+            <li><strong>新锁</strong> Fate/Extra Record · <strong>2027-01-28</strong> PS5/PS4</li>
+            <li><strong>新锁</strong> Gundam Rogue Orbit · <strong>2027-03-05</strong></li>
+            <li><strong>新锁</strong> Metro 2039 · <strong>2027-02-04</strong></li>
+            <li><strong>新锁</strong> Dragon Quest Monsters: The Withered World · <strong>2026-12-03</strong> PS5</li>
+            <li><strong>新锁</strong> 羊蹄山之魂：Most Wanted + Echoes of Sekigahara · <strong>2026-10-01</strong> Complete Edition</li>
+            <li><strong>新锁</strong> 最终幻想 Resonance · <strong>2026-10-22</strong> · 首章试玩今日可下</li>
+            <li><strong>新锁</strong> Marvel’s Wolverine · <strong>2026-09-15</strong></li>
+            <li><strong>新锁</strong> GTA6 Limited DualSense 黑/白 · <strong>2026-11-19</strong>（与 GTA6 同日）· 预购 9/10</li>
+            <li><strong>新锁</strong> Hunter’s Moon · <strong>2026-10-26</strong>（专文；总表另写 10/25，待核）</li>
+            <li><strong>新锁</strong> Rematch × 蓝色监狱 · <strong>2026-09-24</strong></li>
+            <li><strong>新锁</strong> Stupid Never Dies · <strong>2026-10-21</strong> · 试玩今日可下</li>
+          </ul>
+          <figure class="signal-media">
+            <img src="../media/2026-09-04/rhapsody-scarlet.png" alt="Rhapsody in Scarlet 官方图"/>
+            <figcaption>Rhapsody in Scarlet · PlayStation.Blog</figcaption>
+          </figure>
+          <figure class="signal-media">
+            <img src="../media/2026-09-04/ffvii-revelation.jpg" alt="最终幻想VII Revelation 官方图"/>
+            <figcaption>最终幻想VII Revelation · PlayStation.Blog</figcaption>
+          </figure>
+          <table class="compare">
+            <caption>已定档深潜，不单开</caption>
+            <thead><tr><th>作品</th><th>增量</th><th>档期</th></tr></thead>
+            <tbody>
+              <tr><td>最终幻想VII Revelation</td><td>开放世界向深潜 · FITS · 预购特典</td><td>2027-04-08</td></tr>
+              <tr><td>怪物猎人 荒野：Ascendance</td><td>Elder Dragon Gundoraja · TGS 试玩</td><td>2027</td></tr>
+              <tr><td>羊蹄山之魂 Complete</td><td>Most Wanted 生存波次 + 关原故事扩</td><td>2026-10-01</td></tr>
+              <tr><td>Gran Turismo 7 Spec IV</td><td>两段更新 · 赛道/车辆/漂移等</td><td>2026 年 Q4 两段</td></tr>
+              <tr><td>Rev. Noir</td><td>新实机 · 确认 2027</td><td>2027</td></tr>
+            </tbody>
+          </table>
+          <p class="signal-note">来源：<a href="https://blog.playstation.com/2026/09/03/state-of-play-state-of-play-japan-all-announcements-trailers/">PS Blog 总表</a> 及同日专文簇</p>
+          <div class="tags"><span>State of Play</span><span>展会片单</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="axis-card">
+      <div class="axis-title">🧩 独立游戏观察</div>
+      <div class="axis-body">
+        <div class="signal high">
+          <div class="signal-head"><span class="fire">🔥🔥</span><h3>Keeper · PS5 发售翻牌</h3></div>
+          <p class="signal-lede">Double Fine《Keeper》PS5 版于 State of Play 当日上架；Steam 简中名称字段仍为 Keeper（不自译）。</p>
+          <dl class="kv">
+            <div><dt>日期</dt><dd>2026-09-03</dd></div>
+            <div><dt>平台</dt><dd>PS5（PC/Xbox 已于 2025-10-17）</dd></div>
+            <div><dt>开发</dt><dd>Double Fine / Xbox Game Studios</dd></div>
+          </dl>
+          <ul class="facts">
+            <li>无言第三人称解谜冒险；灯塔与海鸟同行。</li>
+            <li>展会周独立向世界首发（Uncanyon、Hunter’s Moon、Where the Seeds Fall）已在片单，不在此复述长名单。</li>
+          </ul>
+          <p class="signal-note">来源：PS Blog 总表 Keeper 条 · Gematsu 2026-09-03</p>
+          <div class="tags"><span>独立</span><span>发售</span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<footer class="foot">
+  <p>综合日报 · 2026-09-04 · 观察台 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 快照 <code>/daily/2026-09-04.html</code></p>
+</footer>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
+
+<script src="../date-nav.js"></script>
+</body>
+</html>
