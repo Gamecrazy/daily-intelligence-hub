@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-07</title>
+<style>
+
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-07 · 周一 · W37 · 含昨 9:30 后补入核</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W37.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-07" aria-label="日期切换"></nav>
+      <span class="window">窗口 (2026-09-06, 2026-09-07]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是行业翻牌：独立作 <strong>幻珠奇港（Port of Jumanah）</strong> PS5 / PC 定档今日发售；另补入昨窗漏扫的 <strong>《文明VII》Arc of Tomorrow / Earthrise</strong> 路线图，以及卡普空 Ascendance 轻弩增威片与 <strong>《女神异闻录4 Revival》巽完二</strong> 角色预告。今日无新旗舰；今日无新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>窗口</dt><dd>(2026-09-06, 2026-09-07] · 含昨 9:30 后补入核（MH Ascendance 轻弩片）+ 昨窗漏扫（Civ VII / P4R 巽完二）</dd></div>
+      <div><dt>新旗舰</dt><dd>无</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无</dd></div>
+      <div><dt>展会</dt><dd>无新世界首发 / 无新锁（Zelda Direct 9/8、Nintendo Direct 9/9 未播不写片单）</dd></div>
+      <div><dt>空库</dt><dd>AI / 二次元 / 游戏开发空库未出 Tab</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>幻珠奇港：Steam 简中店名已核；Red Dunes / Agate；PS5 + Steam / Epic；截稿约 09:52 CST Steam API 仍 <code>coming_soon</code>，店页日期为今日。</li>
+      <li>Firaxis / 2K 官宣 Civ VII 免费大更 Arc of Tomorrow（原子时代，2027）+ 首个付费扩展 Earthrise；本月还有 1.5.0（True Start Earth 地图）。</li>
+      <li>卡普空 Ascendance 轻弩 Boosted Actions 片：跑打 / 枪斗反击 / 弹雨；2027 扩展跟进。</li>
+      <li>旗舰必开页已核：Anthropic news 最新仍 Sep 1 Fable/Mythos 5.1；Google 仍 Gemini 3.8 Flash；xAI 仍无 Grok 4.7；Cursor changelog 最新 Sep 2。</li>
+    </ul>
+    <p class="lib-note">判定：行业发售日 + 补核日。不复述 Thank You Bus Driver、Astonishia、MH 锤片、鬼武者、Astra/Gemini/Fable、AWS/Baseten MCP、SoP 片单、夜勤人2。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric hot"><b>4</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>2</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>1</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric"><b>0</b><span>新 MCP/Skill</span></div>
+  <div class="metric"><b>0</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="分页">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ind">🎮 游戏行业</button>
+</nav>
+
+<div id="ov" class="tab-pane active">
+  <h2 class="section-title">跨方向最高 Attention 信号</h2>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+      <div class="fire" title="高 Attention">🔥🔥</div>
+      <h3>幻珠奇港今日发售</h3>
+      <p class="ov-lede">阿拉伯半岛采珠风独立 Roguelite：PS5 / Steam / Epic，Steam 简中名「幻珠奇港」。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-07（店页当日；截稿仍 coming_soon）</dd></div>
+        <div><dt>主体</dt><dd>Red Dunes · Agate · Steam 2998920</dd></div>
+        <div><dt>库</dt><dd>行业 · 独立发售</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥</div>
+      <h3>文明VII：Arc of Tomorrow / Earthrise</h3>
+      <p class="ov-lede">35 周年路线图：免费原子时代大更 + 太空主题首个付费扩展；本月 1.5.0。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-05 18:00 EDT ≈ 9/6 06:00 CST（昨窗漏扫补）</dd></div>
+        <div><dt>主体</dt><dd>Firaxis · 2K</dd></div>
+        <div><dt>库</dt><dd>行业 · 更新/扩展</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="fire">🔥</div>
+      <h3>荒野 Ascendance 轻弩增威片</h3>
+      <p class="ov-lede">卡普空扩展 2027 档跟进；轻弩跑打 / 枪斗反击 / 弹雨。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-06 14:00 CST（昨 9:30 后）</dd></div>
+        <div><dt>主体</dt><dd>CAPCOM · MH Wilds Ascendance</dd></div>
+        <div><dt>库</dt><dd>行业 · 资料片跟进</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="fire">🔥</div>
+      <h3>P4R「巽完二」角色预告</h3>
+      <p class="ov-lede">ATLUS 放出《女神异闻录4 Revival》巽完二介绍片；2027-02-18 多端 + Game Pass。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-05 16:00 EDT ≈ 9/6 04:00 CST（昨窗漏扫补）</dd></div>
+        <div><dt>主体</dt><dd>ATLUS · P-Studio</dd></div>
+        <div><dt>库</dt><dd>行业 · 角色预告</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <h2 class="section-title">库密度一览</h2>
+  <div class="overview-grid">
+    <article class="overview-signal">
+      <h3>🎮 游戏行业</h3>
+      <p class="ov-lede">独立发售 1 + 更新/扩展 1 + 资料片跟进 1 + 角色预告 1；有独立游戏观察新增；无新展会片单。</p>
+      <dl class="kv">
+        <div><dt>Signal</dt><dd>4</dd></div>
+        <div><dt>独立</dt><dd>今日有独立游戏观察新增（幻珠奇港）</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal">
+      <h3>空库</h3>
+      <p class="ov-lede">AI / 二次元 / 游戏开发空库未出 Tab。</p>
+      <dl class="kv">
+        <div><dt>AI</dt><dd>今日无新旗舰；今日无新 MCP/Skill 推荐</dd></div>
+        <div><dt>二次元</dt><dd>窗内无达门槛一线新开版/角色 PV；原神「禁界拟想阵地战」日程今日但未见米游社已开启官帖，待核</dd></div>
+        <div><dt>开发</dt><dd>引擎/图形窗内无达门槛发版</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <section class="watch">
+    <h2 class="section-title">观察清单（窗外 / 未播）</h2>
+    <ul>
+      <li>塞尔达 40 周年 Direct · 9/8 22:00 CST 未播，不写片单。</li>
+      <li>Nintendo Direct · 9/9 22:00 CST 未播；Treehouse 紧随其后。</li>
+      <li>绝区零 3.2「她与她的隐秘往事」· 9/9；Earth Must Die 主机 · 9/9；Valheim 主机 · 9/9。</li>
+      <li>Grok 4.7 · mid-Sep 窗口；官方 news/docs 仍无模型 ID。OpenAI DevDay · 9/29。</li>
+      <li>TGS 2026 · 9/17–21；Yami Kids 展台试玩 + Steam 9/22；星铁前瞻 · 9/12 19:30。</li>
+      <li>原神「禁界拟想阵地战」· 日程 9/7 10:00–9/17；截稿未见一手「已开启」官帖。</li>
+    </ul>
+  </section>
+</div>
+
+<div id="ind" class="tab-pane">
+  <div class="library-head">
+    <div><h2>🎮 游戏行业观察</h2><span class="lib-stats"><span class="badge">Signal 4</span><span class="badge">独立 1</span></span></div>
+    <p class="lib-lede">行业主轴是独立作幻珠奇港今日发售翻牌，外加 Civ VII 路线图补核、Ascendance 轻弩片与 P4R 巽完二预告。今日有独立游戏观察新增。展会片单无新世界首发 / 无新锁（不预写 Direct）。</p>
+    <dl class="kv">
+      <div><dt>发售</dt><dd>幻珠奇港 · PS5 / PC</dd></div>
+      <div><dt>更新/扩展</dt><dd>Civ VII Arc of Tomorrow + Earthrise</dd></div>
+      <div><dt>资料片</dt><dd>荒野 Ascendance 轻弩片 · 2027</dd></div>
+      <div><dt>预告</dt><dd>P4R 巽完二 · 2027-02-18</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>不复述 Thank You Bus Driver、Astonishia、MH 锤片、鬼武者口碑与 SoP 片单长名单。</li>
+      <li>Civ / P4R 为昨窗漏扫；MH 轻弩片为昨 9:30 后补入。</li>
+    </ul>
+    <p class="lib-note">判定：发售日 + 补核日；独立轴有新增。</p>
+  </div>
+
+  <div class="axis-card">
+    <h3 class="axis-title">🧩 独立游戏观察</h3>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head">
+          <div class="fire">🔥🔥</div>
+          <h4>幻珠奇港（Port of Jumanah）PS5 / PC 今日发售</h4>
+        </div>
+        <p class="signal-lede">Red Dunes Games 与 Agate 的阿拉伯半岛采珠风 2.5D Roguelite 动作作，店页锁 2026-09-07 登陆 PlayStation 5 与 PC（Steam / Epic）。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-07/port-of-jumanah.jpg" alt="幻珠奇港 Steam 简中头图" loading="lazy"/>
+          <figcaption>Steam 简中 header（官方 CDN）</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-07（店页）；截稿 ≈09:52 CST Steam API 仍 coming_soon</dd></div>
+          <div><dt>主体</dt><dd>Red Dunes Games · Agate · AppID 2998920</dd></div>
+          <div><dt>平台</dt><dd>PS5 · Steam · Epic Games Store</dd></div>
+          <div><dt>译名</dt><dd>Steam 简中「名称」字段：幻珠奇港</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>玩法：扮演采珠青年曼苏尔，潜海 Roguelite 战斗 + 招募船员（含猫）。</li>
+          <li>官方概述约 6 小时主线，另有补完向挑战；有试玩 Demo。</li>
+          <li>昨日报观察清单已预告今日；属独立轴发售翻牌。</li>
+          <li>Gematsu 定档稿 9/2；今日以店页日期为准，解锁时点待店页翻牌。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://store.steampowered.com/app/2998920/">Steam 店页（简中名）</a> · <a href="https://www.gematsu.com/2026/09/port-of-jumanah-launches-september-7-for-ps5-pc">Gematsu</a> · <a href="https://store.playstation.com/en-us/concept/10019557">PS Store</a></p>
+        <div class="tags"><span>独立</span><span>发售</span><span>PS5</span><span>PC</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <h3 class="axis-title">📢 新游 / 定档 / 发售</h3>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head">
+          <div class="fire">🔥🔥</div>
+          <h4>《文明VII》公布 Arc of Tomorrow 与 Earthrise</h4>
+        </div>
+        <p class="signal-lede">Firaxis / 2K 在文明系列 35 周年节点公布下阶段：免费大更「Arc of Tomorrow」（原子时代）与首个付费扩展「Earthrise」（太空竞赛主题）；本月还有更新 1.5.0。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-07/civ7-earthrise.jpg" alt="Civilization VII Earthrise 宣传图" loading="lazy"/>
+          <figcaption>2K / Firaxis 35 周年相关视觉（经 Gematsu）</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-05 18:00 EDT ≈ 2026-09-06 06:00 CST（昨窗漏扫补）</dd></div>
+          <div><dt>主体</dt><dd>Firaxis Games · 2K</dd></div>
+          <div><dt>档期</dt><dd>1.5.0：本月；Arc of Tomorrow / Earthrise：2027（细节可改）</dd></div>
+          <div><dt>平台</dt><dd>既有全平台（含 Switch 2 / Apple Arcade 等）</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>Arc of Tomorrow：新第四时代「Atomic Age」（约 1950s–近未来），含扩展核武、多边协议、电影杰作、合成资源等。</li>
+          <li>Earthrise：首个付费扩展，太空任务贯穿古–近；并强调环境适应 / 灾害与逆转升温。</li>
+          <li>Update 1.5.0：True Start Location 地球地图、Voronoi 地图更新、外交与 UI 等。</li>
+          <li>邀请社区经 Firaxis Feature Workshop 试玩 Arc of Tomorrow（计划今年晚些时候首轮）。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://civilization.2k.com/civ-vii/news/35th-anniversary/">2K 官方 35th Anniversary</a> · <a href="https://www.gematsu.com/2026/09/sid-meiers-civilization-vii-major-update-arc-of-tomorrow-and-paid-expansion-earthrise-announced">Gematsu</a></p>
+        <div class="tags"><span>更新</span><span>扩展</span><span>Firaxis</span></div>
+      </article>
+
+      <article class="signal medium">
+        <div class="signal-head">
+          <div class="fire">🔥</div>
+          <h4>《女神异闻录4 Revival》「巽完二」角色预告</h4>
+        </div>
+        <p class="signal-lede">ATLUS 公开 P4R 角色介绍片，聚焦传说中的不良少年巽完二；作品锁定 2027-02-18，PS5 / Xbox Series / PC，并同步 Game Pass。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-07/p4r-kanji.jpg" alt="女神异闻录4 Revival 巽完二预告视觉" loading="lazy"/>
+          <figcaption>Gematsu 转载 ATLUS 预告视觉</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-05 16:00 EDT ≈ 2026-09-06 04:00 CST（昨窗漏扫补）</dd></div>
+          <div><dt>主体</dt><dd>ATLUS · P-Studio</dd></div>
+          <div><dt>档期</dt><dd>2027-02-18</dd></div>
+          <div><dt>平台</dt><dd>PS5 · Xbox Series · PC（含 Game Pass）</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>角色：巽完二，专属人格面具建御雷；此前已陆续公开主角、理世、阳介、千枝、雪子等片。</li>
+          <li>中文报道沿用官方简中「女神异闻录4 Revival」「巽完二」。</li>
+          <li>属角色预告跟进，非新定档。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://www.gematsu.com/2026/09/persona-4-revival-kanji-tatsumi-trailer">Gematsu</a> · <a href="https://www.ign.com.cn/persona-4-revival/62580/nu-shen-yi-wen-lu-4-revival-xun-wan-er-jie-shao-shi-pin">IGN 中国</a></p>
+        <div class="tags"><span>预告</span><span>ATLUS</span><span>P4R</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <h3 class="axis-title">🛠️ 资料片 / 版本跟进</h3>
+    <div class="axis-body">
+      <article class="signal medium">
+        <div class="signal-head">
+          <div class="fire">🔥</div>
+          <h4>《怪物猎人：荒野》Ascendance 轻弩增威动作片</h4>
+        </div>
+        <p class="signal-lede">卡普空继续放出大型扩展 Ascendance（2027）武器 Boosted Actions 系列片，本条为轻弩：跑打、枪斗反击、弹雨。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-07/mh-ascendance-lbg.jpg" alt="怪物猎人荒野 Ascendance 轻弩片视觉" loading="lazy"/>
+          <figcaption>Capcom Ascendance 轻弩片相关视觉（经 Gematsu）</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-06 02:00 EDT = 14:00 CST（昨 9:30 后补入核）</dd></div>
+          <div><dt>主体</dt><dd>CAPCOM · Monster Hunter Wilds Ascendance</dd></div>
+          <div><dt>档期</dt><dd>扩展 2027；本篇 PS5 / Xbox Series / PC（Switch 2 版开发中）</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>官方英/日预告已上：Run and gun、Gunslinging counters、A storm of bullets。</li>
+          <li>前一日已报大锤片；本条为同系列轻弩跟进，不重复锤片内容。</li>
+          <li>扩展本体仍为 2027，无新锁期。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://www.youtube.com/watch?v=KcIAo8wMaqM">Capcom 官方预告（EN）</a> · <a href="https://www.youtube.com/watch?v=12589tBbJ5w">日文版</a> · <a href="https://www.gematsu.com/2026/09/monster-hunter-wilds-expansion-ascendance-trailer-light-bowgun-boosted-action-breakdown">Gematsu</a></p>
+        <div class="tags"><span>资料片</span><span>卡普空</span><span>MH</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <h3 class="axis-title">🎬 展会片单</h3>
+    <div class="axis-body">
+      <p class="signal-lede">今日无已播官方秀。Zelda 40th Anniversary Direct（9/8 22:00 CST）与 Nintendo Direct（9/9 22:00 CST）未播，不预写片单。</p>
+    </div>
+  </div>
+</div>
+
+<section class="sources">
+  <h2 class="section-title">主要信源</h2>
+  <ul>
+    <li>旗舰必开：Anthropic News · OpenAI index（旁证）· Google Models &amp; Research · DeepMind Blog · xAI News / release notes · Cursor Changelog · Qwen / DeepSeek / Z.ai 交叉</li>
+    <li>行业：Steam API 2998920 · 2K Civ VII 35th · Capcom Ascendance YT · Gematsu · IGN 中国 · PS Store</li>
+    <li>观察台：https://gamecrazy.github.io/daily-intelligence-hub/</li>
+  </ul>
+</section>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
