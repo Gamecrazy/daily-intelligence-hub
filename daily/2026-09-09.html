@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-09</title>
+<style>
+  并保留最小骨架（wrap / hero / signal 等）。未新造 CSS 规则。
+  Drive 原件另存：日报样式.drive原件-2026-05-31.html
+  2026-08-26: live template <style> refreshed (auto-fit overview, Attention fire bars, library rails, tabs/print). Class skeleton unchanged.
+  2026-08-27: add .signal-lede / .kv / .facts / .compare for structured signal body + new-model compare table.
+  2026-08-27b: add .signal-media for official stills (character KV, covers, gameplay).
+  2026-08-27c: add .lib-lede / .lib-note / .ov-lede / .pane-digest for structured tab overviews.
+  2026-08-27d: hero .lede uses same four blocks as tab digest.
+  2026-08-27e: h1 is 综合日报 only; date-nav.js for date switching.
+  2026-08-27f: fix overview .kv collapse (single-col cards, minmax 320px, no 0-width columns).
+  2026-08-27g: readability — single-col axes, larger lede/facts, wrap 1080.
+  2026-08-27h: 展会片单复用 .compare；caption 写「已定档深潜，不单开」或「世界首发 / 新锁」。
+  2026-08-29a: .issue-nav / .edition-nav 日报周报切换；date-nav.js 同时服务周报。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-09 · 周三 · W37 · 含昨 9:30 后补入核</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W37.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-09" aria-label="日期切换"></nav>
+      <span class="window">窗口 (2026-09-08, 2026-09-09]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是<strong>塞尔达传说 40 周年 Direct</strong>（昨 22:00 CST 已播）：《塞尔达传说 时光之笛》Switch 2 新锁 <strong>2026-11-05</strong>，周年机 <strong>10-29</strong>。独立侧《吞吞堡垒 Wanderburg》Steam EA 已解锁；另有《卡莉亚的炼金工房》定档 2027-02-25。二次元《绝区零》3.2「她与她的隐秘往事」今日停服更新。AI：ChatGPT Images 2.5 上架；另有 OpenAI Navier–Stokes 研究帖（内部模型，非旗舰）。今日无新旗舰；今日无新 MCP/Skill 推荐。今晚 Nintendo Direct 22:00 CST 未播不写片单。</p>
+    <dl class="kv">
+      <div><dt>窗口</dt><dd>(2026-09-08, 2026-09-09] · 含昨 9:30 后补入核（Zelda Direct、Wanderburg、Images 2.5）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（LLM GA 无新；Images 2.5 记图像模型，不当旗舰）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无</dd></div>
+      <div><dt>展会</dt><dd>Zelda Direct 已出片单；Nintendo Direct 今晚 22:00 CST 未播不写</dd></div>
+      <div><dt>空库</dt><dd>游戏开发空库未出 Tab</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>时光之笛 Switch 2：任天堂店页 / Direct 官宣锁 11/05；数字版 $59.99。</li>
+      <li>周年 Switch 2 主机套装 10/29；真人电影正式定名 The Legend of Zelda，档期 2027-04-30。</li>
+      <li>吞吞堡垒：Steam 简中店名已解锁 EA（9/8）；田园乐土 1.0 宣今日、截稿仍「抢先体验」待核翻牌。</li>
+      <li>旗舰必开页：Anthropic 最新仍 Sep 1 Fable/Mythos 5.1；xAI docs 仍无 Grok 4.7；OpenAI 模型卡现役旗舰仍 GPT-6 Astra；Cursor changelog 最新 Sep 2。</li>
+    </ul>
+    <p class="lib-note">判定：展会新锁日 + 独立 EA 翻牌 + 二游版本日；旗舰轴安静。不复述鬼武者百万、幻珠奇港、Lightspeed Lina、Okko、SF6 Arjun、MH 充能斧、Astra/Gemini/Fable、AWS/Baseten MCP、SoP、夜勤人2。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric hot"><b>6</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>4</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>3</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric"><b>0</b><span>新 MCP/Skill</span></div>
+  <div class="metric hot"><b>1</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="分页">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ai">🤖 AI</button>
+  <button class="tab-btn" data-tab="ind">🎮 游戏行业</button>
+  <button class="tab-btn" data-tab="ani">🎌 二次元</button>
+</nav>
+
+<div id="ov" class="tab-pane active">
+  <h2 class="section-title">跨方向最高 Attention 信号</h2>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥🔥</div>
+      <h3>塞尔达传说 时光之笛 Switch 2 锁 11/05</h3>
+      <p class="ov-lede">Zelda 40 周年 Direct 已播：时光之笛重制锁档 + 周年机 10/29。</p>
+      <dl class="kv">
+        <div><dt>库</dt><dd>游戏行业 · 展会片单</dd></div>
+        <div><dt>日期</dt><dd>2026-09-08 22:00 CST</dd></div>
+        <div><dt>平台</dt><dd>Nintendo Switch 2</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥</div>
+      <h3>《绝区零》3.2 今日停服更新</h3>
+      <p class="ov-lede">「她与她的隐秘往事」06:00 起维护约 5 小时；锋御职业 + 克拉蕾上半卡池。</p>
+      <dl class="kv">
+        <div><dt>库</dt><dd>二次元</dd></div>
+        <div><dt>维护</dt><dd>9/9 06:00–约 11:00 CST</dd></div>
+        <div><dt>补偿</dt><dd>菲林×300</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥</div>
+      <h3>吞吞堡垒 Wanderburg Steam EA 解锁</h3>
+      <p class="ov-lede">Randwerk 移动城堡 Roguelike 已开抢先体验；Steam 简中店名「吞吞堡垒」。</p>
+      <dl class="kv">
+        <div><dt>库</dt><dd>游戏行业 · 独立</dd></div>
+        <div><dt>日期</dt><dd>2026-09-08</dd></div>
+        <div><dt>平台</dt><dd>Steam PC</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="fire">🔥🔥</div>
+      <h3>卡莉亚的炼金工房 定档 2027-02-25</h3>
+      <p class="ov-lede">Gust《追忆》系列第二作全球锁 2/25；Steam 简中店名已核。</p>
+      <dl class="kv">
+        <div><dt>库</dt><dd>游戏行业</dd></div>
+        <div><dt>日期</dt><dd>2026-09-08</dd></div>
+        <div><dt>平台</dt><dd>PS5 / Xbox / Switch 2 / PC</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="fire">🔥</div>
+      <h3>ChatGPT Images 2.5 / GPT-Image-2.5</h3>
+      <p class="ov-lede">OpenAI 图像模型新档上架；非 LLM 旗舰。</p>
+      <dl class="kv">
+        <div><dt>库</dt><dd>AI</dd></div>
+        <div><dt>日期</dt><dd>2026-09-08</dd></div>
+        <div><dt>型号</dt><dd>Flare / Sunburst</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <h2 class="section-title">空库与待核</h2>
+  <div class="pane-digest">
+    <p class="lib-lede">游戏开发观察今日无达门槛新增，空库未出 Tab。今晚 Nintendo Direct 未播不预写。</p>
+    <dl class="kv">
+      <div><dt>AI</dt><dd>无新 LLM 旗舰；无新 MCP/Skill 推荐；Grok 4.7 仍未发</dd></div>
+      <div><dt>游戏开发</dt><dd>空库；引擎 / cs.GR 无窗内达门槛落款</dd></div>
+      <div><dt>待核</dt><dd>Nintendo Direct 播后片单；田园乐土 1.0 翻牌；绝区零 3.2 米游社「已开启」原帖 ID；原神禁界拟想阵地战增量</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>观察台固定入口：https://gamecrazy.github.io/daily-intelligence-hub/</li>
+      <li>日期快照：/daily/2026-09-09.html</li>
+    </ul>
+    <p class="lib-note">判定：展会 + 版本日主导；旗舰轴安静，图像模型另记。</p>
+  </div>
+</div>
+
+<div id="ai" class="tab-pane">
+  <div class="library-head">
+    <p class="lib-lede">今日无新旗舰；今日无新 MCP/Skill 推荐。窗内有图像模型新档 ChatGPT Images 2.5（GPT-Image-2.5 Flare / Sunburst），记应用/专用模型轴，不当 LLM 旗舰。</p>
+    <dl class="kv">
+      <div><dt>新旗舰</dt><dd>无</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无</dd></div>
+      <div><dt>独立 Signal</dt><dd>2（本库）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>旗舰必开页已核：Anthropic news 最新 Sep 1；OpenAI 现役文本旗舰仍 GPT-6 Astra；Google/DeepMind 列表无窗内新 LLM GA；xAI release notes 九月条仅为 Imagine 退役预告，无 Grok 4.7；Cursor 最新 Sep 2。</li>
+      <li>Codex / Cursor 产品内 skill·MCP 改动不记推荐轴。</li>
+    </ul>
+    <p class="lib-note">判定：图像模型有增量，文本旗舰安静日。</p>
+  </div>
+
+  <div class="axis-card">
+    <h3 class="axis-title">🧠 模型发布</h3>
+    <div class="axis-body">
+      <article class="signal medium">
+        <div class="signal-head">
+          <div class="fire">🔥</div>
+          <h4>ChatGPT Images 2.5 / GPT-Image-2.5 Flare · Sunburst</h4>
+        </div>
+        <p class="signal-lede">OpenAI 于 9/8 推出 ChatGPT Images 2.5，并在 API 上架 GPT-Image-2.5 Flare（默认高质快生成）与 Sunburst（精细编辑）；官方称相对 Images 2.0 延迟最高可降约 50%。</p>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-08</dd></div>
+          <div><dt>主体</dt><dd>OpenAI · ChatGPT Images / GPT-Image</dd></div>
+          <div><dt>档位</dt><dd>ChatGPT 全层级 + API Flare / Sunburst</dd></div>
+          <div><dt>性质</dt><dd>图像生成模型新档 · 非 LLM 旗舰</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>产品侧：更自然光照与材质、更好保留参考图主体、多轮编辑更稳；新增 Sketch、模板与图上批注等创作工具（二线转述官方稿）。</li>
+          <li>API：平台模型目录已列出 GPT-Image-2.5 Sunburst（最强编辑）与 Flare（日常默认）。</li>
+          <li>OpenAI News Index 同日另有 GPT-5.6 Sol 量子实验应用文等，属应用案例，非新文本旗舰。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://openai.com/index">OpenAI News Index（Introducing ChatGPT Images 2.5 · Sep 8）</a> · <a href="https://platform.openai.com/docs/models">OpenAI Models</a> · 交叉 <a href="https://9to5mac.com/2026/09/08/openai-releases-chatgpt-images-2-5-with-sharper-details-and-more-precise-editing/">9to5Mac</a></p>
+        <div class="tags"><span>图像模型</span><span>OpenAI</span><span>非旗舰</span></div>
+      </article>
+      <article class="signal high">
+        <div class="signal-head">
+          <div class="fire">🔥🔥</div>
+          <h4>OpenAI：Navier–Stokes 奇点证明（内部模型 + Lean）</h4>
+        </div>
+        <p class="signal-lede">OpenAI 9/8 发帖称，其内部多智能体系统（所用内部模型「显著强于 GPT-6 Astra」、训练仍在继续）产出 Navier–Stokes 存在与光滑性相关解析证明与 Lean 形式化，并声明无意申领 Clay 奖金。</p>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-08</dd></div>
+          <div><dt>主体</dt><dd>OpenAI Research</dd></div>
+          <div><dt>性质</dt><dd>研究里程碑 · 非公开新旗舰 GA</dd></div>
+          <div><dt>形式化</dt><dd>Lean</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>官方陈述主张光滑初值可在有限时间出现奇点（C/D）；细节以官帖为准。</li>
+          <li>所用模型未作为一般可用旗舰上架，故<strong>不当今日新旗舰</strong>。</li>
+          <li>属研究/安全科学轴高 Attention，与 Images 2.5 分列。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://openai.com/index/navier-stokes-solution/">OpenAI · Navier–Stokes</a></p>
+        <div class="tags"><span>研究</span><span>Lean</span><span>非旗舰</span></div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <h3 class="axis-title">🔧 Agent / MCP / Skill</h3>
+    <div class="axis-body">
+      <p class="empty">今日无新 MCP / Skill / 工作流推荐。窗内未见可独立安装的一线官方新推荐条（Aave MCP 等二线稿未能核到窗内官方首发落款，不进正文）。</p>
+    </div>
+  </div>
+</div>
+
+<div id="ind" class="tab-pane">
+  <div class="library-head">
+    <p class="lib-lede">行业主线：Zelda 40 周年 Direct 片单（时之笛新锁）+ 独立《吞吞堡垒》EA 解锁。今日有独立游戏观察新增。今晚 Nintendo Direct 未播不写第二份片单。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>4（本库）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（吞吞堡垒 EA）</dd></div>
+      <div><dt>展会片单</dt><dd>Zelda Direct 已出；Nintendo Direct 未播</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>时光之笛为系列重制新锁，非世界首发（6 月 Direct 已公布在研）。</li>
+      <li>田园乐土（Folklands）厂商稿称今日 1.0，截稿 Steam 简中页仍带「抢先体验」标签，待核翻牌。</li>
+    </ul>
+    <p class="lib-note">判定：展会新锁优先；独立 EA 有店页硬落款才进正文。</p>
+  </div>
+
+  <div class="axis-card show-slate">
+    <h3 class="axis-title">🎬 展会片单 · Zelda 40th Anniversary Direct</h3>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head">
+          <div class="fire">🔥🔥🔥</div>
+          <h4>塞尔达传说 40 周年 Direct：时之笛锁档 + 周年机</h4>
+        </div>
+        <p class="signal-lede">任天堂于 9/8 22:00 CST 播出塞尔达传说 40 周年 Direct：首次实机演示《塞尔达传说 时光之笛》Switch 2 版并锁 <strong>2026-11-05</strong>；周年主题 Switch 2 主机套装 <strong>10-29</strong>；真人电影正式定名。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-09/ocarina-of-time.jpg" alt="塞尔达传说 时光之笛 Switch 2 官方视觉" loading="lazy"/>
+          <img src="../media/2026-09-09/ocarina-store.jpg" alt="时光之笛 Switch 2 店页封面" loading="lazy"/>
+          <figcaption>Nintendo 官方视觉 / 店页</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-08 22:00 CST（昨晚播后补入核）</dd></div>
+          <div><dt>主体</dt><dd>Nintendo · The Legend of Zelda 40th Anniversary Direct</dd></div>
+          <div><dt>时长</dt><dd>约 30 分钟</dd></div>
+          <div><dt>下一场</dt><dd>Nintendo Direct 2026-09-09 22:00 CST（未播不写）</dd></div>
+        </dl>
+        <div class="compare-wrap">
+          <table class="compare">
+            <caption>世界首发 / 新锁（片单）</caption>
+            <thead><tr><th>作品</th><th>类型</th><th>档期 / 平台</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td>塞尔达传说 时光之笛（The Legend of Zelda: Ocarina of Time）</td><td>新锁</td><td>2026-11-05 · Switch 2</td><td>数字 $59.99；店页已写 Releases 11/5/26</td></tr>
+              <tr><td>Nintendo Switch 2 – The Legend of Zelda – 40th Anniversary Edition</td><td>新锁（主机）</td><td>2026-10-29</td><td>含主题底座；同日 Pro 手柄 / 收纳包</td></tr>
+              <tr><td>The Legend of Zelda（真人电影）</td><td>正式定名</td><td>2027-04-30（档期 5 月已锁，不新）</td><td>无副标题；宫本茂参与</td></tr>
+              <tr><td>Young Link / Young Zelda amiibo</td><td>新锁</td><td>2027</td><td>扫入时之笛解锁复古风面具</td></tr>
+              <tr><td>Mineru’s Construct amiibo（王国之泪）</td><td>已定档跟进</td><td>2026-09-17</td><td>片中提醒，不单开</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="compare-wrap" style="margin-top:12px">
+          <table class="compare">
+            <caption>已定档深潜，不单开</caption>
+            <thead><tr><th>条目</th><th>要点</th></tr></thead>
+            <tbody>
+              <tr><td>时光之笛玩法增强</td><td>自由跳跃 / 冲刺、右摇杆镜头、过场全语音（林克除外）、Threads of Time 进度毯、可用麦克风哼唱吹笛</td></tr>
+              <tr><td>ZELDA NOTES</td><td>扩展支持时之笛：今日记录、传闻任务、手机笛、2000+ 题测验</td></tr>
+              <tr><td>演唱会 / 博物馆 / 周边</td><td>2027 全球巡演；Nintendo Museum 周年票 9/9 起；乐高 / Hasbro 等 2027</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="facts">
+          <li>简中名称取系列官方译「塞尔达传说 时光之笛」；本作店页支持简体中文。</li>
+          <li>6 月 Direct 已公布在研，本次为实机 + 精确锁期，故记「新锁」非世界首发。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://www.nintendo.com/us/store/products/the-legend-of-zelda-ocarina-of-time-switch-2/">Nintendo eShop 店页</a> · <a href="https://nintendoeverything.com/the-legend-of-zelda-40th-anniversary-direct-official-recap-announcement/">Nintendo 官方摘要转载</a> · <a href="https://gameinformer.com/nintendo-direct/2026/09/08/everything-annnounced-at-the-zelda-40th-anniversary-nintendo-direct">Game Informer</a></p>
+        <div class="tags"><span>展会片单</span><span>塞尔达</span><span>Switch 2</span><span>新锁</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <h3 class="axis-title">🧩 独立游戏观察</h3>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head">
+          <div class="fire">🔥🔥</div>
+          <h4>吞吞堡垒（Wanderburg）Steam 抢先体验已解锁</h4>
+        </div>
+        <p class="signal-lede">柏林合作社 Randwerk 的移动城堡 Roguelike《吞吞堡垒 Wanderburg》已于 9/8 解锁 Steam 抢先体验；简中店名「吞吞堡垒」，截稿可见用户评价累计约 326。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-09/wanderburg.jpg" alt="吞吞堡垒 Wanderburg Steam 头图" loading="lazy"/>
+          <figcaption>Steam 官方头图</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-08（店页发售日）</dd></div>
+          <div><dt>主体</dt><dd>Randwerk · Sidekick Publishing</dd></div>
+          <div><dt>状态</dt><dd>抢先体验 · coming_soon=false</dd></div>
+          <div><dt>平台</dt><dd>Steam PC</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>定位：驾驶可成长移动要塞吞噬村庄与敌堡的极简中世纪 Roguelike。</li>
+          <li>gamescom 曾获 Most Entertaining 相关关注；免费 Demo 仍在架。</li>
+          <li>无官方纯中文译名单独稿，采用 Steam 简中「名称」字段「吞吞堡垒」+ 英文。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://store.steampowered.com/app/3624140/Wanderburg/">Steam 店页 / API</a></p>
+        <div class="tags"><span>独立</span><span>EA</span><span>发售翻牌</span></div>
+      </article>
+      <p class="empty">另记观察清单：田园乐土（Folklands，Steam 简中名）厂商 Games Press 称 9/9 出 1.0；截稿 API 仍含「抢先体验」标签，未核翻牌，不进正文。</p>
+    </div>
+  </div>
+</div>
+
+
+  <div class="axis-card">
+    <h3 class="axis-title">🚀 新游 / 定档</h3>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head">
+          <div class="fire">🔥🔥</div>
+          <h4>卡莉亚的炼金工房 ～夜之王国与追忆之道标～ 定档 2027-02-25</h4>
+        </div>
+        <p class="signal-lede">光荣特库摩 / Gust 宣布《追忆》系列第二作《卡莉亚的炼金工房 ～夜之王国与追忆之道标～》全球锁 <strong>2027-02-25</strong>（Steam 简中店名已核；部分店页时区显示 2/24）。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-09/atelier-karia.jpg" alt="卡莉亚的炼金工房 Steam 头图" loading="lazy"/>
+          <figcaption>Steam 官方头图</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-08</dd></div>
+          <div><dt>主体</dt><dd>Gust · Koei Tecmo</dd></div>
+          <div><dt>平台</dt><dd>PS5 / Xbox Series / Switch 2 / PC（Steam）</dd></div>
+          <div><dt>AppID</dt><dd>4532500</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>新片展示多风格切换与巨型敌战等系统向内容。</li>
+          <li>系列前作《优米娅的炼金工房》后续第二作。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://www.gematsu.com/2026/09/atelier-karia-the-night-kingdom-the-guide-of-memories-launches-february-25-2027">Gematsu</a> · <a href="https://store.steampowered.com/app/4532500/">Steam</a></p>
+        <div class="tags"><span>定档</span><span>炼金工房</span><span>Gust</span></div>
+      </article>
+      <article class="signal medium">
+        <div class="signal-head">
+          <div class="fire">🔥</div>
+          <h4>绝对魔权（Absolum）iOS / Android 定档 2026-11-05</h4>
+        </div>
+        <p class="signal-lede">Dotemu《绝对魔权》由 Playdigious 移植手机，锁 <strong>2026-11-05</strong>；触控 UI + 云存档，Android 可与 PC Google Play Games 跨进度。</p>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-08</dd></div>
+          <div><dt>平台</dt><dd>iOS / Android（已有主机/PC）</dd></div>
+          <div><dt>官方译</dt><dd>绝对魔权（Steam 简中名称）</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>属已发售作品移动锁期，记定档轴。</li>
+        </ul>
+        <p class="signal-note">来源：<a href="https://www.gematsu.com/2026/09/absolum-coming-to-ios-android-on-november-5">Gematsu</a></p>
+        <div class="tags"><span>定档</span><span>移动</span><span>绝对魔权</span></div>
+      </article>
+    </div>
+  </div>
+
+<div id="ani" class="tab-pane">
+  <div class="library-head">
+    <p class="lib-lede">二次元主线：《绝区零》3.2「她与她的隐秘往事」今日停服更新。原神「禁界拟想阵地战」未见窗内新一线增量，仍待核。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>版本日</dt><dd>绝区零 3.2</dd></div>
+      <div><dt>其他</dt><dd>鸣潮 / 星铁 / 终末地无窗内新达门槛落款</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>不复述 3.2 前瞻直播与昨报预下载细则，只写版本日增量。</li>
+    </ul>
+    <p class="lib-note">判定：版本开门日达门槛；米游社「已开启」原帖 ID 截稿未核到。</p>
+  </div>
+
+  <div class="axis-card">
+    <h3 class="axis-title">🎯 版本 / 活动</h3>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head">
+          <div class="fire">🔥🔥</div>
+          <h4>《绝区零》3.2「她与她的隐秘往事」停服更新</h4>
+        </div>
+        <p class="signal-lede">米哈游排期 9/9 06:00 CST 开始版本维护（预计约 5 小时，约 11:00 开门）：3.2「她与她的隐秘往事」导入新职业「锋御」，上半限定 S 克拉蕾。</p>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-09 06:00 CST 起</dd></div>
+          <div><dt>版本</dt><dd>3.2 · 她与她的隐秘往事 / Their Secret Histories</dd></div>
+          <div><dt>维护</dt><dd>约 5 小时 · 补偿菲林×300（绳网等级≥4）</dd></div>
+          <div><dt>上半卡池</dt><dd>克拉蕾（电·锋御）+ 南宫羽复刻</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>预下载窗口已于 05:50 结束；昨报预下载条不复述。</li>
+          <li>下半预告洛克茜（风·击破）等，细节以进服公告为准。</li>
+          <li>截稿仍处维护窗口内；「已开启」米游社原帖 ID 待核后补。</li>
+        </ul>
+        <p class="signal-note">来源：官方预下载/更新通知交叉（HoYoverse 日程镜像整理）· 进服后以游戏内 / 米游社公告为准</p>
+        <div class="tags"><span>绝区零</span><span>版本</span><span>3.2</span></div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title">信源</h2>
+<ul class="sources">
+  <li><a href="https://www.nintendo.com/us/store/products/the-legend-of-zelda-ocarina-of-time-switch-2/">Nintendo eShop · Ocarina of Time Switch 2</a></li>
+  <li><a href="https://nintendoeverything.com/the-legend-of-zelda-40th-anniversary-direct-official-recap-announcement/">Nintendo 官方 Direct 摘要（转载）</a></li>
+  <li><a href="https://gameinformer.com/nintendo-direct/2026/09/08/everything-annnounced-at-the-zelda-40th-anniversary-nintendo-direct">Game Informer · Zelda Direct</a></li>
+  <li><a href="https://store.steampowered.com/app/3624140/Wanderburg/">Steam · 吞吞堡垒 Wanderburg</a></li>
+  <li><a href="https://openai.com/index">OpenAI News Index</a></li>
+  <li><a href="https://platform.openai.com/docs/models">OpenAI Models · GPT-Image-2.5</a></li>
+  <li><a href="https://www.anthropic.com/news">Anthropic Newsroom</a></li>
+  <li><a href="https://docs.x.ai/developers/release-notes">xAI Release Notes</a></li>
+  <li><a href="https://www.cursor.com/changelog">Cursor Changelog</a></li>
+  <li><a href="https://blog.google/innovation-and-ai/models-and-research/">Google Models &amp; research</a></li>
+  <li><a href="https://deepmind.google/discover/blog/">Google DeepMind Blog</a></li>
+</ul>
+<p class="footnote">综合日报 · 2026-09-09 · 窗口 (2026-09-08, 2026-09-09] · 观察台 https://gamecrazy.github.io/daily-intelligence-hub/</p>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
