@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-12</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-11, 2026-09-12]。
+-->
+<style> refreshed (auto-fit overview, Attention fire bars, library rails, tabs/print). Class skeleton unchanged.
+  2026-08-27: add .signal-lede / .kv / .facts / .compare for structured signal body + new-model compare table.
+  2026-08-27b: add .signal-media for official stills (character KV, covers, gameplay).
+  2026-08-27c: add .lib-lede / .lib-note / .ov-lede / .pane-digest for structured tab overviews.
+  2026-08-27d: hero .lede uses same four blocks as tab digest.
+  2026-08-27e: h1 is 综合日报 only; date-nav.js for date switching.
+  2026-08-27f: fix overview .kv collapse (single-col cards, minmax 320px, no 0-width columns).
+  2026-08-27g: readability — single-col axes, larger lede/facts, wrap 1080.
+  2026-08-27h: 展会片单复用 .compare；caption 写「已定档深潜，不单开」或「世界首发 / 新锁」。
+  2026-08-29a: .issue-nav / .edition-nav 日报周报切换；date-nav.js 同时服务周报。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-12 · 周六 · Asia/Shanghai · ISO 2026-W37</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="./2026-09-12.html">日报</a>
+        <a href="../weekly/2026-W37.html">周报</a>
+      </nav>
+      <div class="date-nav" data-date="2026-09-12"></div>
+    </div>
+    <div class="window">窗口 (09-11, 09-12]</div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日<strong>无新旗舰</strong>。今日<strong>无新 MCP/Skill 推荐</strong>。主线是昨窗漏刊的 OpenAI Agents API / GPT-Live-1 补入核，以及 LEVEL-5 Vision 雷顿 Remake 与 Holy Horror Mansion、胧村正怪奇谭定档；窗内独立作《深度求财：挖打撤》1.0 发售，Polyarc 关停。二次元 / 游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+<div><dt>窗口</dt><dd>(2026-09-11, 2026-09-12] · Asia/Shanghai · 含昨 9:30 后与昨扫未入刊补入核</dd></div>
+<div><dt>新旗舰</dt><dd>无（Grok 4.7 仍未发；Fable / Astra / Gemini 3.8 Flash / DeepSeek-V4.1-Flash 不复述）</dd></div>
+<div><dt>MCP / Skill</dt><dd>无新推荐（Agents API 记 Agent 产品轴，不当推荐）</dd></div>
+<div><dt>显示库</dt><dd>AI / 游戏行业（二次元、游戏开发空库未出 Tab）</dd></div>
+<div><dt>展会</dt><dd>今日无展会片单新轴（TGS 9/17–21 未开；Direct 已报不复述）</dd></div>
+</dl>
+    <ul class="facts">
+<li>AI：Agents API 公测 + GPT-Live-1 API（均 9/10 补入）；旗舰必开页无新 GA；Anthropic 9/10 threat-intel 涉政不发。</li>
+<li>行业：LEVEL-5 Vision 雷顿 Remake / Holy Horror Mansion；胧村正怪奇谭定档；深度求财：挖打撤 1.0；Polyarc 关停。</li>
+<li>独立游戏观察：深度求财：挖打撤 1.0 新增。</li>
+<li>二次元空库未出 Tab（原神 7.1 特别节目今晚未播不预写；鸣潮景燃已报）。游戏开发空库未出 Tab。</li>
+</ul>
+    <p class="lib-note">判定：补刊 Agent 产品双发 + LEVEL-5 批次撑起密度；旗舰轴安静日写清「无」。不复述 DeepSeek-V4.1-Flash / Elderfield / Magical Blush / Nintendo Direct / Fable / Astra。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric hot"><b>6</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>5</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>2</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric"><b>0</b><span>新 MCP/Skill</span></div>
+  <div class="metric"><b>0</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="分页">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ai">🧠 AI 观察</button>
+  <button class="tab-btn" data-tab="ind">🎮 游戏行业</button>
+</nav>
+
+<section class="tab-pane active" data-pane="ov">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 集中在 Agents API 与 LEVEL-5 Vision；语音 API 与定档/发售次之。</p>
+    <dl class="kv">
+<div><dt>独立 Signal</dt><dd>6</dd></div>
+<div><dt>高 Attention</dt><dd>5</dd></div>
+<div><dt>空库</dt><dd>二次元 / 游戏开发（未出 Tab）</dd></div>
+</dl>
+    <ul class="facts">
+<li>今日无新旗舰；今日无新 MCP/Skill 推荐。</li>
+<li>补入核：Agents API、GPT-Live-1、LEVEL-5 Vision、胧村正怪奇谭。</li>
+<li>窗内新发售：深度求财：挖打撤。</li>
+</ul>
+    <p class="lib-note">总览卡只给最高 Attention，细节进分库。</p>
+  </div>
+  <h2 class="section-title">最高 Attention</h2>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+      <div class="signal-head"><span class="fire">🔥🔥🔥</span><h3><a href="https://openai.com/index/introducing-the-agents-api/" rel="noopener" target="_blank">OpenAI Agents API 公测</a></h3></div>
+      <p class="ov-lede">Codex harness 托管 API 公测；记 Agent 轴，不当 MCP/Skill 推荐。</p>
+      <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-10 补入</dd></div>
+<div><dt>库</dt><dd>AI</dd></div>
+<div><dt>类型</dt><dd>Agent 产品</dd></div>
+</dl>
+    </article>
+
+    <article class="overview-signal high">
+      <div class="signal-head"><span class="fire">🔥🔥🔥</span><h3><a href="https://www.gematsu.com/2026/09/professor-layton-and-the-curious-village-remake-announced-for-ps5-switch-2-switch-and-pc" rel="noopener" target="_blank">LEVEL-5 Vision：雷顿 Remake + Holy Horror Mansion</a></h3></div>
+      <p class="ov-lede">雷顿初代 Remake 与 Holy Horror Mansion 均锁 2027；昨扫未入刊今日补入。</p>
+      <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-10 补入</dd></div>
+<div><dt>库</dt><dd>游戏行业</dd></div>
+<div><dt>类型</dt><dd>新作公布</dd></div>
+</dl>
+    </article>
+
+    <article class="overview-signal high">
+      <div class="signal-head"><span class="fire">🔥🔥</span><h3><a href="https://openai.com/index/introducing-gpt-live-1-in-the-api/" rel="noopener" target="_blank">GPT-Live-1 登陆 API</a></h3></div>
+      <p class="ov-lede">全双工语音 API，$0.05/分钟；非文本旗舰。</p>
+      <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-10 补入</dd></div>
+<div><dt>库</dt><dd>AI</dd></div>
+<div><dt>类型</dt><dd>语音产品</dd></div>
+</dl>
+    </article>
+
+    <article class="overview-signal high">
+      <div class="signal-head"><span class="fire">🔥🔥</span><h3><a href="https://store.steampowered.com/app/4253770/" rel="noopener" target="_blank">胧村正怪奇谭定档</a></h3></div>
+      <p class="ov-lede">Steam 简中店名已核；2027-02 初发售。</p>
+      <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-10 补入</dd></div>
+<div><dt>库</dt><dd>游戏行业</dd></div>
+<div><dt>类型</dt><dd>定档</dd></div>
+</dl>
+    </article>
+
+    <article class="overview-signal high">
+      <div class="signal-head"><span class="fire">🔥🔥</span><h3><a href="https://store.steampowered.com/app/4368640/" rel="noopener" target="_blank">深度求财：挖打撤 1.0</a></h3></div>
+      <p class="ov-lede">Steam 2026-09-11 正式发售翻牌。</p>
+      <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-11</dd></div>
+<div><dt>库</dt><dd>游戏行业·独立</dd></div>
+<div><dt>类型</dt><dd>发售</dd></div>
+</dl>
+    </article>
+
+  </div>
+</section>
+
+<section class="tab-pane" data-pane="ai">
+  <div class="library-head">
+    <p class="lib-lede">今日<strong>无新旗舰</strong>。今日<strong>无新 MCP/Skill 推荐</strong>。补入 OpenAI Agents API（Agent 产品）与 GPT-Live-1（语音 API）。</p>
+    <dl class="kv">
+<div><dt>新旗舰</dt><dd>无</dd></div>
+<div><dt>MCP/Skill 推荐</dt><dd>无</dd></div>
+<div><dt>补入核</dt><dd>Agents API · GPT-Live-1</dd></div>
+<div><dt>编程轴</dt><dd>Cursor Projects 已报，不复述</dd></div>
+</dl>
+    <ul class="facts">
+<li>旗舰必开页已核：Anthropic / OpenAI / Google / DeepMind / xAI / Cursor — 无窗内新 GA。</li>
+<li>Agents API 支持 MCP，但本条是平台 API，不记「MCP 推荐」。</li>
+<li>不发 Anthropic Sep 10 threat-intel 政治案例。</li>
+</ul>
+    <p class="lib-note">判定：Agent 基础设施日；旗舰轴明确写「无」。</p>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🔧 Agent / MCP / Skill</h3><span class="density">高</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://openai.com/index/introducing-the-agents-api/" rel="noopener" target="_blank">OpenAI Agents API 公测上线</a></h4></div>
+        <p class="signal-lede">OpenAI 于 2026-09-10 将驱动 Codex 的托管 harness 以 Agents API 公测形式开放：持久会话、上下文压缩、子代理并行、MCP/自定义工具，可选 OpenAI 托管或合作方沙箱。昨扫已见但未入刊，今日补入核。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-12/agents-api.png" alt="OpenAI Agents API 官方 OG" loading="lazy"/>
+          <figcaption>OpenAI Agents API 官方 OG</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-10（昨窗漏刊，今日补入）</dd></div>
+<div><dt>主体</dt><dd>OpenAI</dd></div>
+<div><dt>形态</dt><dd>API 公测 · Codex harness 托管</dd></div>
+<div><dt>计费</dt><dd>无额外 API 费；按 token / 工具用量</dd></div>
+<div><dt>定位</dt><dd>Agent 产品能力（不当 MCP/Skill 推荐）</dd></div>
+</dl>
+        <ul class="facts">
+<li>一次调用可指定任务、模型、工具与运行环境。</li>
+<li>支持 MCP、自定义函数与内置 web search；可开 multi_agent 子代理。</li>
+<li>沙箱可选 OpenAI 托管或 Blaxel / Cloudflare / Daytona / E2B / Modal / Vercel 等。</li>
+<li>官方强调与模型同步演进的版本化 harness，降低自建编排成本。</li>
+<li>本条记 🔧 Agent 轴产品能力；不计入「新 MCP/Skill 推荐」。</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://openai.com/index/introducing-the-agents-api/" rel="noopener" target="_blank">OpenAI · Introducing the Agents API</a>；docs changelog Sep 10。</p>
+        <div class="tags"><span>Agent</span><span>API</span><span>Codex harness</span><span>补入核</span></div>
+      </article>
+
+      <p class="axis-foot">今日无新 MCP/Skill 推荐条目。</p>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>💡 AI 应用</h3><span class="density">中</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://openai.com/index/introducing-gpt-live-1-in-the-api/" rel="noopener" target="_blank">GPT-Live-1 登陆 API（非文本旗舰）</a></h4></div>
+        <p class="signal-lede">同日 OpenAI 把 ChatGPT 全双工语音层 GPT-Live-1 放到 API：前端语音 $0.05/分钟，推理与工具可委派后端文本模型或 Agents API。不当今日旗舰。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-12/gpt-live-1.png" alt="GPT-Live-1 官方视觉" loading="lazy"/>
+          <figcaption>GPT-Live-1 官方视觉</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-10（补入核）</dd></div>
+<div><dt>主体</dt><dd>OpenAI</dd></div>
+<div><dt>形态</dt><dd>全双工语音 API</dd></div>
+<div><dt>定价</dt><dd>语音层 $0.05/分钟；后端模型另计</dd></div>
+<div><dt>定位</dt><dd>AI 应用 / 语音产品 · 非 LLM 旗舰</dd></div>
+</dl>
+        <ul class="facts">
+<li>单模型同时听与说，降低 STT–LLM–TTS 级联时延。</li>
+<li>可委派 Astra 等后端做推理与工具调用。</li>
+<li>支持电话场景与更广口音/风格控制。</li>
+<li>官方评测称 Full Duplex Bench 较 GPT-Realtime-2.1 有明显提升（厂商自报）。</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://openai.com/index/introducing-gpt-live-1-in-the-api/" rel="noopener" target="_blank">OpenAI · GPT-Live-1 in the API</a>。</p>
+        <div class="tags"><span>语音</span><span>API</span><span>非旗舰</span><span>补入核</span></div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🧠 模型发布</h3><span class="density">空</span></div>
+    <div class="axis-body">
+      <p class="empty-axis">今日无新旗舰 / 无官方新档 GA。观察清单：Grok 4.7 仍未发（docs 仍 4.6）。</p>
+    </div>
+  </div>
+</section>
+
+<section class="tab-pane" data-pane="ind">
+  <div class="library-head">
+    <p class="lib-lede">行业主线是 LEVEL-5 Vision 补刊与胧村正怪奇谭定档；独立轴新增《深度求财：挖打撤》1.0；Polyarc 关停。今日无独立游戏观察以外的展会片单新轴。</p>
+    <dl class="kv">
+<div><dt>独立游戏观察</dt><dd>1 新增（深度求财：挖打撤）</dd></div>
+<div><dt>展会片单</dt><dd>无新轴</dd></div>
+<div><dt>补入核</dt><dd>LEVEL-5 Vision · 胧村正怪奇谭</dd></div>
+</dl>
+    <ul class="facts">
+<li>雷顿 Remake / Holy Horror Mansion / 胧村正怪奇谭均属新作公布或定档。</li>
+<li>深度求财：挖打撤 1.0 发售翻牌。</li>
+<li>不复述 Nintendo Direct / Elderfield / Magical Blush。</li>
+</ul>
+    <p class="lib-note">判定：补刊 + 独立发售撑起行业库；TGS 前夜不预写片单。</p>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🚀 新游 / 定档</h3><span class="density">高</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/professor-layton-and-the-curious-village-remake-announced-for-ps5-switch-2-switch-and-pc/" rel="noopener" target="_blank">LEVEL-5 Vision：雷顿教授与不可思议的小镇 Remake + Holy Horror Mansion</a></h4></div>
+        <p class="signal-lede">LEVEL-5 Vision 2026 II「梦」（2026-09-10）公布《雷顿教授与不可思议的小镇 Remake》2027 登陆 PS5 / Switch 2 / Switch / Steam，并公布新作 Holy Horror Mansion（2027，PS5 / Switch / Steam；TGS 2026 可玩）。昨扫已录但未入刊，今日补入。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-12/layton-remake.jpg" alt="雷顿初代 Remake 官方/一线视觉" loading="lazy"/>
+          <figcaption>雷顿初代 Remake 官方/一线视觉</figcaption>
+        </figure>
+        <figure class="signal-media">
+          <img src="../media/2026-09-12/holy-horror.jpg" alt="Holy Horror Mansion 一线视觉" loading="lazy"/>
+          <figcaption>Holy Horror Mansion 一线视觉</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-10（补入核）</dd></div>
+<div><dt>活动</dt><dd>LEVEL-5 Vision 2026 II Dream</dd></div>
+<div><dt>雷顿 Remake</dt><dd>2027 · PS5 / Switch 2 / Switch / Steam · 官站列简中</dd></div>
+<div><dt>Holy Horror Mansion</dt><dd>2027 · PS5 / Switch / Steam · 无已核官方简中店名，标题留英文</dd></div>
+<div><dt>同系列附记</dt><dd>《雷顿教授与蒸汽的新世界》已锁 2026-12-10（Gematsu 9/9，不单开）</dd></div>
+</dl>
+        <ul class="facts">
+<li>雷顿官站标题「レイトン教授と不思議な町 Remake」；系列简中沿用「雷顿教授与不可思议的小镇」+ Remake。</li>
+<li>Remake 强调角色 3D 化、高分宽动画，谜题总监修仍署多湖辉。</li>
+<li>Holy Horror Mansion：拍照把物件变成 Mononoke、游乐场化与地牢；TGS 2026（9/17–21）试玩。</li>
+<li>跨媒体玩具线另择期发表。</li>
+<li>本条作新作公布 / 定档观察；展会片单轴仍空（TGS 未开、Direct 不复述）。</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.layton.jp/fushigi-remake/" rel="noopener" target="_blank">Layton 官站</a>；<a href="https://www.gematsu.com/2026/09/professor-layton-and-the-curious-village-remake-announced-for-ps5-switch-2-switch-and-pc" rel="noopener" target="_blank">Gematsu · Remake</a>；<a href="https://www.gematsu.com/2026/09/holy-horror-mansion-launches-in-2027-for-ps5-switch-2-and-pc" rel="noopener" target="_blank">Gematsu · Holy Horror Mansion</a>。</p>
+        <div class="tags"><span>LEVEL-5</span><span>雷顿</span><span>新作公布</span><span>补入核</span></div>
+      </article>
+
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/4253770/" rel="noopener" target="_blank">胧村正怪奇谭（Muramasa: Revenant Blades）定档 2027-02</a></h4></div>
+        <p class="signal-lede">Vanillaware × Marvelous 将《胧村正》与元禄怪奇谭合集强化为《胧村正怪奇谭》；Steam 简中店名已核。Steam 标 2027-02-03，Gematsu 记欧美主机 2027-02-04。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-12/muramasa.jpg" alt="胧村正怪奇谭 Steam / 官方封面" loading="lazy"/>
+          <figcaption>胧村正怪奇谭 Steam / 官方封面</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-10 定档披露（补入核）</dd></div>
+<div><dt>开发 / 发行</dt><dd>Vanillaware / XSEED · Marvelous</dd></div>
+<div><dt>平台</dt><dd>PS5 / Switch 2 / Switch / PC（Steam）</dd></div>
+<div><dt>档期</dt><dd>Steam 2027-02-03；Gematsu 欧美 2027-02-04</dd></div>
+<div><dt>译名</dt><dd>Steam 简中「胧村正怪奇谭」</dd></div>
+</dl>
+        <ul class="facts">
+<li>合并初代与 Vita 附加剧情线，六名可玩主角。</li>
+<li>强化至最高 4K，并更新英配。</li>
+<li>北美实体标准版 $49.99（PS5/Switch）/ $59.99（Switch 2），另有限定版。</li>
+<li>属新游定档，计入新游戏观察同步头条选题。</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/4253770/" rel="noopener" target="_blank">Steam · 胧村正怪奇谭</a>；<a href="https://www.gematsu.com/2026/09/muramasa-revenant-blades-launches-february-4-2027" rel="noopener" target="_blank">Gematsu</a>。</p>
+        <div class="tags"><span>定档</span><span>Vanillaware</span><span>独立/动作RPG</span><span>补入核</span></div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">中</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/4368640/" rel="noopener" target="_blank">深度求财：挖打撤（DIG Raiders: Anomaly Extraction）1.0 发售</a></h4></div>
+        <p class="signal-lede">Soda Game Studio / Infini Fun 合作挖矿撤离联机作于 2026-09-11 Steam 正式发售；店名简中「深度求财：挖打撤」。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-12/dig-raiders.jpg" alt="深度求财：挖打撤 Steam 封面" loading="lazy"/>
+          <figcaption>深度求财：挖打撤 Steam 封面</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-11</dd></div>
+<div><dt>开发 / 发行</dt><dd>Soda Game Studio / Infini Fun</dd></div>
+<div><dt>平台</dt><dd>PC（Steam）</dd></div>
+<div><dt>状态</dt><dd>1.0 live</dd></div>
+<div><dt>译名</dt><dd>Steam 简中店名「深度求财：挖打撤」</dd></div>
+</dl>
+        <ul class="facts">
+<li>Steam app/4368640；发售日 2026-09-11。</li>
+<li>玩法：地底外星残骸挖矿 + 撤离 + PvE/PvP。</li>
+<li>发行稿标启动价与折扣（以店页为准）。</li>
+<li>独立游戏观察新增：正式发售翻牌。</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/4368640/" rel="noopener" target="_blank">Steam · 深度求财：挖打撤</a>；Games Press 发售稿。</p>
+        <div class="tags"><span>独立</span><span>1.0</span><span>发售</span></div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🏭 行业动态</h3><span class="density">低</span></div>
+    <div class="axis-body">
+      <article class="signal">
+        <div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/moss-series-developer-polyarc-shuts-down" rel="noopener" target="_blank">Moss 系列开发商 Polyarc 宣布关停</a></h4></div>
+        <p class="signal-lede">Polyarc 于 2026-09-11 宣布近 12 年运营后关停；近期作品为合集向《Moss: The Forgotten Relic》（多平台）。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-12/polyarc.jpg" alt="Polyarc 关停一线配图" loading="lazy"/>
+          <figcaption>Polyarc 关停一线配图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>日期</dt><dd>2026-09-11</dd></div>
+<div><dt>主体</dt><dd>Polyarc</dd></div>
+<div><dt>近作</dt><dd>Moss: The Forgotten Relic</dd></div>
+<div><dt>平台履历</dt><dd>PS VR / PSVR2 / PC VR 等 → 近期多平台合集</dd></div>
+</dl>
+        <ul class="facts">
+<li>工作室官方声明确认 wind-down，并开放招聘转发。</li>
+<li>属行业/工作室动态，非新游发售。</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/moss-series-developer-polyarc-shuts-down" rel="noopener" target="_blank">Gematsu · Polyarc</a>。</p>
+        <div class="tags"><span>工作室</span><span>关停</span><span>Moss</span></div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🎬 展会片单</h3><span class="density">空</span></div>
+    <div class="axis-body">
+      <p class="empty-axis">今日无展会片单新轴。TGS 2026（9/17–21）未开不预写；Nintendo Direct / Zelda Direct / State of Play 已报长名单不复述。</p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>综合日报 · 2026-09-12 · 观察台 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-12.html">/daily/2026-09-12.html</a></p>
+  <p>游戏开发空库未出 Tab · 二次元空库未出 Tab · 不发涉政</p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
