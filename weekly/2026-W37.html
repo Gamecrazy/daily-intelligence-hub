@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合周报 · 2026-W37</title>
+<!--
+  基于 2026-W36 骨架 / CSS；页头 .issue-nav / .edition-nav（与日报一致）。
+  内容：W37 升维，非日报堆叠。截稿周六覆盖 Mon–Sat；周日 9/13 pending。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+#overview .axis-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+#overview .axis-card .axis-body p{font-size:13.5px;color:var(--ink2);margin:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>综合周报</h1>
+<div class="meta">2026-W37 · 2026-09-07 – 2026-09-12 · Saturday 截稿 · 周日 pending</div>
+</div>
+<div class="issue-nav">
+<nav class="edition-nav" aria-label="日报周报切换">
+<a href="../daily/2026-09-12.html">日报</a>
+<a class="active" href="#">周报</a>
+</nav>
+<nav class="date-nav" data-week="2026-W37" aria-label="周次切换"></nav>
+<span class="window">本周 W37（周一至周六，周日未发生）</span>
+</div>
+</div>
+<div class="lede">
+<p class="lib-lede">本周从 W36 的「旗舰三连 + SoP/Japan」切到「Nintendo Direct 双场 + 单旗舰 DeepSeek + 独立发售波」。<b>本周有新旗舰：DeepSeek-V4.1-Flash。</b> <b>本周无新 MCP/Skill 推荐</b>（OpenAI Agents API / GPT-Live-1 记 Agent 产品轴，不当推荐）。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>DeepSeek-V4.1-Flash（9/11 日报；API <code>deepseek-flash</code>；MIT 权重）</dd></div>
+<div><dt>MCP/Skill</dt><dd>本周无新推荐（相对 W36 双推荐反转）</dd></div>
+<div><dt>窗口</dt><dd>2026-09-07（一）至 2026-09-13（日）</dd></div>
+<div><dt>截稿</dt><dd>2026-09-12 ~10:00 CST · 覆盖 Mon–Sat</dd></div>
+</dl>
+<ul class="facts">
+<li>行业：Zelda 40th Direct（9/8）+ Nintendo Direct（9/9）成周脊；鬼武者首日破百万跟进；LEVEL-5 Vision / Polyarc 关停收尾。</li>
+<li>AI：唯一新旗舰 DeepSeek-V4.1-Flash；Agents API 公测 + GPT-Live-1 记产品轴；Images 2.5 / Navier–Stokes 非旗舰。</li>
+<li>二次元：绝区零 3.2 准时开门（W36 必跟落地）；鸣潮「景燃」唤取开门。原神 7.1 特别节目截稿后晚间，pending。</li>
+<li>独立：幻珠奇港 → 吞吞堡垒 EA → 古原镇+魔法腮红 → DIG Raiders 1.0 连波；另 Lightspeed Lina 公布。</li>
+<li>游戏开发空库整周无新增 Signal，未出 Tab。</li>
+</ul>
+<p class="lib-note">覆盖周一至周六共 6 天日报；周日 9/13 pending，不预写。补搜：Grok 4.7 仍未发布（docs.x.ai 现役 Grok 4.6）；漫威金刚狼仍 9/15；TGS 9/17–21 + Capcom Spotlight 9/16 未改档；DeepSeek-V4.1-Flash 官方页仍 live；Astra 仍为分阶段铺开（Bedrock 9/8 GA，ChatGPT 侧无单一「全面 GA」日）。不发 Anthropic threat-intel 涉政。截稿后同日晚间原神 7.1 特别节目 pending，不预写内容。</p>
+</div>
+</header>
+
+<section class="metrics">
+<div class="metric hot"><b>5</b><span>本周大事</span></div>
+<div class="metric accent"><b>3</b><span>显示观察库</span></div>
+<div class="metric"><b>3</b><span>跨周对比</span></div>
+<div class="metric"><b>6</b><span>本周日报</span></div>
+<div class="metric"><b>6</b><span>补搜确认</span></div>
+<div class="metric"><b>6</b><span>覆盖天数</span></div>
+</section>
+
+<nav aria-label="周报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI</button>
+<button class="tab-btn" data-tab="anime">二次元</button>
+<button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">本周大事</h2>
+<div class="overview-grid">
+
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3><a href="https://youtu.be/B_QJ4BYIGME" rel="noopener" target="_blank">Nintendo Direct 周：Zelda 40th + Nintendo Direct</a></h3>
+<p class="ov-lede">行业脊梁从 W36 SoP/Japan 切到任天堂双场：时光之笛新锁 + 密特罗德 Ravenous / 卡比 World Beyond 世界首发与一长串主机新锁。</p>
+<dl class="kv">
+<div><dt>Zelda Direct</dt><dd>9/8 · 时光之笛 11/05 · 周年机 10/29</dd></div>
+<div><dt>Nintendo Direct</dt><dd>9/9 · Ravenous 2027-01-28 · Kirby World Beyond 2027春</dd></div>
+<div><dt>硬新锁</dt><dd>荒野 Switch2 12/04；生化危机重制三部曲 10/16 等</dd></div>
+</dl>
+</article>
+
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3><a href="https://www.deepseek.com/en/news/deepseek-v4-1-flash/" rel="noopener" target="_blank">DeepSeek-V4.1-Flash：本周唯一新旗舰</a></h3>
+<p class="ov-lede">相对 W36 三日三旗舰，本周旗舰密度明显回落；DeepSeek 以 API <code>deepseek-flash</code> + MIT 权重成为唯一一般可用新旗舰。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>官方 9/10 · 日报 9/11</dd></div>
+<div><dt>型号</dt><dd><code>deepseek-flash</code> · MIT 权重</dd></div>
+<div><dt>对照</dt><dd>Images 2.5 / Agents API / GPT-Live-1 均非旗舰</dd></div>
+</dl>
+</article>
+
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://store.steampowered.com/app/2998920/Port_of_Jumanah/" rel="noopener" target="_blank">独立游戏观察周：幻珠奇港 → DIG Raiders</a></h3>
+<p class="ov-lede">周一至周六连波：幻珠奇港解锁、吞吞堡垒 EA、古原镇+魔法腮红 1.0、DIG Raiders 1.0；另 Lightspeed Lina 公布。</p>
+<dl class="kv">
+<div><dt>解锁/发售</dt><dd>幻珠奇港 · 吞吞堡垒 EA · 古原镇 · 魔法腮红 · DIG Raiders</dd></div>
+<div><dt>公布</dt><dd>Lightspeed Lina（9/8）</dd></div>
+<div><dt>非独立轴</dt><dd>主机移植不当独立新增（9/10）</dd></div>
+</dl>
+</article>
+
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>绝区零 3.2「她与她的隐秘往事」准时开门</h3>
+<p class="ov-lede">W36 必跟落地：9/8 预下载 → 9/9 停服更新开门。鸣潮「景燃」身赴三途唤取同周开门补密度。</p>
+<dl class="kv">
+<div><dt>绝区零</dt><dd>3.2 9/9 维护后开门</dd></div>
+<div><dt>鸣潮</dt><dd>景燃唤取 9/10–9/29（二线源；库街区原帖待核）</dd></div>
+<div><dt>pending</dt><dd>原神 7.1 特别节目截稿后晚间</dd></div>
+</dl>
+</article>
+
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://openai.com/index/introducing-the-agents-api/" rel="noopener" target="_blank">OpenAI Agents API 公测 + GPT-Live-1</a></h3>
+<p class="ov-lede">相对 W36「MCP 双推荐」反转：本周无可安装 MCP/Skill 推荐，但 Agent 产品轴升温——Agents API 公测与 GPT-Live-1 语音 API 同日落款。</p>
+<dl class="kv">
+<div><dt>Agents API</dt><dd>9/10 · 驱动 Codex 的托管 harness 公测</dd></div>
+<div><dt>GPT-Live-1</dt><dd>同日 API · 非文本旗舰</dd></div>
+<div><dt>判定</dt><dd>产品轴，不当 MCP/Skill 推荐</dd></div>
+</dl>
+</article>
+
+</div>
+
+<h2 class="section-title">跨周对比（W36 → W37）</h2>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>延续</h3><span class="density">对照 W36</span></div>
+<div class="analysis-box">上周已经出现、本周继续发展。W36 证据日落 8/31–9/5；本周证据日落 9/7–9/12。</div>
+<div class="axis-body">
+<p>绝区零 3.2：从 W36「仍锁 9/9」接到本周预下载 + 准时开门。</p>
+<p>鬼武者：从 W36 全球发售接到本周首日破百万（系列破千万）跟进。</p>
+<p>漫威金刚狼仍 9/15；TGS 9/17–21 + Capcom Spotlight 9/16 无改档。Grok 4.7 仍未发布（文档现役 4.6）。Astra 继续分阶段铺开，不当本周新旗舰。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>反转</h3><span class="density">对照 W36</span></div>
+<div class="analysis-box">上周判断或趋势在本周出现变化、降温或反向信号。</div>
+<div class="axis-body">
+<p>旗舰密度反转。W36 三日三旗舰（Fable / Gemini 3.8 Flash / Astra）→ 本周仅 DeepSeek-V4.1-Flash 一旗舰。</p>
+<p>行业主线反转。从 SoP/Japan 片单切到 Nintendo Direct 双场（Zelda 40th + 一般 Direct）。</p>
+<p>MCP 推荐轴降温。W36 Baseten + AWS 双推荐 → 本周无新 MCP/Skill 推荐；Agents API 升为产品轴，不记推荐。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>新增</h3><span class="density">本周首次</span></div>
+<div class="analysis-box">本周首次出现、值得后续跟踪。</div>
+<div class="axis-body">
+<p>DeepSeek-V4.1-Flash（API deepseek-flash · MIT）；OpenAI Agents API 公测；GPT-Live-1 API。</p>
+<p>密特罗德 Ravenous（2027-01-28）与星之卡比 World Beyond（2027春）世界首发；时光之笛 11/05 新锁；荒野 Switch2 / 生化危机重制三部曲等新锁。</p>
+<p>独立连波（幻珠奇港 / 吞吞堡垒 / 古原镇 / 魔法腮红 / DIG Raiders）；LEVEL-5 Vision 雷顿 Remake；胧村正怪奇谭 2027-02；Polyarc 关停。</p>
+</div>
+</section>
+</div>
+
+<h2 class="section-title">专题更新</h2>
+<div class="watch-list">
+<div class="watch"><b>Nintendo Direct 双场 / 展会片单</b><br/>本周：9/8 Zelda 40th Direct（时光之笛 11/05、周年机 10/29）；9/9 Nintendo Direct（Ravenous / Kirby World Beyond 世界首发 + 荒野 Switch2 12/04 等）。SoP 已闭不重建。继续跟踪：TGS 9/17–21、Capcom Spotlight 9/16；密特罗德/卡比官方简中全称待核。</div>
+<div class="watch"><b>旗舰列车（DeepSeek-V4.1-Flash）</b><br/>本周：唯一新旗舰。V4-Pro 将自 04:00 UTC Sep 14 临时路由至 V4.1-Flash。继续跟踪：V4.1-Pro；Grok 4.7（文档仍无）；Astra 一般可用铺开进度。</div>
+<div class="watch"><b>MCP / Skill 推荐轴</b><br/>本周：无新推荐。Agents API 支持 MCP 但记产品平台，不当推荐；Cursor Projects beta 记编程轴。继续跟踪：下周是否有可安装新包。</div>
+<div class="watch"><b>绝区零 3.2 / 鸣潮唤取</b><br/>本周：3.2 准时开门；景燃唤取开门（库街区原帖待核）。继续跟踪：3.2 稳定性；原神 7.1 特别节目播后增量。</div>
+<div class="watch"><b>独立发售波</b><br/>本周：幻珠奇港解锁 → 吞吞堡垒 EA → 古原镇+魔法腮红 → DIG Raiders 1.0。继续跟踪：口碑翻牌与 Lightspeed Lina 后续。</div>
+<div class="watch"><b>LEVEL-5 Vision / Polyarc</b><br/>本周：雷顿初代 Remake + Holy Horror Mansion（2027）；Polyarc（Moss）关停。继续跟踪：Holy Horror 官方简中店名；雷顿多端档期。</div>
+</div>
+
+<h2 class="section-title">下周观察</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜漫威金刚狼（Marvel’s Wolverine）9/15</b><br/>补搜确认仍 9/15（Marvel / PS Store）。看评测解禁 / 预载，不预写口碑。</div>
+<div class="watch"><b>必跟｜Capcom Spotlight 9/16 + TGS 2026（9/17–21）</b><br/>Spotlight 开幕前夜约 40 分钟；商日 17–18、公众日 19–21。未播不预写片单。</div>
+<div class="watch"><b>必跟｜Grok 4.7 是否正式发布</b><br/>补搜：docs.x.ai 现役仍 Grok 4.6；二线估约 9/12 窗口。无官方模型卡不当旗舰。</div>
+<div class="watch"><b>必跟｜DeepSeek V4.1-Pro / V4-Pro 路由</b><br/>官方：04:00 UTC Sep 14 起 deepseek-v4-pro 临时路由至 V4.1-Flash。只看 Pro 是否落地。</div>
+<div class="watch"><b>必跟｜原神 7.1 特别节目（截稿后）</b><br/>9/12 晚间档；截稿时未播。播后只跟版本增量，不预写。</div>
+<div class="watch"><b>可跟｜燕云十六声 Hidden Mountain Ch.3 9/16</b><br/>与 Spotlight / TGS 窗口重叠；只看是否改档。</div>
+<div class="watch"><b>可跟｜Rematch × 蓝色监狱 9/24</b><br/>联动锁日；可跟是否改档。</div>
+<div class="watch"><b>可跟｜Okko The Exiled PC 9/30 · SF6 Arjun 10/13</b><br/>本周已定档；临近再核店页。</div>
+<div class="watch"><b>可跟｜Astra 铺开是否写死「一般可用」日</b><br/>Bedrock 已 GA（9/8）；ChatGPT 侧仍分阶段，缺单一 GA 日不编。</div>
+<div class="watch"><b>可跟｜周日 9/13 突发</b><br/>本周截稿未覆盖；有达门槛事件再补周报备注或下一日报。</div>
+</div>
+
+<h2 class="section-title">本周日报回看</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>日期</th><th>星期</th><th>是否有日报</th><th>周报如何用</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>9/7</td><td>一</td><td>有</td><td>全量聚合</td><td>仅行业；幻珠奇港定档；Civ VII 路线图；Ascendance 轻弩</td></tr>
+<tr><td>9/8</td><td>二</td><td>有</td><td>全量聚合</td><td>鬼武者首日 1M；幻珠奇港解锁；ZZZ 预下载；Zelda Direct 当晚未播</td></tr>
+<tr><td>9/9</td><td>三</td><td>有</td><td>全量聚合</td><td>Zelda Direct 片单；ZZZ 3.2 开门；吞吞堡垒 EA；Images 2.5</td></tr>
+<tr><td>9/10</td><td>四</td><td>有</td><td>全量聚合</td><td>Nintendo Direct 片单；仅行业 Tab</td></tr>
+<tr><td>9/11</td><td>五</td><td>有</td><td>全量聚合</td><td>DeepSeek-V4.1-Flash 旗舰；古原镇+魔法腮红；鸣潮景燃</td></tr>
+<tr><td>9/12</td><td>六</td><td>有</td><td>全量聚合</td><td>Agents API + GPT-Live-1；LEVEL-5 Vision；DIG Raiders；Polyarc</td></tr>
+<tr><td>9/13</td><td>日</td><td>无</td><td>未发生，pending</td><td>不预写周日事件</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">本周日报 6 篇（9/7–9/12），全部已推观察台。周日 9/13 未发生。截稿后同日晚间原神 7.1 特别节目属 after-cutoff pending。</p>
+
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://www.deepseek.com/en/news/deepseek-v4-1-flash/" rel="noopener" target="_blank">DeepSeek · V4.1-Flash 新闻</a></li>
+<li><a href="https://api-docs.deepseek.com/news/news260910" rel="noopener" target="_blank">DeepSeek API Docs · news260910</a></li>
+<li><a href="https://api-docs.deepseek.com/quick_start/pricing/" rel="noopener" target="_blank">DeepSeek · Models &amp; Pricing</a></li>
+<li><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash" rel="noopener" target="_blank">Hugging Face · DeepSeek-V4.1-Flash</a></li>
+<li><a href="https://openai.com/index/introducing-the-agents-api/" rel="noopener" target="_blank">OpenAI · Introducing the Agents API</a></li>
+<li><a href="https://openai.com/index/introducing-gpt-live-1-in-the-api/" rel="noopener" target="_blank">OpenAI · GPT-Live-1 in the API</a></li>
+<li><a href="https://openai.com/index/navier-stokes-solution/" rel="noopener" target="_blank">OpenAI · Navier–Stokes</a></li>
+<li><a href="https://docs.x.ai/developers/models" rel="noopener" target="_blank">xAI Docs · Models（现役仍 Grok 4.6）</a></li>
+<li><a href="https://www.nintendo.com/us/store/products/the-legend-of-zelda-ocarina-of-time-switch-2/" rel="noopener" target="_blank">Nintendo eShop · 时光之笛 Switch 2</a></li>
+<li><a href="https://nintendoeverything.com/the-legend-of-zelda-40th-anniversary-direct-official-recap-announcement/" rel="noopener" target="_blank">Nintendo 官方 Direct 摘要（转载）</a></li>
+<li><a href="https://gameinformer.com/nintendo-direct/2026/09/08/everything-annnounced-at-the-zelda-40th-anniversary-nintendo-direct" rel="noopener" target="_blank">Game Informer · Zelda 40th Direct</a></li>
+<li><a href="https://www.gematsu.com/2026/09/metroid-ravenous-announced-for-switch-2" rel="noopener" target="_blank">Gematsu · Metroid Ravenous</a></li>
+<li><a href="https://www.gematsu.com/2026/09/kirby-and-the-world-beyond-announced-for-switch-2" rel="noopener" target="_blank">Gematsu · Kirby and the World Beyond</a></li>
+<li><a href="https://youtu.be/B_QJ4BYIGME" rel="noopener" target="_blank">Nintendo Direct 官方录像</a></li>
+<li><a href="https://www.nintendolife.com/guides/nintendo-direct-september-2026-every-game-announcement-and-trailer" rel="noopener" target="_blank">Nintendo Life · Direct 片单</a></li>
+<li><a href="https://www.capcom.co.jp/ir/english/news/html/e260907.html" rel="noopener" target="_blank">Capcom IR · 鬼武者首日销量</a></li>
+<li><a href="https://www.gematsu.com/2026/09/onimusha-way-of-the-sword-sales-top-one-million-on-launch-day" rel="noopener" target="_blank">Gematsu · 鬼武者首日破百万</a></li>
+<li><a href="https://store.steampowered.com/app/2998920/Port_of_Jumanah/" rel="noopener" target="_blank">Steam · 幻珠奇港 Port of Jumanah</a></li>
+<li><a href="https://store.steampowered.com/app/3624140/Wanderburg/" rel="noopener" target="_blank">Steam · 吞吞堡垒 Wanderburg</a></li>
+<li><a href="https://store.steampowered.com/app/3195440/" rel="noopener" target="_blank">Steam · 欢迎来到古原镇 Welcome to Elderfield</a></li>
+<li><a href="https://store.steampowered.com/app/3488640/" rel="noopener" target="_blank">Steam · 魔法腮红 Magical Blush</a></li>
+<li><a href="https://store.steampowered.com/app/4368640/" rel="noopener" target="_blank">Steam · 深度求财：挖打撤 DIG Raiders</a></li>
+<li><a href="https://www.layton.jp/fushigi-remake/" rel="noopener" target="_blank">Layton 官站 · 不可思议的小镇 Remake</a></li>
+<li><a href="https://www.gematsu.com/2026/09/professor-layton-and-the-curious-village-remake-announced-for-ps5-switch-2-switch-and-pc" rel="noopener" target="_blank">Gematsu · Layton Remake</a></li>
+<li><a href="https://www.gematsu.com/2026/09/holy-horror-mansion-launches-in-2027-for-ps5-switch-2-and-pc" rel="noopener" target="_blank">Gematsu · Holy Horror Mansion</a></li>
+<li><a href="https://store.steampowered.com/app/4253770/" rel="noopener" target="_blank">Steam · 胧村正怪奇谭</a></li>
+<li><a href="https://www.gematsu.com/2026/09/muramasa-revenant-blades-launches-february-4-2027" rel="noopener" target="_blank">Gematsu · Muramasa: Revenant Blades</a></li>
+<li><a href="https://www.gematsu.com/2026/09/moss-series-developer-polyarc-shuts-down" rel="noopener" target="_blank">Gematsu · Polyarc 关停</a></li>
+<li><a href="https://www.marvel.com/games/marvels-wolverine" rel="noopener" target="_blank">Marvel · Wolverine（仍 9/15）</a></li>
+<li><a href="https://tgs.cesa.or.jp/2026/en/program" rel="noopener" target="_blank">TGS 2026 Program · Capcom Spotlight 9/16</a></li>
+<li><a href="https://www.gematsu.com/2026/09/capcom-announces-tgs-2026-lineup-capcom-spotlight" rel="noopener" target="_blank">Gematsu · Capcom Spotlight / TGS lineup</a></li>
+<li><a href="https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/" rel="noopener" target="_blank">AWS · GPT-6 Astra on Bedrock GA</a></li>
+<li><a href="https://genshin.hoyoverse.com/en/news/detail/166004" rel="noopener" target="_blank">原神 · 7.1 Special Program 预告</a></li>
+</ul>
+<p class="footnote">血缘：聚合本周 6 篇日报（9/7–9/12）+ 补搜 6 条（Grok 4.7 未发布；金刚狼仍 9/15；TGS/Spotlight 未改档；DeepSeek 官方页仍 live；Astra Bedrock GA / ChatGPT 分阶段；截稿后原神 7.1 特别节目与周日 9/13 pending），提炼升维，不是日报堆叠。<b>本周有新旗舰：DeepSeek-V4.1-Flash。本周无新 MCP/Skill 推荐。</b>覆盖 Mon–Sat，Sunday 2026-09-13 pending，不预写。游戏开发空库未出 Tab。待核：密特罗德/卡比官方简中全称；鸣潮库街区景燃原帖 ID；Holy Horror Mansion 官方简中店名；原神 7.1 特别节目播后增量；Sunday 全日。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📦</span><h2>AI 观察</h2></div>
+<p class="lib-lede"><b>本周有新旗舰：DeepSeek-V4.1-Flash。</b> <b>本周无新 MCP/Skill 推荐。</b> Agent 产品轴升温（Agents API + GPT-Live-1）；Images 2.5 / Navier–Stokes 非旗舰。相对 W36 三旗舰+双推荐，密度回落但产品轴清晰。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>DeepSeek-V4.1-Flash（9/11）</dd></div>
+<div><dt>推荐</dt><dd>无</dd></div>
+<div><dt>产品轴</dt><dd>Agents API 公测 · GPT-Live-1 API</dd></div>
+<div><dt>未到</dt><dd>Grok 4.7（文档仍 4.6）</dd></div>
+</dl>
+<ul class="facts">
+<li>W36 三旗舰在本周收束为单旗舰；DeepSeek 以 MIT 权重 + 新价成为唯一一般可用落款。</li>
+<li>Agents API 支持 MCP，但本条是平台 API，不记「MCP 推荐」；Cursor Projects beta 同理记编程轴。</li>
+<li>不复述 Fable / Gemini 3.8 Flash / Astra 规格；Astra 铺开只作对照。</li>
+</ul>
+<p class="lib-note">不发 Anthropic Sep10 threat-intel 涉政案例。Daybreak / collusion.wiki 属上周，不复述。</p>
+<div class="lib-stats">
+<span><b>3</b> 显示轴</span>
+<span class="level">单旗舰 + 产品轴</span>
+<span>MCP 推荐空</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🧠 模型发布</h3><span class="density">单旗舰</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://www.deepseek.com/en/news/deepseek-v4-1-flash/" rel="noopener" target="_blank">DeepSeek-V4.1-Flash（API deepseek-flash · MIT）</a></h4></div>
+<p class="signal-lede">本周唯一新旗舰。官方 9/10 发布，日报 9/11 入刊：原生多模态；型号 <code>deepseek-flash</code>；legacy 路由；MIT 权重；新价 04:00 UTC Sep 10。</p>
+<dl class="kv">
+<div><dt>日期</dt><dd>2026-09-10 / 日报 09-11</dd></div>
+<div><dt>权重</dt><dd>MIT · HF DeepSeek-V4.1-Flash</dd></div>
+<div><dt>后续</dt><dd>Sep 14 起 v4-pro 临时路由至 Flash</dd></div>
+</dl>
+<figure class="signal-media">
+<img alt="DeepSeek-V4.1-Flash" src="../media/2026-09-11/deepseek-v41-flash.png"/>
+</figure>
+<div class="tags"><span>DeepSeek-V4.1-Flash</span><span>旗舰</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4>Images 2.5 / Navier–Stokes：非旗舰</h4></div>
+<p>ChatGPT Images 2.5（9/8–9）是图像产品档；OpenAI Navier–Stokes 研究帖用内部模型。均不改「本周唯一旗舰」结论。Grok 4.7 补搜仍未发布。</p>
+<div class="tags"><span>非旗舰</span><span>产品/研究</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🔧 Agent / MCP / Skill</h3><span class="density">本周无推荐</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://openai.com/index/introducing-the-agents-api/" rel="noopener" target="_blank">OpenAI Agents API 公测（产品轴，非推荐）</a></h4></div>
+<p class="signal-lede">9/10：把驱动 Codex 的托管 harness 以 Agents API 公测开放——持久会话、上下文压缩、子代理并行、MCP/自定义工具。记 Agent 产品，不当 MCP/Skill 推荐。</p>
+<figure class="signal-media">
+<img alt="Agents API" src="../media/2026-09-12/agents-api.png"/>
+</figure>
+<div class="tags"><span>Agents API</span><span>产品轴</span><span>非推荐</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://openai.com/index/introducing-gpt-live-1-in-the-api/" rel="noopener" target="_blank">GPT-Live-1 登陆 API</a></h4></div>
+<p>同日全双工语音层进 API；不当文本旗舰。Cursor Projects beta 记编程轴。</p>
+<div class="tags"><span>GPT-Live-1</span><span>语音 API</span></div>
+</article>
+<p class="empty">本周无可安装 / 托管新 MCP 或 Skill 推荐包（相对 W36 Baseten + AWS 反转）。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>对照｜上周旗舰铺开</h3><span class="density">不复述规格</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://aws.amazon.com/about-aws/whats-new/2026/09/openai-gpt-6-astra-on-amazon-bedrock/" rel="noopener" target="_blank">Astra：Bedrock GA · ChatGPT 仍分阶段</a></h4></div>
+<p>补搜：Amazon Bedrock 于 9/8 宣布 GPT-6 Astra GA；OpenAI 侧仍写分阶段铺开，无单一「全面一般可用」日。不当本周新旗舰。</p>
+<div class="tags"><span>Astra</span><span>铺开跟进</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p class="lib-lede">本周主线是 <b>绝区零 3.2 准时开门</b>（W36 必跟落地）与 <b>鸣潮「景燃」唤取开门</b>。原神 7.1 特别节目落在截稿后晚间，pending 不预写。</p>
+<dl class="kv">
+<div><dt>开门</dt><dd>绝区零 3.2（9/9）；鸣潮景燃唤取（9/10）</dd></div>
+<div><dt>预热</dt><dd>9/8 绝区零预下载</dd></div>
+<div><dt>pending</dt><dd>原神 7.1 特别节目（9/12 截稿后）</dd></div>
+<div><dt>空日</dt><dd>9/7、9/10、9/12 二次元空库未出 Tab</dd></div>
+</dl>
+<ul class="facts">
+<li>绝区零从锁期接到开门，是跨周闭环；不把前瞻再开一遍。</li>
+<li>鸣潮景燃为一线运营落地，但库街区原帖 ID 待核（17173 二线）。</li>
+<li>不复述终末地雪凇幽梦 / 原神 7.0 下半（上周已报）。</li>
+</ul>
+<p class="lib-note">绝对魔权移动 11/05、卡莉亚的炼金工房 2027-02-25 落行业定档，不在这里撑二次元主线。</p>
+<div class="lib-stats">
+<span><b>2</b> 显示轴卡</span>
+<span class="level">3.2 开门</span>
+<span>7.1 特别节目 pending</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本更新</h3><span class="density">周级主线</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>绝区零 3.2「她与她的隐秘往事」准时开门</h4></div>
+<p class="signal-lede">W36 必跟落地。9/8 预下载 → 9/9 06:00 CST 起维护（约 5 小时）导入 3.2；新职业「锋御」、上半限定 S 克拉蕾。</p>
+<dl class="kv">
+<div><dt>版本</dt><dd>3.2 · Their Secret Histories</dd></div>
+<div><dt>跨周</dt><dd>W36 锁 9/9 → 本周开门</dd></div>
+</dl>
+<div class="tags"><span>绝区零</span><span>3.2</span><span>开门</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>鸣潮「景燃」身赴三途唤取开门</h4></div>
+<p class="signal-lede">9/10 10:00–9/29 11:59；武器「千般渡」同步。二线源；库街区原帖待核。</p>
+<div class="tags"><span>鸣潮</span><span>景燃</span><span>唤取</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📅 定档 / pending</h3><span class="density">截稿边界</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://genshin.hoyoverse.com/en/news/detail/166004" rel="noopener" target="_blank">原神 7.1 特别节目：截稿后晚间 pending</a></h4></div>
+<p>官方预告 9/12 08:00 EDT（约 20:00 CST）特别节目。周报截稿 ~10:00 CST，未播不预写内容；播后由下一日报或周报备注跟进。</p>
+<div class="tags"><span>原神</span><span>7.1</span><span>pending</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p class="lib-lede">本周主线是 <b>Nintendo Direct 双场</b> 与 <b>独立发售波</b>，辅以鬼武者首日破百万、LEVEL-5 Vision、Polyarc 关停。SoP 已闭不重建；TGS 未播不预写。</p>
+<dl class="kv">
+<div><dt>展会</dt><dd>Zelda 40th Direct 9/8 · Nintendo Direct 9/9</dd></div>
+<div><dt>独立</dt><dd>幻珠奇港 · 吞吞堡垒 · 古原镇 · 魔法腮红 · DIG Raiders</dd></div>
+<div><dt>大作跟进</dt><dd>鬼武者首日 1M（系列 10M+）</dd></div>
+<div><dt>空库说明</dt><dd>游戏开发整周空 · 总览已注</dd></div>
+</dl>
+<ul class="facts">
+<li>世界首发优先写进片单；已定档深潜压表，不单开（荒野 Switch2、生化危机重制等）。</li>
+<li>主机移植不当独立轴新增（9/10 口径）。</li>
+<li>下周 Capcom Spotlight + TGS 未播不预写。</li>
+</ul>
+<p class="lib-note">独立游戏观察本周多条达门槛，周报升维保留连波趋势与代表作，不堆日报全表。Civ VII 路线图、MH Ascendance 武器片、P4R 巽完二等压深潜。</p>
+<div class="lib-stats">
+<span><b>4</b> 显示轴</span>
+<span class="level">Direct 双场 + 独立波</span>
+<span>不复述 SoP</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎬 展会片单</h3><span class="density">Nintendo Direct 周</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://nintendoeverything.com/the-legend-of-zelda-40th-anniversary-direct-official-recap-announcement/" rel="noopener" target="_blank">Zelda 40th Direct：时光之笛新锁</a></h4></div>
+<p class="signal-lede">9/8 22:00 CST。塞尔达传说 时光之笛（The Legend of Zelda: Ocarina of Time）Switch 2 锁 2026-11-05；周年机 10/29。记新锁（6 月已公布在研），非世界首发。</p>
+<figure class="signal-media">
+<img alt="时光之笛" src="../media/2026-09-09/ocarina-of-time.jpg"/>
+</figure>
+<div class="tags"><span>Zelda Direct</span><span>时光之笛</span><span>新锁</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://youtu.be/B_QJ4BYIGME" rel="noopener" target="_blank">Nintendo Direct：密特罗德 Ravenous / 卡比 World Beyond</a></h4></div>
+<p class="signal-lede">9/9 22:00 CST。世界首发：密特罗德 Ravenous（2027-01-28）、星之卡比 World Beyond（2027春）。硬新锁含怪物猎人：荒野 Switch 2 12/04、生化危机重制三部曲 10/16 等。</p>
+<ul class="facts">
+<li>官方简中全称待核（密特罗德 / 卡比副标题暂留英文）。</li>
+<li>女神异闻录6 Switch2 精确日待核。</li>
+</ul>
+<figure class="signal-media">
+<img alt="Metroid Ravenous" src="../media/2026-09-10/metroid-ravenous.jpg"/>
+<img alt="Kirby World Beyond" src="../media/2026-09-10/kirby-world-beyond.jpg"/>
+</figure>
+<div class="tags"><span>Nintendo Direct</span><span>世界首发</span><span>新锁</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">周级连波</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://store.steampowered.com/app/2998920/Port_of_Jumanah/" rel="noopener" target="_blank">幻珠奇港（Port of Jumanah）解锁</a></h4></div>
+<p class="signal-lede">9/7 定档当日 → 9/8 Steam/Epic/PS 解锁翻牌。同日 Lightspeed Lina 公布。</p>
+<div class="tags"><span>幻珠奇港</span><span>独立</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://store.steampowered.com/app/3624140/Wanderburg/" rel="noopener" target="_blank">吞吞堡垒（Wanderburg）Steam EA</a></h4></div>
+<p>9/9 EA 解锁，独立轴中段节点。</p>
+<div class="tags"><span>吞吞堡垒</span><span>EA</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://store.steampowered.com/app/3195440/" rel="noopener" target="_blank">欢迎来到古原镇 + 魔法腮红 + DIG Raiders</a></h4></div>
+<p class="signal-lede">9/11：欢迎来到古原镇（Welcome to Elderfield）1.0 + 魔法腮红（Magical Blush）PC。9/12：深度求财：挖打撤（DIG Raiders: Anomaly Extraction）1.0。</p>
+<div class="tags"><span>古原镇</span><span>魔法腮红</span><span>DIG Raiders</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏆 发售验证 / 工作室</h3><span class="density">跟进 + 关停</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.gematsu.com/2026/09/onimusha-way-of-the-sword-sales-top-one-million-on-launch-day" rel="noopener" target="_blank">鬼武者 Way of the Sword：首日破百万</a></h4></div>
+<p class="signal-lede">Capcom IR：首日 1M；系列累计 10M+。承接 W36 发售验证。</p>
+<div class="tags"><span>鬼武者</span><span>销量</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.gematsu.com/2026/09/moss-series-developer-polyarc-shuts-down" rel="noopener" target="_blank">Polyarc（Moss）关停</a></h4></div>
+<p>9/11 宣布近 12 年运营后关停。行业侧冷信号，不当大事第五条（本周大事留给 Agents API 产品轴）。</p>
+<div class="tags"><span>Polyarc</span><span>关停</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📅 定档深潜</h3><span class="density">压表</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4><a href="https://www.layton.jp/fushigi-remake/" rel="noopener" target="_blank">LEVEL-5 Vision：雷顿 Remake + Holy Horror Mansion</a></h4></div>
+<p>雷顿教授与不可思议的小镇 Remake（多端）；Holy Horror Mansion 2027（官方简中店名待核）。胧村正怪奇谭（Muramasa: Revenant Blades）定档 2027-02（Steam 02-03 / 欧美主机 02-04）。另：卡莉亚的炼金工房 2027-02-25；绝对魔权移动 11/05；Okko The Exiled PC 9/30；SF6 Arjun 10/13。</p>
+<figure class="signal-media">
+<img alt="Layton Remake" src="../media/2026-09-12/layton-remake.jpg"/>
+</figure>
+<div class="tags"><span>LEVEL-5</span><span>定档</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
