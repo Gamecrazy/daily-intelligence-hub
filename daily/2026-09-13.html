@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-13</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-12, 2026-09-13]。
+  含昨 9:30 后 / BlizzCon 美东午后补入核。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-13 · 周日 · Asia/Shanghai · ISO 2026-W37</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W37.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-13" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-12, 09-13]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是 <strong>BlizzCon 2026</strong> 开幕典礼世界首发：<strong>暗黑破坏神V（Diablo V）</strong>（2029 春）与叙事开放世界射击作 <strong>星际争霸（STARCRAFT）</strong>（2030 春）；二次元侧补入昨晚 <strong>原神 7.1「往冥府的安魂歌」</strong>特别节目（9/23 上线）。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。AI / 游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 9:30 后 BlizzCon / 原神特别节目 / Melty 定档补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（Grok 4.7 仍未发，Musk「再煮几天」进观察清单）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐</dd></div>
+      <div><dt>展会</dt><dd>BlizzCon 2026 Opening 已播；TGS 9/17–21 未开不预写</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>暗黑破坏神V：庇护之地已陷落，2029 春；面板补充瘟疫骑士等职业与大篷车生存框架。</li>
+      <li>星际争霸（STARCRAFT）：故事驱动开放世界射击，2030 春；平台未宣。</li>
+      <li>原神 7.1：薇斯纳 / 沃雅妮莎登场；六周年首次限定五星自选。</li>
+      <li>补入：MELTY BLOOD: TWI-LUMINA 定档 2027-04-22（昨午后落款，晨报未收）。</li>
+    </ul>
+    <p class="lib-note">判定：行业展会日主导；旗舰轴安静。不复述 Nintendo Direct / Zelda Direct / Agents API / DeepSeek-V4.1-Flash / 夜勤人2 / Polyarc。不发涉政。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric"><b>3</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>3</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>2</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric"><b>0</b><span>MCP/Skill 推荐</span></div>
+  <div class="metric hot"><b>1</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="库切换">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="anime">二次元</button>
+  <button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+<section id="ov" class="tab-pane active">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 落在 BlizzCon 双世界首发与原神 7.1 六周年前瞻；AI 窗内无新 LLM 旗舰、无新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>3</dd></div>
+      <div><dt>高 Attention</dt><dd>3</dd></div>
+      <div><dt>空库</dt><dd>AI · 游戏开发（未出 Tab）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>今日无独立游戏观察新增</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>展会片单：BlizzCon Opening — 暗黑破坏神V + 星际争霸（STARCRAFT）。</li>
+      <li>二次元：原神 7.1 特别节目已播（补入昨 20:00 CST）。</li>
+      <li>定档补入：MELTY BLOOD: TWI-LUMINA 2027-04-22。</li>
+    </ul>
+    <p class="lib-note">判定：先推行业+二次元；旗舰轴写清「无」即可，不填版面。</p>
+  </div>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>暗黑破坏神V（Diablo V）世界首发</h3>
+      <p class="ov-lede">BlizzCon 开幕公布：庇护之地已陷落，迪亚波罗称王；目标 2029 春发售，平台未宣。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-12（美东）/ 09-13 CST 窗</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 展会片单</dd></div>
+        <div><dt>状态</dt><dd>世界首发 · 2029 春</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>星际争霸（STARCRAFT）开放世界射击</h3>
+      <p class="ov-lede">暴雪公布故事驱动开放世界射击新作，品牌写作 STARCRAFT；目标 2030 春，平台未宣。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-12（美东）/ 09-13 CST 窗</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 展会片单</dd></div>
+        <div><dt>状态</dt><dd>世界首发 · 2030 春</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>原神 7.1「往冥府的安魂歌」特别节目</h3>
+      <p class="ov-lede">昨 20:00 CST 已播；版本 9/23。新五星薇斯纳 / 沃雅妮莎；六周年首次限定五星自选。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-12 20:00 CST（补入）</dd></div>
+        <div><dt>库</dt><dd>二次元游戏观察</dd></div>
+        <div><dt>状态</dt><dd>特别节目已播 · 9/23 上线</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>MELTY BLOOD: TWI-LUMINA 定档</h3>
+      <p class="ov-lede">Aniplex / French-Bread 锁 2027-04-22；多平台含 Switch 2；Steam 简中店名仍英文。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-11 23:06 EDT → 09-12 CST 补入</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 定档</dd></div>
+        <div><dt>状态</dt><dd>定档 · TGS 可玩</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section id="anime" class="tab-pane">
+  <div class="library-head">
+    <p class="lib-lede">二次元主线：原神 7.1 特别节目已播，版本名「往冥府的安魂歌」，9/23 上线并叠六周年福利。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>高 Attention</dt><dd>1</dd></div>
+      <div><dt>补入</dt><dd>昨 20:00 CST 节目（晨报窗口外）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>新角色：薇斯纳（风·单手剑）、沃雅妮莎（水·法器）。</li>
+      <li>卡池：上半双新；下半丝柯克 / 爱可菲返场。</li>
+      <li>福利：完成 7.1 魔神任务可自选限定五星（官方称此后每年周年一轮）。</li>
+    </ul>
+    <p class="lib-note">判定：以 Gematsu 转述 miHoYo 英文概览 + 官方特别节目预告交叉；兑换码社区稿不进核心结论。</p>
+  </div>
+  <div class="axis-card">
+    <div class="axis-title"><h3>🎯 版本 / 特别节目</h3><span class="density">1</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/genshin-impact-version-version-7-1-update-a-rekviem-for-the-underworld-launches-september-23" rel="noopener" target="_blank">原神 7.1「往冥府的安魂歌」特别节目已播 · 9/23 上线</a></h4></div>
+        <p class="signal-lede">米哈游于 2026-09-12 20:00 CST 播出 7.1 前瞻特别节目；版本「往冥府的安魂歌」（A Rekviem for the Underworld）定于 9/23 上线，并公布六周年福利与双新五星。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-13/genshin-71.jpg" alt="原神 7.1 往冥府的安魂歌 官方视觉" loading="lazy"/>
+          <figcaption>Gematsu 转载 miHoYo / 官方视觉</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-12 20:00 CST（特别节目）· 版本 2026-09-23</dd></div>
+          <div><dt>主体</dt><dd>原神 · 米哈游 / HoYoverse</dd></div>
+          <div><dt>版本名</dt><dd>往冥府的安魂歌（A Rekviem for the Underworld）</dd></div>
+          <div><dt>新五星</dt><dd>薇斯纳（Vesna）· 风单手剑；沃雅妮莎（Vodyanitsa）· 水法器</dd></div>
+          <div><dt>卡池</dt><dd>上半双新 · 下半丝柯克 / 爱可菲</dd></div>
+          <div><dt>六周年</dt><dd>完成 7.1 魔神任务 → 限定五星自选；另有常驻五星自选与原石邮件等</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>官方预告确认特别节目 9/12 20:00 UTC+8 于 Twitch / YouTube 开播。</li>
+          <li>Gematsu 转述 miHoYo：至冬危机加深，将直面死亡执政罗诺娃；逐月节阔别五年回归璃月。</li>
+          <li>薇斯纳可将冰扩散转为「星漩」向反应；沃雅妮莎水妖形态持续治疗并强化星漩。</li>
+          <li>完成新魔神任务可获原石 ×620；版本内首次开放「完成当期魔神任务领取限定五星自选」。</li>
+          <li>其他活动含无忧无虑大雪仗、赛事预测玩法等；千星奇域编辑器扩展客户端脚本与协作编辑。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://genshin.hoyoverse.com/zh-tw/news/detail/166004" rel="noopener" target="_blank">原神官方 · 7.1 特别节目预告</a> · <a href="https://www.gematsu.com/2026/09/genshin-impact-version-version-7-1-update-a-rekviem-for-the-underworld-launches-september-23" rel="noopener" target="_blank">Gematsu · 7.1 概览</a>。社区兑换码清单不作文内落款。</p>
+        <div class="tags"><span>原神</span><span>7.1</span><span>特别节目</span><span>六周年</span><span>补入</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="industry" class="tab-pane">
+  <div class="library-head">
+    <p class="lib-lede">行业主线：BlizzCon 2026 Opening 双世界首发（暗黑破坏神V / 星际争霸 STARCRAFT）；补入 MELTY BLOOD: TWI-LUMINA 定档。今日无独立游戏观察新增。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>3（片单 + Melty；D4 Switch 2 并入片单表）</dd></div>
+      <div><dt>展会片单</dt><dd>BlizzCon Opening 已出</dd></div>
+      <div><dt>独立游戏观察</dt><dd>今日无新增</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>世界首发：暗黑破坏神V（2029 春）、星际争霸（STARCRAFT）（2030 春）。</li>
+      <li>平台新锁：暗黑破坏神IV Age of Hatred 合集 Switch 2 · 9/15。</li>
+      <li>另记：Diablo Netflix 动画剧集开发中（非游戏，表内附注）。</li>
+    </ul>
+    <p class="lib-note">判定：展会片单扛主线；TGS 未开不预写。Physint 转投 Xbox（9/9）窗外，仅观察清单。</p>
+  </div>
+
+  <div class="axis-card show-slate">
+    <div class="axis-title"><h3>🎬 展会片单 · BlizzCon 2026 Opening</h3><span class="density">1</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://news.blizzard.com/en-us/article/24297203/diablo-v-is-coming-spring-2029" rel="noopener" target="_blank">BlizzCon：暗黑破坏神V + 星际争霸（STARCRAFT）世界首发</a></h4></div>
+        <p class="signal-lede">暴雪在 BlizzCon 2026 开幕典礼公布《暗黑破坏神V》（2029 春）与故事驱动开放世界射击作《星际争霸》（STARCRAFT，2030 春）；同场还宣布《暗黑破坏神IV：Age of Hatred》合集登陆 Switch 2（9/15）及 Netflix Diablo 动画在研。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-13/diablo-v-header.png" alt="暗黑破坏神V 官方博文头图" loading="lazy"/>
+          <img src="../media/2026-09-13/starcraft.jpg" alt="星际争霸 STARCRAFT 射击作公布视觉" loading="lazy"/>
+          <figcaption>暴雪官方头图 · Gematsu 转载 STARCRAFT 公布视觉</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-12 美东午后（约 09-13 01:47–02:17 CST）</dd></div>
+          <div><dt>主体</dt><dd>Blizzard · BlizzCon 2026 Opening Ceremony</dd></div>
+          <div><dt>场次</dt><dd>开幕典礼 + Diablo V 面板「Forging the Next Era」</dd></div>
+          <div><dt>平台</dt><dd>两款世界首发均未宣布平台</dd></div>
+        </dl>
+        <div class="compare-wrap">
+          <table class="compare">
+            <caption>世界首发 / 新锁（片单）</caption>
+            <thead><tr><th>作品</th><th>类型</th><th>档期 / 平台</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td>暗黑破坏神V（Diablo V）</td><td>世界首发</td><td>2029 春 · 平台未宣</td><td>庇护之地已陷落；系列官方译「暗黑破坏神」</td></tr>
+              <tr><td>星际争霸（STARCRAFT）</td><td>世界首发</td><td>2030 春 · 平台未宣</td><td>故事驱动开放世界射击；系列官方译「星际争霸」；品牌全大写 STARCRAFT</td></tr>
+              <tr><td>暗黑破坏神IV：Age of Hatred Collection</td><td>新锁（平台）</td><td>2026-09-15 · Switch 2</td><td>$69.99；含本体 + Vessel of Hatred + Lord of Hatred</td></tr>
+              <tr><td>Diablo Netflix 动画</td><td>另记（非游戏）</td><td>在研 · 细节未宣</td><td>不单开 Signal</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="facts">
+          <li>官方新闻确认 Diablo V 于开幕典礼公开，官网 diablo5.blizzard.com 同步「Coming Spring 2029」。</li>
+          <li>面板更新（Gematsu 7:30 p.m. 补记）：迪亚波罗统治西马奇；玩家为西马奇继承人；大篷车同伴系统；职业含狩魔猎人、武僧、全新瘟疫骑士；道具思路回看暗黑2（需求属性 / 符文之语等）。</li>
+          <li>STARCRAFT 官网 starcraft.blizzard.com 放出与 Gematsu 一致的 Dominion 召唤文案；RTS 复刻/II 仍并列展示。</li>
+          <li>展会周规则：官方秀世界首发本身即达片单门槛。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://news.blizzard.com/en-us/article/24297203/diablo-v-is-coming-spring-2029" rel="noopener" target="_blank">Blizzard News · Diablo V</a> · <a href="https://diablo5.blizzard.com/en-us" rel="noopener" target="_blank">Diablo V 官网</a> · <a href="https://starcraft.blizzard.com/en-us" rel="noopener" target="_blank">STARCRAFT 官网</a> · <a href="https://www.gematsu.com/2026/09/diablo-v-announced" rel="noopener" target="_blank">Gematsu · Diablo V</a> · <a href="https://www.gematsu.com/2026/09/story-driven-open-world-shooter-starcraft-announced" rel="noopener" target="_blank">Gematsu · STARCRAFT</a> · <a href="https://www.gematsu.com/2026/09/diablo-iv-age-of-hatred-collection-coming-to-switch-2-on-september-15" rel="noopener" target="_blank">Gematsu · D4 Switch 2</a>。</p>
+        <div class="tags"><span>展会片单</span><span>BlizzCon</span><span>暗黑破坏神V</span><span>星际争霸</span><span>世界首发</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🆕 新游 / 定档</h3><span class="density">1</span></div>
+    <div class="axis-body">
+      <article class="signal">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/melty-blood-twi-lumina-launches-april-22-2027" rel="noopener" target="_blank">MELTY BLOOD: TWI-LUMINA 定档 2027-04-22</a></h4></div>
+        <p class="signal-lede">Aniplex / French-Bread 公布 2D 格斗新作定档 2027-04-22，登陆 PS5 / Switch 2 / PS4 / Xbox One / Switch / PC（Steam）；Steam 简中「名称」仍为英文，按 5.18 留英文不自译。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-13/melty.jpg" alt="MELTY BLOOD TWI-LUMINA 定档视觉" loading="lazy"/>
+          <figcaption>Gematsu 转载 Aniplex 定档视觉</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-11 23:06 EDT（≈ 09-12 11:06 CST，晨报后补入）</dd></div>
+          <div><dt>开发 / 发行</dt><dd>French-Bread / Aniplex</dd></div>
+          <div><dt>平台</dt><dd>PS5 · Switch 2 · PS4 · Xbox One · Switch · PC（Steam）</dd></div>
+          <div><dt>档期</dt><dd>2027-04-22（Steam API 简中显示 4/21，以 Aniplex 4/22 为准）</dd></div>
+          <div><dt>译名</dt><dd>Steam 简中店名英文；日文官方「メルティブラッド：トワイルミナ」</dd></div>
+          <div><dt>语言</dt><dd>含简体中文文本；语音日语</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>新 PV 展示白莲（White Len）武内崇新绘与远野志贵 / 阿尔奎德 / 希耶尔等战斗场面。</li>
+          <li>主线由奈须蘑菇新写；在 TYPE LUMINA 基础上升级系统并加入莲等角色。</li>
+          <li>TGS 2026（9/17–21）Aniplex 展台可玩；片单轴不预写未播秀，仅在本条附记。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/melty-blood-twi-lumina-launches-april-22-2027" rel="noopener" target="_blank">Gematsu</a> · <a href="https://store.steampowered.com/app/4113000/" rel="noopener" target="_blank">Steam app/4113000</a> · <a href="https://meltyblood.twilumina.com/" rel="noopener" target="_blank">日文官网</a>。</p>
+        <div class="tags"><span>定档</span><span>TYPE-MOON</span><span>格斗</span><span>补入</span><span>TGS可玩</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">空</span></div>
+    <div class="axis-body">
+      <p class="empty-axis">今日无独立游戏观察新增。</p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>综合日报 · 2026-09-13 · 观察台 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-13.html">/daily/2026-09-13.html</a></p>
+  <p>AI 空库未出 Tab · 游戏开发空库未出 Tab · 今日无新旗舰 · 今日无新 MCP/Skill 推荐 · 不发涉政</p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
