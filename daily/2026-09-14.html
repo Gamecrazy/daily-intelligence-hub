@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-14</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-13, 2026-09-14]。
+  含昨 9:40 后 SideM / holoVillage / P4R 泰迪补入核。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-14 · 周一 · Asia/Shanghai · ISO 2026-W38</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W38.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-14" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-13, 09-14]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是补入昨晚 <strong>偶像大师 SideM（THE IDOLM@STER SideM）</strong>系列<strong>初家庭用游戏项目</strong>（Switch 2 / Switch）；行业侧有独立轴 <strong>holoVillage: Our Cozy Days</strong> 宣布登陆 Switch 2，以及 <strong>Tenebris: Terra Incognita</strong> 计划今日出 1.0（截稿仍 EA）。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。AI / 游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 9:40 后 SideM / holoVillage / P4R 泰迪补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（Grok 4.7 仍未发；DeepSeek Pro→Flash 路由预告 12:00 CST 未到点）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐</dd></div>
+      <div><dt>展会</dt><dd>tinyBuild Connect 今晚 23:00 CST 未播不预写；TGS 9/17–21 未开</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>偶像大师 SideM：315 制作 16 单元 49 人；正式标题与档期未定。</li>
+      <li>holoVillage：PC 已发；Switch 2 目标 2026 秋。</li>
+      <li>Tenebris：开发商宣布 9/14 1.0；截稿 Steam 仍挂 Early Access。</li>
+      <li>另补：女神异闻录4 Revival 泰迪角色预告（昨晨落款）。</li>
+    </ul>
+    <p class="lib-note">判定：二次元新作公布扛主线；独立轴有新增；旗舰轴安静。不复述 BlizzCon / 原神 7.1 / Melty / Agents API / DeepSeek-V4.1-Flash。不发涉政。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric"><b>4</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>3</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>2</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric"><b>0</b><span>MCP/Skill 推荐</span></div>
+  <div class="metric"><b>0</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="库切换">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="anime">二次元</button>
+  <button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+<section id="ov" class="tab-pane active">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 落在偶像大师 SideM 初主机化；独立轴有 holoVillage Switch 2 与 Tenebris 1.0 计划日。AI 窗内无新 LLM 旗舰、无新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>4</dd></div>
+      <div><dt>高 Attention</dt><dd>3</dd></div>
+      <div><dt>空库</dt><dd>AI · 游戏开发（未出 Tab）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（holoVillage · Tenebris）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>二次元：SideM 家庭用项目启动（正式标题未定）。</li>
+      <li>独立：holoVillage Switch 2（秋）+ Tenebris 1.0 计划日（截稿仍 EA）。</li>
+      <li>深潜：P4R 泰迪预告；展会片单空（tinyBuild 未播）。</li>
+    </ul>
+    <p class="lib-note">判定：先推二次元+行业；旗舰轴写清「无」即可。</p>
+  </div>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>偶像大师 SideM 初家庭用游戏</h3>
+      <p class="ov-lede">系列首次主机化：Switch 2 / Switch 偶像制作&amp;日程冒险；16 单元 49 人；正式标题与档期未定。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-13 ~21:05 CST（补入）</dd></div>
+        <div><dt>库</dt><dd>二次元游戏观察</dd></div>
+        <div><dt>状态</dt><dd>项目启动 · 标题/档期 TBA</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>holoVillage Switch 2</h3>
+      <p class="ov-lede">holo Indie / Roboqlo 宣布舒适生活模拟登陆 Switch 2，目标 2026 秋；Steam 简中店名仍英文。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-13</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 独立</dd></div>
+        <div><dt>状态</dt><dd>平台公布 · 秋</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>Tenebris 1.0 计划日</h3>
+      <p class="ov-lede">Phantasmica 宣布今日出 1.0；截稿 Steam 仍 Early Access，首周 25% 折扣。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-14（截稿仍 EA）</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 独立</dd></div>
+        <div><dt>状态</dt><dd>计划翻牌 · 待核 live</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal">
+      <div class="ov-fire">🔥</div>
+      <h3>P4R 泰迪预告</h3>
+      <p class="ov-lede">ATLUS 放出女神异闻录4 Revival 泰迪角色预告；英文 CV Laila Berzins。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-12 20:00 EDT（补入）</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 深潜</dd></div>
+        <div><dt>状态</dt><dd>角色预告</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section id="anime" class="tab-pane">
+  <div class="library-head">
+    <p class="lib-lede">二次元主线：偶像大师 SideM 系列<strong>初家庭用游戏项目</strong>启动。原神 7.1 特别节目已报不复述；一线二游窗内无新开门。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>有信号轴</dt><dd>新作 / 主机化</dd></div>
+      <div><dt>空轴</dt><dd>版本开门 · 卡池增量（窗内无新一线落款）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>SideM：Switch 2 / Switch；D3 / 万代南梦宫；正式标题 TBA。</li>
+      <li>同场电影《劇場版…F＠NTASTIC BATTLE FES》11/20 仅附注，不单开。</li>
+    </ul>
+    <p class="lib-note">判定：主机化公布达门槛；不把电影升 Signal。</p>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🎮 新作 / 主机化</h3><span class="density">1</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://idolmaster-official.jp/news/01_19806" rel="noopener" target="_blank">偶像大师 SideM（THE IDOLM@STER SideM）初家庭用游戏项目启动</a></h4></div>
+        <p class="signal-lede">在 SideM 11th STAGE DAY2（2026-09-13）上，官方宣布系列<strong>首次</strong>家庭用游戏项目启动，登陆 Nintendo Switch 2 / Switch；类型为偶像制作&amp;日程冒险，正式标题与发售日未定。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-14/sidem-console.jpg" alt="偶像大师 SideM 家庭用游戏特报视觉" loading="lazy"/>
+          <figcaption>官方特报视觉（经 Gematsu 一线转载）</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-13（约 21:05 CST / Gematsu 09:05 EDT；昨晨报后补入）</dd></div>
+          <div><dt>主体</dt><dd>D3 Publisher / 万代南梦宫 · 偶像大师官方</dd></div>
+          <div><dt>平台</dt><dd>Nintendo Switch 2 · Nintendo Switch</dd></div>
+          <div><dt>类型</dt><dd>偶像制作 &amp; 日程冒险</dd></div>
+          <div><dt>规模</dt><dd>315 Production · 16 单元 · 49 名偶像</dd></div>
+          <div><dt>档期</dt><dd>未定（正式标题亦未定）</dd></div>
+          <div><dt>译名</dt><dd>系列官方中文常用「偶像大师 SideM」；本作正式标题未公布，不自译</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>玩家以制作人身份培养 315 事务所 16 个单元共 49 人，朝约一年后的大型演唱会推进；故事为家庭用完全新作。</li>
+          <li>官方门户与特报映像同步公开；Denfami / Gematsu / AUTOMATON 交叉一致。</li>
+          <li>同场另宣布剧场版《F＠NTASTIC BATTLE FES ～Who goes first～》2026-11-20 上映（电影，不单开 Signal）。</li>
+          <li>系列此前主机作止于《偶像大师 星耀季节》；SideM 品牌此前以手游为主。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://idolmaster-official.jp/news/01_19806" rel="noopener" target="_blank">偶像大师官方门户</a> · <a href="https://www.gematsu.com/2026/09/the-idolmaster-sidem-game-announced-for-switch-2-switch" rel="noopener" target="_blank">Gematsu</a> · <a href="https://news.denfaminicogamer.jp/news/260913o" rel="noopener" target="_blank">電ファミニコゲーマー</a>。</p>
+        <div class="tags"><span>偶像大师</span><span>SideM</span><span>Switch 2</span><span>新作公布</span><span>补入</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="industry" class="tab-pane">
+  <div class="library-head">
+    <p class="lib-lede">行业主线落在<strong>独立游戏观察</strong>：holoVillage Switch 2 平台公布 + Tenebris 今日计划 1.0（截稿仍 EA）。展会片单：tinyBuild Connect 未播不写。今日有独立游戏观察新增。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>3（独立 2 + 深潜 1）</dd></div>
+      <div><dt>展会片单</dt><dd>无（tinyBuild 今晚未播）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>独立：holoVillage Switch 2（秋）；Tenebris 1.0 计划日。</li>
+      <li>深潜：女神异闻录4 Revival 泰迪预告。</li>
+      <li>观察清单：金刚狼 9/15、火焰纹章 Fortune's Weave 9/17、空之轨迹 2nd Chapter 本周、tinyBuild 今晚。</li>
+    </ul>
+    <p class="lib-note">判定：独立轴出卡；BlizzCon 长名单不复述。Culdcept 主机数字版为 9/8 窗外。</p>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">2</span></div>
+    <div class="axis-body">
+      <article class="signal">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/3856280/" rel="noopener" target="_blank">holoVillage: Our Cozy Days 宣布登陆 Switch 2</a></h4></div>
+        <p class="signal-lede">holo Indie / Roboqlo 宣布 VTuber 舒适生活模拟《holoVillage: Our Cozy Days》登陆 Nintendo Switch 2，目标 <strong>2026 秋</strong>；PC（Steam）已于 2026-04-24 发售。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-14/holovillage.jpg" alt="holoVillage Our Cozy Days 店页 / 公布视觉" loading="lazy"/>
+          <figcaption>Steam 店页头图</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-13</dd></div>
+          <div><dt>开发 / 发行</dt><dd>Roboqlo / holo Indie（CCMC）</dd></div>
+          <div><dt>平台</dt><dd>Switch 2（新锁）· PC 已发</dd></div>
+          <div><dt>档期</dt><dd>2026 秋（精确日未定）</dd></div>
+          <div><dt>译名</dt><dd>Steam 简中「名称」仍为英文 holoVillage: Our Cozy Days；无官方另译，留英文</dd></div>
+          <div><dt>口碑（PC）</dt><dd>Steam Very Positive（截稿口径，约 516 评）</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>玩法：种田 / 钓鱼 / 挖矿 / 建造，并含地下城与 Boss；与 hololive 角色共度乡村生活。</li>
+          <li>Nintendo Everything / GoNintendo 9/13 报道与 Steam 店页交叉；精确日待官宣。</li>
+          <li>独立门槛：已发售独立作主机首发平台锁。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/3856280/" rel="noopener" target="_blank">Steam</a> · <a href="https://nintendoeverything.com/holovillage-our-cozy-days-coming-to-nintendo-switch-2/" rel="noopener" target="_blank">Nintendo Everything</a>。</p>
+        <div class="tags"><span>独立</span><span>Switch 2</span><span>hololive</span><span>平台公布</span></div>
+      </article>
+
+      <article class="signal">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/2280060/" rel="noopener" target="_blank">Tenebris: Terra Incognita 计划今日 1.0（截稿仍 EA）</a></h4></div>
+        <p class="signal-lede">Phantasmica Studios 于 9/13 发 Steam 新闻确认 <strong>9/14</strong> 推出 1.0，首周 25% 折扣；本报截稿（约 09:36 CST）店页仍挂 Early Access 标签，按「计划翻牌 / 截稿仍 EA」记录，不把未 live 写成已解锁。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-14/tenebris.jpg" alt="Tenebris Terra Incognita Steam 头图" loading="lazy"/>
+          <figcaption>Steam 店页头图</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-14（计划日；截稿仍 EA）</dd></div>
+          <div><dt>开发 / 发行</dt><dd>Phantasmica Studios</dd></div>
+          <div><dt>平台</dt><dd>PC（Steam）</dd></div>
+          <div><dt>状态</dt><dd>1.0 计划翻牌 · 截稿 Early Access</dd></div>
+          <div><dt>内容规模（厂商自报）</dt><dd>23 英雄 / 23 天赋树；约 48 主线关卡</dd></div>
+          <div><dt>译名</dt><dd>Steam 简中店名英文；支持简体中文文本，无另译，留英文</dd></div>
+          <div><dt>口碑（EA 期）</dt><dd>Steam Very Positive（约 241/38）</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>回合制战术 RPG；新闻称旧存档不兼容 1.0。</li>
+          <li>9/13「launches tomorrow」与 9/1「14 September 1.0」新闻一致指向今日。</li>
+          <li>待核：今日稍后 Steam EA 标签是否摘除、解锁时点与简中评测增量。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/news/app/2280060/view/685263456405815681" rel="noopener" target="_blank">Steam News · 1.0</a> · <a href="https://store.steampowered.com/app/2280060/" rel="noopener" target="_blank">Steam 店页</a>。</p>
+        <div class="tags"><span>独立</span><span>1.0</span><span>EA 翻牌</span><span>待核 live</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🔭 深潜</h3><span class="density">1</span></div>
+    <div class="axis-body">
+      <article class="signal">
+        <div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/persona-4-revival-teddie-trailer" rel="noopener" target="_blank">女神异闻录4 Revival（Persona 4 Revival）泰迪预告</a></h4></div>
+        <p class="signal-lede">ATLUS 公布《女神异闻录4 Revival》泰迪（Teddie）角色预告；英文 CV Laila Berzins，日文 CV 山口勝平；Persona 为金时童子。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-14/p4r-teddie.jpg" alt="女神异闻录4 Revival 泰迪预告视觉" loading="lazy"/>
+          <figcaption>Gematsu 转载 ATLUS 预告视觉</figcaption>
+        </figure>
+        <dl class="kv">
+          <div><dt>日期</dt><dd>2026-09-12 20:00 EDT（≈ 09-13 08:00 CST，昨晨窗缘补入）</dd></div>
+          <div><dt>档期</dt><dd>PS5 / Xbox / PC 2027-02-18；Switch 2 2027-05-20；Game Pass</dd></div>
+          <div><dt>译名</dt><dd>系列官方译「女神异闻录4」+ Revival（前作口径）</dd></div>
+        </dl>
+        <ul class="facts">
+          <li>继主人公 / 里中千枝等角色预告后的泰迪专场。</li>
+          <li>不改档期；记深潜，不升新作轴。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/persona-4-revival-teddie-trailer" rel="noopener" target="_blank">Gematsu</a>。</p>
+        <div class="tags"><span>深潜</span><span>P4R</span><span>角色预告</span><span>补入</span></div>
+      </article>
+    </div>
+  </div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+      <li>tinyBuild Connect 2026：今晚 23:00 CST（8:00 PT）— 未播不写片单。</li>
+      <li>金刚狼（Marvel's Wolverine）：2026-09-15 PS5。</li>
+      <li>火焰纹章：Fortune's Weave：2026-09-17 Switch 2。</li>
+      <li>空之轨迹 the 2nd Chapter：本周多平台（日区发售周报已列）。</li>
+      <li>TGS 2026：9/17–21；Capcom Spotlight 约 9/16 — 未开不预写。</li>
+      <li>Grok 4.7：仍未发；DeepSeek Pro→Flash 路由今日 12:00 CST 待核。</li>
+    </ul>
+  </section>
+</section>
+
+<footer class="foot">
+  <p>AI 空库未出 Tab · 游戏开发空库未出 Tab · 今日无新旗舰 · 今日无新 MCP/Skill 推荐 · 不发涉政</p>
+  <p>观察台固定入口 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 本页快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-14.html">/daily/2026-09-14.html</a></p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
