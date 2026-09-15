@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-15</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-14, 2026-09-15]。
+  含昨 9:40 后补入核。仅显示 总览 + 游戏行业；AI / 二次元 / 游戏开发空库未出 Tab。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-15 · 周二 · Asia/Shanghai · ISO 2026-W38</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W38.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-15" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-14, 09-15]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是 <strong>漫威金刚狼（Marvel's Wolverine）</strong> PS5 / PS5 Pro 独占正式发售；展会侧 <strong>tinyBuild Connect 2026</strong> 已播，片单含世界首发《巨蟹横行》《Road to Jukai》及多作新锁。独立轴 <strong>Tenebris: Terra Incognita</strong> EA→1.0 翻牌 live，另有《人偶之影：琵幽璃塔的故事》公布与 Putty World Switch 2。行业另记 Game Freak《雨のちハレ女》。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。AI 空库未出 Tab · 二次元空库未出 Tab · 游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 9:40 后补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok 仍 4.6）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐</dd></div>
+      <div><dt>展会</dt><dd>tinyBuild Connect 已播出片单；Capcom Spotlight 9/16、TGS 9/17–21 未播不预写</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>漫威金刚狼：港区简中店名已核；截稿可购评；无 PC 同发。</li>
+      <li>tinyBuild Connect：世界首发两作 + 命悬一舰 11/4 / 深空当铺：可能是偷的 10/28 / 守墓人2 9/22 / 蛮荒计划主机同日。</li>
+      <li>Tenebris：昨计划日落地，Steam 已离 EA（coming_soon=false）。</li>
+      <li>另：人偶之影公布；Putty World Switch 2 2027 Q2；雨のちハレ女今冬日本手机。</li>
+    </ul>
+    <p class="lib-note">判定：AAA 发售 + 展会片单扛主线；独立轴多翻牌/公布。不复述 BlizzCon / SideM / Melty / holoVillage / 原神 7.1。不发涉政。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric"><b>8</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>7</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>1</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric"><b>0</b><span>MCP/Skill 推荐</span></div>
+  <div class="metric"><b>1</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="库切换">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+<section id="ov" class="tab-pane active">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 落在漫威金刚狼正式发售；其后为 tinyBuild Connect 片单、Tenebris 1.0 翻牌与独立世界首发/公布。AI / 二次元 / 游戏开发空库未出 Tab；今日无新旗舰、无新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>8</dd></div>
+      <div><dt>高 Attention</dt><dd>7（fire≥2）</dd></div>
+      <div><dt>空库</dt><dd>AI · 二次元 · 游戏开发（未出 Tab）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（5 条）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>发售：漫威金刚狼 PS5 独占（9/15）。</li>
+      <li>展会：tinyBuild Connect 片单（世界首发+新锁+深潜表）。</li>
+      <li>独立：Tenebris 1.0 live；巨蟹横行 / Road to Jukai / 人偶之影 / Putty World。</li>
+      <li>行业另：雨のちハレ女（Game Freak 手机新作）。</li>
+    </ul>
+    <p class="lib-note">判定：先推行业库；旗舰轴写清「无」即可。AI 空库未出 Tab · 二次元空库未出 Tab · 游戏开发空库未出 Tab。</p>
+  </div>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>漫威金刚狼（Marvel&#x27;s Wolverine）</h3>
+      <p class="ov-lede">Insomniac × Marvel × SIE《漫威金刚狼》PS5 / PS5 Pro 独占正式发售；亚洲本地午夜起解锁，截稿时港区店页已开评（约 1.2K）。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 发售</dd></div>
+        <div><dt>状态</dt><dd>正式发售 · PS5 独占</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>tinyBuild Connect 2026 展会片单</h3>
+      <p class="ov-lede">tinyBuild Connect 已于 2026-09-14（约 23:00 CST 档）播出：16 作预告/更新；世界首发《巨蟹横行》《Road to Jukai》；新锁定档《命悬一舰》11/4、《深空当铺：可能是偷的》10/28、…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-14</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 展会</dd></div>
+        <div><dt>状态</dt><dd>已播 · 世界首发+新锁</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>Tenebris: Terra Incognita</h3>
+      <p class="ov-lede">昨日报待核项落地：Steam 店页已翻牌——《Tenebris: Terra Incognita》于 2026-09-14 离开抢先体验，1.0 正式上线（coming_soon=false；无 Early Access 标记）。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-14</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 独立</dd></div>
+        <div><dt>状态</dt><dd>EA→1.0 live</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>巨蟹横行（The Crab is Walking）</h3>
+      <p class="ov-lede">tinyBuild Connect 世界首发：《巨蟹横行》——《王之凝视》团队 Hypnohead 新作，巨型甲壳上的 roguelite 城建 + 自动战斗；Steam 简中店名已挂，档期 2027。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-14</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 独立</dd></div>
+        <div><dt>状态</dt><dd>世界首发 · 2027</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>Road to Jukai</h3>
+      <p class="ov-lede">tinyBuild Connect 公布发行《Road to Jukai》（原 Silent Road）：日本夜班出租车心理恐怖，2027；Steam playtest 已开。店名仍英文。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-14</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 独立</dd></div>
+        <div><dt>状态</dt><dd>公布+发行 · 2027</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>人偶之影：琵幽璃塔的故事（Shade of the Marionette: The Story of Piyorita）</h3>
+      <p class="ov-lede">魔女之泉团队 Kiwi Walks 公布 3D 动作 RPG 新作《人偶之影：琵幽璃塔的故事》；Steam 简中店名已挂，主机 + PC，2027。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-14</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 独立</dd></div>
+        <div><dt>状态</dt><dd>新作公布 · 2027</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>雨のちハレ女（Ame no Chi Hare Onna）</h3>
+      <p class="ov-lede">Game Freak 公布完全新作手机游戏《雨のちハレ女》：与现实日本天气连动的「洗衣」日常 F2P；大森滋任导演/制作人，今冬日本 iOS/Android；简中官方译名未见，留日文原题。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-14</dd></div>
+        <div><dt>库</dt><dd>游戏行业 · 新作</dd></div>
+        <div><dt>状态</dt><dd>手机新作 · 今冬日本</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section id="industry" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🕹️</span><h2>游戏行业观察</h2></div>
+    <p class="lib-lede">行业主线：<strong>漫威金刚狼</strong>正式发售 + <strong>tinyBuild Connect</strong> 展会片单；独立轴 5 条（含 Tenebris 1.0 翻牌与两作世界首发）。今日有独立游戏观察新增；展会片单已出。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>8（行业 2 + 展会 1 + 独立 5）</dd></div>
+      <div><dt>展会片单</dt><dd>有（tinyBuild Connect 已播）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增</dd></div>
+      <div><dt>高 Attention</dt><dd>7</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>发售轴：漫威金刚狼（PS5 / PS5 Pro）。</li>
+      <li>展会：世界首发巨蟹横行 / Road to Jukai；新锁命悬一舰等压片单表。</li>
+      <li>独立：Tenebris live；人偶之影公布；Putty World Switch 2。</li>
+      <li>另：雨のちハレ女（留日文原题）。</li>
+    </ul>
+    <p class="lib-note">判定：片单与发售双主线；BlizzCon / Melty / holoVillage / SideM 不复述。TGS / Capcom 未播不预写。</p>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🆕 发售 / 行业新作</h3><span class="density">2</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://blog.playstation.com/2026/09/14/marvels-wolverine-developers-discuss-capturing-the-essence-of-logan-out-september-15/" rel="noopener" target="_blank">漫威金刚狼（Marvel&#x27;s Wolverine）</a></h4></div>
+        <p class="signal-lede">Insomniac × Marvel × SIE《漫威金刚狼》PS5 / PS5 Pro 独占正式发售；亚洲本地午夜起解锁，截稿时港区店页已开评（约 1.2K）。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-15/wolverine.jpg" alt="漫威金刚狼（Marvel&#x27;s Wolverine）" loading="lazy"/>
+          <figcaption>PlayStation.Blog 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>正式发售</dd></div>
+<div><dt>平台</dt><dd>PS5 / PS5 Pro（独占）</dd></div>
+<div><dt>发售日</dt><dd>2026-09-15</dd></div>
+<div><dt>解锁</dt><dd>多数地区本地午夜；美东 9/15 00:00 EDT = 9/15 12:00 CST；港区店页标 14/9/2026（UTC 对齐本地 9/15 00:00 CST）</dd></div>
+<div><dt>开发</dt><dd>Insomniac Games</dd></div>
+<div><dt>发行</dt><dd>Sony Interactive Entertainment</dd></div>
+<div><dt>语言</dt><dd>含简体中文界面</dd></div>
+<div><dt>时点</dt><dd>窗内发售日；截稿 09:38 CST 已可购评</dd></div>
+</dl>
+        <ul class="facts">
+<li>PlayStation.Blog 9/14 开发者访谈确认 9/15 发售；创意总监 Marcus Smith 等谈爪子战斗、战衣与 Sabretooth / Mystique / Jean Grey</li>
+<li>PlayStation 港区简中店名「漫威金刚狼」；支持简体中文屏幕文字；语音表未见中文配音</li>
+<li>无 PC / 其他主机同发；数字普通版与数字豪华版（战衣/利爪/技能点等）</li>
+<li>媒体称有 Day-One 热修（如 1.004）——本条以官店发售为准，补丁号不升格主事实</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://blog.playstation.com/2026/09/14/marvels-wolverine-developers-discuss-capturing-the-essence-of-logan-out-september-15/" rel="noopener" target="_blank">PlayStation.Blog</a> · <a href="https://store.playstation.com/zh-hans-hk/product/UP9000-PPSA03671_00-MARVELSWOLVERINE" rel="noopener" target="_blank">PS Store 港区</a> · <a href="https://www.playstation.com/en-us/games/marvels-wolverine/" rel="noopener" target="_blank">PlayStation</a>。</p>
+        <div class="tags"><span>行业</span><span>新作</span><span>发售</span></div>
+      </article>
+
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/game-freak-announces-laundry-game-ame-no-chi-hare-onna-for-ios-android" rel="noopener" target="_blank">雨のちハレ女（Ame no Chi Hare Onna）</a></h4></div>
+        <p class="signal-lede">Game Freak 公布完全新作手机游戏《雨のちハレ女》：与现实日本天气连动的「洗衣」日常 F2P；大森滋任导演/制作人，今冬日本 iOS/Android；简中官方译名未见，留日文原题。</p>
+
+        <dl class="kv">
+<div><dt>事件</dt><dd>新作公布</dd></div>
+<div><dt>平台</dt><dd>iOS / Android</dd></div>
+<div><dt>地区档期</dt><dd>2026 年冬 · 日本</dd></div>
+<div><dt>开发</dt><dd>Game Freak × CHRONOGATE</dd></div>
+<div><dt>导演/制作人</dt><dd>大森滋</dd></div>
+<div><dt>商业</dt><dd>基本免费</dd></div>
+<div><dt>官方译名</dt><dd>无简中店名/厂商简中稿 → 留日文原题，不自译</dd></div>
+<div><dt>时点</dt><dd>PR Times / Gematsu 2026-09-14；同日「ハレ女部ミーティング#1」生放送</dd></div>
+</dl>
+        <ul class="facts">
+<li>主角ハレ女可将天气化为力量；搭档くもりん；声优小野日和 / 永野由莉</li>
+<li>TGS 2026（9/17–21）将有更多情报——展会片单不预写</li>
+<li>非宝可梦授权作品；记行业新作轴</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/game-freak-announces-laundry-game-ame-no-chi-hare-onna-for-ios-android" rel="noopener" target="_blank">Gematsu</a> · <a href="https://prtimes.jp/main/html/rd/p/000000004.000046977.html" rel="noopener" target="_blank">PR Times</a> · <a href="https://prtimes.jp/main/html/rd/p/000000005.000046977.html" rel="noopener" target="_blank">PR Times</a>。</p>
+        <div class="tags"><span>行业</span><span>新作</span><span>新作公布</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card show-slate">
+    <div class="axis-title"><h3>🎬 展会片单 · tinyBuild Connect 2026</h3><span class="density">1</span></div>
+    <div class="axis-body">
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gamespress.com/TINYBUILD-DEBUTS-TRAILERS-FROM-16-GAMES-AT-BIGGEST-TINYBUILD-CONNECT-S" rel="noopener" target="_blank">tinyBuild Connect 2026 展会片单</a></h4></div>
+        <p class="signal-lede">tinyBuild Connect 已于 2026-09-14（约 23:00 CST 档）播出：16 作预告/更新；世界首发《巨蟹横行》《Road to Jukai》；新锁定档《命悬一舰》11/4、《深空当铺：可能是偷的》10/28、《守墓人2》9/22。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-15/tinybuild-connect.jpg" alt="tinyBuild Connect 片单代表作" loading="lazy"/>
+          <figcaption>Steam 头图（巨蟹横行，片单代表作）</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>展会</dt><dd>tinyBuild Connect 2026</dd></div>
+<div><dt>播出</dt><dd>已播（2026-09-14）</dd></div>
+<div><dt>世界首发</dt><dd>巨蟹横行（The Crab is Walking）；Road to Jukai</dd></div>
+<div><dt>新锁</dt><dd>命悬一舰 11/4；深空当铺：可能是偷的 10/28；守墓人2 9/22</dd></div>
+<div><dt>同日主机</dt><dd>蛮荒计划（FEROCIOUS）PS5 / Xbox Series 发售</dd></div>
+<div><dt>来源</dt><dd>Games Press 官方稿 + Gamer Social Club 逐条表</dd></div>
+</dl>
+        <div class="compare-wrap">
+          <table class="compare">
+            <caption>世界首发 / 新锁（片单）</caption>
+            <thead><tr><th>作品</th><th>类型</th><th>档期 / 平台</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td>巨蟹横行（The Crab is Walking）</td><td>世界首发</td><td>2027 · PC (Steam)</td><td>Steam 简中店名；Hypnohead / tinyBuild</td></tr><tr><td>Road to Jukai</td><td>世界首发 / 发行公布</td><td>2027 · PC (Steam)</td><td>原 Silent Road；playtest 已开；无官方简中店名</td></tr>
+              <tr><td>命悬一舰（Hull Rupture）</td><td>新锁</td><td>2026-11-04 · PC (Steam)</td><td>Steam 简中「命悬一舰」；更新试玩可玩</td></tr><tr><td>深空当铺：可能是偷的（Probably Stolen）</td><td>新锁</td><td>2026-10-28 · PC (Steam)</td><td>Steam 简中店名；新试玩</td></tr><tr><td>守墓人2（Graveyard Keeper 2）</td><td>新锁</td><td>2026-09-22 · PC / PS5 / Switch 2 / Xbox Series</td><td>Steam 简中「守墓人2」；全平台新试玩，进度可继承</td></tr><tr><td>蛮荒计划（FEROCIOUS）</td><td>新锁</td><td>2026-09-14 · PS5 / Xbox Series（PC 已有）</td><td>主机同日发售；Steam 简中「蛮荒计划 (FEROCIOUS)」</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="compare-wrap">
+          <table class="compare">
+            <caption>已定档深潜（压表，不单开 Signal）</caption>
+            <thead><tr><th>作品</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td>Kingmakers</td><td>10 分钟实机深潜；Steam EA「即将」+ playtest 报名；无硬日期</td></tr><tr><td>升降梯外: 超自然修理工模拟器（The Lift）</td><td>剧情预告；2027；Steam/PS5/Xbox</td></tr><tr><td>焕家物语（Hozy）</td><td>主机（PS5/Switch/Xbox）「今年内」；Steam Hideaways DLC 已上</td></tr><tr><td>灰雨钢锋（Of Ash and Steel）</td><td>主机「soon」；DLC Shattered Faith 开发中</td></tr><tr><td>Trainfort</td><td>新 playtest 可报名；档期 TBA</td></tr><tr><td>钻核公司（Drill Core）</td><td>周年更新已上（PC，主机跟进）</td></tr><tr><td>SAND: Raiders of Sophie</td><td>口碑预告 + 本月重大更新；Steam 英文店名</td></tr><tr><td>Happy&#x27;s Humble Burger Cult</td><td>Trial by Fryer PvP + 两家新餐厅已上；无简中店名</td></tr><tr><td>维修物语（ReStory）</td><td>50 万套纪念；9/21 免费更新（新设备/顾客）</td></tr><tr><td>王之凝视（The King is Watching）</td><td>Steam Deck 优化已上</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="facts">
+<li>官方稿头条：Kingmakers 10 分钟实机深潜 + Steam 即将 EA / 可报名 playtest（无硬日期，压表）</li>
+<li>世界首发两作均属独立向目录；片单细则见 exhibition_slate</li>
+<li>VOD / Media Guide / 预告播放列表已由 tinyBuild 放出（Games Press 链）</li>
+<li>TGS / Capcom Spotlight 未到，不预写</li>
+<li>世界首发+新锁进片单；已定档/更新深潜压表。TGS 2026（9/17–21）与 Capcom Spotlight（9/16）未播不预写。</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gamespress.com/TINYBUILD-DEBUTS-TRAILERS-FROM-16-GAMES-AT-BIGGEST-TINYBUILD-CONNECT-S" rel="noopener" target="_blank">Games Press</a> · <a href="https://gamersocialclub.ca/2026/09/14/tinybuild-connect-publisher-showcase-2026-all-the-news-and-trailers/" rel="noopener" target="_blank">Gamer Social Club</a> · <a href="https://steamdeckhq.com/news/tinybuild-connect-2026-summary/" rel="noopener" target="_blank">Steam Deck HQ</a>。</p>
+        <div class="tags"><span>展会片单</span><span>tinyBuild Connect</span><span>世界首发</span><span>新锁</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">5</span></div>
+    <div class="axis-body">
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/2280060/" rel="noopener" target="_blank">Tenebris: Terra Incognita</a></h4></div>
+        <p class="signal-lede">昨日报待核项落地：Steam 店页已翻牌——《Tenebris: Terra Incognita》于 2026-09-14 离开抢先体验，1.0 正式上线（coming_soon=false；无 Early Access 标记）。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-15/tenebris.jpg" alt="Tenebris: Terra Incognita" loading="lazy"/>
+          <figcaption>Steam 店页头图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>EA→1.0 正式发售</dd></div>
+<div><dt>平台</dt><dd>PC（Steam）</dd></div>
+<div><dt>发售日</dt><dd>2026-09-14</dd></div>
+<div><dt>类型</dt><dd>回合制战术 RPG / 独立</dd></div>
+<div><dt>简中店名</dt><dd>仍英文 Tenebris: Terra Incognita（无官方简中译名，不自译）</dd></div>
+<div><dt>口碑截稿</dt><dd>Very Positive（约 300 评，259/41）</dd></div>
+<div><dt>时点</dt><dd>昨计划日；9/14 截稿仍 EA → 本窗核验已 live</dd></div>
+</dl>
+        <ul class="facts">
+<li>Steam API：release_date.coming_soon=false，date=Sep 14, 2026；categories 无 Early Access</li>
+<li>Steam News 官帖标题确认 14 September 1.0；媒体称 EA 存档不兼容需重开（以官帖为准）</li>
+<li>昨日报已报「计划 1.0、截稿仍 EA」——本条为翻牌升格，不复述计划稿</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/2280060/" rel="noopener" target="_blank">Steam</a> · <a href="https://store.steampowered.com/news/app/2280060/view/685263456405815681" rel="noopener" target="_blank">Steam News</a>。</p>
+        <div class="tags"><span>独立</span><span>新作</span><span>发售</span><span>1.0</span></div>
+      </article>
+
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/5145940/" rel="noopener" target="_blank">巨蟹横行（The Crab is Walking）</a></h4></div>
+        <p class="signal-lede">tinyBuild Connect 世界首发：《巨蟹横行》——《王之凝视》团队 Hypnohead 新作，巨型甲壳上的 roguelite 城建 + 自动战斗；Steam 简中店名已挂，档期 2027。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-15/crab-walking.jpg" alt="巨蟹横行（The Crab is Walking）" loading="lazy"/>
+          <figcaption>Steam 店页头图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>世界首发 / 新作公布</dd></div>
+<div><dt>平台</dt><dd>PC（Steam）</dd></div>
+<div><dt>档期</dt><dd>2027</dd></div>
+<div><dt>开发</dt><dd>Hypnohead Team</dd></div>
+<div><dt>发行</dt><dd>tinyBuild</dd></div>
+<div><dt>Steam 简中名称</dt><dd>巨蟹横行 (The Crab is Walking)</dd></div>
+<div><dt>AppID</dt><dd>5145940</dd></div>
+</dl>
+        <ul class="facts">
+<li>玩法：在巨蟹背壳有限格子上拼建筑、合并升级、百余兵种组合穿越废土</li>
+<li>展会首发本身达独立门槛（展会周放宽）；口碑未出</li>
+<li>与《王之凝视（The King is Watching）》同团队——系列关联不另自译</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gamespress.com/TINYBUILD-DEBUTS-TRAILERS-FROM-16-GAMES-AT-BIGGEST-TINYBUILD-CONNECT-S" rel="noopener" target="_blank">Games Press</a> · <a href="https://store.steampowered.com/app/5145940/" rel="noopener" target="_blank">Steam</a> · <a href="https://gamersocialclub.ca/2026/09/14/tinybuild-connect-publisher-showcase-2026-all-the-news-and-trailers/" rel="noopener" target="_blank">Gamer Social Club</a>。</p>
+        <div class="tags"><span>独立</span><span>新作</span><span>世界首发</span><span>新作公布</span></div>
+      </article>
+
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/4124320/" rel="noopener" target="_blank">Road to Jukai</a></h4></div>
+        <p class="signal-lede">tinyBuild Connect 公布发行《Road to Jukai》（原 Silent Road）：日本夜班出租车心理恐怖，2027；Steam playtest 已开。店名仍英文。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-15/road-to-jukai.jpg" alt="Road to Jukai" loading="lazy"/>
+          <figcaption>Steam 店页头图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>新作公布 + 发行合作 + playtest</dd></div>
+<div><dt>曾用名</dt><dd>Silent Road</dd></div>
+<div><dt>平台</dt><dd>PC（Steam）</dd></div>
+<div><dt>档期</dt><dd>2027</dd></div>
+<div><dt>发行</dt><dd>tinyBuild</dd></div>
+<div><dt>简中店名</dt><dd>无（Steam 英文 Road to Jukai，不自译）</dd></div>
+<div><dt>AppID</dt><dd>4124320</dd></div>
+</dl>
+        <ul class="facts">
+<li>设定：偏远日本乡镇夜班出租；诡异乘客与传闻中的巨大森林「树海」</li>
+<li>Games Press：publishing deal + playtest available now</li>
+<li>展会世界首发/新作公布达独立门槛</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gamespress.com/TINYBUILD-DEBUTS-TRAILERS-FROM-16-GAMES-AT-BIGGEST-TINYBUILD-CONNECT-S" rel="noopener" target="_blank">Games Press</a> · <a href="https://store.steampowered.com/app/4124320/" rel="noopener" target="_blank">Steam</a> · <a href="https://gamersocialclub.ca/2026/09/14/tinybuild-connect-publisher-showcase-2026-all-the-news-and-trailers/" rel="noopener" target="_blank">Gamer Social Club</a>。</p>
+        <div class="tags"><span>独立</span><span>新作</span><span>新作公布</span></div>
+      </article>
+
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/witchspring-action-rpg-shade-of-the-marionette-the-story-of-piyorita-announced-for-consoles-pc" rel="noopener" target="_blank">人偶之影：琵幽璃塔的故事（Shade of the Marionette: The Story of Piyorita）</a></h4></div>
+        <p class="signal-lede">魔女之泉团队 Kiwi Walks 公布 3D 动作 RPG 新作《人偶之影：琵幽璃塔的故事》；Steam 简中店名已挂，主机 + PC，2027。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-15/shade-marionette.jpg" alt="人偶之影：琵幽璃塔的故事（Shade of the Marionette: The Story of Piyorita）" loading="lazy"/>
+          <figcaption>Steam 店页头图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>新作公布</dd></div>
+<div><dt>平台</dt><dd>PlayStation / Xbox / Nintendo（具体机种未细列）+ PC（Steam）</dd></div>
+<div><dt>档期</dt><dd>2027</dd></div>
+<div><dt>开发/发行</dt><dd>KIWIWALKS</dd></div>
+<div><dt>Steam 简中名称</dt><dd>人偶之影：琵幽璃塔的故事</dd></div>
+<div><dt>系列</dt><dd>魔女之泉（WitchSpring）世界观</dd></div>
+<div><dt>AppID</dt><dd>5034390</dd></div>
+<div><dt>时点</dt><dd>Gematsu 2026-09-14 03:15 EDT ≈ 15:15 CST</dd></div>
+</dl>
+        <ul class="facts">
+<li>人偶主角琵幽璃塔（Piyorita）在镜后房间吸收其他「失败作」争夺成为「完成品」</li>
+<li>强调可及动作战斗 + 构筑/制作；解锁房间顺序影响剧情</li>
+<li>Steam 支持简中界面/字幕</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/witchspring-action-rpg-shade-of-the-marionette-the-story-of-piyorita-announced-for-consoles-pc" rel="noopener" target="_blank">Gematsu</a> · <a href="https://store.steampowered.com/app/5034390/Shade_of_the_Marionette_The_Story_of_Piyorita/" rel="noopener" target="_blank">Steam</a>。</p>
+        <div class="tags"><span>独立</span><span>新作</span><span>新作公布</span></div>
+      </article>
+
+      <article class="signal">
+        <div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/putty-world-announced-for-switch-2" rel="noopener" target="_blank">Putty World</a></h4></div>
+        <p class="signal-lede">System 3 公布经典 Putty 系列重想象新作《Putty World》登陆 Switch 2，定档 2027 Q2；TGS 可试早期技术演示。无官方简中译名，留英文。</p>
+
+        <dl class="kv">
+<div><dt>事件</dt><dd>新作公布 + 平台定档</dd></div>
+<div><dt>平台</dt><dd>Nintendo Switch 2</dd></div>
+<div><dt>档期</dt><dd>2027 Q2</dd></div>
+<div><dt>开发/发行</dt><dd>System 3</dd></div>
+<div><dt>简中</dt><dd>无官方译 → 留英文</dd></div>
+<div><dt>时点</dt><dd>Gematsu 2026-09-14 09:15 EDT ≈ 21:15 CST</dd></div>
+</dl>
+        <ul class="facts">
+<li>概念：「如果 90 年代中期就有 Switch 2 硬件，Putty 会做成什么样」</li>
+<li>串联 Putty / Super Putty / Putty Squad；目标 75 关、60fps、掌机 1080p / 电视至 4K</li>
+<li>Gamescom 曾对比旧 Switch《Putty Squad》与本作</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/putty-world-announced-for-switch-2" rel="noopener" target="_blank">Gematsu</a>。</p>
+        <div class="tags"><span>独立</span><span>新作</span><span>新作公布</span></div>
+      </article>
+    </div>
+  </div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+<li>火焰纹章 万缕千丝（Fire Emblem: Fortune&#x27;s Weave）仍定档 2026-09-17 Switch 2——未到发售窗，待核开门/首日</li>
+<li>Capcom Spotlight 2026-09-16 未播不写片单</li>
+<li>TGS 2026（9/17–21）片单待开；雨のちハレ女 TGS 增量待播后</li>
+<li>Holy Horror Mansion 官方简中店名（持续）</li>
+<li>Kingmakers Steam EA 硬日期；Hozy / Of Ash and Steel 主机精确日</li>
+<li>暗黑破坏神IV 憎恨时代合辑 Switch 2 今日发售——已在 9/13 BlizzCon 片单报过，不升格复述；若需首日口碑另开待核</li>
+<li>漫威金刚狼 Day-One 补丁精确版本号 / 国区解锁体感（截稿已可购）</li>
+      <li>Grok 4.7 / 4.8：仍未发；docs Latest=Grok 4.6。</li>
+      <li>Qwen4：盯云栖/Apsara 9/22–24；未 GA。</li>
+    </ul>
+  </section>
+</section>
+
+<footer class="foot">
+  <p>AI 空库未出 Tab · 二次元空库未出 Tab · 游戏开发空库未出 Tab · 今日无新旗舰 · 今日无新 MCP/Skill 推荐 · 不发涉政</p>
+  <p>观察台固定入口 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 本页快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-15.html">/daily/2026-09-15.html</a></p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
