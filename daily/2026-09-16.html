@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-16</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-15, 2026-09-16]。
+  含昨 ~09:40 CST 后补入核。显示 总览 + AI + 二次元 + 游戏行业；游戏开发空库未出 Tab。
+  今日无新旗舰；今日有新 MCP/Skill 推荐（Salesforce in Claude）。Gemini 3.8 Live 非旗舰。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-16 · 周三 · Asia/Shanghai · ISO 2026-W38</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W38.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-16" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-15, 09-16]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是 <strong>英雄传说III：白发魔女</strong> IP 授权（NEOWIZ×Falcom）与独立轴 <strong>Cloudbreaker</strong> 发售、<strong>异病侦探</strong> 定档；AI 侧 <strong>Gemini 3.8 Live</strong>（专用语音档，非一般旗舰）+ <strong>Salesforce in Claude</strong>（37 Skill + MCP，可推荐）。二次元：蔚蓝档案韩/国际服 Ex.传承探求第2章。行业另记超能力大战 2012 回归、007 First Light Switch 2 延期、Game Pass 波。今日<strong>无新旗舰</strong>；今日<strong>有新 MCP/Skill 推荐</strong>。游戏开发空库未出 Tab。Capcom Spotlight 今晚未播不写片单。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:40 CST 后补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok 仍 4.6。Gemini 3.8 Live 为专用 Live 档，不当旗舰）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>有新推荐：Salesforce in Claude（37 Skill + Salesforce MCP）</dd></div>
+      <div><dt>展会</dt><dd>Capcom Spotlight 今晚 22:00 CST 未播；TGS 9/17–21 未开幕——不预写片单</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业：英雄传说III：白发魔女 IP 授权；超能力大战 2012 回归 2027；007 First Light Switch 2→2027.3；Game Pass 9–10 月波；寒蝉 Jong REMASTER。</li>
+      <li>独立：Cloudbreaker 正式发售；异病侦探定档 11/5。</li>
+      <li>AI：Gemini 3.8 Live（非旗舰）+ Salesforce in Claude（可推荐）。</li>
+      <li>二次元：蔚蓝档案韩/国际服主线 Ex.第2章 + 礼服睦月/春香；国服未见同步。</li>
+    </ul>
+    <p class="lib-note">判定：IP 授权 + MCP 推荐 + 独立发售/定档扛主线；Live 档进模型轴但写清「非旗舰」。不复述金刚狼 / tinyBuild / Tenebris / SideM / 原神 7.1。不发涉政。游戏开发空库未出 Tab。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric"><b>10</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>9</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>3</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric hot"><b>1</b><span>MCP/Skill 推荐</span></div>
+  <div class="metric"><b>0</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="库切换">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ai">AI 观察</button>
+  <button class="tab-btn" data-tab="anime">二次元</button>
+  <button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+<section id="ov" class="tab-pane active">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 落在英雄传说III：白发魔女 IP 授权与 AI 双条（Gemini Live 非旗舰 + Salesforce in Claude 可推荐）；其后为独立发售/定档与行业回归/延期/分发。游戏开发空库未出 Tab。今日无新旗舰；今日有新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>10（AI 2 + 二次元 1 + 行业 7）</dd></div>
+      <div><dt>高 Attention</dt><dd>9（fire≥2）</dd></div>
+      <div><dt>空库</dt><dd>游戏开发（未出 Tab）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（2 条）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>AI：Gemini 3.8 Live（专用档）+ Salesforce in Claude（MCP/Skill 推荐）。</li>
+      <li>二次元：蔚蓝档案韩/国际服 Ex.传承探求第2章。</li>
+      <li>行业：白发魔女 IP；超能力大战 2012；007 Switch 2 延期；Game Pass；寒蝉 Jong。</li>
+      <li>独立：Cloudbreaker 发售；异病侦探 11/5。</li>
+    </ul>
+    <p class="lib-note">判定：三库同出；展会片单空（Spotlight 未播）。游戏开发空库未出 Tab。</p>
+  </div>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>英雄传说III：白发魔女（The Legend of Heroes III: Prophecy of the Moonlight Witch）</h3>
+      <p class="ov-lede">NEOWIZ 宣布与日本 Falcom 签署 IP 协议：获《英雄传说III：白发魔女》主机 / PC 开发与全球发行权；形态未锁，无发售日。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏行业 · IP 授权</dd></div><div><dt>状态</dt><dd>新作开发发行公布</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>Gemini 3.8 Live / Live Extended Thinking（非一般旗舰）</h3>
+      <p class="ov-lede">Google DeepMind 推出实时语音对话专用档 Gemini 3.8 Live 与 Live Extended Thinking；经 Live API 可用。不当今日一般文本旗舰。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div><div><dt>库</dt><dd>AI · 模型发布</dd></div><div><dt>状态</dt><dd>专用 Live 档 · 非旗舰</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>Salesforce in Claude（37 Skill + MCP）</h3>
+      <p class="ov-lede">Anthropic×Salesforce 将「Salesforce in Claude」推入付费计划 beta：37 销售 Skill + marketplace 可装 Salesforce MCP。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div><div><dt>库</dt><dd>AI · MCP/Skill</dd></div><div><dt>状态</dt><dd>可推荐 · beta</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>Cloudbreaker</h3>
+      <p class="ov-lede">Ballast Games《Cloudbreaker》Steam 正式发售：库存格子拼装飞艇引擎 × Bullet Heaven roguelite。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div><div><dt>库</dt><dd>游戏行业 · 独立</dd></div><div><dt>状态</dt><dd>正式发售</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>异病侦探（Psycho-Sleuth）</h3>
+      <p class="ov-lede">Thermite × PHOSEPO × Smilegate《异病侦探》定档 2026-11-05 Steam / STOVE；展会口碑后硬锁日。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div><div><dt>库</dt><dd>游戏行业 · 独立</dd></div><div><dt>状态</dt><dd>定档 11/5</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>超能力大战 2012（Psychic Force 2012）</h3>
+      <p class="ov-lede">Cosmo Machia × TAITO：经典 360° 空战格斗《超能力大战 2012》将于 2027 登陆 PS5 / Switch / Steam。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div><div><dt>库</dt><dd>游戏行业 · 新作</dd></div><div><dt>状态</dt><dd>回归公布 · 2027</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>007 First Light（Switch 2）</h3>
+      <p class="ov-lede">IO Interactive：Switch 2 版《007 First Light》再延至 2027 年 3 月；其他平台已发售。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div><div><dt>库</dt><dd>游戏行业 · 延期</dd></div><div><dt>状态</dt><dd>Switch 2 → 2027.3</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>Xbox Game Pass 9–10 月波</h3>
+      <p class="ov-lede">Xbox Wire 第二波：Gears of War: E-Day 10/6 Day One、Minecraft Dungeons II 9/29 Day One、Dune: Awakening 9/22 等。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div><div><dt>库</dt><dd>游戏行业 · 分发</dd></div><div><dt>状态</dt><dd>阵容公布</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>蔚蓝档案（Blue Archive）Ex.传承探求第2章</h3>
+      <p class="ov-lede">韩服/国际服 9/15：主线第二部 Ex.「传承探求」第2章 + ★3 睦月／春香（礼服）；国服未见同步。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div><div><dt>库</dt><dd>二次元 · 版本</dd></div><div><dt>状态</dt><dd>韩/国际服开门</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section id="ai" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🧠</span><h2>AI 观察</h2></div>
+    <p class="lib-lede">今日<strong>无新旗舰</strong>。今日<strong>有新 MCP/Skill 推荐</strong>：Salesforce in Claude（37 Skill + Salesforce MCP）。模型发布轴另有 Gemini 3.8 Live / Live Extended Thinking（实时语音专用档，<strong>非一般旗舰</strong>）。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>2</dd></div>
+      <div><dt>有信号轴</dt><dd>模型发布 / Agent·MCP·Skill</dd></div>
+      <div><dt>旗舰 / MCP</dt><dd>无新旗舰 · 有 Salesforce in Claude 推荐</dd></div>
+      <div><dt>密度</dt><dd>高</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>Gemini 3.8 Live：Live API 可用；Extended Thinking 可后台推理；厂商自报语音评测数字，独立复核未核。</li>
+      <li>现役文本旗舰仍为 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6。</li>
+      <li>Salesforce in Claude：付费计划 beta；默认写回需批准；可经 marketplace 装 MCP。</li>
+      <li>论文/AI应用/AI编程/国内行业本窗无另开独立 Signal。</li>
+    </ul>
+    <p class="lib-note">不把 Gemini Live 写成今日旗舰；不复述 Astra / Fable·Mythos / Gemini 3.8 Flash / Agents API+GPT-Live-1 / Baseten·AWS MCP。不发涉政 threat-intel。</p>
+    <div class="lib-stats"><span>无新旗舰</span><span class="level">有 MCP/Skill 推荐</span></div>
+  </div>
+
+  <div class="axis-grid">
+    <article class="axis-card">
+      <div class="axis-title"><h3>🧠 模型发布</h3><span class="density">1</span></div>
+      <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/" rel="noopener" target="_blank">Gemini 3.8 Live / Live Extended Thinking 发布（实时语音对话专用，非一般旗舰）</a></h4></div>
+        <p class="signal-lede">Google DeepMind 于 Sep 15 推出 Gemini 3.8 Live 与 3.8 Live Extended Thinking：面向近实时语音对话与语音智能体的专用档，开发者经 Live API 可用；Extended Thinking 可边说边做后台多步推理。定位实时语音/Live，不当今日一般文本旗舰（现役文本旗舰仍为 Gemini 3.8 Flash）。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-16/gemini-38-live.png" alt="Gemini 3.8 Live / Live Extended Thinking 发布（实时语音对话专用，非一般旗舰）" loading="lazy"/>
+          <figcaption>Google Blog 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>型号</dt><dd>gemini-3.8-live；gemini-3.8-live-extended-thinking（合称 Gemini 3.8 Audio）</dd></div>
+<div><dt>落款</dt><dd>官方 blog Sep 15, 2026；模型卡 Published 15 September 2026</dd></div>
+<div><dt>可用性</dt><dd>开发者：Gemini API / AI Studio Live API 起今日；消费端：Search Live / Gemini Live / Workspace Docs·Gmail·Keep（按档位分批）；企业：Gemini Enterprise 私有预览</dd></div>
+<div><dt>定位</dt><dd>实时 speech-to-speech / 语音智能体；异步函数调用 + 视觉 grounding + 97+ 语言</dd></div>
+<div><dt>定价（厂商）</dt><dd>音频约 $0.005/min 入 + $0.018/min 出（开发者博文；另有 token 估算法）</dd></div>
+<div><dt>是否新旗舰</dt><dd>否（专用 Live/音频档；对标既有 GPT-Live-1 / Transcribe 处理口径，非 Astra/Flash 级一般旗舰）</dd></div>
+</dl>
+        <ul class="facts">
+<li>官方称「most advanced live dialogue models yet」；Extended Thinking 在 Artificial Analysis Speech-to-Speech Quality Index 报 82.6（#1，厂商引用）、τ-Voice 68.6%、Big Bench Audio 97.7%（厂商自报，缺独立复核写未核）。</li>
+<li>能力要点：后台异步 tool/API 调用同时继续流式语音；近实时视觉上下文；97+ 语言中途切换；Extended Thinking 可配置后台推理并口头播报进度。</li>
+<li>模型卡：基于 Gemini 3 Pro；输入音频/图/视频/文本至约 128K；输出音频+文本至约 64K；知识截止写 January 2025。</li>
+<li>同日开发者文同步推 Live API 集成伙伴（Agora / LiveKit / Pipecat / Vercel 等），并提及「live api skill」；记本条附属，不另开独立 MCP 推荐条。</li>
+<li>Gemini 3.5 Transcribe 同文仅回顾上月 WER，不升格为本窗新模型。已报 Gemini 3.8 Flash 不复述。</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/" rel="noopener" target="_blank">Google Blog</a> · <a href="https://blog.google/innovation-and-ai/technology/developers-tools/build-real-time-voice-applications-gemini-audio/" rel="noopener" target="_blank">Google Developers</a> · <a href="https://deepmind.google/models/model-cards/gemini-3-8-audio/" rel="noopener" target="_blank">DeepMind</a> · <a href="https://ai.google.dev/gemini-api/docs/models/gemini-3.8-live-extended-thinking" rel="noopener" target="_blank">Gemini API Docs</a>。</p>
+        <div class="tags"><span>模型发布</span><span>专用 Live</span><span>非旗舰</span></div>
+      </article>
+
+      </div>
+    </article>
+    <article class="axis-card">
+      <div class="axis-title"><h3>🔧 Agent / MCP / Skill</h3><span class="density">1</span></div>
+      <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://claude.com/blog/salesforce-in-claude" rel="noopener" target="_blank">Salesforce in Claude 公测：37 销售 Skill + Salesforce MCP（可推荐）</a></h4></div>
+        <p class="signal-lede">Anthropic 与 Salesforce 联合将「Salesforce in Claude」插件推入付费计划 beta：在既有 Salesforce 权限下把账户/商机/管道拉进 Claude，捆绑 37 个销售 Skill，并提供可经 marketplace 安装的 Salesforce MCP。默认写回需用户批准。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-16/salesforce-in-claude.jpg" alt="Salesforce in Claude 公测：37 销售 Skill + Salesforce MCP（可推荐）" loading="lazy"/>
+          <figcaption>Claude Blog OG 图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>产品</dt><dd>Salesforce in Claude（插件 + connectors）</dd></div>
+<div><dt>落款</dt><dd>claude.com/blog；页面 Last Published 2026-09-15 17:35 UTC（≈ 2026-09-16 01:35 CST）</dd></div>
+<div><dt>可用性</dt><dd>付费 Claude 计划 beta；需 Salesforce 审批组织；chat / Claude Cowork（web+desktop）</dd></div>
+<div><dt>Skill</dt><dd>37 个销售 Skill（账户研究、通话准备、管道审视、CRM 更新等）</dd></div>
+<div><dt>MCP</dt><dd>Salesforce MCP 可经 marketplace 直接安装；管理员经 AgentExchange 开通</dd></div>
+<div><dt>权限</dt><dd>沿用用户 Salesforce 权限；默认每条写回需批准</dd></div>
+<div><dt>是否推荐条</dt><dd>是（一线厂商 MCP + 成套 Skill，达 🔧 推荐门槛）</dd></div>
+</dl>
+        <ul class="facts">
+<li>卖点场景：晨间简报、通话准备、成交计划、会后跟进邮件/Slack、管道看板与预测叙述；首次打开有 setup skill 按角色个性化。</li>
+<li>双连接器：Salesforce（读数与写回）+ Slack（成交频道/客户团队线程）。</li>
+<li>Help Center「Updated today」与官方博文口径一致：beta、付费计划、组织级管理员连接。</li>
+<li>与 8/27 Claudeforce 合作官宣区分：本条是插件/MCP/Skill 对用户侧落地；合作新闻不复述为新旗舰。</li>
+<li>不计入 Codex/产品内 skill 改动冒充推荐；本条为可安装 MCP + 明确 Skill 包。</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://claude.com/blog/salesforce-in-claude" rel="noopener" target="_blank">Claude Blog</a> · <a href="https://support.claude.com/en/articles/16952186-use-salesforce-in-claude" rel="noopener" target="_blank">Claude Help</a> · <a href="https://claude.com/connectors/salesforce" rel="noopener" target="_blank">Claude Connectors</a>。</p>
+        <div class="tags"><span>MCP</span><span>Skill</span><span>可推荐</span><span>beta</span></div>
+      </article>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="anime" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🎌</span><h2>二次元游戏观察</h2></div>
+    <p class="lib-lede">窗内主线：<strong>蔚蓝档案</strong>韩服/国际服主线 Ex.「传承探求」第2章 + 礼服新学生。不复述原神 7.1 / SideM / 鸣潮 3.7 窗外官宣；星铁 4.6 前瞻昨窗官宣不升格。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>高 Attention</dt><dd>1（fire≥2）</dd></div>
+      <div><dt>区服口径</dt><dd>韩服 / 国际服；国服未见同步</dd></div>
+      <div><dt>新作</dt><dd>无 is_new_game</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>蔚蓝档案：Ex.传承探求第2章 + ★3 睦月（礼服）/ 春香（礼服）；总力战油桶蟹 9/22。</li>
+      <li>Pending：原神 7.1 开门 9/23；终末地噗切娜约 9/24；鸣潮 3.7 约 9/30；星铁 4.6 前瞻 9/20 19:30；SideM 标题档期 TBA。</li>
+    </ul>
+    <p class="lib-note">判定：单条达门槛出 Tab；国服不写成同步开门。日历活动（ZZZ/终末地 AIC）不升格。</p>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🔄 版本更新 / 大版本</h3><span class="density">1</span></div>
+    <div class="axis-body">
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://game.donga.com/124285/" rel="noopener" target="_blank">蔚蓝档案（Blue Archive）主线 Ex.「传承探求」第2章 + 睦月／春香（礼服）</a></h4></div>
+        <p class="signal-lede">Nexon 于 9/15 更新《蔚蓝档案》韩服（国际服同日口径）：主线第二部 Ex.「传承探求」第2章上线，并追加★3「睦月（礼服）」「春香（礼服）」精选招募；总力战新 BOSS「油桶蟹」定档 9/22。</p>
+
+        <dl class="kv">
+<div><dt>事件</dt><dd>主线章节开门 + 新礼服学生精选</dd></div>
+<div><dt>区服</dt><dd>韩服 / 国际服（Nexon）；日服同章已于 2026-05 先行；国服未见同步一线</dd></div>
+<div><dt>主线</dt><dd>第二部 Ex.「传承探求」第2章（英：What&#x27;s Inside the Drum Barrel）</dd></div>
+<div><dt>新学生</dt><dd>★3 睦月（礼服）、★3 春香（礼服）</dd></div>
+<div><dt>复刻精选</dt><dd>阿露／佳代子／纱织（礼服）等同期限（国际服口径至约 9/29）</dd></div>
+<div><dt>活动</dt><dd>特殊作战：传承探求（国际服与精选同期）</dd></div>
+<div><dt>后续</dt><dd>The Fury of Set 约 9/16；总力战 油桶蟹 9/22–28</dd></div>
+<div><dt>时点</dt><dd>Nexon 口径 9/15 更新；韩媒 Newspim 稿约 9/15 16:15 KST≈15:15 CST（昨 09:40 后）</dd></div>
+</dl>
+        <ul class="facts">
+<li>游戏东亚等多家媒体引 Nexon：FOX 小队于「金崎港」探失踪案与都市传说「油桶蟹」；章节含野外探索与分支选择</li>
+<li>★3 睦月（礼服）为神秘属性输出；★3 春香（礼服）为爆炸属性、EX 部分无视防御（媒体转述技能向，实装以客户端为准）</li>
+<li>总力战新 BOSS「油桶蟹」9/22 登场，含轻装/特殊装双防御属性</li>
+<li>同步推新玩家活动「夏莱正式任命」类登录任务链（档案招募券等）</li>
+<li>国服（哔哩哔哩）截稿未见对等更新公告 → 本条按韩服/国际服落款，不写成国服开门</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://game.donga.com/124285/" rel="noopener" target="_blank">游戏东亚</a> · <a href="https://www.newspim.com/news/view/20260915001145" rel="noopener" target="_blank">Newspim</a> · <a href="https://www.invenglobal.com/articles/25992/nexons-blue-archive-updates-main-story-ex-lore-pursuit-chapter-2" rel="noopener" target="_blank">Inven Global</a> · <a href="https://cosm-game.com/news/blue-archive-9-15-dress-students-lore-pursuit/" rel="noopener" target="_blank">Cosm Game</a>。</p>
+        <div class="tags"><span>版本更新</span><span>蔚蓝档案</span><span>韩/国际服</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="industry" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🕹️</span><h2>游戏行业观察</h2></div>
+    <p class="lib-lede">行业主线：<strong>英雄传说III：白发魔女</strong> IP 授权 + 独立轴 <strong>Cloudbreaker</strong> 发售 / <strong>异病侦探</strong> 定档；另记超能力大战 2012 回归、007 First Light Switch 2 延期、Game Pass 波。今日有独立游戏观察新增；展会片单未出（Capcom Spotlight / TGS 未播）。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>7（行业 5 + 独立 2）</dd></div>
+      <div><dt>展会片单</dt><dd>无（Spotlight 今晚 22:00 CST 未播；TGS 未开幕）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（2 条）</dd></div>
+      <div><dt>高 Attention</dt><dd>6</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>IP/新作：白发魔女授权；超能力大战 2012；寒蝉 Jong REMASTER。</li>
+      <li>独立：Cloudbreaker 发售；异病侦探 11/5。</li>
+      <li>平台：007 Switch 2→2027.3；Game Pass 9–10 月波。</li>
+      <li>展会：未播不预写片单。</li>
+    </ul>
+    <p class="lib-note">判定：授权+独立双主线；tinyBuild / 金刚狼 / Tenebris 不复述。Spotlight 播后再出片单。</p>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🆕 发售 / 行业新作</h3><span class="density">5</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.ajupress.com/view/20260916082470280" rel="noopener" target="_blank">英雄传说III：白发魔女（The Legend of Heroes III: Prophecy of the Moonlight Witch）</a></h4></div>
+        <p class="signal-lede">NEOWIZ 宣布与日本 Falcom 签署 IP 协议：获《英雄传说III：白发魔女》主机 / PC 开发与全球发行权；形态未锁（称忠实再现原作叙事与氛围），无发售日。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-16/loh3-white-witch.jpg" alt="英雄传说III：白发魔女（The Legend of Heroes III: Prophecy of the Moonlight Witch）" loading="lazy"/>
+          <figcaption>Gematsu / 官方宣传图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>IP 授权 / 主机·PC 新作开发发行公布</dd></div>
+<div><dt>原作</dt><dd>英雄传说III：白发魔女（1994 PC-9801；Gagharv 三部曲首作）</dd></div>
+<div><dt>开发·发行</dt><dd>NEOWIZ（授权自 Nihon Falcom）</dd></div>
+<div><dt>平台</dt><dd>PC / 主机（具体主机未列）</dd></div>
+<div><dt>档期</dt><dd>未公布</dd></div>
+<div><dt>形态</dt><dd>未锁（Gematsu：unclear what form；Aju：faithfully recreate）</dd></div>
+<div><dt>命名</dt><dd>系列官方简中「英雄传说III：白发魔女」← 系列译；本作无新 Steam 简中店名</dd></div>
+<div><dt>时点</dt><dd>NEOWIZ 韩方 9/16 宣布；Gematsu 9/15 21:05 EDT = 9/16 09:05 CST</dd></div>
+</dl>
+        <ul class="facts">
+<li>协议覆盖 PC 与主机包体开发及全球发行</li>
+<li>原作以叙事/氛围见长（俗称 poetic RPG），为轨迹系列前史 Gagharv 三部曲起点</li>
+<li>Falcom 40 周年调查中 Gagharv 三部曲曾居「希望登陆现行主机」榜首（Gematsu 引）</li>
+<li>与已上架 EGG Console 的 PC-9801 原版移植是不同项目——本条是 NEOWIZ 新开发授权</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.ajupress.com/view/20260916082470280" rel="noopener" target="_blank">Aju Press</a> · <a href="https://www.gematsu.com/2026/09/falcom-signs-agreement-with-neowiz-for-development-and-global-release-of-the-legend-of-heroes-iii-prophecy-of-the-moonlight-witch-for-consoles-pc" rel="noopener" target="_blank">Gematsu</a>。</p>
+        <div class="tags"><span>行业</span><span>IP 授权</span><span>新作公布</span></div>
+      </article>
+
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/psychic-force-2012-coming-to-ps5-switch-and-pc-in-2027" rel="noopener" target="_blank">超能力大战 2012（Psychic Force 2012）</a></h4></div>
+        <p class="signal-lede">Cosmo Machia 携手 TAITO：街机/主机经典 360° 空战格斗《超能力大战 2012》将于 2027 登陆 PS5 / Switch / Steam；TGS 2026 预告片已出，具体形态（移植/重制深度）未细拆。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-16/psychic-force-2012.jpg" alt="超能力大战 2012（Psychic Force 2012）" loading="lazy"/>
+          <figcaption>Gematsu / 官方预告图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>回归公布</dd></div>
+<div><dt>平台</dt><dd>PS5 / Switch / PC（Steam）</dd></div>
+<div><dt>档期</dt><dd>2027</dd></div>
+<div><dt>开发</dt><dd>Cosmo Machia（协力 TAITO）</dd></div>
+<div><dt>原作</dt><dd>1998 街机 → 1999 Dreamcast / PS</dd></div>
+<div><dt>命名</dt><dd>系列官方中文「超能力大战」← zh Wikipedia / 系列译；本作无 Steam 简中店名</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/14 23:54 EDT = 9/15 11:54 CST（昨 09:40 后补入核）</dd></div>
+</dl>
+        <ul class="facts">
+<li>官方定位「360-degree all-range fighting game」</li>
+<li>已释出 Tokyo Game Show 2026 Teaser Trailer</li>
+<li>Steam 店页检索截稿未见上架——译名走系列官方译，不自译新店名</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/psychic-force-2012-coming-to-ps5-switch-and-pc-in-2027" rel="noopener" target="_blank">Gematsu</a>。</p>
+        <div class="tags"><span>行业</span><span>新作</span><span>回归</span></div>
+      </article>
+
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/007-first-light-for-switch-2-delayed-to-march-2027" rel="noopener" target="_blank">007 First Light</a></h4></div>
+        <p class="signal-lede">IO Interactive：Switch 2 版《007 First Light》由原定 2026 夏窗口再延至 2027 年 3 月（精确日稍后）；称用于打磨 Switch 2 性能。PS5 / Xbox / PC 版已于 5/27 发售。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-16/007-first-light.jpg" alt="007 First Light" loading="lazy"/>
+          <figcaption>Gematsu / 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>主机版延期</dd></div>
+<div><dt>平台</dt><dd>Switch 2（本条）；其他平台已发售</dd></div>
+<div><dt>新窗口</dt><dd>2027 年 3 月</dd></div>
+<div><dt>原因</dt><dd>Switch 2 性能打磨（官方声明）</dd></div>
+<div><dt>同周</dt><dd>TGS 可玩与 gamescom 同款 demo（待开展不写片单）</dd></div>
+<div><dt>命名</dt><dd>无官方简中店名核到，留英文</dd></div>
+</dl>
+        <ul class="facts">
+<li>此为该作 Switch 2 二次延期（曾与主机同步日延期过）</li>
+<li>IOI 强调 gamescom 反馈积极，额外时间投入掌机/主机性能</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/007-first-light-for-switch-2-delayed-to-march-2027" rel="noopener" target="_blank">Gematsu</a>。</p>
+        <div class="tags"><span>行业</span><span>延期</span><span>Switch 2</span></div>
+      </article>
+
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://news.xbox.com/en-us/2026/09/15/xbox-game-pass-september-2026-wave-2/" rel="noopener" target="_blank">Xbox Game Pass 9 月底–10 月初阵容</a></h4></div>
+        <p class="signal-lede">Xbox Wire 公布第二波 9–10 月 Game Pass：亮点含《Gears of War: E-Day》10/6 Day One、《Minecraft Dungeons II》9/29 Day One、《Dune: Awakening》9/22，以及 9/16 起 Marvel Cosmic Invasion / Planet of Lana II / Routine 等。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-16/game-pass-wave.jpg" alt="Xbox Game Pass 9 月底–10 月初阵容" loading="lazy"/>
+          <figcaption>Xbox Wire 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>平台分发 / 阵容公布</dd></div>
+<div><dt>来源</dt><dd>Xbox Wire 一线</dd></div>
+<div><dt>Day One 重点</dt><dd>Gears of War: E-Day（10/6）；Minecraft Dungeons II（9/29）；Kernel Hearts / Well Dweller 等</dd></div>
+<div><dt>9/16</dt><dd>Marvel Cosmic Invasion；Planet of Lana II；Routine；Ultimate Sheep Raccoon</dd></div>
+<div><dt>9/22</dt><dd>Dune: Awakening；Well Dweller</dd></div>
+<div><dt>离开 9/30</dt><dd>Atomfall / Sifu / Little Nightmares 2 EE 等</dd></div>
+</dl>
+        <ul class="facts">
+<li>RuneScape: Dragonwilds 已标 Available Today（云 / Series / PC）</li>
+<li>Ninja Gaiden 4 9/17 加入 Ultimate / PC Game Pass</li>
+<li>本条记平台分发，不把各作升格为独立新作 Signal</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://news.xbox.com/en-us/2026/09/15/xbox-game-pass-september-2026-wave-2/" rel="noopener" target="_blank">Xbox Wire</a> · <a href="https://www.gematsu.com/2026/09/game-pass-adds-dune-awakening-minecraft-dungeons-ii-gears-of-war-e-day-and-more-in-late-september-to-early-october" rel="noopener" target="_blank">Gematsu</a>。</p>
+        <div class="tags"><span>行业</span><span>Game Pass</span><span>分发</span></div>
+      </article>
+
+      <article class="signal">
+        <div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/higurashi-no-naku-koro-ni-jong-remaster-announced-for-ps5-switch-and-pc" rel="noopener" target="_blank">寒蝉鸣泣之时 Jong REMASTER（Higurashi no Naku Koro ni Jong REMASTER）</a></h4></div>
+        <p class="signal-lede">City Connection 公布麻将冒险《寒蝉鸣泣之时 Jong》HD 重制：PS5 / Switch / Steam，2027 日本；支持日/繁中/简中。Steam 店名仍英文，标题用系列官方译。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-16/higurashi-jong.jpg" alt="寒蝉鸣泣之时 Jong REMASTER（Higurashi no Naku Koro ni Jong REMASTER）" loading="lazy"/>
+          <figcaption>Gematsu / 官方宣传图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>重制版公布</dd></div>
+<div><dt>平台</dt><dd>PS5 / Switch / PC（Steam）</dd></div>
+<div><dt>档期</dt><dd>2027（日本）</dd></div>
+<div><dt>语言</dt><dd>日文 / 繁中 / 简中</dd></div>
+<div><dt>命名</dt><dd>系列「寒蝉鸣泣之时」+ 原文 Jong REMASTER；Steam 简中名称栏仍英文</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/14 23:16 EDT = 9/15 11:16 CST（昨 09:40 后补入核）</dd></div>
+</dl>
+        <ul class="facts">
+<li>含 Oyashiro / Club / Paikuzushi 等模式；强调可作弊的一对一立直麻将</li>
+<li>原作者龙骑士07 监修剧本；号称 7000+ 张动画稿</li>
+<li>小众麻将衍生，火苗 1——记新作公布不升格主线</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/higurashi-no-naku-koro-ni-jong-remaster-announced-for-ps5-switch-and-pc" rel="noopener" target="_blank">Gematsu</a> · <a href="https://store.steampowered.com/app/4868300/" rel="noopener" target="_blank">Steam</a>。</p>
+        <div class="tags"><span>行业</span><span>重制</span><span>新作公布</span></div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">2</span></div>
+    <div class="axis-body">
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/3620890/" rel="noopener" target="_blank">Cloudbreaker</a></h4></div>
+        <p class="signal-lede">加拿大双人工作室 Ballast Games《Cloudbreaker》Steam 正式发售：库存格子拼装飞艇引擎 + Bullet Heaven roguelite；截稿约 6 评（5+/1−），机制新意达独立门槛。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-16/cloudbreaker.jpg" alt="Cloudbreaker" loading="lazy"/>
+          <figcaption>Steam 店页头图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>正式发售</dd></div>
+<div><dt>平台</dt><dd>PC（Steam；Linux 亦开）</dd></div>
+<div><dt>发售日</dt><dd>2026-09-15</dd></div>
+<div><dt>开发·发行</dt><dd>Ballast Games</dd></div>
+<div><dt>定价</dt><dd>$12.99，首发至 9/29 九折（厂商稿）</dd></div>
+<div><dt>简中店名</dt><dd>仍英文 Cloudbreaker（无官方简中译，不自译）</dd></div>
+<div><dt>门槛依据</dt><dd>机制明确新意（Engine Grid 库存拼装 × bullet heaven）+ Next Fest demo 后正式版</dd></div>
+<div><dt>时点</dt><dd>Games Press 9/15；Steam coming_soon=false</dd></div>
+</dl>
+        <ul class="facts">
+<li>玩法：下穿云层清怪、收集引擎部件塞进格子叠协同、解锁不同机身</li>
+<li>Steam API：release Sep 15, 2026；genres 含独立</li>
+<li>口碑样本仍小，不升格为「爆款」——以机制门槛入核</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/3620890/" rel="noopener" target="_blank">Steam</a> · <a href="https://www.gamespress.com/en-US/Build-Your-Airship-Break-Through-the-Hordes-Inventory-Management-Bulle" rel="noopener" target="_blank">Games Press</a>。</p>
+        <div class="tags"><span>独立</span><span>发售</span><span>新作</span></div>
+      </article>
+
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/3432860/" rel="noopener" target="_blank">异病侦探（Psycho-Sleuth）</a></h4></div>
+        <p class="signal-lede">Thermite Games × PHOSEPO × Smilegate《异病侦探》定档 2026-11-05 Steam / STOVE：认知障碍改写证物与证词的本格推理；Busan Indie Connect / Gamescom 2026 展会口碑后硬锁日。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-16/psycho-sleuth.jpg" alt="异病侦探（Psycho-Sleuth）" loading="lazy"/>
+          <figcaption>Steam 简中店页头图</figcaption>
+        </figure>
+        <dl class="kv">
+<div><dt>事件</dt><dd>定档</dd></div>
+<div><dt>平台</dt><dd>PC（Steam / STOVE）</dd></div>
+<div><dt>发售日</dt><dd>2026-11-05</dd></div>
+<div><dt>开发</dt><dd>PHOSEPO</dd></div>
+<div><dt>发行</dt><dd>Thermite Games / Smilegate</dd></div>
+<div><dt>Steam 简中名称</dt><dd>异病侦探</dd></div>
+<div><dt>AppID</dt><dd>3432860</dd></div>
+<div><dt>门槛依据</dt><dd>节展入围/展会推荐（Busan Indie Connect、Gamescom）+ 硬定档</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/14 23:02 EDT = 9/15 11:02 CST（昨 09:40 后补入核）</dd></div>
+</dl>
+        <ul class="facts">
+<li>13 名「罹病者」各带可传染的认知异常（无法说谎、半侧忽视、脸盲等）扭曲调查</li>
+<li>含 Debate Mode；厂商称剧本 50 万+ 字、关键场景配音、Live2D</li>
+<li>TGS 2026 Smilegate STOVE 展台将再出 demo（待开展不预写片单）</li>
+</ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/psycho-sleuth-launches-november-5" rel="noopener" target="_blank">Gematsu</a> · <a href="https://store.steampowered.com/app/3432860/" rel="noopener" target="_blank">Steam</a>。</p>
+        <div class="tags"><span>独立</span><span>定档</span><span>新作</span></div>
+      </article>
+
+    </div>
+  </div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+      <li>Capcom Spotlight 2026-09-16 <strong>22:00 CST</strong>（23:00 JST）未播 → 播后出 🎬 展会片单（世界首发+新锁）；未播保持 exhibition_empty</li>
+      <li>TGS 2026（9/17–21）未开幕不预写片单</li>
+      <li>火焰纹章 万缕千丝（Fire Emblem: Fortune&#x27;s Weave）仍 2026-09-17 Switch 2——未到发售日不报发售</li>
+      <li>空之轨迹 the 2nd chapter（Trails in the Sky 2nd Chapter）全球 9/17——待发售窗</li>
+      <li>罗马流沙 RE:Build / BloomKeeper 档 9/16 但截稿仍 coming_soon——待翻牌</li>
+      <li>Oops! You&#x27;re the Hero! 稿称 9/15 发售，截稿 Steam 仍 coming_soon——待翻牌</li>
+      <li>Holy Horror Mansion：媒体「幽幽灵公寓」≠ 官方店名，继续待核</li>
+      <li>Kingmakers Steam EA 硬日期；Hozy / 灰雨钢锋主机精确日（tinyBuild 遗留）</li>
+      <li>Grok 4.7 / 4.8：仍未发；docs Latest=Grok 4.6</li>
+      <li>DeepSeek-V4.1-Pro：未发布；Qwen4：盯云栖/Apsara 9/22–24</li>
+      <li>原神 7.1 开门 9/23；终末地噗切娜约 9/24；鸣潮 3.7 约 9/30；星铁 4.6 前瞻 9/20 19:30；SideM 标题档期 TBA</li>
+    </ul>
+  </section>
+</section>
+
+<footer class="foot">
+  <p>游戏开发空库未出 Tab · 今日无新旗舰 · 今日有新 MCP/Skill 推荐（Salesforce in Claude）· Gemini 3.8 Live 非旗舰 · 展会片单空（Spotlight 未播）· 不发涉政</p>
+  <p>观察台固定入口 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 本页快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-16.html">/daily/2026-09-16.html</a></p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
