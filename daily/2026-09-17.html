@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-17</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-16, 2026-09-17]。
+  含昨 ~09:40 CST 后补入核。显示 总览 + AI + 游戏开发 + 游戏行业；二次元空库未出 Tab。
+  今日无新旗舰；今日有新 MCP/Skill 推荐（Claude SMB 43 工作流+27 集成）。
+  Capcom Spotlight 已播（无世界首发/新锁，深潜见表）。gamedev fire=4 显示钳制为 🔥🔥🔥。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-17 · 周四 · Asia/Shanghai · ISO 2026-W38</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W38.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-17" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-16, 09-17]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是 <strong>火焰纹章：万缕千丝</strong> 与 <strong>空之轨迹 the 2nd</strong> 正式发售；行业侧 <strong>Lollipop Chainsaw 2 Back2Back</strong> 公布、<strong>卧龙2：凤火连天</strong> 定档 2027-03-04；🎬 <strong>Capcom Spotlight</strong> 已播（无世界首发/新锁，深潜见表）。AI：Claude <strong>Cowork 与 chat 合一</strong> + <strong>SMB 43 工作流/27 集成</strong>（可推荐）+ Grok Build Memory。开发：<strong>Unity 官方 Codex 插件</strong>。今日<strong>无新旗舰</strong>；今日<strong>有新 MCP/Skill 推荐</strong>。二次元空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:40 CST 后补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>有新推荐：Claude for Small Business（43 工作流 + 27 新集成；漏报补入）</dd></div>
+      <div><dt>展会</dt><dd>Capcom Spotlight 已播（无世界首发/新锁）；TGS 开幕日截稿未见可核舞台世界首发——不预写</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>发售：火焰纹章：万缕千丝（Switch 2）；空之轨迹 the 2nd（Switch/Switch2/PS5/Steam）。</li>
+      <li>公布/定档：Lollipop Chainsaw 2 Back2Back（PS5·2027）；卧龙2：凤火连天（2027-03-04 + Alpha Demo）；廻咒（2027）。</li>
+      <li>展会：Capcom Spotlight 片单已出（深潜表）；独立轴罗马流沙 RE:Build / BloomKeeper 发售等。</li>
+      <li>AI：Cowork 合一 + SMB 可推荐 + Grok Build Memory；开发：Unity Codex 插件（记引擎轴，不当 AI MCP 推荐）。</li>
+    </ul>
+    <p class="lib-note">判定：双 AAA/JRPG 发售 + Spotlight 片单 + SMB 推荐扛主线。Unity Codex 进开发 Tab。不复述白发魔女 / Cloudbreaker / Salesforce in Claude / 蔚蓝档案。不发涉政。二次元空库未出 Tab。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric"><b>15</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>14</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>3</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric hot"><b>1</b><span>MCP/Skill 推荐</span></div>
+  <div class="metric"><b>1</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="库切换">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ai">AI 观察</button>
+  <button class="tab-btn" data-tab="dev">游戏开发</button>
+  <button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+<section id="ov" class="tab-pane active">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 落在火焰纹章：万缕千丝 / 空之轨迹 the 2nd 发售、Lollipop Chainsaw 2 / 卧龙2 定档公布、Claude Cowork/SMB，以及 Unity Codex 插件（显示 🔥🔥🔥）。二次元空库未出 Tab。今日无新旗舰；今日有新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>15（AI 3 + 开发 1 + 行业 11）</dd></div>
+      <div><dt>高 Attention</dt><dd>14（fire≥2）</dd></div>
+      <div><dt>空库</dt><dd>二次元（未出 Tab）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（4 条）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业：FE 万缕千丝 + 空轨 the 2nd 发售；Lollipop 2 / 卧龙2 / 廻咒；Capcom Spotlight 片单。</li>
+      <li>独立：罗马流沙 RE:Build / BloomKeeper 发售；The First Zombie 公布；Warota EA 定档。</li>
+      <li>AI：Cowork 合一 + SMB 推荐 + Grok Build Memory。</li>
+      <li>开发：Unity 官方 Codex 插件（Skills + CLI）。</li>
+    </ul>
+    <p class="lib-note">判定：三库同出；展会片单已出（无世界首发/新锁）。二次元空库未出 Tab。</p>
+  </div>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>Unity 官方 Codex 插件正式上架：Unity Skills + CLI 工作流</h3>
+      <p class="ov-lede">Unity 在 9 月 16 日将面向 OpenAI Codex 的一方插件正式上架/公开：把 Unity 团队维护的开发 Skills 接入 Codex，并提供 Unity CLI 相关项目、Editor 与包管理工作流；这是引擎级 …</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏开发 · 引擎工具链</dd></div><div><dt>状态</dt><dd>官方插件上架</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>Claude Cowork 与 chat 合并为同一 Claude；Docs / Slides / Design 进对话（非新旗舰）</h3>
+      <p class="ov-lede">Anthropic 宣布 Claude Cowork 与 chat 合并为同一 Claude：不必再选任务入口，长任务可在关电脑后续跑；同日推出 Claude Docs、Claude Slides（beta），Claude Design…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>AI · Agent/MCP</dd></div><div><dt>状态</dt><dd>非旗舰</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>Claude for Small Business：43 工作流 + 27 新集成（漏报补入，可推荐）</h3>
+      <p class="ov-lede">Anthropic 为 Claude for Small Business 插件加推 43 个工作流与 27 个新集成（Shopify / Salesforce / TikTok / Atlassian / Zoom / Xero / …</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-15</dd></div><div><dt>库</dt><dd>AI · Agent/MCP</dd></div><div><dt>状态</dt><dd>可推荐</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>火焰纹章：万缕千丝（Fire Emblem: Fortune's Weave）</h3>
+      <p class="ov-lede">Intelligent Systems / 任天堂《火焰纹章：万缕千丝》于 2026-09-17 登陆 Nintendo Switch 2：系列正统新作全球发售窗开启。日区等本地午夜已可玩；美东午夜解锁约等于 9/17 12:00 CS…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-17</dd></div><div><dt>库</dt><dd>游戏行业 · 发售</dd></div><div><dt>状态</dt><dd>新作</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>空之轨迹 the 2nd（Trails in the Sky 2nd Chapter）</h3>
+      <p class="ov-lede">日本 Falcom《空之轨迹 the 2nd》今日发售：Switch / Switch 2 / PS5 / Steam 全球同步窗；为《英雄传说 空之轨迹SC》完全重制续作，承接《空之轨迹 the 1st》。Steam 英文区 comi…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-17</dd></div><div><dt>库</dt><dd>游戏行业</dd></div><div><dt>状态</dt><dd>新作</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>Lollipop Chainsaw 2 Back2Back</h3>
+      <p class="ov-lede">Dragami Games × Nada Holdings × JP Universe 公布系列新作《Lollipop Chainsaw 2 Back2Back》：PS5，2027；田畑端（原 FF15 监督）参与，原作剧本/人设班底回…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏行业</dd></div><div><dt>状态</dt><dd>新作</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal high">
+      <div class="ov-fire">🔥🔥🔥</div>
+      <h3>卧龙2：凤火连天（Wo Long 2: Wings of Ember）</h3>
+      <p class="ov-lede">Team NINJA / 光荣特库摩将《卧龙》续作定档 2027-03-04：PS5 / Xbox Series / Switch 2 / PC（Steam / MS Store），同步进 Game Pass。Alpha Demo 现已…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏行业</dd></div><div><dt>状态</dt><dd>新作</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>Grok Build 跨会话 Memory：约定/决策/项目事实自动记笔记（非新旗舰）</h3>
+      <p class="ov-lede">xAI 为 Grok Build 上线跨会话 Memory：回合结束后台捕获约定、决策与项目事实，存为 markdown（项目域 + 全局偏好）；后续会话开工前自动读相关 topic。提供 /memory 浏览与 /dream 合并。非…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>AI · Agent/MCP</dd></div><div><dt>状态</dt><dd>非旗舰</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>🎬 Capcom Spotlight｜TGS 2026（已播）</h3>
+      <p class="ov-lede">Capcom Spotlight｜TGS 2026 于 9/16 22:00 CST 已播（约 40 分钟，VOD 已出）。本场无世界首发新作、无新硬定档；主轴为《洛克人：Dual Override》深潜、《怪物猎人：荒野》大型扩展 A…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏行业 · 展会</dd></div><div><dt>状态</dt><dd>展会官方秀已播 / 🎬 展会片单</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>Heart Machine 大规模裁员（未公布新作被砍后）</h3>
+      <p class="ov-lede">Hyper Light Drifter / Solar Ash / Possessor(s) / Hyper Light Breaker（EA）工作室 Heart Machine：发行方本周取消资助中的未公布项目后，「几乎全员」被裁。创…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏行业</dd></div><div><dt>状态</dt><dd>厂商 / 工作室人事与项目取消</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>罗马流沙 RE:Build（Roman Sands RE:Build）</h3>
+      <p class="ov-lede">Arbitrary Metric × Serenity Forge《罗马流沙 RE:Build》Steam / 主机正式发售：末世双世界（奢华度假村服务业 + 寄生虫研究站时间环）拼贴冒险。Steam 简中店名已核；昨截稿 coming…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏行业 · 独立</dd></div><div><dt>状态</dt><dd>新作</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>BloomKeeper</h3>
+      <p class="ov-lede">法国 Montpellier Resonance Interactive《BloomKeeper》Steam 正式发售：实时战术引导 Pouics 复苏焦土，支持 1–4 人合作。Demo 曾获 Very Positive（约 88%/…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏行业 · 独立</dd></div><div><dt>状态</dt><dd>新作</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>The First Zombie</h3>
+      <p class="ov-lede">Phoenixx 公布「反向」僵尸独立作《The First Zombie》：玩家是人类第一只僵尸，目标不是杀丧尸而是感染东京街巷「交朋友」扩编尸潮。Switch / Steam，档期 TBA；日英语言。综艺制作人藤井健太郎监制。</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏行业 · 独立</dd></div><div><dt>状态</dt><dd>新作</dd></div>
+      </dl>
+    </article>
+    <article class="overview-signal medium">
+      <div class="ov-fire">🔥🔥</div>
+      <h3>廻咒（Noroi Ayashi: The ∞th Oddity）</h3>
+      <p class="ov-lede">Game Source Entertainment × SuperNiche × Clover Lab 公布校园时间环恐怖《廻咒》：Switch 2 / Switch / Steam，2027；支持简中。Steam 简中店名「廻咒」。昨…</p>
+      <dl class="kv">
+        <div><dt>日期</dt><dd>2026-09-16</dd></div><div><dt>库</dt><dd>游戏行业</dd></div><div><dt>状态</dt><dd>新作</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section id="ai" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🧠</span><h2>AI 观察</h2></div>
+    <p class="lib-lede">今日<strong>无新旗舰</strong>。今日<strong>有新 MCP/Skill 推荐</strong>：Claude for Small Business（43 工作流 + 27 新集成，漏报补入）。另有 Claude Cowork 与 chat 合一（Docs/Slides/Design）与 Grok Build Memory——均<strong>非新模型</strong>，本库无旗舰对比表。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>3</dd></div>
+      <div><dt>有信号轴</dt><dd>Agent / MCP / Skill</dd></div>
+      <div><dt>旗舰 / MCP</dt><dd>无新旗舰 · 有 SMB 工作流推荐</dd></div>
+      <div><dt>密度</dt><dd>高</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>Cowork：与 chat 合并为同一 Claude；Docs / Slides（beta）/ Design 进对话；先 Pro/Max。</li>
+      <li>SMB：43 workflows + 27 integrations；驱动 new_mcp_skill_rec=true（昨窗漏报补入）。</li>
+      <li>Grok Build Memory：跨会话约定/决策笔记；旗舰仍 docs 4.6。</li>
+      <li>现役文本旗舰仍为 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash。</li>
+    </ul>
+    <p class="lib-note">不把 Cowork/SMB/Memory 写成新旗舰；不复述 Salesforce in Claude / Gemini 3.8 Live。Unity Codex 记开发库，不进本库推荐。</p>
+    <div class="lib-stats"><span>无新旗舰</span><span class="level">有 MCP/Skill 推荐</span></div>
+  </div>
+
+  <div class="axis-grid">
+    <article class="axis-card">
+      <div class="axis-title"><h3>🔧 Agent / MCP / Skill</h3><span class="density">3</span></div>
+      <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://claude.com/blog/cowork-is-now-claude" rel="noopener" target="_blank">Claude Cowork 与 chat 合并为同一 Claude；Docs / Slides / Design 进对话（非新旗舰）</a></h4></div>
+        <p class="signal-lede">Anthropic 宣布 Claude Cowork 与 chat 合并为同一 Claude：不必再选任务入口，长任务可在关电脑后续跑；同日推出 Claude Docs、Claude Slides（beta），Claude Design 也可在对话内使用。沿用既有 context / skills / connectors，非新旗舰、亦非新 MCP 包推荐。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/ai-20260917-claude-cowork-one.jpg" alt="Claude Cowork 与 chat 合并为同一 Claude；Docs / Slides / Design 进对话（非新旗舰）" loading="lazy"/>
+          <figcaption>Claude Blog OG</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>产品</dt><dd>Claude（Cowork + chat 合一）+ Claude Docs / Slides / Design</dd></div>
+        <div><dt>落款</dt><dd>claude.com/blog；页面日期 September 16, 2026（CMS Last Published 2026-09-16 21:24 UTC≈09-17 05:24 CST）</dd></div>
+        <div><dt>可用性</dt><dd>先 Pro / Max，web·desktop·mobile 未来数周滚动；Team / Free 随后；Enterprise 至少提前 30 天通知管理员</dd></div>
+        <div><dt>能力</dt><dd>对话内文档共写、幻灯片起草/演示/导出 PPT·PDF；Design 元素可改；默认可审批后再执行</dd></div>
+        <div><dt>是否新旗舰</dt><dd>否</dd></div>
+        <div><dt>是否推荐条</dt><dd>否（产品/工作流合一；未新增可安装 MCP/Skill 包，记 🔧 Agent 轴）</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>卖点：同一对话里可完成周报+五页领导会幻灯片；手机查进度；产物共享链接。</li>
+        <li>既有 Cowork 会话、项目、artifacts、connectors、skills 保留；打开应用可接着用。</li>
+        <li>与 Salesforce in Claude / SMB 插件区分：本条是入口与创作面合一，不复述已报 MCP 包。</li>
+        <li>anthropic.com/news 未列本帖，以 claude.com/blog 为准。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://claude.com/blog/cowork-is-now-claude" rel="noopener" target="_blank">claude.com</a>。</p>
+        <div class="tags"><span>Agent</span><span>产品合一</span></div>
+      </article>
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs" rel="noopener" target="_blank">Claude for Small Business：43 工作流 + 27 新集成（漏报补入，可推荐）</a></h4></div>
+        <p class="signal-lede">Anthropic 为 Claude for Small Business 插件加推 43 个工作流与 27 个新集成（Shopify / Salesforce / TikTok / Atlassian / Zoom / Xero / Gusto / Square / Stripe / Zapier 等），在 Cowork 内以 /smb-onboard、/monday-brief、/speed-to-lead 等命令运行；默认可审批后再发送/付款。昨扫已收 Salesforce in Claude，本 SMB 扩展包漏报，按补入核收入。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/ai-20260917-claude-smb-workflows.jpg" alt="Claude for Small Business：43 工作流 + 27 新集成（漏报补入，可推荐）" loading="lazy"/>
+          <figcaption>Claude Blog OG</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>产品</dt><dd>Claude for Small Business（插件 + connectors + workflows）</dd></div>
+        <div><dt>落款</dt><dd>claude.com/blog；页面日期 September 15, 2026</dd></div>
+        <div><dt>可用性</dt><dd>付费 Claude 计划；插件安装量官称超 90 万次（累计）</dd></div>
+        <div><dt>工作流</dt><dd>43 workflows（周报、线索、提案、社媒、月结等）</dd></div>
+        <div><dt>集成</dt><dd>27 new integrations；文内列举约 37 partner connectors 可用于周报等场景</dd></div>
+        <div><dt>权限</dt><dd>默认 approval mode；沿用原软件权限；Team/Enterprise 默不训练业务数据（厂商表述）</dd></div>
+        <div><dt>是否推荐条</dt><dd>是（成套工作流 + 多连接器，达 🔧 推荐门槛）</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>场景覆盖：周一简报、线索响应、提案、营销日历、关账对账；可用语音备忘录生成报价提案。</li>
+        <li>与昨条 Salesforce in Claude 区分：昨条为销售 Skill+Salesforce MCP；本条为 SMB 插件整包扩展（含 Salesforce 等在内的多连接器）。</li>
+        <li>秋季培训：10 城工作坊 + 伙伴 webinar 日程（Notion 9/25 起）。</li>
+        <li>不计入 Codex/Cursor 产品内 skill 改动；本条为可安装插件工作流包。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs" rel="noopener" target="_blank">claude.com</a> · <a href="https://claude.com/plugins/small-business" rel="noopener" target="_blank">claude.com</a>。</p>
+        <div class="tags"><span>MCP</span><span>Skill</span><span>可推荐</span></div>
+      </article>
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://x.ai/news/grok-build-memory" rel="noopener" target="_blank">Grok Build 跨会话 Memory：约定/决策/项目事实自动记笔记（非新旗舰）</a></h4></div>
+        <p class="signal-lede">xAI 为 Grok Build 上线跨会话 Memory：回合结束后台捕获约定、决策与项目事实，存为 markdown（项目域 + 全局偏好）；后续会话开工前自动读相关 topic。提供 /memory 浏览与 /dream 合并。非新模型、非 MCP 安装包。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/ai-20260917-grok-build-memory.webp" alt="Grok Build 跨会话 Memory：约定/决策/项目事实自动记笔记（非新旗舰）" loading="lazy"/>
+          <figcaption>xAI News OG</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>产品</dt><dd>Grok Build Memory</dd></div>
+        <div><dt>落款</dt><dd>x.ai/news；Product Sep 16, 2026</dd></div>
+        <div><dt>可用性</dt><dd>Grok Build 现已可用；对新会话生效（/new 或新开 grok）</dd></div>
+        <div><dt>机制</dt><dd>回合后捕获 → markdown notes → /dream 归入 topics；当前对话指令优先于笔记</dd></div>
+        <div><dt>不记</dt><dd>任务中间态、试探结论、密钥、仓库/文档已有内容</dd></div>
+        <div><dt>是否新旗舰</dt><dd>否（产品功能；旗舰仍 Grok 4.6）</dd></div>
+        <div><dt>是否推荐条</dt><dd>否（编码 Agent 产品能力，非可推荐 MCP/Skill 包）</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>示例：用户纠正「用 just test 而非 cargo test」后，后续改 webhook 会自动按 just test 跑测。</li>
+        <li>与 Cursor Projects / Claude Managed Agents memory 同类：持久项目记忆，记 Agent 轴不升格旗舰。</li>
+        <li>docs.x.ai release-notes 本窗无对应 API 条目；以 news 产品帖为准。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://x.ai/news/grok-build-memory" rel="noopener" target="_blank">x.ai</a>。</p>
+        <div class="tags"><span>Agent</span><span>产品能力</span></div>
+      </article>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="dev" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🛠️</span><h2>游戏开发观察</h2></div>
+    <p class="lib-lede">窗内主线：<strong>Unity 官方 Codex 插件</strong>正式上架——Unity Skills + CLI 工作流接入 Codex。属引擎级 AI 工具链，记本库编程/引擎轴，<strong>不当</strong> AI 库 MCP/Skill 推荐条。Unreal / Godot / Frostbite 无窗内升格发版。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>有信号轴</dt><dd>引擎与工具链</dd></div>
+      <div><dt>引擎快照</dt><dd>UE 仍 5.8.2；Unity 6000.0.84f1 常规 patch 不另开；Godot 4.8-dev6 窗外不翻案</dd></div>
+      <div><dt>密度</dt><dd>中</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>安装：codex plugin marketplace add Unity-Technologies/unity-agent-plugin；codex plugin add unity@unity-agent-plugin。</li>
+      <li>面向 Unity 6+；一方 Skills 覆盖 UI/2D/URP/音频/导航/多人/IAP 等。</li>
+      <li>与 9/9 已报 Claude Code 插件区分：本条为 Codex 端新正式接入。</li>
+    </ul>
+    <p class="lib-note">判定：单条达门槛出 Tab；fire 原始 4，页面显示钳制为 🔥🔥🔥。Unity 常规 patch 不另开。</p>
+  </div>
+
+  <div class="axis-grid">
+    <article class="axis-card">
+      <div class="axis-title"><h3>🛠️ 引擎与工具链</h3><span class="density">1</span></div>
+      <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://docs.unity.com/en-us/ai/unity-plugin/codex" rel="noopener" target="_blank">Unity 官方 Codex 插件正式上架：Unity Skills + CLI 工作流</a></h4></div>
+        <p class="signal-lede">Unity 在 9 月 16 日将面向 OpenAI Codex 的一方插件正式上架/公开：把 Unity 团队维护的开发 Skills 接入 Codex，并提供 Unity CLI 相关项目、Editor 与包管理工作流；这是引擎级 AI 开发入口，不是普通社区脚本。</p>
+        <dl class="kv">
+        <div><dt>产品</dt><dd>Unity's plugin for Codex（Unity 官方一方插件）</dd></div>
+        <div><dt>落款</dt><dd>Unity 官方文档；公开上架/公告日期 2026-09-16</dd></div>
+        <div><dt>适用</dt><dd>Unity 6.0+；Codex 环境（Codex CLI / 支持的 Codex surface 依文档为准）</dd></div>
+        <div><dt>能力</dt><dd>Unity-specific Skills；Unity CLI 工作流：安装 Editor、创建/打开项目、管理包；以 Unity 官方实践补足 Agent 上下文</dd></div>
+        <div><dt>安装</dt><dd>codex plugin marketplace add Unity-Technologies/unity-agent-plugin；codex plugin add unity@unity-agent-plugin</dd></div>
+        <div><dt>定位</dt><dd>引擎级 AI 插件正式发布；不是 Unity Asset Store 包，也不是普通 MCP 社区项目</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>Unity 官方 Codex 文档给出 marketplace 与 plugin 安装命令，并明确称其提供 Unity 一方 tooling。</li>
+        <li>Unity 官方插件说明称该插件面向 Unity 6+，以可复用 Skills 覆盖 UI、2D、URP、音频、AI 导航、多人、IAP、Localization 等开发任务。</li>
+        <li>Unity-Technologies/unity-agent-plugin 仓库在窗口内（9/16 UTC）仍有 manifest/CLI 相关更新；公开二线条目将 Codex 插件上架/公告日期标为 9/16。</li>
+        <li>与 9/9 已报的 Claude Code 插件区分：本条是 Codex 端的新正式接入，不把旧 Claude Code 条目重复计入。</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://docs.unity.com/en-us/ai/unity-plugin/codex" rel="noopener" target="_blank">docs.unity.com</a> · <a href="https://docs.unity.com/en-us/ai/unity-plugin/about-unity-plugin" rel="noopener" target="_blank">docs.unity.com</a> · <a href="https://github.com/Unity-Technologies/unity-agent-plugin/commits/main" rel="noopener" target="_blank">github.com</a> · <a href="https://www.gamesinprogress.com/indie-game-developers/unity/introducing-the-official-unity-plugin-for-openai-codex" rel="noopener" target="_blank">gamesinprogress.com</a>。</p>
+        <div class="tags"><span>引擎工具链</span><span>Codex</span><span>Unity</span></div>
+      </article>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="industry" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🕹️</span><h2>游戏行业观察</h2></div>
+    <p class="lib-lede">行业主线：<strong>火焰纹章：万缕千丝</strong> + <strong>空之轨迹 the 2nd</strong> 发售；<strong>Lollipop Chainsaw 2 Back2Back</strong> 公布、<strong>卧龙2：凤火连天</strong> 定档；🎬 <strong>Capcom Spotlight</strong> 已播片单（无世界首发/新锁）。今日有独立游戏观察新增；展会片单已出。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>11（展会 1 + 发售/行业 6 + 独立 4）</dd></div>
+      <div><dt>展会片单</dt><dd>有（Capcom Spotlight 已播；世界首发/新锁为空）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（4 条）</dd></div>
+      <div><dt>高 Attention</dt><dd>10</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>发售：FE 万缕千丝；空轨 the 2nd；罗马流沙 RE:Build；BloomKeeper。</li>
+      <li>公布/定档：Lollipop 2；卧龙2；廻咒；The First Zombie；Warota EA 11/13。</li>
+      <li>展会：Capcom Spotlight 深潜表（Ascendance / Dual Override / Dark Arisen 等）。</li>
+      <li>行业动态：Heart Machine 几乎全员裁员。</li>
+    </ul>
+    <p class="lib-note">判定：双发售+Spotlight+定档公布扛主线。不复述白发魔女 / Cloudbreaker / 金刚狼 / tinyBuild。TGS 后续舞台另窗收。</p>
+  </div>
+
+  <div class="axis-card show-slate">
+    <div class="axis-title"><h3>🎬 展会片单 · Capcom Spotlight｜TGS 2026</h3><span class="density">1</span></div>
+    <div class="axis-body">
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gamespress.com/Capcom-Heats-Up-with-New-Reveals-and-Announcements-from-TGS-2026-Spotl" rel="noopener" target="_blank">🎬 Capcom Spotlight｜TGS 2026（已播）</a></h4></div>
+        <p class="signal-lede">Capcom Spotlight｜TGS 2026 于 9/16 22:00 CST 已播（约 40 分钟，VOD 已出）。本场无世界首发新作、无新硬定档；主轴为《洛克人：Dual Override》深潜、《怪物猎人：荒野》大型扩展 Ascendance 焰妃龙回归、《龙之信条2：Dark Arisen》主预告与角色作成工具更新、SF6 / PRAGMATA / 生化危机 30 周年活动。片单细则见 exhibition_slate。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/capcom-spotlight-tgs-2026-slate.jpg" alt="🎬 Capcom Spotlight｜TGS 2026（已播）" loading="lazy"/>
+          <figcaption>Gematsu / Capcom Spotlight 代表图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>展会官方秀已播 / 🎬 展会片单</dd></div>
+        <div><dt>档期</dt><dd>2026-09-16 22:00 CST（23:00 JST）</dd></div>
+        <div><dt>世界首发</dt><dd>无</dd></div>
+        <div><dt>新锁</dt><dd>无（Dual Override「2027 春」已在 9/9 Nintendo Direct 锁定，本场不升新锁）</dd></div>
+        <div><dt>已定档深潜</dt><dd>Ascendance / Dual Override / Dark Arisen / SF6 Arjun / PRAGMATA Mega Man Pack 等 → 见表</dd></div>
+        <div><dt>VOD</dt><dd>https://youtu.be/6Zu_y22carU</dd></div>
+        <div><dt>时点</dt><dd>昨 09:40 后播完；本窗补入核</dd></div>
+        </dl>
+
+        <div class="compare-wrap">
+          <table class="compare">
+            <caption>世界首发 / 新锁（片单）</caption>
+            <thead><tr><th>作品</th><th>类型</th><th>档期 / 平台</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td colspan="4">（空）本场无世界首发、无新硬定档</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="compare-wrap">
+          <table class="compare">
+            <caption>已定档深潜，不单开</caption>
+            <thead><tr><th>作品</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td>洛克人：Dual Override（Mega Man: Dual Override）</td><td>Proto Man 第二可操作角色深潜；Custom Chip / Override 系统讲解；档期仍 2027 春（9/9 Direct 已锁，本场不升新锁）；PS5/PS4/XSX/XO/Switch/Switch2/PC</td></tr><tr><td>怪物猎人：荒野 扩展 Ascendance（Monster Hunter Wilds: Ascendance）</td><td>焰妃龙 Teostra 回归；Boost Bracer / 换武器 QoL（亦回馈本体）；档期仍 2027；本体 Switch 2 仍 2026-12-04</td></tr><tr><td>龙之信条2：Dark Arisen（Dragon’s Dogma II: Dark Arisen）</td><td>Norgan 主预告 + 角色作成工具更新（含 Switch 2）；仍 2026-10-09；$49.99 捆绑 / $29.99 独立 DLC</td></tr><tr><td>Street Fighter 6</td><td>Arjun 仍 10/13；C. Viper Outfit 4 同日；Tifa early 2027 / Bosch Spring 2027 重申；电影联动 New Challenger 图</td></tr><tr><td>PRAGMATA</td><td>免费 Mega Man Pack（洛克人/萝露外观+动作+BGM）本场后上线；首次本体打折</td></tr><tr><td>Resident Evil 30th / Capcom Town</td><td>东京展门票在售；USJ Requiem: The Dive 恐怖迷宫；欧美音乐会；Capcom Town 23 款复古至 11/1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="facts">
+        <li>官方 Games Press 稿与 FullCleared 逐条汇总交叉：未公布全新 IP / 未给出 Ascendance 精确日</li>
+        <li>Monster Hunter Wilds Switch 2 仍 2026-12-04；Dark Arisen 仍 2026-10-09；Arjun 仍 2026-10-13</li>
+        <li>IGN 等流传的 Outlanders Spotlight 世界首发与官方稿/Gematsu 当日 Spotlight 标签不符 → 不写入片单</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gamespress.com/Capcom-Heats-Up-with-New-Reveals-and-Announcements-from-TGS-2026-Spotl" rel="noopener" target="_blank">gamespress.com</a> · <a href="https://youtu.be/6Zu_y22carU" rel="noopener" target="_blank">youtu.be</a> · <a href="https://fullcleared.com/news/everything-announced-at-capcom-spotlight-tgs-2026/" rel="noopener" target="_blank">fullcleared.com</a> · <a href="https://www.gematsu.com/tag/capcom-spotlight-2026-09-16" rel="noopener" target="_blank">gematsu.com</a>。</p>
+        <div class="tags"><span>展会片单</span><span>Capcom Spotlight</span><span>TGS 2026</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🆕 发售 / 行业新作</h3><span class="density">6</span></div>
+    <div class="axis-body">
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.nintendo.com/us/store/products/fire-emblem-fortunes-weave-switch-2/" rel="noopener" target="_blank">火焰纹章：万缕千丝（Fire Emblem: Fortune's Weave）</a></h4></div>
+        <p class="signal-lede">Intelligent Systems / 任天堂《火焰纹章：万缕千丝》于 2026-09-17 登陆 Nintendo Switch 2：系列正统新作全球发售窗开启。日区等本地午夜已可玩；美东午夜解锁约等于 9/17 12:00 CST（截稿部分区已 live）。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/fire-emblem-fortunes-weave-launch.jpg" alt="火焰纹章：万缕千丝（Fire Emblem: Fortune's Weave）" loading="lazy"/>
+          <figcaption>Nintendo eShop KV</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>正式发售</dd></div>
+        <div><dt>平台</dt><dd>Nintendo Switch 2</dd></div>
+        <div><dt>发售日</dt><dd>2026-09-17</dd></div>
+        <div><dt>开发·发行</dt><dd>Intelligent Systems / Nintendo</dd></div>
+        <div><dt>命名</dt><dd>系列官方简中「火焰纹章」+ 副标题「万缕千丝」（IGN 中国等中文一线一致；港服 eShop 标题仍英文）</dd></div>
+        <div><dt>时点</dt><dd>开幕日发售窗；美东区截稿前可能尚未解锁</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>港服数字版曾开预载（约 9/12 起），发售日开始游玩</li>
+        <li>支持简体/繁体中文（多区店页语言列表）</li>
+        <li>本条记发售翻牌，不展开首日评测（截稿样本未齐）</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.nintendo.com/us/store/products/fire-emblem-fortunes-weave-switch-2/" rel="noopener" target="_blank">nintendo.com</a> · <a href="https://store.nintendo.com.hk/70010000126932" rel="noopener" target="_blank">store.nintendo.com.hk</a> · <a href="https://www.ign.com.cn/fire-emblem-fortunes-weave" rel="noopener" target="_blank">ign.com.cn</a>。</p>
+        <div class="tags"><span>行业</span><span>新作</span><span>发售</span></div>
+      </article>
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://store.steampowered.com/app/4225980/" rel="noopener" target="_blank">空之轨迹 the 2nd（Trails in the Sky 2nd Chapter）</a></h4></div>
+        <p class="signal-lede">日本 Falcom《空之轨迹 the 2nd》今日发售：Switch / Switch 2 / PS5 / Steam 全球同步窗；为《英雄传说 空之轨迹SC》完全重制续作，承接《空之轨迹 the 1st》。Steam 英文区 coming_soon=false（标 Sep 16）；简中店名已挂「空之轨迹 the 2nd」。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/trails-sky-2nd-chapter-launch.jpg" alt="空之轨迹 the 2nd（Trails in the Sky 2nd Chapter）" loading="lazy"/>
+          <figcaption>Gematsu / 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>正式发售</dd></div>
+        <div><dt>平台</dt><dd>Switch / Switch 2 / PS5 / PC（Steam）</dd></div>
+        <div><dt>发售日</dt><dd>2026-09-17（日方稿；Steam 英文区日期栏 Sep 16）</dd></div>
+        <div><dt>开发·发行</dt><dd>Nihon Falcom（多区发行伙伴随店页）</dd></div>
+        <div><dt>Steam 简中名称</dt><dd>空之轨迹 the 2nd</dd></div>
+        <div><dt>AppID</dt><dd>4225980</dd></div>
+        <div><dt>时点</dt><dd>电ファミ 9/17 00:00 JST 发售稿；Steam API 英文区已翻牌</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>原作《空之轨迹SC》完全重制；可继承 the 1st 通关数据获得特典</li>
+        <li>体验版进度可继承；另有数字豪华版 / 季票</li>
+        <li>简中 API 截稿仍可能显示「即将推出」——以日方发售稿 + 英文区翻牌核 live，不因区域 API 差异不报发售</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://news.denfaminicogamer.jp/news/2609172w" rel="noopener" target="_blank">news.denfaminicogamer.jp</a> · <a href="https://store.steampowered.com/app/4225980/" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4225980&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://www.falcom.co.jp/ir-data/20260417" rel="noopener" target="_blank">falcom.co.jp</a>。</p>
+        <div class="tags"><span>行业</span><span>新作</span><span>发售</span></div>
+      </article>
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/lollipop-chainsaw-2-back2back-announced-for-ps5" rel="noopener" target="_blank">Lollipop Chainsaw 2 Back2Back</a></h4></div>
+        <p class="signal-lede">Dragami Games × Nada Holdings × JP Universe 公布系列新作《Lollipop Chainsaw 2 Back2Back》：PS5，2027；田畑端（原 FF15 监督）参与，原作剧本/人设班底回归。TGS 2026 可玩；已补约 8 分钟实机。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/lollipop-chainsaw-2-back2back-announce.jpg" alt="Lollipop Chainsaw 2 Back2Back" loading="lazy"/>
+          <figcaption>Gematsu / 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>新作公布</dd></div>
+        <div><dt>平台</dt><dd>PS5（截稿仅列）</dd></div>
+        <div><dt>档期</dt><dd>2027</dd></div>
+        <div><dt>开发</dt><dd>JP Universe</dd></div>
+        <div><dt>发行</dt><dd>Dragami Games / Nada Holdings</dd></div>
+        <div><dt>主创</dt><dd>田畑端；原作联合制片/剧本 Masahiro Yuki；人设 NekoshowguN</dd></div>
+        <div><dt>命名</dt><dd>前作 Steam RePOP 简中名称栏仍英文 LOLLIPOP CHAINSAW RePOP；媒体通行「电锯甜心」不写入 official_zh</dd></div>
+        <div><dt>时点</dt><dd>Gematsu 9/16 8:21 PM EDT = 9/17 08:21 CST</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>舞台重建为影视都市 Jaredwood；Juliet 陷入导演的僵尸电影阴谋</li>
+        <li>TGS 2026（9/17–21）可玩；同日更新实机</li>
+        <li>为庆祝公布，RePOP 多平台打折（Steam 至 9/30 等）</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/lollipop-chainsaw-2-back2back-announced-for-ps5" rel="noopener" target="_blank">gematsu.com</a>。</p>
+        <div class="tags"><span>行业</span><span>新作</span><span>新作公布</span></div>
+      </article>
+      <article class="signal high">
+        <div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/wo-long-2-wings-of-ember-launches-march-4-2027-alpha-demo-now-available" rel="noopener" target="_blank">卧龙2：凤火连天（Wo Long 2: Wings of Ember）</a></h4></div>
+        <p class="signal-lede">Team NINJA / 光荣特库摩将《卧龙》续作定档 2027-03-04：PS5 / Xbox Series / Switch 2 / PC（Steam / MS Store），同步进 Game Pass。Alpha Demo 现已开放至 9/30。Steam 简中名称栏含「卧龙2：凤火连天」。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/wo-long-2-wings-of-ember-dated.jpg" alt="卧龙2：凤火连天（Wo Long 2: Wings of Ember）" loading="lazy"/>
+          <figcaption>Gematsu / 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>定档</dd></div>
+        <div><dt>平台</dt><dd>PS5 / Xbox Series / Switch 2 / PC</dd></div>
+        <div><dt>发售日</dt><dd>2027-03-04</dd></div>
+        <div><dt>开发·发行</dt><dd>Team NINJA / Koei Tecmo</dd></div>
+        <div><dt>Game Pass</dt><dd>发售日纳入（官方概述）</dd></div>
+        <div><dt>Steam 简中名称</dt><dd>Wo Long 2: Wings of Ember（卧龙2：凤火连天）</dd></div>
+        <div><dt>AppID</dt><dd>4507990</dd></div>
+        <div><dt>时点</dt><dd>Gematsu 9/15 9:42 PM EDT = 9/16 09:42 CST（昨 ~09:40 后补入核）</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>开放战场重现长坂坡、赤壁等；洞察技、士气、招降敌将</li>
+        <li>数字豪华版含季票（DLC1≤2027-08-31、DLC2≤2027-10-31）</li>
+        <li>Alpha Demo：角色作成雏形 + 最多 3 人联机；通关送成品头盔</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/wo-long-2-wings-of-ember-launches-march-4-2027-alpha-demo-now-available" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://store.steampowered.com/app/4507990/?l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+        <div class="tags"><span>行业</span><span>新作</span><span>定档</span></div>
+      </article>
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/heart-machine-lays-off-nearly-everyone-at-the-studio-following-cancellation-of-unannounced-title" rel="noopener" target="_blank">Heart Machine 大规模裁员（未公布新作被砍后）</a></h4></div>
+        <p class="signal-lede">Hyper Light Drifter / Solar Ash / Possessor(s) / Hyper Light Breaker（EA）工作室 Heart Machine：发行方本周取消资助中的未公布项目后，「几乎全员」被裁。创始人 Alx Preston 称尚不确定工作室如何存续。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/heart-machine-layoffs.jpg" alt="Heart Machine 大规模裁员（未公布新作被砍后）" loading="lazy"/>
+          <figcaption>Gematsu / 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>厂商 / 工作室人事与项目取消</dd></div>
+        <div><dt>工作室</dt><dd>Heart Machine</dd></div>
+        <div><dt>触发</dt><dd>发行方停止推进未公布新作 → 失去关键收入</dd></div>
+        <div><dt>时点</dt><dd>Gematsu 9/16 4:46 PM EDT = 9/17 04:46 CST</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>Preston LinkedIn：将协助再就业对接</li>
+        <li>Hyper Light Breaker 仍处 Early Access——本条不臆测其后续运营细节</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/heart-machine-lays-off-nearly-everyone-at-the-studio-following-cancellation-of-unannounced-title" rel="noopener" target="_blank">gematsu.com</a>。</p>
+        <div class="tags"><span>行业</span><span>人事</span></div>
+      </article>
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/time-loop-horror-action-adventure-game-noroi-ayashi-the-infinith-oddity-announced-for-switch-2-switch-and-pc" rel="noopener" target="_blank">廻咒（Noroi Ayashi: The ∞th Oddity）</a></h4></div>
+        <p class="signal-lede">Game Source Entertainment × SuperNiche × Clover Lab 公布校园时间环恐怖《廻咒》：Switch 2 / Switch / Steam，2027；支持简中。Steam 简中店名「廻咒」。昨 09:40 后入窗补核。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/noroi-ayashi-announce.jpg" alt="廻咒（Noroi Ayashi: The ∞th Oddity）" loading="lazy"/>
+          <figcaption>Gematsu / 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>新作公布</dd></div>
+        <div><dt>平台</dt><dd>Switch 2 / Switch / PC（Steam）</dd></div>
+        <div><dt>档期</dt><dd>2027</dd></div>
+        <div><dt>开发</dt><dd>SuperNiche / Clover Lab</dd></div>
+        <div><dt>发行</dt><dd>Game Source Entertainment</dd></div>
+        <div><dt>Steam 简中名称</dt><dd>廻咒</dd></div>
+        <div><dt>AppID</dt><dd>5179860</dd></div>
+        <div><dt>语言</dt><dd>英 / 日 / 繁中 / 简中</dd></div>
+        <div><dt>时点</dt><dd>Gematsu 9/15 10:23 PM EDT = 9/16 10:23 CST（昨截稿后补入核）</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>定位 time-loop horror RTA stealth action；以「死亡」为燃料最短路径破环</li>
+        <li>剧本班底含押切莲介等；七不可思议封印流程</li>
+        <li>标题写法：官方简中店名「廻咒」+ 英文全称</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/time-loop-horror-action-adventure-game-noroi-ayashi-the-infinith-oddity-announced-for-switch-2-switch-and-pc" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://store.steampowered.com/app/5179860/?l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+        <div class="tags"><span>行业</span><span>新作</span><span>新作公布</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="axis-card">
+    <div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">4</span></div>
+    <div class="axis-body">
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/2231460/" rel="noopener" target="_blank">罗马流沙 RE:Build（Roman Sands RE:Build）</a></h4></div>
+        <p class="signal-lede">Arbitrary Metric × Serenity Forge《罗马流沙 RE:Build》Steam / 主机正式发售：末世双世界（奢华度假村服务业 + 寄生虫研究站时间环）拼贴冒险。Steam 简中店名已核；昨截稿 coming_soon，本窗翻牌。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/roman-sands-rebuild-launch.jpg" alt="罗马流沙 RE:Build（Roman Sands RE:Build）" loading="lazy"/>
+          <figcaption>Steam / Gematsu 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>正式发售</dd></div>
+        <div><dt>平台</dt><dd>PC（Steam）/ Switch / PlayStation / Xbox（厂商稿）</dd></div>
+        <div><dt>发售日</dt><dd>2026-09-16（Steam 简中）；英文区日期栏可见 Sep 17</dd></div>
+        <div><dt>开发·发行</dt><dd>Arbitrary Metric / Serenity Forge（日区 Beep Japan）</dd></div>
+        <div><dt>Steam 简中名称</dt><dd>罗马流沙 RE:Build</dd></div>
+        <div><dt>AppID</dt><dd>2231460</dd></div>
+        <div><dt>门槛依据</dt><dd>机制/叙事明确新意（双现实拼贴 + 服务业模拟 × 恐怖环）+ 一线评测正面（Noisy Pixel 等）</dd></div>
+        <div><dt>时点</dt><dd>Games Press 9/16 OUT NOW；Steam coming_soon=false</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>同日 Arbitrary Metric《Paratopic: Overdub》PC 再版上架（重制/混音/续作三合一）——再版不单开 Signal</li>
+        <li>Serenity Forge 年度目录大促同步开启</li>
+        <li>研究站线配音含主播 STPeach</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/2231460/" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://www.gamespress.com/Apocalyptic-Resort-Sim-Roman-Sands-REBuild-and-Re-Release-of-Award-Win" rel="noopener" target="_blank">gamespress.com</a> · <a href="https://serenityforge.com/games/roman-sands-re-build" rel="noopener" target="_blank">serenityforge.com</a>。</p>
+        <div class="tags"><span>独立</span><span>新作</span></div>
+      </article>
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/3034650/" rel="noopener" target="_blank">BloomKeeper</a></h4></div>
+        <p class="signal-lede">法国 Montpellier Resonance Interactive《BloomKeeper》Steam 正式发售：实时战术引导 Pouics 复苏焦土，支持 1–4 人合作。Demo 曾获 Very Positive（约 88%/75 评）；无官方简中店名，留英文。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/bloomkeeper-launch.jpg" alt="BloomKeeper" loading="lazy"/>
+          <figcaption>Steam / Gematsu 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>正式发售</dd></div>
+        <div><dt>平台</dt><dd>PC（Steam）</dd></div>
+        <div><dt>发售日</dt><dd>2026-09-16</dd></div>
+        <div><dt>开发·发行</dt><dd>Resonance Interactive</dd></div>
+        <div><dt>定价</dt><dd>$19.99，截稿约八折 $15.99</dd></div>
+        <div><dt>简中店名</dt><dd>仍英文 BloomKeeper（不自译）</dd></div>
+        <div><dt>门槛依据</dt><dd>机制新意（类 Pikmin 实时战术复苏）+ Demo 初期评价明显为正</dd></div>
+        <div><dt>时点</dt><dd>昨档日截稿仍 coming_soon → 本窗翻牌</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>玩法：引导脆弱 Pouics 净化区域，并防止已恢复区再度燃尽</li>
+        <li>Steam genres 含独立；支持 Online Co-op</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/3034650/" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3034650" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://ladiesgamers.com/bloomkeeper-announced-demo-available/" rel="noopener" target="_blank">ladiesgamers.com</a>。</p>
+        <div class="tags"><span>独立</span><span>新作</span></div>
+      </article>
+      <article class="signal medium">
+        <div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/reverse-zombie-game-the-first-zombie-announced-for-switch-pc" rel="noopener" target="_blank">The First Zombie</a></h4></div>
+        <p class="signal-lede">Phoenixx 公布「反向」僵尸独立作《The First Zombie》：玩家是人类第一只僵尸，目标不是杀丧尸而是感染东京街巷「交朋友」扩编尸潮。Switch / Steam，档期 TBA；日英语言。综艺制作人藤井健太郎监制。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/the-first-zombie-announce.jpg" alt="The First Zombie" loading="lazy"/>
+          <figcaption>Steam / Gematsu 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>新作公布 / 世界首发向公布</dd></div>
+        <div><dt>平台</dt><dd>Switch / PC（Steam）</dd></div>
+        <div><dt>档期</dt><dd>未公布</dd></div>
+        <div><dt>发行</dt><dd>Phoenixx</dd></div>
+        <div><dt>监制</dt><dd>藤井健太郎（水曜日のダウンタウン）</dd></div>
+        <div><dt>命名</dt><dd>Steam 简中名称栏仍英文，留英文不自译</dd></div>
+        <div><dt>门槛依据</dt><dd>展会周邻近窗口 + 机制明确新意（反向僵尸）达独立门槛</dd></div>
+        <div><dt>时点</dt><dd>Gematsu 9/16 6:40 PM EDT = 9/17 06:40 CST</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>舞台含涩谷 / 新宿 / 上野等区域占领</li>
+        <li>Steam AppID 5099420；coming_soon，To be announced</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/reverse-zombie-game-the-first-zombie-announced-for-switch-pc" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://store.steampowered.com/app/5099420/" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+        <div class="tags"><span>独立</span><span>新作</span></div>
+      </article>
+      <article class="signal">
+        <div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/warota-i-live-next-to-the-demon-kings-castle-lol-launches-in-early-access-for-pc-on-november-13" rel="noopener" target="_blank">Warota: I Live Next to The Demon King’s Castle LOL</a></h4></div>
+        <p class="signal-lede">One or EIGHT / Team EARTH WARS 将村庄建造动作 RPG《Warota: I Live Next to The Demon King’s Castle LOL》Steam EA 定档 2026-11-13；完整版 2027 登陆 PS5 / Switch 2 / PC。无官方简中店名，留英文。</p>
+        <figure class="signal-media">
+          <img src="../media/2026-09-17/warota-ea-dated.jpg" alt="Warota: I Live Next to The Demon King’s Castle LOL" loading="lazy"/>
+          <figcaption>Steam / Gematsu 官方图</figcaption>
+        </figure>
+        <dl class="kv">
+        <div><dt>事件</dt><dd>Early Access 定档</dd></div>
+        <div><dt>平台</dt><dd>PC Steam EA；完整版另含 PS5 / Switch 2</dd></div>
+        <div><dt>EA 日</dt><dd>2026-11-13</dd></div>
+        <div><dt>完整版</dt><dd>2027</dd></div>
+        <div><dt>命名</dt><dd>截稿未见 Steam 简中店名，留英文</dd></div>
+        <div><dt>时点</dt><dd>Gematsu 9/16 11:16 AM EDT = 9/16 23:16 CST</dd></div>
+        </dl>
+        <ul class="facts">
+        <li>换帽子转职、村民分工、抵御「偶像魔王 Live」刷怪潮</li>
+        <li>独立向轻量定档，火苗 1——记入 new_games 但不抬主线</li>
+        </ul>
+        <p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/warota-i-live-next-to-the-demon-kings-castle-lol-launches-in-early-access-for-pc-on-november-13" rel="noopener" target="_blank">gematsu.com</a>。</p>
+        <div class="tags"><span>独立</span><span>新作</span></div>
+      </article>
+    </div>
+  </div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+      <li>TGS 2026（9/17–21）后续舞台世界首发/新锁——截稿未见可核舞台；展台可玩不升片单、不预写未播场</li>
+      <li>火焰纹章：万缕千丝美东解锁（约 12:00 CST）与首日评测样本</li>
+      <li>空之轨迹 the 2nd 简中区 API 可能仍「即将推出」——以日方/英文区翻牌为准</li>
+      <li>Oops Hero 已翻牌但未达独立门槛；Holy Horror 官方简中店名待核</li>
+      <li>Kingmakers / Hozy / 灰雨钢锋精确日（tinyBuild 遗留）</li>
+      <li>Grok 4.7 / 4.8：仍未发；docs Latest=Grok 4.6</li>
+      <li>DeepSeek-V4.1-Pro：未发布；V4 Pro 路由仍继续；Qwen4：盯云栖 9/22–24</li>
+      <li>原神 7.1 开门 9/23；终末地噗切娜约 9/24；鸣潮 3.7 约 9/30（前瞻 9/19 19:00）；星铁 4.6 前瞻 9/20 19:30；SideM 标题档期 TBA</li>
+    </ul>
+  </section>
+</section>
+
+<footer class="foot">
+  <p>二次元空库未出 Tab · 今日无新旗舰 · 今日有新 MCP/Skill 推荐（Claude SMB）· Capcom Spotlight 片单已出（无世界首发/新锁）· Unity Codex 记开发轴 · 不发涉政</p>
+  <p>观察台固定入口 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 本页快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-17.html">/daily/2026-09-17.html</a></p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
