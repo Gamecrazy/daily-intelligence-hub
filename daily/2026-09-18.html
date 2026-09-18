@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-18</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-17, 2026-09-18]。
+  含昨 ~09:40 CST 后补入核。显示 总览 + AI + 游戏行业；二次元空库未出 Tab；游戏开发空库未出 Tab。
+  今日无新旗舰；今日有新 MCP/Skill 推荐（Astra for Law：26 partner plugins + 9 community / 47 skills）。
+  Xbox @ TGS 2026 已播片单（世界首发法拉第蓝 + 多条新锁）。不复述昨 Capcom Spotlight 长名单。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-18 · 周五 · Asia/Shanghai · ISO 2026-W38</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W38.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-18" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-17, 09-18]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是 🎬 <strong>Xbox @ Tokyo Game Show 2026</strong> 已播片单（世界首发<strong>法拉第蓝</strong> + 多条新锁）、漏报补入的 <strong>Another Eden Begins</strong> 发售，以及 AI 侧 <strong>Astra for Law</strong>（法律垂直配置 + 26 生态插件 / 47 社区 Skills，可推荐，<strong>非新一般旗舰</strong>）+ Claude Projects 重设计 + Anthropic 研发节奏测量。行业另有火焰纹章：万缕千丝首日评测增量与多条独立定档/发售。今日<strong>无新旗舰</strong>；今日<strong>有新 MCP/Skill 推荐</strong>。二次元空库未出 Tab；游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:40 CST 后补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6。Astra for Law 为垂直配置，不当新旗舰）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>有新推荐：Astra for Law（26 partner plugins + 9 community / 47 skills）</dd></div>
+      <div><dt>展会</dt><dd>Xbox @ TGS 2026 已播（世界首发法拉第蓝 + 新锁多条）；Capcom Spotlight 见 2026-09-17，本日不复述</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>展会：Xbox @ TGS 片单（法拉第蓝世界首发；Edge of Memories / Hope in the City / 梦之形 / GACHIAKUTA / Once Human 等新锁）。</li>
+      <li>发售/漏报：Another Eden Begins；梦之形主机；法拉第蓝世界首发（2027）。</li>
+      <li>独立定档：Hope in the City 11/10；闇夜王国主机 11/5；归零巡礼 PS5 11/3；Ved: 疗愈所 9/22。</li>
+      <li>AI：Astra for Law（MCP/Skill 推荐）+ Claude Projects 重设计 + Anthropic 节奏三项测量；无新一般旗舰。</li>
+    </ul>
+    <p class="lib-note">判定：Xbox 片单 + Another Eden 发售 + Astra for Law 推荐扛主线。FE 首日评测与独立定档为增量。不复述昨 Capcom Spotlight / FE·空轨发售翻牌 / Unity Codex / Claude SMB。不发涉政。二次元空库未出 Tab；游戏开发空库未出 Tab。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric"><b>20</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>16</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>2</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric hot"><b>1</b><span>MCP/Skill 推荐</span></div>
+  <div class="metric"><b>1</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="库切换">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ai">AI 观察</button>
+  <button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+
+<section id="ov" class="tab-pane active">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 落在 Xbox @ TGS 片单、Another Eden Begins 发售、法拉第蓝世界首发、Astra for Law（MCP/Skill 推荐，非新旗舰），以及 FE 首日评测 / Claude Projects / 多条独立定档。二次元空库未出 Tab；游戏开发空库未出 Tab。今日无新旗舰；今日有新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>20（AI 3 + 行业 17）</dd></div>
+      <div><dt>高 Attention</dt><dd>16（fire≥2）</dd></div>
+      <div><dt>空库</dt><dd>二次元（未出 Tab）；游戏开发（未出 Tab）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（6 条）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业：Xbox @ TGS 片单；Another Eden Begins 发售；法拉第蓝世界首发；FE 首日评测；独立定档/发售多条。</li>
+      <li>AI：Astra for Law（插件/Skills 包可推荐）+ Claude Projects 重设计 + Anthropic 节奏测量。</li>
+      <li>空库：二次元、游戏开发 — 总览只记「未出 Tab」，不编造信号。</li>
+    </ul>
+    <p class="lib-note">判定：两库同出；展会片单已出；Astra for Law 记应用轴推荐，不当新旗舰。</p>
+  </div>
+
+  <h2 class="section-title">最高 Attention</h2>
+  <div class="overview-grid">
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 游戏行业</span>
+<h3>🎬 Xbox @ Tokyo Game Show 2026（已播）</h3>
+<p class="ov-lede">Xbox @ Tokyo Game Show 2026 Broadcast 于 9/17 18:00 CST（19:00 JST）已播（约 50 分钟）。官方自报含 17 段新鲜实机/公布、一次惊喜发售与一场世界首发；收尾小岛秀夫登场公布 PHYSINT 主演。片单细则见 exhibition_slate。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会官方秀已播 / 🎬 展会片单</dd></div>
+<div><dt>档期</dt><dd>2026-09-17 18:00 CST（19:00 JST）</dd></div>
+<div><dt>世界首发</dt><dd>法拉第蓝（Faraday Blues）</dd></div>
+<div><dt>新锁</dt><dd>Edge of Memories 11/5；Hope in the City 11/10；梦之形主机今日可玩；GACHIAKUTA: BREAKOUT 2027；Once Human 海洋扩展 10/22 等</dd></div>
+</dl>
+</div>
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 游戏行业</span>
+<h3>Another Eden Begins</h3>
+<p class="ov-lede">Wright Flyer Studios / Studio Prisma《Another Eden Begins》正式发售：Switch / Switch 2 / Steam；加藤正人剧本、光田康典主题曲，战棋式指令战斗、无抽卡单机。Steam 英文区日期栏 Sep 16、coming_soon=false；官方…</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>正式发售（漏报补入）</dd></div>
+<div><dt>平台</dt><dd>Switch / Switch 2 / PC（Steam）</dd></div>
+<div><dt>发售日</dt><dd>2026-09-17（官方；Steam 英文区 Sep 16）</dd></div>
+<div><dt>开发·发行</dt><dd>Studio Prisma / Wright Flyer Studios</dd></div>
+</dl>
+</div>
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 游戏行业</span>
+<h3>法拉第蓝（Faraday Blues）</h3>
+<p class="ov-lede">Serenity Forge 于 Xbox @ TGS 2026 世界首发科幻视觉小说×策略卡牌《法拉第蓝》：PS5 / Xbox Series / PC（Steam + MS Store），2027。女儿寻找「不知道自己存在」的父母，用角色卡改写悲剧选择，宣称 64 种结局。展会周独立世界首发本身达门槛。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>世界首发 / 新作公布</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / PC</dd></div>
+<div><dt>档期</dt><dd>2027</dd></div>
+<div><dt>开发·发行</dt><dd>Serenity Forge</dd></div>
+</dl>
+</div>
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · AI 观察</span>
+<h3>Astra for Law：GPT-6 Astra 法律垂直基础 + 26 生态插件 / 47 社区 Skills（非新一般旗舰）</h3>
+<p class="ov-lede">OpenAI 推出 Astra for Law：在 GPT-6 Astra 之上叠加法律检索索引与法律分析/写作指令，面向律所与法律科技公司；模型选择器称「GPT-6 Astra Law」、API 计划为 gpt-6-astra-law。同帖发布 26 个合作方插件与 9 个社区插件（含 47 个可改编 Skil…</p>
+<dl class="kv">
+<div><dt>产品</dt><dd>Astra for Law（GPT-6 Astra 法律配置 + 法律搜索索引 + 指令）</dd></div>
+<div><dt>落款</dt><dd>openai.com/index；页面日期 September 17, 2026</dd></div>
+<div><dt>可用性</dt><dd>精选律所 Trusted Access（ChatGPT / Codex）；API soon；选择器 GPT-6 Astra Law / 计划 API id gpt-6-astra-law</dd></div>
+<div><dt>评测</dt><dd>Vals AI Legal Research Bench 私有验证集 200 题：最高 effort 下总体正确性 54.0% vs GPT-6 Astra+网页搜索 38.7%（约 +40% 相对）；判例题参考案例 +24%、相关段落最高 +54%（厂商自报）</dd></div>
+</dl>
+</div>
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>火焰纹章：万缕千丝（Fire Emblem: Fortune&#x27;s Weave）首日评测</h3>
+<p class="ov-lede">昨报已记 Switch 2 正式发售；本窗补首日评测增量：Metacritic 约 89（65+ 家）、OpenCritic 约 90 / 推荐率约 95%。战术深度与多路线叙事获普遍好评，据点杂务/重复节奏为常见扣分点。非复述发售翻牌。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>首日评测增量（昨已报发售）</dd></div>
+<div><dt>平台</dt><dd>Nintendo Switch 2</dd></div>
+<div><dt>Metacritic</dt><dd>89（约 65–69 Critic，Generally Favorable）</dd></div>
+<div><dt>OpenCritic</dt><dd>约 90 / ~95% Recommended</dd></div>
+</dl>
+</div>
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥 · AI 观察</span>
+<h3>Claude Projects 重设计：从文件夹到对话；Claude Code 云会话 beta（非新旗舰）</h3>
+<p class="ov-lede">Anthropic 重设计 Claude Projects：在 Claude Code 项目里描述目标后，由协调者拆线程、并行委派、审阅并汇总；线程即独立云会话（自有分支与仓库副本），共享 memory 与产物库。属编程 Agent 产品，非新旗舰、亦非可安装 MCP 包。</p>
+<dl class="kv">
+<div><dt>产品</dt><dd>Claude Projects（redesigned，beta）</dd></div>
+<div><dt>落款</dt><dd>claude.com/blog；页面日期 September 17, 2026</dd></div>
+<div><dt>可用性</dt><dd>先向部分已用 Claude Code 云会话、且无既有 web/desktop projects 的 Pro/Max 开放；其余可候补；Team/Enterprise 与全 Claude 面随后</dd></div>
+<div><dt>机制</dt><dd>coordinator + threads；共享 memory/library；可手机跟进；关电脑后仍跑</dd></div>
+</dl>
+</div>
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>梦之形（Shape of Dreams）主机发售</h3>
+<p class="ov-lede">NEOWIZ / Lizard Smoothie 动作 roguelite《梦之形》登陆 PS5 / Xbox Series / Switch 2（含 Game Pass 首日），并同步周年「Starless Path」更新（新 Traveler Cetus 等）。PC Steam 已于 2025-09-10 发…</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>主机正式发售 / 主机移植首发</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / Switch 2（+ Game Pass）；PC 已有</dd></div>
+<div><dt>发售日</dt><dd>2026-09-17</dd></div>
+<div><dt>开发·发行</dt><dd>Lizard Smoothie / NEOWIZ</dd></div>
+</dl>
+</div>
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥 · AI 观察</span>
+<h3>Anthropic 公开前沿实验室 AI 研发节奏三项测量（自动化/监管/算力）</h3>
+<p class="ov-lede">Anthropic Institute 提议并公布三项可对外核验的实验室内部节奏指标：AI 自研自动化程度、内部 Agent 监管覆盖、安全向算力占比；并给出 2026 年夏内部快照。属治理/透明度，非模型发布。</p>
+<dl class="kv">
+<div><dt>产品/议题</dt><dd>Measurements for understanding the pace of AI development inside frontier labs</dd></div>
+<div><dt>落款</dt><dd>anthropic.com/institute；newsroom 标注 Sep 17, 2026</dd></div>
+<div><dt>自动化</dt><dd>截至 2026-08：Claude「主导(leads)」约 26% AI R&amp;D；≥协作级 &gt;90%；尚无测量子集达完全自主 AL5（Epoch AI AL 量表，厂商自报）</dd></div>
+<div><dt>监管</dt><dd>主平台约 3 万并发研究/工程 Agent；在线+离线监控名义覆盖 100%；在线拦截约 0.002%（约 1/47000）</dd></div>
+</dl>
+</div>
+  </div>
+
+  <section class="watch" style="margin-top:22px">
+    <h3>观察清单</h3>
+    <ul>
+      <li>TGS 2026（9/17–21）后续舞台世界首发/新锁——展台试玩不升片单、不预写未播场</li>
+      <li>火焰纹章：万缕千丝首周销量与用户评（用户评约美西 9/18 12:00 PST 起）</li>
+      <li>Another Eden Begins 初期评测样本</li>
+      <li>法拉第蓝 / Bloomwalker / GACHIAKUTA: BREAKOUT 精确发售日</li>
+      <li>地球防卫军6.2 海外与中文店名</li>
+      <li>Capcom Spotlight 见 2026-09-17，本日不复述长名单</li>
+      <li>Grok 4.7 / 4.8：仍未发；docs Latest=Grok 4.6</li>
+      <li>DeepSeek-V4.1-Pro：未发布；V4 Pro 路由仍继续；Qwen4：盯云栖 9/22–24</li>
+      <li>原神 7.1 开门 9/23；终末地噗切娜约 9/24；鸣潮 3.7 约 9/30（前瞻 9/19 19:00）；星铁 4.6 前瞻 9/20 19:30；SideM 标题档期 TBA</li>
+    </ul>
+  </section>
+</section>
+
+
+<section id="ai" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🤖</span><h2>AI 观察</h2></div>
+    <p class="lib-lede">今日<strong>无新旗舰</strong>；今日<strong>有新 MCP/Skill 推荐</strong>（Astra for Law：26 partner plugins + 9 community / 47 skills）。主线：法律垂直 Astra 配置 + Claude Projects 重设计 + Anthropic 前沿实验室研发节奏三项测量。现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>3</dd></div>
+      <div><dt>高 Attention</dt><dd>3</dd></div>
+      <div><dt>新旗舰</dt><dd>无（Astra for Law 为垂直配置，基座仍 GPT-6 Astra）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>有（Astra for Law 生态插件 + 社区 Skills）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>💡 应用：Astra for Law Trusted Access + 26/9 插件 + 47 Skills（驱动推荐口径）。</li>
+      <li>🛠️ 编程：Claude Projects 从文件夹重设计为对话/云会话编排（非 MCP 包）。</li>
+      <li>🏭 治理：Anthropic Institute 三项节奏测量（自动化/监管/算力）。</li>
+    </ul>
+    <p class="lib-note">判定：无一般文本旗舰 GA；推荐条成立。不复述昨 Cowork 合一 / SMB / Grok Build Memory。pending：Grok 4.7/4.8、V4.1-Pro、Qwen4 云栖。</p>
+  </div>
+
+<div class="axis-card "><div class="axis-title"><h3>💡 AI 应用</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://openai.com/index/astra-for-law/" rel="noopener" target="_blank">Astra for Law：GPT-6 Astra 法律垂直基础 + 26 生态插件 / 47 社区 Skills（非新一般旗舰）</a></h4></div>
+<p class="signal-lede">OpenAI 推出 Astra for Law：在 GPT-6 Astra 之上叠加法律检索索引与法律分析/写作指令，面向律所与法律科技公司；模型选择器称「GPT-6 Astra Law」、API 计划为 gpt-6-astra-law。同帖发布 26 个合作方插件与 9 个社区插件（含 47 个可改编 Skills），属可推荐工作流/集成包。非新一般文本旗舰。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/ai-20260918-astra-for-law-8574d05f.png" alt="Astra for Law：GPT-6 Astra 法律垂直基础 + 26 生态插件 / 47 社区 Skills（非新一般旗舰）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>产品</dt><dd>Astra for Law（GPT-6 Astra 法律配置 + 法律搜索索引 + 指令）</dd></div>
+<div><dt>落款</dt><dd>openai.com/index；页面日期 September 17, 2026</dd></div>
+<div><dt>可用性</dt><dd>精选律所 Trusted Access（ChatGPT / Codex）；API soon；选择器 GPT-6 Astra Law / 计划 API id gpt-6-astra-law</dd></div>
+<div><dt>评测</dt><dd>Vals AI Legal Research Bench 私有验证集 200 题：最高 effort 下总体正确性 54.0% vs GPT-6 Astra+网页搜索 38.7%（约 +40% 相对）；判例题参考案例 +24%、相关段落最高 +54%（厂商自报）</dd></div>
+<div><dt>语料</dt><dd>法律搜索索引 &gt;2.3 亿 URL；Free Law Project / CourtListener；官称覆盖 &gt;99.9% 已公布美国先例判例</dd></div>
+<div><dt>生态</dt><dd>26 partner plugins（文内举例 iManage / Relativity / Clio / Intapp / DeepJudge 等）+ 9 community plugins（LegalQuants / LECG / Skills.law）+ 47 custom skills</dd></div>
+<div><dt>伙伴</dt><dd>Harvey、Legora 等可在 API 上构建；律所案例含 Sullivan &amp; Cromwell 等</dd></div>
+<div><dt>是否新旗舰</dt><dd>否（垂直配置，基座仍 GPT-6 Astra）</dd></div>
+<div><dt>是否推荐条</dt><dd>是（成套法律插件 + 社区 Skills，达 🔧 推荐门槛；主条记 💡 应用轴）</dd></div>
+</dl>
+<ul class="facts">
+<li>定位：律所/法律科技用的 AI 底座，而非替换 GPT-6 Astra 的通用旗舰。</li><li>可信赖访问：Eligible 律所 Trusted Access；与 Latham &amp; Watkins 等合作治理/伦理墙设计（厂商表述）。</li><li>插件场景：起草谈判简报写入 iManage 事项；Intapp 提示可能需计时条目等。</li><li>驱动 new_mcp_skill_rec=true；不当 new_flagship。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://openai.com/index/astra-for-law/" rel="noopener" target="_blank">openai.com</a>。</p>
+<div class="tags"><span>应用</span><span>MCP/Skill</span></div>
+</article>
+</div></div>
+<div class="axis-card "><div class="axis-title"><h3>🛠️ AI 编程</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://claude.com/blog/projects-redesigned" rel="noopener" target="_blank">Claude Projects 重设计：从文件夹到对话；Claude Code 云会话 beta（非新旗舰）</a></h4></div>
+<p class="signal-lede">Anthropic 重设计 Claude Projects：在 Claude Code 项目里描述目标后，由协调者拆线程、并行委派、审阅并汇总；线程即独立云会话（自有分支与仓库副本），共享 memory 与产物库。属编程 Agent 产品，非新旗舰、亦非可安装 MCP 包。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/ai-20260918-claude-projects-redesigned-72990a50.jpg" alt="Claude Projects 重设计：从文件夹到对话；Claude Code 云会话 beta（非新旗舰）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>产品</dt><dd>Claude Projects（redesigned，beta）</dd></div>
+<div><dt>落款</dt><dd>claude.com/blog；页面日期 September 17, 2026</dd></div>
+<div><dt>可用性</dt><dd>先向部分已用 Claude Code 云会话、且无既有 web/desktop projects 的 Pro/Max 开放；其余可候补；Team/Enterprise 与全 Claude 面随后</dd></div>
+<div><dt>机制</dt><dd>coordinator + threads；共享 memory/library；可手机跟进；关电脑后仍跑</dd></div>
+<div><dt>是否新旗舰</dt><dd>否</dd></div>
+<div><dt>是否推荐条</dt><dd>否（产品/编排能力；记 🛠️ 编程轴，不冒充 MCP/Skill 推荐）</dd></div>
+</dl>
+<ul class="facts">
+<li>既有 Pro/Max projects 继续可用，随后滚动升级到 chat/Cowork。</li><li>本机线程「即将」支持；当前线程跑在云端。</li><li>与昨报 Cursor Projects / Cowork 合一区分：本条为 Claude Code 侧项目编排重设计。</li><li>平台 Sep 18 Compliance Chrome transcript 补丁未并入本条。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://claude.com/blog/projects-redesigned" rel="noopener" target="_blank">claude.com</a>。</p>
+<div class="tags"><span>编程</span><span>Agent</span></div>
+</article>
+</div></div>
+<div class="axis-card "><div class="axis-title"><h3>🏭 行业 / 治理</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.anthropic.com/institute/measuring-pace-of-ai-development" rel="noopener" target="_blank">Anthropic 公开前沿实验室 AI 研发节奏三项测量（自动化/监管/算力）</a></h4></div>
+<p class="signal-lede">Anthropic Institute 提议并公布三项可对外核验的实验室内部节奏指标：AI 自研自动化程度、内部 Agent 监管覆盖、安全向算力占比；并给出 2026 年夏内部快照。属治理/透明度，非模型发布。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/ai-20260918-anthropic-pace-metrics-7e78cdea.jpg" alt="Anthropic 公开前沿实验室 AI 研发节奏三项测量（自动化/监管/算力）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>产品/议题</dt><dd>Measurements for understanding the pace of AI development inside frontier labs</dd></div>
+<div><dt>落款</dt><dd>anthropic.com/institute；newsroom 标注 Sep 17, 2026</dd></div>
+<div><dt>自动化</dt><dd>截至 2026-08：Claude「主导(leads)」约 26% AI R&amp;D；≥协作级 &gt;90%；尚无测量子集达完全自主 AL5（Epoch AI AL 量表，厂商自报）</dd></div>
+<div><dt>监管</dt><dd>主平台约 3 万并发研究/工程 Agent；在线+离线监控名义覆盖 100%；在线拦截约 0.002%（约 1/47000）</dd></div>
+<div><dt>算力</dt><dd>抽样周（7/13–7/20）：AI R&amp;D 算力中约 6% 记为安全；AI 驱动的 AI R&amp;D 中约 12% 记为安全（保守口径）</dd></div>
+<div><dt>是否新旗舰</dt><dd>否</dd></div>
+<div><dt>是否推荐条</dt><dd>否</dd></div>
+</dl>
+<ul class="facts">
+<li>目标：缩小实验室与公众对研发节奏的信息差；计划嵌入多方第三方评估员核验。</li><li>与 RSP 风险报告/能力评测互补：本帖偏「生产过程」输入侧。</li><li>不碰涉政细目；只记行业治理透明度轴。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.anthropic.com/institute/measuring-pace-of-ai-development" rel="noopener" target="_blank">anthropic.com</a> · <a href="https://www.anthropic.com/news" rel="noopener" target="_blank">anthropic.com</a>。</p>
+<div class="tags"><span>治理</span><span>透明度</span></div>
+</article>
+</div></div>
+</section>
+
+
+<section id="industry" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🕹️</span><h2>游戏行业观察</h2></div>
+    <p class="lib-lede">行业主线：🎬 <strong>Xbox @ TGS 2026</strong> 已播片单（世界首发法拉第蓝 + 多条新锁）；漏报补入 <strong>Another Eden Begins</strong> 发售；独立轴法拉第蓝 / 梦之形 / 多条定档；FE 万缕千丝首日评测增量。今日<strong>有独立游戏观察新增</strong>；展会片单已出。Capcom Spotlight 见 2026-09-17，本日不复述长名单。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>17（展会 1 + 独立 6 + 大作/行业 10）</dd></div>
+      <div><dt>展会片单</dt><dd>有（Xbox @ TGS 已播；世界首发 1 + 新锁 5）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（6 条）</dd></div>
+      <div><dt>高 Attention</dt><dd>13</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>展会：法拉第蓝世界首发；Edge of Memories / Hope in the City / 梦之形 / GACHIAKUTA / Once Human 新锁；深潜见表。</li>
+      <li>发售：Another Eden Begins；梦之形主机；法拉第蓝公布 2027。</li>
+      <li>独立定档：Hope in the City；闇夜王国；归零巡礼；Ved: 疗愈所。</li>
+      <li>行业：FE 首日评测；Bloomwalker 平台/宇宙；PHYSINT 主演；EDF 6.2 日区定档等。</li>
+    </ul>
+    <p class="lib-note">判定：Xbox 片单 + Another Eden + 独立定档/发售扛主线。不复述昨 FE/空轨发售翻牌、Lollipop 2、卧龙2、Capcom 片单长名单。TGS 后续舞台另窗收。</p>
+  </div>
+
+<div class="axis-card show-slate"><div class="axis-title"><h3>🎬 展会片单 · Xbox @ Tokyo Game Show 2026</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://news.xbox.com/en-us/2026/09/17/xbox-tokyo-game-show-2026-recap/" rel="noopener" target="_blank">🎬 Xbox @ Tokyo Game Show 2026（已播）</a></h4></div>
+<p class="signal-lede">Xbox @ Tokyo Game Show 2026 Broadcast 于 9/17 18:00 CST（19:00 JST）已播（约 50 分钟）。官方自报含 17 段新鲜实机/公布、一次惊喜发售与一场世界首发；收尾小岛秀夫登场公布 PHYSINT 主演。片单细则见 exhibition_slate。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/xbox-tgs-2026-broadcast-slate-3aeb3c6e.jpg" alt="🎬 Xbox @ Tokyo Game Show 2026（已播）" loading="lazy"/>
+<img src="../media/2026-09-18/xbox-tgs-2026-broadcast-slate-45b4aa07.jpg" alt="🎬 Xbox @ Tokyo Game Show 2026（已播）" loading="lazy"/>
+<figcaption>Gematsu / Xbox 秀代表图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会官方秀已播 / 🎬 展会片单</dd></div>
+<div><dt>档期</dt><dd>2026-09-17 18:00 CST（19:00 JST）</dd></div>
+<div><dt>世界首发</dt><dd>法拉第蓝（Faraday Blues）</dd></div>
+<div><dt>新锁</dt><dd>Edge of Memories 11/5；Hope in the City 11/10；梦之形主机今日可玩；GACHIAKUTA: BREAKOUT 2027；Once Human 海洋扩展 10/22 等</dd></div>
+<div><dt>已定档深潜</dt><dd>Bloodstained / Crazy Taxi 日本地图 / PHYSINT 主演 / Bloomwalker / 卧龙2 Boss / MW4 战役预告 / P4R 直斗 / Raji 等 → 见表</dd></div>
+<div><dt>Capcom Spotlight</dt><dd>见 2026-09-17，本日不复述</dd></div>
+<div><dt>时点</dt><dd>昨 09:40 后播完；本窗入核</dd></div>
+</dl>
+<div class="compare-wrap"><table class="compare"><caption>世界首发 / 新锁（片单）</caption><thead><tr><th>作品</th><th>类型</th><th>档期 / 平台</th><th>备注</th></tr></thead><tbody><tr><td>法拉第蓝（Faraday Blues）</td><td>世界首发</td><td>—</td><td>Serenity Forge；PS5 / Xbox / PC；2027；VN×策略卡牌</td></tr><tr><td>Edge of Memories</td><td>新锁</td><td>—</td><td>2026-11-05；PS5 / Xbox / Steam</td></tr><tr><td>Hope in the City</td><td>新锁</td><td>—</td><td>2026-11-10；Xbox（新）/ PC / Game Pass</td></tr><tr><td>梦之形（Shape of Dreams）</td><td>新锁</td><td>—</td><td>主机+Game Pass 当日可玩（惊喜发售）</td></tr><tr><td>GACHIAKUTA: BREAKOUT</td><td>新锁</td><td>—</td><td>正式标题 + 2027；PS5 / Xbox / Steam</td></tr><tr><td>Once Human：Isles of Abyss</td><td>新锁</td><td>—</td><td>Xbox 海洋扩展 2026-10-22；Game Pass</td></tr></tbody></table></div>
+<div class="compare-wrap"><table class="compare"><caption>已定档深潜，不单开</caption><thead><tr><th>作品</th><th>备注</th></tr></thead><tbody><tr><td>PHYSINT</td><td>Bill Skarsgård 男主；海报+OD 片场；档期/平台仍 TBA</td></tr><tr><td>Bloodstained: The Scarlet Engagement</td><td>新实机；仍 2027；IGA / ArtPlay / 505</td></tr><tr><td>Crazy Taxi: World Tour</td><td>日本地图公布；仍 2027</td></tr><tr><td>Bloomwalker</td><td>二之国宇宙 + Pocket Dimension；平台扩 PS5/Switch 系；档期 TBA</td></tr><tr><td>卧龙2：凤火连天</td><td>Zuochi Boss + Alpha Demo 至 9/30；档期仍 2027-03-04（昨已报）</td></tr><tr><td>Call of Duty: Modern Warfare 4</td><td>战役预告；仍 2026-10-23（EA 10/16）</td></tr><tr><td>Persona 4 Revival</td><td>白钟直斗角色预告；仍 2027-02-18 / Game Pass</td></tr><tr><td>Raji: Kaliyuga</td><td>开发者解说实机；第三人称动作；档期未新锁</td></tr><tr><td>Atelier Karia / Fallout 76 The Slasher / Genigods: Nezha</td><td>角色回归 / 更新动画预告 / 开发日志 — 已定档或进行中内容，不单开</td></tr></tbody></table></div>
+<ul class="facts">
+<li>Xbox Wire 官方回顾交叉 Gematsu 分条：世界首发仅明确点名 Faraday Blues</li><li>Shape of Dreams 为惊喜主机/Game Pass 当日可玩；Wo Long 2 / Persona 4 Revival 等为已定档深潜不升新锁</li><li>展台可玩与未播后续舞台不预写</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://news.xbox.com/en-us/2026/09/17/xbox-tokyo-game-show-2026-recap/" rel="noopener" target="_blank">news.xbox.com</a> · <a href="https://www.gematsu.com/2026/09/serenity-forge-announces-sci-fi-visual-novel-and-strategy-card-game-faraday-blues-for-ps5-xbox-series-and-pc" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://www.gematsu.com/2026/09/physint-lead-to-be-portrayed-by-bill-skarsgard" rel="noopener" target="_blank">gematsu.com</a>。</p>
+<div class="tags"><span>展会</span><span>片单</span></div>
+</article>
+</div></div>
+<div class="axis-card "><div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">6</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/serenity-forge-announces-sci-fi-visual-novel-and-strategy-card-game-faraday-blues-for-ps5-xbox-series-and-pc" rel="noopener" target="_blank">法拉第蓝（Faraday Blues）</a></h4></div>
+<p class="signal-lede">Serenity Forge 于 Xbox @ TGS 2026 世界首发科幻视觉小说×策略卡牌《法拉第蓝》：PS5 / Xbox Series / PC（Steam + MS Store），2027。女儿寻找「不知道自己存在」的父母，用角色卡改写悲剧选择，宣称 64 种结局。展会周独立世界首发本身达门槛。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/faraday-blues-world-premiere-016306a7.jpg" alt="法拉第蓝（Faraday Blues）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>世界首发 / 新作公布</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / PC</dd></div>
+<div><dt>档期</dt><dd>2027</dd></div>
+<div><dt>开发·发行</dt><dd>Serenity Forge</dd></div>
+<div><dt>Steam 简中名称</dt><dd>法拉第蓝</dd></div>
+<div><dt>AppID</dt><dd>5221470</dd></div>
+<div><dt>时点</dt><dd>Xbox 秀 + Gematsu 9/17 6:19 AM EDT = 9/17 18:19 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>三时代三画风；Entropy/Order 卡牌操控时间线</li><li>Xbox Play Anywhere；同时进 🎬 片单世界首发与 🧩 独立轴</li><li>官方图：Gematsu 公布 KV</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/serenity-forge-announces-sci-fi-visual-novel-and-strategy-card-game-faraday-blues-for-ps5-xbox-series-and-pc" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://news.xbox.com/en-us/2026/09/17/xbox-tokyo-game-show-2026-faraday-blues/" rel="noopener" target="_blank">news.xbox.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=5221470&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/shape-of-dreams-now-available-for-ps5-xbox-series-and-switch-2-alongside-starless-path-update" rel="noopener" target="_blank">梦之形（Shape of Dreams）主机发售</a></h4></div>
+<p class="signal-lede">NEOWIZ / Lizard Smoothie 动作 roguelite《梦之形》登陆 PS5 / Xbox Series / Switch 2（含 Game Pass 首日），并同步周年「Starless Path」更新（新 Traveler Cetus 等）。PC Steam 已于 2025-09-10 发售；本条记主机移植首发。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/shape-of-dreams-console-launch-b0bb58c1.jpg" alt="梦之形（Shape of Dreams）主机发售" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>主机正式发售 / 主机移植首发</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / Switch 2（+ Game Pass）；PC 已有</dd></div>
+<div><dt>发售日</dt><dd>2026-09-17</dd></div>
+<div><dt>开发·发行</dt><dd>Lizard Smoothie / NEOWIZ</dd></div>
+<div><dt>Steam 简中名称</dt><dd>梦之形</dd></div>
+<div><dt>AppID</dt><dd>2444750</dd></div>
+<div><dt>时点</dt><dd>Xbox 秀惊喜发售 + Gematsu 9/17 6:10 AM EDT = 18:10 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>发售折扣约 $19.99；跨平台联机</li><li>属独立向主机移植首发，进独立轴</li><li>片单「新锁/惊喜发售」同步收录</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/shape-of-dreams-now-available-for-ps5-xbox-series-and-switch-2-alongside-starless-path-update" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://news.xbox.com/en-us/2026/09/17/xbox-tokyo-game-show-2026-recap/" rel="noopener" target="_blank">news.xbox.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=2444750&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/hope-in-the-city-launches-november-10-for-xbox-series-pc" rel="noopener" target="_blank">Hope in the City</a></h4></div>
+<p class="signal-lede">Lofty Sky《Hope in the City》定档 2026-11-10：Xbox Series（新平台）+ PC，并进 Game Pass。叙事解谜，舞台沈阳，少女 Hope 以素描调查父母失踪。Xbox @ TGS 深潜预告同步。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/hope-in-the-city-nov10-218dc44d.jpg" alt="Hope in the City" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>新游定档 + Xbox 平台公布</dd></div>
+<div><dt>平台</dt><dd>Xbox Series / PC（Steam + MS Store）/ Game Pass</dd></div>
+<div><dt>发售日</dt><dd>2026-11-10</dd></div>
+<div><dt>开发</dt><dd>Lofty Sky Games</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「名称」仍英文 Hope in the City → 留英文</dd></div>
+<div><dt>AppID</dt><dd>3610790</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/17 6:15 AM EDT = 18:15 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>团队曾获 GDC Best in Play（Sky of Tides）</li><li>独立叙事作定档，进独立轴；亦进片单新锁</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/hope-in-the-city-launches-november-10-for-xbox-series-pc" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://news.xbox.com/en-us/2026/09/17/xbox-tokyo-game-show-2026-recap/" rel="noopener" target="_blank">news.xbox.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3610790&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/kingdom-of-night-for-ps5-xbox-series-and-switch-launches-november-5" rel="noopener" target="_blank">闇夜王国（Kingdom of Night）主机定档</a></h4></div>
+<p class="signal-lede">DANGEN / Black Seven《闇夜王国》主机版定档 2026-11-05：PS5 / Xbox Series / Switch。PC 已于 2025-12-02 发售；80 年代小镇恶魔入侵的等距动作 RPG，支持本地双人。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/kingdom-of-night-console-nov5-7b9e2e49.jpg" alt="闇夜王国（Kingdom of Night）主机定档" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>主机移植定档</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / Switch（PC 已有）</dd></div>
+<div><dt>发售日</dt><dd>2026-11-05</dd></div>
+<div><dt>开发·发行</dt><dd>Black Seven Studios / DANGEN Entertainment</dd></div>
+<div><dt>Steam 简中名称</dt><dd>闇夜王国</dd></div>
+<div><dt>AppID</dt><dd>1094600</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/17 10:00 AM EDT = 9/17 22:00 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>Xbox/Switch 预购 9 折；PS5 Midnight Edition 含头像包</li><li>独立主机移植定档，进独立轴</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/kingdom-of-night-for-ps5-xbox-series-and-switch-launches-november-5" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=1094600&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/zero-parades-for-dead-spies-for-ps5-launches-november-3-alongside-directors-cut-update" rel="noopener" target="_blank">归零巡礼：亡谍镇魂曲（ZERO PARADES: For Dead Spies）PS5 / Director’s Cut</a></h4></div>
+<p class="signal-lede">ZA/UM 间谍 CRPG《归零巡礼：亡谍镇魂曲》PS5 定档 2026-11-03，并以 Director’s Cut 名义发售；同日 PC 免费获 Director’s Cut 更新（新遭遇、全配音、超宽屏等）。PC 已于 2026-05-21 发售。昨 09:40 后稿（Gematsu 9/16 11:12 PM EDT = 9/17 11:12 CST）补入。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/zero-parades-ps5-nov3-0df835e6.jpg" alt="归零巡礼：亡谍镇魂曲（ZERO PARADES: For Dead Spies）PS5 / Director’s Cut" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>主机定档 + Director’s Cut</dd></div>
+<div><dt>平台</dt><dd>PS5（新）；PC 同步免费更新</dd></div>
+<div><dt>发售日</dt><dd>2026-11-03</dd></div>
+<div><dt>开发·发行</dt><dd>ZA/UM</dd></div>
+<div><dt>Steam 简中名称</dt><dd>归零巡礼：亡谍镇魂曲</dd></div>
+<div><dt>AppID</dt><dd>2863680</dd></div>
+<div><dt>时点</dt><dd>昨 09:40 后；本窗补入核</dd></div>
+</dl>
+<ul class="facts">
+<li>Disco Elysium 团队后续；Thought Cabinet 后继 Conditioning 系统</li><li>独立向主机移植/强化版定档</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/zero-parades-for-dead-spies-for-ps5-launches-november-3-alongside-directors-cut-update" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=2863680&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/ved-recure-launches-september-22" rel="noopener" target="_blank">Ved: 疗愈所（Ved: Recure）</a></h4></div>
+<p class="signal-lede">SummerClip 动作 roguelite《Ved: 疗愈所》定档 Steam 2026-09-22（Gematsu；Steam 简中日期栏显示 9/21）。完整版含 4 章主线、7 角色、16 Boss、150+ Buff。轻量独立定档，火苗 1。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/ved-recure-sep22-e4c63211.jpg" alt="Ved: 疗愈所（Ved: Recure）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>新游定档</dd></div>
+<div><dt>平台</dt><dd>PC（Steam）</dd></div>
+<div><dt>发售日</dt><dd>2026-09-22（Gematsu；Steam schinese 栏 9/21）</dd></div>
+<div><dt>开发</dt><dd>SummerClip</dd></div>
+<div><dt>Steam 简中名称</dt><dd>Ved: 疗愈所</dd></div>
+<div><dt>AppID</dt><dd>3255500</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/17 12:47 PM EDT = 9/18 00:47 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>Buff Chain 构筑；日配（长谷川育美等）</li><li>独立定档达门槛（机制有辨识度），不抬主线</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/ved-recure-launches-september-22" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3255500&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span></div>
+</article>
+</div></div>
+<div class="axis-card "><div class="axis-title"><h3>🏟️ 大作 / 行业</h3><span class="density">10</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://store.steampowered.com/app/4163960/" rel="noopener" target="_blank">Another Eden Begins</a></h4></div>
+<p class="signal-lede">Wright Flyer Studios / Studio Prisma《Another Eden Begins》正式发售：Switch / Switch 2 / Steam；加藤正人剧本、光田康典主题曲，战棋式指令战斗、无抽卡单机。Steam 英文区日期栏 Sep 16、coming_soon=false；官方日历 9/17。昨扫漏报，本窗补入核。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/another-eden-begins-launch-9e7d191c.jpg" alt="Another Eden Begins" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>正式发售（漏报补入）</dd></div>
+<div><dt>平台</dt><dd>Switch / Switch 2 / PC（Steam）</dd></div>
+<div><dt>发售日</dt><dd>2026-09-17（官方；Steam 英文区 Sep 16）</dd></div>
+<div><dt>开发·发行</dt><dd>Studio Prisma / Wright Flyer Studios</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「名称」仍为 Another Eden Begins，无官方简中店名 → 留英文</dd></div>
+<div><dt>AppID</dt><dd>4163960</dd></div>
+<div><dt>时点</dt><dd>应属昨窗发售；昨扫未收，本日补报</dd></div>
+</dl>
+<ul class="facts">
+<li>同步上架 Season Pass 与角色扩展包 Vol.1/2；Aksys 实体版 2027</li><li>去 gacha 的单机时间旅行 RPG，承接原作世界观与部分角色</li><li>Steam header 可作官方 KV</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://store.steampowered.com/app/4163960/" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4163960&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://www.rpgsite.net/news/21401-another-eden-begins-now-available-pc-switch-2-switch-steam-dlc-season-pass" rel="noopener" target="_blank">rpgsite.net</a> · <a href="https://www.gematsu.com/2026/04/another-eden-begins-launches-september-17" rel="noopener" target="_blank">gematsu.com</a>。</p>
+<div class="tags"><span>行业</span><span>新作</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.metacritic.com/game/fire-emblem-fortunes-weave/" rel="noopener" target="_blank">火焰纹章：万缕千丝（Fire Emblem: Fortune&#x27;s Weave）首日评测</a></h4></div>
+<p class="signal-lede">昨报已记 Switch 2 正式发售；本窗补首日评测增量：Metacritic 约 89（65+ 家）、OpenCritic 约 90 / 推荐率约 95%。战术深度与多路线叙事获普遍好评，据点杂务/重复节奏为常见扣分点。非复述发售翻牌。</p>
+
+<dl class="kv">
+<div><dt>事件</dt><dd>首日评测增量（昨已报发售）</dd></div>
+<div><dt>平台</dt><dd>Nintendo Switch 2</dd></div>
+<div><dt>Metacritic</dt><dd>89（约 65–69 Critic，Generally Favorable）</dd></div>
+<div><dt>OpenCritic</dt><dd>约 90 / ~95% Recommended</dd></div>
+<div><dt>时点</dt><dd>评测波自 9/16 解禁起；美东解锁后样本继续堆积</dd></div>
+</dl>
+<ul class="facts">
+<li>VGC / Omelete 等给到满分档；Gamekult 等指出自由时间重复与设计自我软化</li><li>用户评尚未开放（Metacritic 提示美西 9/18 12:00 PST 起）</li><li>不重复记入 new_games（发售已在 9/17 报）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.metacritic.com/game/fire-emblem-fortunes-weave/" rel="noopener" target="_blank">metacritic.com</a> · <a href="https://opencritic.com/game/20819/fire-emblem-fortunes-weave" rel="noopener" target="_blank">opencritic.com</a> · <a href="https://www.polygon.com/fire-emblem-fortunes-weave-review-roundup/" rel="noopener" target="_blank">polygon.com</a>。</p>
+<div class="tags"><span>大作</span><span>评测</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/edge-of-memories-launches-november-5" rel="noopener" target="_blank">Edge of Memories</a></h4></div>
+<p class="signal-lede">Nacon / Midgar《Edge of Memories》定档 2026-11-05：PS5 / Xbox Series / Steam。动漫风动作 RPG，Emi Evans / 光田康典参与音乐；Xbox @ TGS 展示日配预告。Steam 简中名称仍英文。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/edge-of-memories-nov5-62f176d5.jpg" alt="Edge of Memories" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>新游定档</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / PC（Steam）</dd></div>
+<div><dt>发售日</dt><dd>2026-11-05</dd></div>
+<div><dt>开发·发行</dt><dd>Midgar Studio / Nacon</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「名称」Edge of Memories → 留英文</dd></div>
+<div><dt>AppID</dt><dd>2738170</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/17 6:27 AM EDT = 18:27 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>预购含 Legacy Costume Pack</li><li>进 Xbox 片单新锁</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/edge-of-memories-launches-november-5" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://news.xbox.com/en-us/2026/09/17/xbox-tokyo-game-show-2026-recap/" rel="noopener" target="_blank">news.xbox.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=2738170&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>行业</span><span>新作</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/bloomwalker-adds-ps5-switch-2-and-switch-versions-set-in-ni-no-kuni-universe" rel="noopener" target="_blank">Bloomwalker（二之国宇宙）</a></h4></div>
+<p class="signal-lede">Netmarble Neo《Bloomwalker》确认设定于 LEVEL-5《二之国》宇宙，并新增 PS5 / Switch 2 / Switch（此前已宣 Xbox Series / PC）。档期仍 TBA。Xbox @ TGS 展示 Pocket Dimension 建造。Netmarble 中厂向，不进独立轴。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/bloomwalker-ninokuni-platforms-879c5112.jpg" alt="Bloomwalker（二之国宇宙）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>宇宙设定官宣 + 平台扩容</dd></div>
+<div><dt>平台</dt><dd>PS5 / Switch 2 / Switch / Xbox Series / PC</dd></div>
+<div><dt>档期</dt><dd>TBA</dd></div>
+<div><dt>开发·发行</dt><dd>Netmarble Neo / Netmarble；IP LEVEL-5</dd></div>
+<div><dt>命名</dt><dd>本作 Steam 简中仍 Bloomwalker；系列《二之国》用官方系列译作宇宙标注</dd></div>
+<div><dt>AppID</dt><dd>4997000</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/17 6:16 AM EDT = 18:16 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>移动之家 + 门后口袋维度建造；Higgledies 回归二之国符号</li><li>不记 new_games 新作公布（本作此前已宣），记平台/宇宙增量</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/bloomwalker-adds-ps5-switch-2-and-switch-versions-set-in-ni-no-kuni-universe" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://news.xbox.com/en-us/2026/09/17/xbox-tokyo-game-show-2026-recap/" rel="noopener" target="_blank">news.xbox.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4997000&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>行业</span><span>增量</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/physint-lead-to-be-portrayed-by-bill-skarsgard" rel="noopener" target="_blank">PHYSINT 主演 Bill Skarsgård + OD 片场更新</a></h4></div>
+<p class="signal-lede">Xbox Game Studios / Kojima Productions：小岛秀夫于 Xbox @ TGS 收尾登场，确认 Bill Skarsgård 出演 PHYSINT 男主；阵容另有 Charlee Fraser、Don Lee、浜辺美波。同步释出 OD 中 Sophia Lillis / Hunter Schafer 表演捕捉花絮。平台与档期仍未宣。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/physint-bill-skarsgard-35e3d809.jpg" alt="PHYSINT 主演 Bill Skarsgård + OD 片场更新" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>主创/主演官宣</dd></div>
+<div><dt>作品</dt><dd>PHYSINT；附带 OD 更新</dd></div>
+<div><dt>平台·档期</dt><dd>均未公布</dd></div>
+<div><dt>时点</dt><dd>Xbox 秀 one more thing；Gematsu 9/17 6:37 AM EDT = 18:37 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>海报含 Skarsgård × Charlee Fraser</li><li>不进 new_games（非新作公布/定档/发售）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/physint-lead-to-be-portrayed-by-bill-skarsgard" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://news.xbox.com/en-us/2026/09/17/xbox-tokyo-game-show-2026-recap/" rel="noopener" target="_blank">news.xbox.com</a>。</p>
+<div class="tags"><span>行业</span><span>增量</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/gachiakuta-breakout-launches-in-2027" rel="noopener" target="_blank">GACHIAKUTA: BREAKOUT</a></h4></div>
+<p class="signal-lede">Com2uS 将原《GACHIAKUTA: The Game》正式定名《GACHIAKUTA: BREAKOUT》，并锁定 2027、PS5 / Xbox Series / Steam。Xbox @ TGS 放出加长实机。Steam 店名截稿仍为旧称 The Game，无官方简中店名。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/gachiakuta-breakout-2027-b8ed4a7a.jpg" alt="GACHIAKUTA: BREAKOUT" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>正式标题 + 定档窗口</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / PC（Steam）</dd></div>
+<div><dt>档期</dt><dd>2027</dd></div>
+<div><dt>开发·发行</dt><dd>Com2uS</dd></div>
+<div><dt>命名</dt><dd>Steam 仍 GACHIAKUTA: The Game；本作无简中店名 → 留英文正式标题 BREAKOUT</dd></div>
+<div><dt>AppID</dt><dd>4420730</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/17 6:02 AM EDT = 18:02 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>动画 IP 改编生存动作 RPG；实时合作</li><li>进片单新锁（2027 窗口）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/gachiakuta-breakout-launches-in-2027" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://news.xbox.com/en-us/2026/09/17/xbox-tokyo-game-show-2026-recap/" rel="noopener" target="_blank">news.xbox.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4420730&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>行业</span><span>新作</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/earth-defense-force-6-2-invaders-from-another-world-launches-march-18-2027-in-japan" rel="noopener" target="_blank">地球防卫军6.2（Earth Defense Force 6.2: Invaders from Another World）</a></h4></div>
+<p class="signal-lede">D3 / Sandlot《地球防卫军6.2：Invaders from Another World》日本 PS5 定档 2027-03-18（7,700 日元）；预购 9/18 开。号称敌群峰值约翻倍、过半任务重制、系列首次武器自定义。昨 09:40 后稿（10:34 PM EDT 9/16 = 10:34 CST 9/17）补入。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/edf-62-march-2027-jp-1ed1ad6a.jpg" alt="地球防卫军6.2（Earth Defense Force 6.2: Invaders from Another World）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>新游定档（日区）</dd></div>
+<div><dt>平台</dt><dd>PS5（截稿仅列日区）</dd></div>
+<div><dt>发售日</dt><dd>2027-03-18（日本）</dd></div>
+<div><dt>开发·发行</dt><dd>Sandlot / D3 Publisher</dd></div>
+<div><dt>命名</dt><dd>系列 Steam 简中「地球防卫军6」→ 本作写系列译 + 6.2 + 英文副标题</dd></div>
+<div><dt>时点</dt><dd>昨 09:40 后；本窗补入核</dd></div>
+</dl>
+<ul class="facts">
+<li>基于 EDF6 的大幅更新作；PS Plus 预购折扣、EDF5/6 玩家豪华版折扣</li><li>海外/多平台未同日官宣</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/earth-defense-force-6-2-invaders-from-another-world-launches-march-18-2027-in-japan" rel="noopener" target="_blank">gematsu.com</a>。</p>
+<div class="tags"><span>行业</span><span>新作</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/tropico-7-adds-switch-2-version" rel="noopener" target="_blank">Tropico 7 Switch 2 版</a></h4></div>
+<p class="signal-lede">Kalypso / Gaming Minds《Tropico 7》确认与 PS5 / Xbox / PC 同日登陆 Switch 2：2027-01-28；Engine Software 移植，支持 Joy-Con 2 鼠标与 GameChat。Steam 简中名称仍 Tropico 7。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-18/tropico-7-switch2-572f7d9c.jpg" alt="Tropico 7 Switch 2 版" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>平台扩容（已定档日不变）</dd></div>
+<div><dt>平台</dt><dd>Switch 2（新增）+ 原 PS5 / Xbox / PC</dd></div>
+<div><dt>发售日</dt><dd>2027-01-28</dd></div>
+<div><dt>命名</dt><dd>Steam 简中仍 Tropico 7 → 留英文（不采用民间「海岛大亨」）</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/17 2:00 PM EDT = 9/18 02:00 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>不升 new_games（非新作/非新硬锁，仅加平台）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/tropico-7-adds-switch-2-version" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=1853440&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>行业</span><span>增量</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/psikyo-memories-announced-for-ps5-switch-2" rel="noopener" target="_blank">Edia TGS 目录三连：Psikyo Memories / Toshinden Collection / 英雄传说 I &amp; II</a></h4></div>
+<p class="signal-lede">Edia 于 TGS 2026 目录同步公布三款复古合集，均全球 2027：Psikyo Memories（PS5 / Switch 2）、Toshinden Collection（PS5 / Switch 2 / PC）、Dragon Slayer: The Legend of Heroes I &amp; II（PS5 / PS4 / Switch / PC）。轻量合集公布，火苗 1。</p>
+
+<dl class="kv">
+<div><dt>事件</dt><dd>复古合集公布</dd></div>
+<div><dt>档期</dt><dd>2027（全球）</dd></div>
+<div><dt>命名</dt><dd>英雄传说系列用官方译；斗神传/Psikyo 本作未见简中店名，副标题随英文</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/17 ~11:58–11:59 AM EDT = 9/17 23:58–23:59 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>来源为 TGS 发放的 Edia Game Catalog；Strikers 1945 展台 PC 试玩但不列 PC 发售</li><li>不拆三条 Signal，合并一条</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/psikyo-memories-announced-for-ps5-switch-2" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://www.gematsu.com/2026/09/toshinden-collection-announced-for-ps5-switch-2-and-pc" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://www.gematsu.com/2026/09/dragon-slayer-the-legend-of-heroes-i-ii-announced-for-ps5-ps4-switch-and-pc" rel="noopener" target="_blank">gematsu.com</a>。</p>
+<div class="tags"><span>行业</span><span>新作</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://store.steampowered.com/api/appdetails?appids=4225980&amp;l=schinese" rel="noopener" target="_blank">空之轨迹 the 2nd 简中 Steam 区已 live</a></h4></div>
+<p class="signal-lede">昨报发售时简中 API 或仍「即将推出」；本窗核 Steam schinese appdetails：名称「空之轨迹 the 2nd」，coming_soon=false，日期栏 2026-09-16。属发售增量，不复述翻牌主线。</p>
+
+<dl class="kv">
+<div><dt>事件</dt><dd>区域 live 确认（昨已报发售）</dd></div>
+<div><dt>AppID</dt><dd>4225980</dd></div>
+<div><dt>Steam 简中名称</dt><dd>空之轨迹 the 2nd</dd></div>
+<div><dt>时点</dt><dd>2026-09-18 扫描核验</dd></div>
+</dl>
+<ul class="facts">
+<li>不重复 new_games</li><li>pending「简中即将推出」项关闭</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://store.steampowered.com/api/appdetails?appids=4225980&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/app/4225980/" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>行业</span><span>增量</span></div>
+</article>
+</div></div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+      <li>TGS 2026（9/17–21）后续舞台世界首发/新锁——展台试玩不升片单、不预写未播场</li>
+      <li>火焰纹章：万缕千丝首周销量与用户评（用户评约美西 9/18 12:00 PST 起）</li>
+      <li>Another Eden Begins 初期评测样本</li>
+      <li>法拉第蓝 / Bloomwalker / GACHIAKUTA: BREAKOUT 精确发售日</li>
+      <li>地球防卫军6.2 海外与中文店名</li>
+      <li>Capcom Spotlight 见 2026-09-17，本日不复述长名单</li>
+    </ul>
+  </section>
+</section>
+
+
+<footer class="foot">
+  <p>二次元空库未出 Tab · 游戏开发空库未出 Tab · 今日无新旗舰 · 今日有新 MCP/Skill 推荐（Astra for Law）· Xbox @ TGS 片单已出 · Capcom Spotlight 见 2026-09-17 不复述 · 不发涉政</p>
+  <p>观察台固定入口 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 本页快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-18.html">/daily/2026-09-18.html</a></p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
