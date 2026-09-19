@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-19</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-18, 2026-09-19]。
+  含昨 ~09:40 CST 后补入核。显示 总览 + AI + 游戏行业；二次元空库未出 Tab；游戏开发空库未出 Tab。
+  今日无新旗舰；今日有新 MCP/Skill 推荐（Qwen-MM-Plugins Omni）。
+  TGS Sugar Lies 新锁片单（无世界首发）。不复述昨 Xbox/Capcom/Another Eden 长名单。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-19 · 周六 · Asia/Shanghai · ISO 2026-W38</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W38.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-19" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-18, 09-19]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是 AI 侧 <strong>Qwen3.8-Omni-Flash</strong>（全模态 1M + <strong>Qwen-MM-Plugins Omni</strong> 工作流可推荐，<strong>非新一般旗舰</strong>）与 <strong>Grok Voice Transcribe 2.0</strong>（STT），以及行业 🎬 <strong>TGS Sugar Lies 新锁</strong>（PC 2026 年末 / Switch 2027 春；无世界首发）、🧩 <strong>姆明：暖心冬日</strong>主机发售、<strong>Kaelis: Seraph Protocol</strong> 公布，另有 Gears E-Day 进金、FE 用户评、The Guild EA。今日<strong>无新旗舰</strong>；今日<strong>有新 MCP/Skill 推荐</strong>。二次元空库未出 Tab；游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:40 CST 后补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6。Omni-Flash / Voice Transcribe 均为专用档）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>有新推荐：Qwen-MM-Plugins Omni（Skill+MCP / omni-skill-creator 等）</dd></div>
+      <div><dt>展会</dt><dd>TGS Sugar Lies 舞台已播（新锁 1；世界首发无）；Xbox/Capcom 见前报不复述</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>AI：Qwen3.8-Omni-Flash + MM-Plugins Omni 推荐；Grok Voice Transcribe 2.0（STT）。无新一般文本旗舰。</li>
+      <li>展会：Sugar Lies 新锁 PC 2026 年末 / Switch 2027 春；无世界首发；Townfall 未播不预写。</li>
+      <li>独立：姆明主机发售；Sugar Lies 定档；Kaelis 2028 公布+Kickstarter。</li>
+      <li>大作/行业：Gears E-Day 进金；FE 用户评 ~8.8；The Guild Remake EA（漏报补入）。</li>
+    </ul>
+    <p class="lib-note">判定：Omni + MM-Plugins 推荐与姆明发售 / Sugar Lies 新锁扛主线。不复述昨 Xbox 片单长名单、Capcom、Another Eden 发售翻牌、Astra for Law。不发涉政。二次元空库未出 Tab；游戏开发空库未出 Tab。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric"><b>9</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>7</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>2</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric hot"><b>1</b><span>MCP/Skill 推荐</span></div>
+  <div class="metric"><b>1</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="库切换">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ai">AI 观察</button>
+  <button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+
+<section id="ov" class="tab-pane active">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 落在 Qwen3.8-Omni-Flash（MCP/Skill 推荐，非新旗舰）、姆明：暖心冬日主机发售，以及 Sugar Lies 片单新锁 / Kaelis 公布 / Gears 进金 / Grok STT。二次元空库未出 Tab；游戏开发空库未出 Tab。今日无新旗舰；今日有新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>9（AI 2 + 行业 7）</dd></div>
+      <div><dt>高 Attention</dt><dd>7（fire≥2）</dd></div>
+      <div><dt>空库</dt><dd>二次元（未出 Tab）；游戏开发（未出 Tab）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（3 条）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>AI：Omni-Flash + MM-Plugins Omni 推荐；Voice Transcribe 2.0 STT。</li>
+      <li>行业：Sugar Lies 片单新锁；姆明主机发售；Kaelis 公布；Gears 进金；FE 用户评；Guild EA。</li>
+      <li>空库：二次元、游戏开发 — 总览只记「未出 Tab」，不编造信号。</li>
+    </ul>
+    <p class="lib-note">判定：两库同出；展会片单已出（仅新锁）；Omni 记模型发布+推荐，不当新旗舰。</p>
+  </div>
+
+  <h2 class="section-title">最高 Attention</h2>
+  <div class="overview-grid">
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · AI 观察</span>
+<h3>Qwen3.8-Omni-Flash：全模态 1M 上下文上线；Qwen-MM-Plugins Omni 工作流可推荐（非新一般旗舰）</h3>
+<p class="ov-lede">通义发布 Qwen3.8-Omni-Flash：原生全模态（文本/图/音/视频→文本），1M 上下文；阿里云百炼文档 last-modified 2026-09-18 CST。对比前代 Omni，二线转述厂商自报：29 项基准均值 +25%+、音频输入价降约 98%、音视频输入价降约 93%。同生态扩展 Qwen…</p>
+<dl class="kv">
+<div><dt>产品</dt><dd>Qwen3.8-Omni-Flash（API id 常见写法 qwen3.8-omni-flash）</dd></div><div><dt>落款</dt><dd>qwen.ai/blog?id=qwen3.8-omni-flash；阿里云百炼文档更新 2026-09-18T02:18:32+08:00</dd></div><div><dt>可用性</dt><dd>阿里云百炼 Model Studio（多地域 API Key）；Chat Completions / Responses；另有 Realtime 变体口径（WebSocket）</dd></div><div><dt>模态/上下文</dt><dd>输入文本+图+音+视频，输出文本；上下文 1M Token；音频输入语种文档称 113（与 Qwen3.5-Omni 一致量级）</dd></div>
+</dl>
+</div>
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 游戏行业</span>
+<h3>姆明：暖心冬日（Moomintroll: Winter's Warmth）主机发售</h3>
+<p class="ov-lede">挪威独立工作室 Hyper Games《姆明：暖心冬日》于 9/18 登陆 PS5 / Nintendo Switch 2（数字；Switch 实体同步；典藏约 10/16）。PC Steam 已于 4/27 发售且简中店名「姆明：暖心冬日」、评测 Overwhelmingly Positive（约 571 评 …</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>主机正式发售（独立 · 移植首发）</dd></div><div><dt>平台</dt><dd>PS5 / Nintendo Switch 2（+ 既有 PC / Switch）</dd></div><div><dt>发售日</dt><dd>2026-09-18（主机数字）</dd></div><div><dt>开发·发行</dt><dd>Hyper Games / Kakehashi Games</dd></div>
+</dl>
+</div>
+<div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · AI 观察</span>
+<h3>Grok Voice Transcribe 2.0：xAI 新一代语音转写（STT，非一般文本旗舰）</h3>
+<p class="ov-lede">xAI（SpaceXAI）于 Sep 18 发布 Grok Voice Transcribe 2.0：语音转写专用模型，API slug grok-voice-transcribe-2.0；官称真实场景评测准确率约为 1.0 的两倍、价不变（batch $0.10/音频小时、streaming $0.20/小时）…</p>
+<dl class="kv">
+<div><dt>产品</dt><dd>Grok Voice Transcribe 2.0</dd></div><div><dt>落款</dt><dd>x.ai/news；页面日期 Sep 18, 2026；docs release-notes September 节同步</dd></div><div><dt>API</dt><dd>grok-voice-transcribe-2.0（即将成 STT 默认；1.0 可 pin，随后周内弃用口径）</dd></div><div><dt>价格</dt><dd>与 1.0 相同：batch $0.10/hr、streaming $0.20/hr；含 diarization/timestamps/key terms</dd></div>
+</dl>
+</div>
+<div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>🎬 TGS 2026 · Sugar Lies 舞台 / Konami Day2 相关（已播）</h3>
+<p class="ov-lede">TGS 2026 第 2 日，工画堂新作视觉小说《Sugar Lies》相关舞台/Konami 直播已播：公开 OP 主题曲与开场动画，并锁 PC（Steam）2026 年末、Switch 2027 春。世界首发级大秀无新增；本条只收本窗可核新锁，不复述 Xbox/Capcom 长名单。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会相关舞台已播 / 🎬 展会片单</dd></div><div><dt>档期</dt><dd>2026-09-18 ~12:00–13:00 JST（≈11:00–12:00 CST）</dd></div><div><dt>世界首发</dt><dd>无（本窗可核）</dd></div><div><dt>新锁</dt><dd>Sugar Lies：PC 2026 年末 / Switch 2027 春</dd></div>
+</dl>
+</div>
+<div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>Sugar Lies</h3>
+<p class="ov-lede">工画堂 Studio / Team S:OWLS 恋爱视觉小说《Sugar Lies》于 TGS 相关舞台锁档：Steam PC 2026 年末（约 2,860 日元）、Switch 2027 春（日区实体约 4,000 日元）；支持英/日/繁中/简中。展会周独立新作定档本身达门槛；同时进 🎬 片单新锁。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>定档 / 新作窗口锁（TGS）</dd></div><div><dt>平台</dt><dd>PC（Steam） / Nintendo Switch</dd></div><div><dt>档期</dt><dd>PC 2026 年末；Switch 2027 春</dd></div><div><dt>开发·发行</dt><dd>Team S:OWLS / Kogado Studio</dd></div>
+</dl>
+</div>
+<div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>Kaelis: Seraph Protocol</h3>
+<p class="ov-lede">首尔 YoshiYoshi Studio 公布学院科幻奇幻单机 JRPG《Kaelis: Seraph Protocol》：Steam PC，目标 2028；Kickstarter 募资目标约 2.7 万美元已开。角色纽带 + 回合制八色 Lumina 光谱 + 选择影响案件走向。全新 IP 独立新作公布；Ste…</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>新作公布</dd></div><div><dt>平台</dt><dd>PC（Steam）</dd></div><div><dt>档期</dt><dd>2028</dd></div><div><dt>开发·发行</dt><dd>YoshiYoshi Studio</dd></div>
+</dl>
+</div>
+<div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>Gears of War: E-Day 已进金（Gone Gold）</h3>
+<p class="ov-lede">The Coalition / Xbox Wire：Gears of War: E-Day 正式进金。预装 9/29 08:00 PT；Premium 抢先 10/1；全球发售仍 10/6；Xbox Series / PC / Steam / 首日 Game Pass。同步公布完整 PC 规格（需硬件光追 GPU…</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>进金 / 预装日锁 / PC 规格</dd></div><div><dt>平台</dt><dd>Xbox Series X|S / Xbox PC / Steam / Game Pass</dd></div><div><dt>发售</dt><dd>2026-10-06（Premium EA 10/01）</dd></div><div><dt>预装</dt><dd>2026-09-29 08:00 PT</dd></div>
+</dl>
+</div>
+  </div>
+
+  <section class="watch" style="margin-top:22px">
+    <h3>观察清单</h3>
+    <ul>
+<li>TGS 至 9/21：Silent Hill: Townfall 主舞台及其他后续——仅已播可核世界首发/新锁后出片单；不预写未播</li>
+<li>Lollipop Chainsaw 2 若出现精确日/多平台再升增量</li>
+<li>火焰纹章：万缕千丝首周销量（任天堂/Famitsu）</li>
+<li>Another Eden Begins 媒体评聚合</li>
+<li>Control Resonant / Silent Hill: Townfall 9/24；Gears E-Day 预装后评测</li>
+<li>Kaelis Kickstarter；Sugar Lies 精确日</li>
+<li>Grok 4.7 / 4.8：仍未发；docs Latest=Grok 4.6</li>
+<li>DeepSeek-V4.1-Pro：未发；V4 Pro 路由延续≠新旗舰</li>
+<li>Qwen4：盯云栖 9/22–24（本窗 Omni ≠ Qwen4）</li>
+<li>原神 7.1 开门约 9/23；终末地噗切娜约 9/24；鸣潮 3.7 约 9/30（前瞻 9/19）；星铁 4.6 前瞻 9/20</li>
+</ul>
+  </section>
+</section>
+
+
+<section id="ai" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🤖</span><h2>AI 观察</h2></div>
+    <p class="lib-lede">今日<strong>无新旗舰</strong>；今日<strong>有新 MCP/Skill 推荐</strong>（Qwen-MM-Plugins Omni：Skill+MCP / omni-skill-creator 等）。主线：通义 Qwen3.8-Omni-Flash（全模态 1M）+ xAI Grok Voice Transcribe 2.0（STT）。现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>2</dd></div>
+      <div><dt>高 Attention</dt><dd>2</dd></div>
+      <div><dt>新旗舰</dt><dd>无（Omni-Flash / Voice Transcribe 均为专用档）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>有（Qwen-MM-Plugins Omni Skills/MCP）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>🧠 模型：Qwen3.8-Omni-Flash 全模态上线；同生态 MM-Plugins 达推荐门槛。</li>
+      <li>🧠 模型：Grok Voice Transcribe 2.0 新一代 STT（非文本旗舰）。</li>
+      <li>不复述昨 Astra for Law / Claude Projects / Anthropic 三项测量。</li>
+    </ul>
+    <p class="lib-note">判定：无一般文本旗舰 GA；推荐条成立（MM-Plugins Omni）。pending：Grok 4.7/4.8、V4.1-Pro、Qwen4 云栖。</p>
+  </div>
+
+<div class="axis-card "><div class="axis-title"><h3>🧠 模型发布</h3><span class="density">2</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://qwen.ai/blog?id=qwen3.8-omni-flash" rel="noopener" target="_blank">Qwen3.8-Omni-Flash：全模态 1M 上下文上线；Qwen-MM-Plugins Omni 工作流可推荐（非新一般旗舰）</a></h4></div>
+<p class="signal-lede">通义发布 Qwen3.8-Omni-Flash：原生全模态（文本/图/音/视频→文本），1M 上下文；阿里云百炼文档 last-modified 2026-09-18 CST。对比前代 Omni，二线转述厂商自报：29 项基准均值 +25%+、音频输入价降约 98%、音视频输入价降约 93%。同生态扩展 Qwen-MM-Plugins（Skill+MCP，含 omni-skill-creator / omni-chatcut / video2note 等）并可装 Claude Code、Codex、Gemini CLI 等 harness——达 🔧 推荐门槛。非一般文本旗舰；Qwen4 仍盯云栖。</p>
+
+<dl class="kv">
+<div><dt>产品</dt><dd>Qwen3.8-Omni-Flash（API id 常见写法 qwen3.8-omni-flash）</dd></div>
+<div><dt>落款</dt><dd>qwen.ai/blog?id=qwen3.8-omni-flash；阿里云百炼文档更新 2026-09-18T02:18:32+08:00</dd></div>
+<div><dt>可用性</dt><dd>阿里云百炼 Model Studio（多地域 API Key）；Chat Completions / Responses；另有 Realtime 变体口径（WebSocket）</dd></div>
+<div><dt>模态/上下文</dt><dd>输入文本+图+音+视频，输出文本；上下文 1M Token；音频输入语种文档称 113（与 Qwen3.5-Omni 一致量级）</dd></div>
+<div><dt>评测</dt><dd>二线转述厂商自报：WildClawBench-MM 71.0、UniClawBench 69.6、LongAudioSpan 82.7、OmniVideoBench 63.4 等；称多项对标/超过 Gemini 3.8 Flash（厂商自报，未逐项回对一手表）</dd></div>
+<div><dt>生态/推荐</dt><dd>Qwen-MM-Plugins：每能力=Skill+可选 MCP；Omni 向含 omni-skill-creator、omni-chatcut、omni-video2note、omni-memory；安装器覆盖 Claude Code/Codex/Qwen Code/Gemini CLI 等</dd></div>
+<div><dt>是否新旗舰</dt><dd>否（全模态专用档，不当一般文本旗舰；现役文本口径不变）</dd></div>
+<div><dt>是否推荐条</dt><dd>是（MM-Plugins Omni Skills/MCP 工作流包）</dd></div>
+</dl>
+<div class="compare-wrap"><table class="compare">
+<caption>与主流模型对比（厂商自报 / 二线转述 · 全模态专用档）</caption>
+<thead><tr><th>指标</th><th>Qwen3.8-Omni-Flash</th><th>Gemini 3.8 Flash</th><th>Qwen3.5-Omni</th><th>GPT-6 Astra</th></tr></thead>
+<tbody>
+<tr><td>上下文</td><td>1M Token（百炼文档）</td><td>未核</td><td>未核</td><td>未核</td></tr>
+<tr><td>WildClawBench-MM</td><td>71.0（厂商自报）</td><td>未核</td><td>未核</td><td>未核</td></tr>
+<tr><td>UniClawBench</td><td>69.6（厂商自报）</td><td>未核</td><td>未核</td><td>未核</td></tr>
+<tr><td>LongAudioSpan</td><td>82.7（厂商自报）</td><td>未核</td><td>未核</td><td>未核</td></tr>
+<tr><td>OmniVideoBench</td><td>63.4（厂商自报）</td><td>未核</td><td>未核</td><td>未核</td></tr>
+<tr><td>音频输入语种</td><td>113（文档称）</td><td>未核</td><td>同量级（文档）</td><td>—</td></tr>
+</tbody>
+</table></div>
+<p class="compare-src">数字来源：二线转述厂商自报 + 阿里云百炼文档；称多项对标/超过 Gemini 3.8 Flash 但未逐项回对一手表。缺格写「未核」，不编。不当一般文本旗舰。</p>
+<ul class="facts">
+<li>百炼文档短述：面向音视频理解与内容分析；Function Calling、深度思考、联网搜索、上下文缓存均支持。</li><li>GitHub QwenLM/Qwen-MM-Plugins README 显式以 qwen3.8-omni-flash 为 Omni 系列示例，并列出 Omni Skill Creator（演示视频→可复用 Agent Skill）。</li><li>Qwen-Live Harness：二线称基于 Realtime API 开源，但发布时 GitHub 曾报 404——正文不依赖该 harness 是否可克隆。</li><li>驱动 new_mcp_skill_rec=true；不当 new_flagship。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://qwen.ai/blog?id=qwen3.8-omni-flash" rel="noopener" target="_blank">qwen.ai</a> · <a href="https://help.aliyun.com/zh/model-studio/qwen3-8-omni-flash" rel="noopener" target="_blank">help.aliyun.com</a> · <a href="https://www.alibabacloud.com/help/en/model-studio/qwen3-8-omni-flash" rel="noopener" target="_blank">alibabacloud.com</a> · <a href="https://github.com/QwenLM/Qwen-MM-Plugins" rel="noopener" target="_blank">github.com</a>。</p>
+<div class="tags"><span>模型发布</span><span>MCP/Skill</span><span>全模态</span></div>
+</article><article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://x.ai/news/grok-voice-transcribe-2" rel="noopener" target="_blank">Grok Voice Transcribe 2.0：xAI 新一代语音转写（STT，非一般文本旗舰）</a></h4></div>
+<p class="signal-lede">xAI（SpaceXAI）于 Sep 18 发布 Grok Voice Transcribe 2.0：语音转写专用模型，API slug grok-voice-transcribe-2.0；官称真实场景评测准确率约为 1.0 的两倍、价不变（batch $0.10/音频小时、streaming $0.20/小时）。属 STT 专用档，非 Grok 4.7/4.8，不当一般文本旗舰。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-19/grok-voice-transcribe-2.webp" alt="Grok Voice Transcribe 2.0：xAI 新一代语音转写（STT，非一般文本旗舰）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>产品</dt><dd>Grok Voice Transcribe 2.0</dd></div>
+<div><dt>落款</dt><dd>x.ai/news；页面日期 Sep 18, 2026；docs release-notes September 节同步</dd></div>
+<div><dt>API</dt><dd>grok-voice-transcribe-2.0（即将成 STT 默认；1.0 可 pin，随后周内弃用口径）</dd></div>
+<div><dt>价格</dt><dd>与 1.0 相同：batch $0.10/hr、streaming $0.20/hr；含 diarization/timestamps/key terms</dd></div>
+<div><dt>能力</dt><dd>batch+streaming；词级时间戳；说话人分离；最多 8 通道；最多 100 keyterm；智能 turn；多语种</dd></div>
+<div><dt>评测</dt><dd>厂商自报：Artificial Analysis streaming 榜 32 模第一；内部 telephony/conversational/credentials/short-phrases 四集均优于 1.0</dd></div>
+<div><dt>案例</dt><dd>Atlassian Loom 采用该 STT；官述可与 Cursor 衔接「录屏→转写→改代码」工作流（产品案例，非新 MCP 包）</dd></div>
+<div><dt>是否新旗舰</dt><dd>否（STT 专用；文本旗舰仍 Grok 4.6）</dd></div>
+<div><dt>是否推荐条</dt><dd>否（模型发布；不冒充 MCP/Skill 推荐）</dd></div>
+</dl>
+
+<ul class="facts">
+<li>昨扫 docs September 仅见 imagine-image-quality 退役预告，未见本条——属昨 ~09:40 后漏报/窗内补入。</li><li>docs/models 推荐文本仍 Grok 4.6；无 4.7/4.8。</li><li>不当 new_flagship；不驱动 new_mcp_skill_rec。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://x.ai/news/grok-voice-transcribe-2" rel="noopener" target="_blank">x.ai</a> · <a href="https://docs.x.ai/developers/release-notes" rel="noopener" target="_blank">docs.x.ai</a> · <a href="https://docs.x.ai/developers/model-capabilities/audio/speech-to-text" rel="noopener" target="_blank">docs.x.ai</a>。</p>
+<div class="tags"><span>模型发布</span><span>STT</span></div>
+</article>
+</div></div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+<li>Grok 4.7 / 传闻 4.8: 仍未发布；docs Latest=Grok 4.6</li>
+<li>DeepSeek-V4.1-Pro: 未发布</li>
+<li>DeepSeek deepseek-v4-pro 路由: API 仍继续提供 V4 Pro（口径延续；本窗 Change Log 无新条）</li>
+<li>Qwen4 / 云栖 2026: 未 GA；会议 9/22–24 杭州</li>
+</ul>
+  </section>
+</section>
+
+
+<section id="industry" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🕹️</span><h2>游戏行业观察</h2></div>
+    <p class="lib-lede">行业主线：🎬 <strong>TGS Sugar Lies</strong> 新锁（PC 2026 年末 / Switch 2027 春；无世界首发）；🧩 <strong>姆明：暖心冬日</strong>主机发售 + Sugar Lies / Kaelis；大作 Gears E-Day 进金、FE 用户评；The Guild EA。今日<strong>有独立游戏观察新增</strong>；展会片单已出。Xbox/Capcom/Another Eden 见前报，本日不复述长名单。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>7（展会 1 + 独立 3 + 大作 2 + 行业 1）</dd></div>
+      <div><dt>展会片单</dt><dd>有（Sugar Lies 新锁 1；世界首发无）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（3 条）</dd></div>
+      <div><dt>高 Attention</dt><dd>5</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>展会：Sugar Lies 新锁；无世界首发；Townfall 未播不预写；Xbox/Capcom 不复述。</li>
+      <li>独立：姆明主机发售；Sugar Lies 定档；Kaelis 2028 + Kickstarter。</li>
+      <li>大作：Gears E-Day 进金+预装；FE 用户评开闸 ~8.8。</li>
+      <li>行业：The Guild 1 Remake EA（漏报补入）。</li>
+    </ul>
+    <p class="lib-note">判定：Sugar Lies 片单 + 姆明发售 + Kaelis 公布扛主线。不复述昨 Xbox 长名单、Capcom、Another Eden/FE 发售翻牌、法拉第蓝等。TGS 后续舞台另窗收。</p>
+  </div>
+
+<div class="axis-card show-slate"><div class="axis-title"><h3>🎬 展会片单 · TGS 2026 · Sugar Lies / Konami Day2</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/sugar-lies-launches-in-late-2026-for-pc-in-spring-2027-for-switch" rel="noopener" target="_blank">🎬 TGS 2026 · Sugar Lies 舞台 / Konami Day2 相关（已播）</a></h4></div>
+<p class="signal-lede">TGS 2026 第 2 日，工画堂新作视觉小说《Sugar Lies》相关舞台/Konami 直播已播：公开 OP 主题曲与开场动画，并锁 PC（Steam）2026 年末、Switch 2027 春。世界首发级大秀无新增；本条只收本窗可核新锁，不复述 Xbox/Capcom 长名单。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-19/sugar-lies.jpg" alt="🎬 TGS 2026 · Sugar Lies 舞台 / Konami Day2 相关（已播）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会相关舞台已播 / 🎬 展会片单</dd></div>
+<div><dt>档期</dt><dd>2026-09-18 ~12:00–13:00 JST（≈11:00–12:00 CST）</dd></div>
+<div><dt>世界首发</dt><dd>无（本窗可核）</dd></div>
+<div><dt>新锁</dt><dd>Sugar Lies：PC 2026 年末 / Switch 2027 春</dd></div>
+<div><dt>已定档深潜</dt><dd>无单开；Xbox/Capcom 见前报</dd></div>
+<div><dt>未播</dt><dd>Silent Hill: Townfall 主舞台约 14:30 JST 本日下午 — 不预写</dd></div>
+<div><dt>时点</dt><dd>昨 09:40 后；本窗入核</dd></div>
+</dl>
+<div class="compare-wrap"><table class="compare"><caption>世界首发 / 新锁（片单）</caption><thead><tr><th>作品</th><th>类型</th><th>档期 / 平台</th><th>备注</th></tr></thead><tbody><tr><td>Sugar Lies</td><td>新锁</td><td>—</td><td>PC（Steam）2026 年末；Switch 2027 春；工画堂 / S:OWLS；英日繁简</td></tr></tbody></table></div><p class="compare-src">本窗无可核世界首发。Xbox @ TGS / Capcom Spotlight 见前报，本日不复述长名单。Silent Hill: Townfall 主舞台截稿未播，不预写。</p>
+<ul class="facts">
+<li>Gematsu 落款 Sep 17 11:50 PM EDT = 9/18 11:50 CST；4Gamer 9/18 17:32 JST 舞台回顾交叉</li><li>Xbox @ TGS / Capcom Spotlight 父级片单见 2026-09-18 / 2026-09-17，本日不复述</li><li>展台试玩与未播场次不升片单</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/sugar-lies-launches-in-late-2026-for-pc-in-spring-2027-for-switch" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://www.4gamer.net/games/036/G103607/20260918050/" rel="noopener" target="_blank">4gamer.net</a> · <a href="https://www.konami.com/games/tgs/en/title/?id=sugar-lies" rel="noopener" target="_blank">konami.com</a>。</p>
+<div class="tags"><span>展会</span><span>片单</span></div>
+</article>
+</div></div>
+<div class="axis-card"><div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">3</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://blog.playstation.com/2026/09/16/moomintroll-winters-warmth-launches-on-september-18/" rel="noopener" target="_blank">姆明：暖心冬日（Moomintroll: Winter's Warmth）主机发售</a></h4></div>
+<p class="signal-lede">挪威独立工作室 Hyper Games《姆明：暖心冬日》于 9/18 登陆 PS5 / Nintendo Switch 2（数字；Switch 实体同步；典藏约 10/16）。PC Steam 已于 4/27 发售且简中店名「姆明：暖心冬日」、评测 Overwhelmingly Positive（约 571 评 / ~98% 好评）——主机移植首发 + 可核口碑，达独立轴门槛。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-19/moomintroll-winters-warmth.jpg" alt="姆明：暖心冬日（Moomintroll: Winter's Warmth）主机发售" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>主机正式发售（独立 · 移植首发）</dd></div>
+<div><dt>平台</dt><dd>PS5 / Nintendo Switch 2（+ 既有 PC / Switch）</dd></div>
+<div><dt>发售日</dt><dd>2026-09-18（主机数字）</dd></div>
+<div><dt>开发·发行</dt><dd>Hyper Games / Kakehashi Games</dd></div>
+<div><dt>Steam 简中名称</dt><dd>姆明：暖心冬日</dd></div>
+<div><dt>AppID</dt><dd>3256150</dd></div>
+<div><dt>口碑</dt><dd>Steam Overwhelmingly Positive（PC 样本）</dd></div>
+<div><dt>时点</dt><dd>本窗发售日</dd></div>
+</dl>
+
+<ul class="facts">
+<li>PS Blog 开发者稿预告 9/18 PS5；Games Press / 日媒确认 Switch 2 同步</li><li>水彩绘本风益智冒险，系列第二作（前作 Snufkin: Melody of Moominvalley）</li><li>官方图可用 Steam header / PS Blog 稿配图</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://blog.playstation.com/2026/09/16/moomintroll-winters-warmth-launches-on-september-18/" rel="noopener" target="_blank">blog.playstation.com</a> · <a href="https://store.steampowered.com/app/3256150/?l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3256150&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://www.gamespress.com/RETURN-TO-MOOMINVALLEY-WHEN-MOOMINTROLL-WINTERS-WARMTH-COMES-TO-NINTEN" rel="noopener" target="_blank">gamespress.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span></div>
+</article><article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/sugar-lies-launches-in-late-2026-for-pc-in-spring-2027-for-switch" rel="noopener" target="_blank">Sugar Lies</a></h4></div>
+<p class="signal-lede">工画堂 Studio / Team S:OWLS 恋爱视觉小说《Sugar Lies》于 TGS 相关舞台锁档：Steam PC 2026 年末（约 2,860 日元）、Switch 2027 春（日区实体约 4,000 日元）；支持英/日/繁中/简中。展会周独立新作定档本身达门槛；同时进 🎬 片单新锁。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-19/sugar-lies.jpg" alt="Sugar Lies" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>定档 / 新作窗口锁（TGS）</dd></div>
+<div><dt>平台</dt><dd>PC（Steam） / Nintendo Switch</dd></div>
+<div><dt>档期</dt><dd>PC 2026 年末；Switch 2027 春</dd></div>
+<div><dt>开发·发行</dt><dd>Team S:OWLS / Kogado Studio</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「名称」仍为 Sugar Lies → 留英文</dd></div>
+<div><dt>AppID</dt><dd>4839490</dd></div>
+<div><dt>时点</dt><dd>Gematsu 9/17 23:50 EDT = 9/18 11:50 CST（昨 09:40 后补入）</dd></div>
+</dl>
+
+<ul class="facts">
+<li>OP「Truth or Lies」由来兎作曲、长谷川育美×饭田ヒカル演唱</li><li>Konami TGS 展台可试玩序章；ASMR 音声剧制作决定不升主 Signal</li><li>Steam coming_soon=true，精确日未锁</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/sugar-lies-launches-in-late-2026-for-pc-in-spring-2027-for-switch" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://www.4gamer.net/games/036/G103607/20260918050/" rel="noopener" target="_blank">4gamer.net</a> · <a href="https://store.steampowered.com/app/4839490/" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4839490&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span></div>
+</article><article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/character-driven-single-player-sci-fantasy-jrpg-kaelis-seraph-protocol-announced-for-pc" rel="noopener" target="_blank">Kaelis: Seraph Protocol</a></h4></div>
+<p class="signal-lede">首尔 YoshiYoshi Studio 公布学院科幻奇幻单机 JRPG《Kaelis: Seraph Protocol》：Steam PC，目标 2028；Kickstarter 募资目标约 2.7 万美元已开。角色纽带 + 回合制八色 Lumina 光谱 + 选择影响案件走向。全新 IP 独立新作公布；Steam 简中店名仍英文。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-19/kaelis-seraph-protocol.jpg" alt="Kaelis: Seraph Protocol" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>新作公布</dd></div>
+<div><dt>平台</dt><dd>PC（Steam）</dd></div>
+<div><dt>档期</dt><dd>2028</dd></div>
+<div><dt>开发·发行</dt><dd>YoshiYoshi Studio</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「名称」Kaelis: Seraph Protocol → 留英文</dd></div>
+<div><dt>AppID</dt><dd>4697010</dd></div>
+<div><dt>时点</dt><dd>Gematsu Sep 18 10:04 AM EDT = 9/18 22:04 CST</dd></div>
+</dl>
+
+<ul class="facts">
+<li>自称 character-driven single-player sci-fantasy JRPG；非二游抽卡</li><li>Kickstarter 并行；成片质量与中文支持待核</li><li>官方公布预告可作 KV</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/character-driven-single-player-sci-fantasy-jrpg-kaelis-seraph-protocol-announced-for-pc" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4697010&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://finalweapon.net/2026/09/18/kaelis-seraph-protocol-announced-for-pc-kickstarter-campaign-now-live/" rel="noopener" target="_blank">finalweapon.net</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span></div>
+</article>
+</div></div>
+<div class="axis-card"><div class="axis-title"><h3>🏟️ 大作</h3><span class="density">2</span></div><div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://news.xbox.com/en-us/2026/09/17/gears-of-war-e-day-gone-gold-pre-install-pc-specs/" rel="noopener" target="_blank">Gears of War: E-Day 已进金（Gone Gold）</a></h4></div>
+<p class="signal-lede">The Coalition / Xbox Wire：Gears of War: E-Day 正式进金。预装 9/29 08:00 PT；Premium 抢先 10/1；全球发售仍 10/6；Xbox Series / PC / Steam / 首日 Game Pass。同步公布完整 PC 规格（需硬件光追 GPU、约 115 GB SSD）。昨扫未收，本窗补入核。非新作翻牌。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-19/gears-eday.jpg" alt="Gears of War: E-Day 已进金（Gone Gold）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>进金 / 预装日锁 / PC 规格</dd></div>
+<div><dt>平台</dt><dd>Xbox Series X|S / Xbox PC / Steam / Game Pass</dd></div>
+<div><dt>发售</dt><dd>2026-10-06（Premium EA 10/01）</dd></div>
+<div><dt>预装</dt><dd>2026-09-29 08:00 PT</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「名称」仍 Gears of War: E-Day → 留英文不自译</dd></div>
+<div><dt>AppID</dt><dd>3010850</dd></div>
+<div><dt>时点</dt><dd>Xbox Wire 9/17；昨扫漏报补入</dd></div>
+</dl>
+
+<ul class="facts">
+<li>开放测试后持续打磨 PC 稳定性；规格为厂商自报</li><li>成就列表同步公开</li><li>不记入 new_games（档期早已公布）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://news.xbox.com/en-us/2026/09/17/gears-of-war-e-day-gone-gold-pre-install-pc-specs/" rel="noopener" target="_blank">news.xbox.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3010850&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>大作</span><span>增量</span></div>
+</article><article class="signal">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.metacritic.com/game/fire-emblem-fortunes-weave/" rel="noopener" target="_blank">火焰纹章：万缕千丝 用户评分开闸</a></h4></div>
+<p class="signal-lede">昨报已记首日媒体评测（MC≈89）；本窗增量：Metacritic 用户评已开，约 8.8 / 114 条（Generally Favorable）。媒体分仍约 89（66 Critic）。非复述发售翻牌。</p>
+
+<dl class="kv">
+<div><dt>事件</dt><dd>用户评分增量（昨已报发售+首日媒体评）</dd></div>
+<div><dt>平台</dt><dd>Nintendo Switch 2</dd></div>
+<div><dt>Metacritic 媒体</dt><dd>89（约 66 Critic）</dd></div>
+<div><dt>Metacritic 用户</dt><dd>8.8（约 114 User）</dd></div>
+<div><dt>时点</dt><dd>美西用户评窗口开启后堆积；截稿样本</dd></div>
+</dl>
+
+<ul class="facts">
+<li>用户两端分化仍在（满分配 vs 据点杂务差评）</li><li>首周销量官方数仍待任天堂/Famitsu</li><li>不重复记入 new_games</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.metacritic.com/game/fire-emblem-fortunes-weave/" rel="noopener" target="_blank">metacritic.com</a>。</p>
+<div class="tags"><span>大作</span><span>增量</span></div>
+</article>
+</div></div>
+<div class="axis-card"><div class="axis-title"><h3>🏭 行业其他</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/08/the-guild-remake-europa-1410-launches-in-early-access-on-september-17" rel="noopener" target="_blank">The Guild 1 Remake: Europa 1410 抢先体验上线</a></h4></div>
+<p class="signal-lede">Ashborne Games / THQ Nordic《The Guild 1 Remake: Europa 1410》Steam 抢先体验已于 9/17 上线（中世纪经营政治模拟）。截稿 Steam 约 Mostly Positive（~288 评）。完整版目标约 2027 夏。昨扫漏报，补入；THQ 中厂重制不进独立轴。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-19/guild-europa-1410.jpg" alt="The Guild 1 Remake: Europa 1410 抢先体验上线" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>抢先体验上线（漏报补入）</dd></div>
+<div><dt>平台</dt><dd>PC（Steam）</dd></div>
+<div><dt>发售日</dt><dd>2026-09-17（EA）</dd></div>
+<div><dt>开发·发行</dt><dd>Ashborne Games / THQ Nordic</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「名称」仍英文 → 留英文</dd></div>
+<div><dt>AppID</dt><dd>2977260</dd></div>
+<div><dt>口碑</dt><dd>Steam Mostly Positive（EA 初期）</dd></div>
+<div><dt>时点</dt><dd>应属昨窗；昨扫未收</dd></div>
+</dl>
+
+<ul class="facts">
+<li>六城八职业起步；多人/战斗等规划在 EA 期追加</li><li>发售价约 $29.99，两周折扣厂商自报</li><li>非独立轴（THQ Nordic 发行）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/08/the-guild-remake-europa-1410-launches-in-early-access-on-september-17" rel="noopener" target="_blank">gematsu.com</a> · <a href="https://store.steampowered.com/app/2977260/" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://www.gamespress.com/The-Guild-1-Remake-Europa-1410-Early-Access-Begins-Today" rel="noopener" target="_blank">gamespress.com</a>。</p>
+<div class="tags"><span>行业</span><span>EA</span></div>
+</article>
+</div></div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+<li>TGS 至 9/21：Silent Hill: Townfall 主舞台（约 9/19 14:30 JST）及其他后续舞台 — 仅已播可核世界首发/新锁后出片单</li>
+<li>Lollipop Chainsaw 2 Back2Back 若 9/19 主舞台出现主机外平台或精确日再升增量</li>
+<li>火焰纹章：万缕千丝 首周销量（任天堂/Famitsu）</li>
+<li>Another Eden Begins 媒体评聚合（Steam 初期 Mostly Positive；Metacritic/OC 样本仍薄）</li>
+<li>Control Resonant / Silent Hill: Townfall 9/24 发售观察</li>
+<li>Gears of War: E-Day 预装后评测解禁节奏</li>
+<li>Kaelis Kickstarter 达标与中文支持</li>
+<li>Sugar Lies 精确日；法拉第蓝 / Bloomwalker / GACHIAKUTA 精确日（延续）</li>
+<li>Well Dweller / Graveyard Keeper 2 等 9/22 主机窗观察清单，非本窗 Signal</li>
+</ul>
+  </section>
+</section>
+
+
+<footer class="foot">
+  <p>二次元空库未出 Tab · 游戏开发空库未出 Tab · 今日无新旗舰 · 今日有新 MCP/Skill 推荐（Qwen-MM-Plugins Omni）· TGS Sugar Lies 片单已出 · Xbox/Capcom 见前报不复述 · 不发涉政</p>
+  <p>观察台固定入口 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 本页快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-19.html">/daily/2026-09-19.html</a></p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
