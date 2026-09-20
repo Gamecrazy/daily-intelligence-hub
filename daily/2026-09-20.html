@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-20</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-19, 2026-09-20]。
+  含昨 ~09:40 CST 后补入核。显示 总览 + AI + 二次元 + 游戏行业；游戏开发空库未出 Tab。
+  今日无新旗舰；今日无新 MCP/Skill 推荐。
+  TGS Day3 增量片单（VOID DIVER 新锁；世界首发空）。不复述昨 Xbox/Capcom/Sugar Lies/姆明长名单。
+-->
+<style>
+
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-20 · 周日 · Asia/Shanghai · ISO 2026-W38</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W38.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-20" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-19, 09-20]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是二次元昨晚双前瞻落地——<strong>崩坏3 十周年特别节目</strong>已播 + 9.1「时序照新」前瞻（时序之律者）；<strong>鸣潮 3.7</strong>前瞻已播并锁 <strong>9/30</strong> 开门；行业 🎬 <strong>TGS Day3 增量</strong>（虚空潜者：逃出深渊新锁 2027 年 1 月；Townfall/凌越深潜）+ <strong>控制: 共振</strong>媒体评 ~MC/OC 84 + TGS Day5 台风取消。AI：Anthropic×Accenture 嵌入式评估（治理，非旗舰）。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:40 CST 后补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐（new_mcp_skill_rec=false）</dd></div>
+      <div><dt>展会</dt><dd>TGS Day3 增量已播（新锁 VOID DIVER；世界首发无）；Xbox/Capcom/Sugar Lies 见前报不复述</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>二次元：崩坏3 十周年特别节目 + 9.1 前瞻；鸣潮 3.7 前瞻已播、开门锁 9/30。</li>
+      <li>展会：TGS Day3 — 虚空潜者：逃出深渊新锁 2027 年 1 月；Townfall/凌越/P4R/Lollipop 深潜；Day5 台风中止。</li>
+      <li>独立：虚空潜者：逃出深渊定档；大作：控制: 共振媒体评 ~84。</li>
+      <li>AI：Anthropic×Accenture 嵌入式评估（治理轴，非旗舰）；无新旗舰、无新 MCP/Skill 推荐。</li>
+    </ul>
+    <p class="lib-note">判定：双前瞻落地 + TGS Day3 新锁扛主线。不复述昨 Sugar Lies/姆明/Kaelis/Gears/Omni-Flash 长名单。不发涉政。游戏开发空库未出 Tab。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric"><b>8</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>6</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>3</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric"><b>0</b><span>MCP/Skill 推荐</span></div>
+  <div class="metric"><b>1</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="库切换">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ai">AI 观察</button>
+  <button class="tab-btn" data-tab="anime">二次元</button>
+  <button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+
+<section id="ov" class="tab-pane active">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 落在崩坏3 十周年特别节目 + 9.1 前瞻、鸣潮 3.7 前瞻锁 9/30，以及 TGS Day3 片单 / 虚空潜者定档 / 控制: 共振评测 / Anthropic×Accenture 治理。游戏开发空库未出 Tab。今日无新旗舰；今日无新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>8（AI 1 + 二次元 2 + 行业 5）</dd></div>
+      <div><dt>高 Attention</dt><dd>6（fire≥2）</dd></div>
+      <div><dt>空库</dt><dd>游戏开发（未出 Tab）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（虚空潜者：逃出深渊定档）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>二次元：崩坏3 十周年+9.1；鸣潮 3.7 前瞻已播、9/30 开门。</li>
+      <li>行业：TGS Day3 片单（VOID DIVER 新锁）；控制: 共振 ~MC/OC 84；Day5 取消；Lollipop 电影化。</li>
+      <li>AI：Accenture 嵌入式评估（治理）；无新旗舰、无 MCP/Skill 推荐。</li>
+      <li>空库：游戏开发 — 总览只记「未出 Tab」，不编造信号。</li>
+    </ul>
+    <p class="lib-note">判定：三库同出；展会片单已出（仅新锁）；双前瞻为二次元主轴。</p>
+  </div>
+
+  <h2 class="section-title">最高 Attention</h2>
+  <div class="overview-grid">
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 二次元</span>
+<h3>崩坏3 十周年特别节目已播 + 9.1「时序照新」内容前瞻（时序之律者）</h3>
+<p class="ov-lede">《崩坏3》十周年庆典特别节目于 9/19 19:30 播出后，米游社同晚放出「内容回顾」与【公告】V9.1「时序照新」新版本内容前瞻：全新 S 级寻梦者「时序之律者」登场（角色补给首次十连免费），并预告主线第二部后日谈「海正用火的声音…</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>十周年特别节目已播 + 9.1 版本内容前瞻官宣</dd></div><div><dt>版本</dt><dd>9.1「时序照新」（即将开启；截稿未见独立维护公告锁死开门时刻）</dd></div><div><dt>新角色</dt><dd>S 级寻梦者「时序之律者」（角色补给首次十连免费）</dd></div><div><dt>主线</dt><dd>第二部后日谈「海正用火的声音歌唱」</dd></div>
+</dl>
+</div><div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 二次元</span>
+<h3>鸣潮 3.7「镜锁妄世，心照红尘」前瞻通讯已播（9/30 开门）</h3>
+<p class="ov-lede">《鸣潮》3.7 版本前瞻通讯于 9/19 19:00 播出；B 站官号同晚上线《3.7版本前瞻通讯｜回顾影像》，官方简介确认玄方终章版本「镜锁妄世，心照红尘」将于 9 月 30 日开启，并继续以岁主「心」（心月狐）与「锁暝」双导电五星…</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>3.7 前瞻通讯已播 + 官方回顾影像/开门日一线</dd></div><div><dt>版本</dt><dd>3.7「镜锁妄世，心照红尘」（玄方终章）</dd></div><div><dt>开门</dt><dd>2026-09-30（官号回顾影像简介）</dd></div><div><dt>新共鸣者</dt><dd>心（心月狐 / 岁主，导电·音感仪口径）＋ 锁暝（导电·迅刀口径）</dd></div>
+</dl>
+</div><div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · AI 观察</span>
+<h3>Anthropic×Accenture：嵌入式评估伙伴关系（非新旗舰）</h3>
+<p class="ov-lede">Anthropic 于 Sep 18 宣布与 Accenture（由其 AI 业务 Faculty 牵头）就前沿模型「嵌入式评估」建立伙伴关系：评估/红队、对齐评估、安全护栏测试；双方各计划未来五年至少投入 10 亿美元建设该能力。嵌…</p>
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>Embedded evaluation partnership（Anthropic × Accenture / Faculty）</dd></div><div><dt>落款</dt><dd>anthropic.com/news/accenture-embedded-evaluation；日期 Sep 18, 2026</dd></div><div><dt>投入</dt><dd>双方各预期未来五年至少 $1B（厂商自报）</dd></div><div><dt>范围</dt><dd>模型评估与红队、对齐评估、safeguards 测试；非独占，还将宣布其他评估方</dd></div>
+</dl>
+</div><div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>控制: 共振（Control Resonant）媒体评测开闸</h3>
+<p class="ov-lede">Remedy《控制: 共振》评测解禁后媒体分已堆出：Metacritic 约 84（约 60 Critic）、OpenCritic schema 约 84（65 条，截稿样本）。Steam 简中店名「控制: 共振」，全球发售仍 202…</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>媒体评测开闸（漏报补入）</dd></div><div><dt>平台</dt><dd>PS5 / Xbox Series X|S / PC</dd></div><div><dt>发售</dt><dd>2026-09-24</dd></div><div><dt>Metacritic</dt><dd>84（约 60 Critic）</dd></div>
+</dl>
+</div><div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>🎬 TGS 2026 · Day3 增量片单（已播）</h3>
+<p class="ov-lede">TGS 2026 第 3 日（公众日）可核增量：Silent Hill: Townfall 主舞台已播约 50 分钟实机（档期仍 9/24，无新锁→深潜）；独立作《虚空潜者：逃出深渊》于 4Gamer 展台舞台新锁 2027 年 1 …</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会 Day3 已播 / 🎬 展会片单增量</dd></div><div><dt>档期窗</dt><dd>2026-09-19（昨 09:40 CST 后～本窗）</dd></div><div><dt>世界首发</dt><dd>无（本窗可核；凌越为已公布扩充的世界初实机，归深潜）</dd></div><div><dt>新锁</dt><dd>虚空潜者：逃出深渊 — 2027 年 1 月（精确日未锁）/ 无 Early Access</dd></div>
+</dl>
+</div><div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>虚空潜者：逃出深渊（VOID DIVER: Escape from the Abyss）定档 2027 年 1 月</h3>
+<p class="ov-lede">韩国 Studio Nemo 独立搜打撤动作 RPG《虚空潜者：逃出深渊》于 TGS Day3 4Gamer 展台舞台锁档：2027 年 1 月正式发售（精确日稍后），并明确不做 Early Access、直接 1.0。Steam 简…</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>定档 / 新锁（TGS · 独立）</dd></div><div><dt>平台</dt><dd>PC（Steam）</dd></div><div><dt>档期</dt><dd>2027 年 1 月（精确日未锁）</dd></div><div><dt>开发·发行</dt><dd>STUDIO NEMO / LoadComplete · RED BRICK HOUSE · Boltray Games</dd></div>
+</dl>
+</div>
+  </div>
+
+  <section class="watch" style="margin-top:22px">
+    <h3>观察清单</h3>
+    <ul>
+<li>TGS Day4（9/20）已播增量；PC Gaming Show Tokyo Direct（约 9/21 00:00 CST）明日核</li><li>Lollipop Chainsaw 2 精确日/多平台；电影档 TBA</li><li>火焰纹章：万缕千丝 首周销量（Famitsu 周 9/14–20 约 9/24）</li><li>SILENT HILL: Townfall / 控制: 共振 9/24 发售观察</li><li>Gears of War: E-Day 预装（9/29）后评测</li><li>虚空潜者：逃出深渊 精确日；Sugar Lies / 法拉第蓝 等精确日</li><li>Grok 4.7 / 4.8：仍未发；docs Latest=Grok 4.6</li><li>DeepSeek-V4.1-Pro：未发；Qwen4 盯云栖 9/22–24</li><li>原神 7.1 开门 9/23；崩坏3 9.1 开门（媒体传约 9/24，未见维护锁日）；星铁 4.6 前瞻今晚 19:30 未播不预写</li><li>鸣潮 3.7 已锁 9/30；等维护公告细化时刻</li>
+</ul>
+  </section>
+</section>
+
+
+<section id="ai" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🤖</span><h2>AI 观察</h2></div>
+    <p class="lib-lede">今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。漏报补入 Anthropic×Accenture 嵌入式评估伙伴关系（治理轴，非旗舰）。现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6。昨报 Omni-Flash / Voice Transcribe / Astra for Law 不复述。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>高 Attention</dt><dd>1</dd></div>
+      <div><dt>新旗舰</dt><dd>无</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>🏭 行业/治理：Anthropic×Accenture 嵌入式评估（Sep 18 漏报补入）。</li>
+      <li>🧠 模型发布：今日无新一般文本旗舰。</li>
+      <li>🔧 Agent/MCP/Skill：今日无达推荐门槛一线包。</li>
+    </ul>
+    <p class="lib-note">判定：无一般文本旗舰 GA；无推荐条。pending：Grok 4.7/4.8、V4.1-Pro、Qwen4 云栖。</p>
+  </div>
+
+<div class="axis-card "><div class="axis-title"><h3>🏭 行业 / 国内</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.anthropic.com/news/accenture-embedded-evaluation" rel="noopener" target="_blank">Anthropic×Accenture：嵌入式评估伙伴关系（非新旗舰）</a></h4></div>
+<p class="signal-lede">Anthropic 于 Sep 18 宣布与 Accenture（由其 AI 业务 Faculty 牵头）就前沿模型「嵌入式评估」建立伙伴关系：评估/红队、对齐评估、安全护栏测试；双方各计划未来五年至少投入 10 亿美元建设该能力。嵌入式评估员将获得接近员工的内部访问，观察训练与部署决策。属 AI 安全/治理轴，非新一般文本旗舰；昨扫 Anthropic news 未收入，本窗漏报补入。</p>
+
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>Embedded evaluation partnership（Anthropic × Accenture / Faculty）</dd></div>
+<div><dt>落款</dt><dd>anthropic.com/news/accenture-embedded-evaluation；日期 Sep 18, 2026</dd></div>
+<div><dt>投入</dt><dd>双方各预期未来五年至少 $1B（厂商自报）</dd></div>
+<div><dt>范围</dt><dd>模型评估与红队、对齐评估、safeguards 测试；非独占，还将宣布其他评估方</dd></div>
+<div><dt>机制</dt><dd>嵌入式评估员在公司内部工作，访问接近员工；可向公众提供更知情的风险/收益说明</dd></div>
+<div><dt>是否新旗舰</dt><dd>否</dd></div>
+<div><dt>是否推荐条</dt><dd>否（非 MCP/Skill 工作流包）</dd></div>
+</dl>
+
+<ul class="facts">
+<li>官方强调嵌入式评估不减轻 Anthropic 自身安全责任，而是使承诺更可核验。</li><li>短期由 Anthropic 直接资助 Accenture 工作；同时与 METR 等非营利评估方探讨自筹资金试点。</li><li>与 Sep 17「前沿实验室节奏三项测量」同属治理轴，但为本窗漏报的独立伙伴关系落款。</li><li>不当 new_flagship；不驱动 new_mcp_skill_rec。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.anthropic.com/news/accenture-embedded-evaluation" rel="noopener" target="_blank">anthropic.com</a>。</p>
+<div class="tags"><span>行业/治理</span><span>非旗舰</span></div>
+</article>
+</div></div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+<li>Grok 4.7 / 4.8: 仍未发布；docs Latest=Grok 4.6</li><li>DeepSeek-V4.1-Pro: 未发布</li><li>DeepSeek deepseek-v4-pro 路由: API 口径延续，≠新旗舰</li><li>Qwen4 / 云栖 2026: 未 GA；会议 9/22–24 杭州（未到不预写）</li>
+</ul>
+  </section>
+</section>
+
+
+<section id="anime" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+    <p class="lib-lede">昨晚双前瞻落地：<strong>崩坏3 十周年特别节目</strong>已播 → 米游社内容回顾 + 9.1「时序照新」前瞻（时序之律者 / 首次十连免费）；<strong>鸣潮 3.7</strong>前瞻通讯已播 → 官号回顾影像确认「镜锁妄世，心照红尘」<strong>9/30</strong> 开门（心 / 锁暝）。星铁 4.6 前瞻今晚 19:30 未到不预写。不复述蔚蓝档案 Ex、SideM、时序之律者旧宣传列车。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>2</dd></div>
+      <div><dt>高 Attention</dt><dd>2</dd></div>
+      <div><dt>新作</dt><dd>无（new_games 空）</dd></div>
+      <div><dt>主轴</dt><dd>🔄 版本更新 / 大版本 / 周年庆</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>崩坏3：十周年特别节目 9/19 19:30 已播；9.1「时序照新」内容前瞻同晚放出。</li>
+      <li>鸣潮：3.7 前瞻 9/19 19:00 已播；开门锁 9/30（官号回顾影像简介）。</li>
+      <li>星铁 4.6 前瞻今晚未播不预写；原神 7.1 开门仍 9/23。</li>
+    </ul>
+    <p class="lib-note">判定：双前瞻实质增量升格正文。9.1 开门日媒体传约 9/24 进 pending，不以传闻写成已锁。</p>
+  </div>
+
+<div class="axis-card "><div class="axis-title"><h3>🔄 版本更新 / 大版本 / 周年庆</h3><span class="density">2</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.miyoushe.com/bh3/article/78268762" rel="noopener" target="_blank">崩坏3 十周年特别节目已播 + 9.1「时序照新」内容前瞻（时序之律者）</a></h4></div>
+<p class="signal-lede">《崩坏3》十周年庆典特别节目于 9/19 19:30 播出后，米游社同晚放出「内容回顾」与【公告】V9.1「时序照新」新版本内容前瞻：全新 S 级寻梦者「时序之律者」登场（角色补给首次十连免费），并预告主线第二部后日谈「海正用火的声音歌唱」、主题活动「相遇♪回忆玩具小屋」及系列周年福利。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-20/bh3-91-pv.jpg" alt="崩坏3 9.1「时序照新」宣传 PV 封面" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>十周年特别节目已播 + 9.1 版本内容前瞻官宣</dd></div>
+<div><dt>版本</dt><dd>9.1「时序照新」（即将开启；截稿未见独立维护公告锁死开门时刻）</dd></div>
+<div><dt>新角色</dt><dd>S 级寻梦者「时序之律者」（角色补给首次十连免费）</dd></div>
+<div><dt>主线</dt><dd>第二部后日谈「海正用火的声音歌唱」</dd></div>
+<div><dt>主题活动</dt><dd>「相遇♪回忆玩具小屋」（孑遗千星新服装「回笼浮想」等）</dd></div>
+<div><dt>福利</dt><dd>十周年登录已开；「银海拾忆」「甜趣沙集」；周年累消（示例：累计消耗 3 万水晶领咚！炽愿吉星新服装「月咏星谣」等）</dd></div>
+<div><dt>影像</dt><dd>9.1 宣传 PV；十周年纪念曲「予明日的叶笺」</dd></div>
+<div><dt>时点</dt><dd>节目 9/19 19:30；内容回顾约 20:50、版本前瞻约 21:00 CST（米游社）</dd></div>
+</dl>
+
+<ul class="facts">
+<li>米游社【资讯】十周年庆典特别节目丨内容回顾（post 78268762，约 9/19 20:50）：节目揭秘时序之律者、主线后日谈、玩具小屋、周年福利与新服装；并提示登录可领 S 级角色</li><li>米游社【公告】V9.1时序照新丨新版本内容前瞻（post 78268966，约 9/19 21:00）：明确「时序之律者」角色补给首次十连免费，并罗列登录/主题活动/主线/银海拾忆/甜趣沙集/周年累消等块</li><li>同步放出 9.1「时序照新」宣传 PV（78268390）与纪念曲「予明日的叶笺」（78268569）；开播日倒计时稿（78265827）并入本条不单开</li><li>9/17「时序之律者」角色介绍属未播前宣传列车，昨已拒；本日以特别节目+内容回顾/版本前瞻实质增量升格</li><li>9.1 开门日媒体多传约 9/24；截稿未见单独「维护通知/更新公告」锁死时刻 → 开门日进 pending，不以媒体传闻写成已锁日</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.miyoushe.com/bh3/article/78268762" rel="noopener" target="_blank">miyoushe.com</a> · <a href="https://www.miyoushe.com/bh3/article/78268966" rel="noopener" target="_blank">miyoushe.com</a> · <a href="https://www.miyoushe.com/bh3/article/78268390" rel="noopener" target="_blank">miyoushe.com</a> · <a href="https://www.miyoushe.com/bh3/article/78268569" rel="noopener" target="_blank">miyoushe.com</a>。</p>
+<div class="tags"><span>版本更新</span><span>周年庆</span></div>
+</article><article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.bilibili.com/video/BV1Xoeb6xE8y/" rel="noopener" target="_blank">鸣潮 3.7「镜锁妄世，心照红尘」前瞻通讯已播（9/30 开门）</a></h4></div>
+<p class="signal-lede">《鸣潮》3.7 版本前瞻通讯于 9/19 19:00 播出；B 站官号同晚上线《3.7版本前瞻通讯｜回顾影像》，官方简介确认玄方终章版本「镜锁妄世，心照红尘」将于 9 月 30 日开启，并继续以岁主「心」（心月狐）与「锁暝」双导电五星为版本脊梁。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-20/wuwa-37-recap.jpg" alt="鸣潮 3.7 版本前瞻通讯｜回顾影像" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>3.7 前瞻通讯已播 + 官方回顾影像/开门日一线</dd></div>
+<div><dt>版本</dt><dd>3.7「镜锁妄世，心照红尘」（玄方终章）</dd></div>
+<div><dt>开门</dt><dd>2026-09-30（官号回顾影像简介）</dd></div>
+<div><dt>新共鸣者</dt><dd>心（心月狐 / 岁主，导电·音感仪口径）＋ 锁暝（导电·迅刀口径）</dd></div>
+<div><dt>卡池结构</dt><dd>社群/汇总普遍按上半心、下半锁暝转述；以正式共鸣者召集公告为准</dd></div>
+<div><dt>直播福利</dt><dd>前瞻期间发放限时星声兑换码（巴哈等社群转录多组英文码；以游戏内可兑为准，短时效）</dd></div>
+<div><dt>时点</dt><dd>前瞻 9/19 19:00；官号回顾影像约 20:05 CST 上线</dd></div>
+</dl>
+
+<ul class="facts">
+<li>B 站官号「鸣潮」（mid=1955897084）BV1Xoeb6xE8y《鸣潮》3.7版本前瞻通讯｜回顾影像：简介写明「完整回顾影像已送达」，并写「3.7版本「镜锁妄世，心照红尘」将于9月30日开启」——开门日升为一线</li><li>版本定位为玄方篇章终章；新共鸣者核心为岁主「心」（心月狐）与「锁暝」，导电属性与双形态/连携等实机在前瞻前已有官方实机物料，前瞻完成定档闭环</li><li>巴哈姆特哈拉板等窗内讨论确认直播已结束并转录兑换码（如 FALLINGSANCTUM / FINDSENTINEL / WAKINGMOON 等）；兑换码属短时效福利，不单独升格</li><li>不把未核官方的累充/优化舆情争议写成版本事实；社区差评温度可作雷达，不作正文落款</li><li>昨 pending「前瞻今晚未播」关闭；开门日已锁 9/30，后续等维护公告细化时刻，不复述 9/12 定档稿</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.bilibili.com/video/BV1Xoeb6xE8y/" rel="noopener" target="_blank">bilibili.com</a> · <a href="https://www.sina.cn/news/detail/5342278925157156.html" rel="noopener" target="_blank">sina.cn</a> · <a href="https://forum.gamer.com.tw/C.php?bsn=74934&amp;snA=18856" rel="noopener" target="_blank">forum.gamer.com.tw</a>。</p>
+<div class="tags"><span>版本更新</span><span>前瞻</span></div>
+</article>
+</div></div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+<li>原神 7.1「往冥府的安魂歌」开门仍 9/23</li><li>终末地噗切娜仍约 9/24</li><li>鸣潮 3.7 开门已锁 9/30；等维护公告细化</li><li>崩坏3 9.1 开门：媒体传约 9/24；截稿未见维护公告锁日</li><li>星铁 4.6 前瞻今晚 9/20 19:30（未播不预写）</li><li>SideM 正式标题+发售日仍 TBA</li><li>重返未来1999 4.0 / 战双「远信回响」仍约 9/24；燕云「渡尘墟」约 9/23</li>
+</ul>
+  </section>
+</section>
+
+
+<section id="industry" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🕹️</span><h2>游戏行业观察</h2></div>
+    <p class="lib-lede">行业主线：🎬 <strong>TGS Day3 增量</strong>（虚空潜者：逃出深渊新锁 2027 年 1 月；Townfall/凌越深潜；无世界首发）；🧩 <strong>虚空潜者：逃出深渊</strong>定档；大作 <strong>控制: 共振</strong>媒体评 ~MC/OC 84；运营 Day5 台风中止 + Lollipop 电影化。今日<strong>有独立游戏观察新增</strong>；展会片单已出。Xbox/Capcom/Sugar Lies/姆明见前报，本日不复述长名单。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>5（展会 1 + 独立 1 + 大作 1 + 行业 2）</dd></div>
+      <div><dt>展会片单</dt><dd>有（VOID DIVER 新锁 1；世界首发无）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（1 条）</dd></div>
+      <div><dt>高 Attention</dt><dd>3</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>展会：Day3 增量；VOID DIVER 新锁；Townfall/凌越/P4R/Lollipop 深潜；Day5 取消。</li>
+      <li>独立：虚空潜者：逃出深渊 — 2027 年 1 月 / 无 EA。</li>
+      <li>大作：控制: 共振媒体评开闸 ~84（漏报补入）。</li>
+      <li>行业：TGS Day5 台风中止；Lollipop 电影化（游戏无新锁）。</li>
+    </ul>
+    <p class="lib-note">判定：Day3 片单 + VOID DIVER 定档 + 控制: 共振评测扛主线。不复述昨 Sugar Lies/姆明/Kaelis/Gears 等。PCGS 未播不预写。</p>
+  </div>
+
+<div class="axis-card show-slate"><div class="axis-title"><h3>🎬 展会片单 · TGS 2026 · Day3 增量</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.4gamer.net/games/983/G098335/20260919054/" rel="noopener" target="_blank">🎬 TGS 2026 · Day3 增量片单（已播）</a></h4></div>
+<p class="signal-lede">TGS 2026 第 3 日（公众日）可核增量：Silent Hill: Townfall 主舞台已播约 50 分钟实机（档期仍 9/24，无新锁→深潜）；独立作《虚空潜者：逃出深渊》于 4Gamer 展台舞台新锁 2027 年 1 月且不做 EA。怪物猎人荒野：凌越世界初实机、P4R 深潜等同收深潜表。不复述 Xbox/Capcom/Sugar Lies 长名单。CESA 同步宣布 9/21 Day5 因台风中止。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-20/townfall-header.jpg" alt="SILENT HILL: Townfall（TGS Day3 片单配图）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会 Day3 已播 / 🎬 展会片单增量</dd></div>
+<div><dt>档期窗</dt><dd>2026-09-19（昨 09:40 CST 后～本窗）</dd></div>
+<div><dt>世界首发</dt><dd>无（本窗可核；凌越为已公布扩充的世界初实机，归深潜）</dd></div>
+<div><dt>新锁</dt><dd>虚空潜者：逃出深渊 — 2027 年 1 月（精确日未锁）/ 无 Early Access</dd></div>
+<div><dt>已定档深潜</dt><dd>Townfall 主舞台；荒野：凌越实机；P4R 玛丽/地点剧情；Lollipop 舞台（无游戏新锁）</dd></div>
+<div><dt>展会运营</dt><dd>Day5（9/21）台风中止；9/20 仍办</dd></div>
+<div><dt>未播</dt><dd>PC Gaming Show Tokyo Direct（约 9/21 00:00 CST）— 不预写</dd></div>
+<div><dt>时点</dt><dd>昨 09:40 后；本窗入核</dd></div>
+</dl>
+<div class="compare-wrap"><table class="compare"><caption>世界首发 / 新锁 / 深潜（片单）</caption><thead><tr><th>作品</th><th>类型</th><th>档期 / 平台</th><th>备注</th></tr></thead><tbody>
+<tr><td colspan="4" style="color:var(--ink3)">本窗无可核世界首发</td></tr><tr><td>虚空潜者：逃出深渊（VOID DIVER: Escape from the Abyss）</td><td>新锁</td><td>—</td><td>PC Steam；2027 年 1 月（精确日未锁）；无 Early Access；Studio Nemo</td></tr><tr><td>SILENT HILL: Townfall</td><td>已定档深潜</td><td>—</td><td>主舞台约 50 分钟实机 + 日文配音；档期仍 2026-09-24；无新锁</td></tr><tr><td>怪物猎人荒野：凌越（Monster Hunter Wilds: Ascendance）</td><td>已定档深潜</td><td>—</td><td>世界初实机（雲居遺跡群等）；档期仍 2027</td></tr><tr><td>Persona 4 Revival</td><td>已定档深潜</td><td>—</td><td>玛丽交流 / 地点剧情等深潜；发售仍 2027-02-18（6 月已锁）</td></tr><tr><td>Lollipop Chainsaw 2 Back2Back</td><td>已定档深潜</td><td>—</td><td>舞台实机/访谈；游戏仍 PS5/2027；另宣布电影化（见行业条）</td></tr>
+</tbody></table></div><p class="compare-src">本窗无可核新作世界首发。Xbox @ TGS / Capcom Spotlight / Sugar Lies 见前报，本日不复述长名单。PC Gaming Show Tokyo Direct 截稿未播，不预写。CESA：Day5（9/21）台风中止；9/20 仍办。</p>
+<ul class="facts">
+<li>Townfall：4Gamer 舞台回顾确认约 50 分钟先行实机 + 日文配音舞台公开；发售仍 9/24（Konami）</li><li>VOID DIVER：Inven Global 9/19 落款；Steam 简中「虚空潜者：逃出深渊」AppID 3438920 店页档期「2027 年 1 月」交叉</li><li>凌越：4Gamer 15:59 JST 舞台稿；简中名取 CapcomAsia/厂商中文「怪物猎人荒野：凌越」；档期仍 2027</li><li>Xbox @ TGS / Capcom Spotlight / Sugar Lies 见 2026-09-17～19，本日不复述</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.4gamer.net/games/983/G098335/20260919054/" rel="noopener" target="_blank">4gamer.net</a> · <a href="https://www.invenglobal.com/articles/26245/no-early-access-void-diver-announces-official-launch-for-january-2027" rel="noopener" target="_blank">invenglobal.com</a> · <a href="https://www.4gamer.net/games/013/G101399/20260919040/" rel="noopener" target="_blank">4gamer.net</a> · <a href="https://www.4gamer.net/games/991/G999110/20260919042/" rel="noopener" target="_blank">4gamer.net</a> · <a href="https://www.gematsu.com/2026/09/tokyo-game-show-2026-day-five-cancelled-due-to-severe-weather-concerns" rel="noopener" target="_blank">gematsu.com</a>。</p>
+<div class="tags"><span>展会</span><span>片单</span></div>
+</article>
+</div></div>
+<div class="axis-card"><div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.invenglobal.com/articles/26245/no-early-access-void-diver-announces-official-launch-for-january-2027" rel="noopener" target="_blank">虚空潜者：逃出深渊（VOID DIVER: Escape from the Abyss）定档 2027 年 1 月</a></h4></div>
+<p class="signal-lede">韩国 Studio Nemo 独立搜打撤动作 RPG《虚空潜者：逃出深渊》于 TGS Day3 4Gamer 展台舞台锁档：2027 年 1 月正式发售（精确日稍后），并明确不做 Early Access、直接 1.0。Steam 简中店名「虚空潜者：逃出深渊」。展会周独立新作定档本身达门槛；同步进 🎬 片单新锁。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-20/void-diver-header.jpg" alt="虚空潜者：逃出深渊（VOID DIVER: Escape from the Abyss）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>定档 / 新锁（TGS · 独立）</dd></div>
+<div><dt>平台</dt><dd>PC（Steam）</dd></div>
+<div><dt>档期</dt><dd>2027 年 1 月（精确日未锁）</dd></div>
+<div><dt>开发·发行</dt><dd>STUDIO NEMO / LoadComplete · RED BRICK HOUSE · Boltray Games</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「名称」虚空潜者：逃出深渊</dd></div>
+<div><dt>AppID</dt><dd>3438920</dd></div>
+<div><dt>额外</dt><dd>无 EA；愿望单厂商自报超 25 万</dd></div>
+<div><dt>时点</dt><dd>TGS Day3（9/19）；昨 09:40 后</dd></div>
+</dl>
+
+<ul class="facts">
+<li>最多 3 人协作的像素风都市异界 extraction ARPG；demo 存档可继承正式版（厂商自报）</li><li>此前无正式发售窗，本舞台首次锁到月份</li><li>官方图可用 Steam 简中 header</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.invenglobal.com/articles/26245/no-early-access-void-diver-announces-official-launch-for-january-2027" rel="noopener" target="_blank">invenglobal.com</a> · <a href="https://store.steampowered.com/app/3438920/" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3438920&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span><span>定档</span></div>
+</article>
+</div></div>
+<div class="axis-card"><div class="axis-title"><h3>🏟️ 大作</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.metacritic.com/game/control-resonant/" rel="noopener" target="_blank">控制: 共振（Control Resonant）媒体评测开闸</a></h4></div>
+<p class="signal-lede">Remedy《控制: 共振》评测解禁后媒体分已堆出：Metacritic 约 84（约 60 Critic）、OpenCritic schema 约 84（65 条，截稿样本）。Steam 简中店名「控制: 共振」，全球发售仍 2026-09-24（PS5 / Xbox Series / PC）。昨扫只拒特性稿、未收评测开闸，本窗漏报补入。非发售翻牌。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-20/control-resonant-header.jpg" alt="控制: 共振（Control Resonant）" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption>
+</figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>媒体评测开闸（漏报补入）</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series X|S / PC</dd></div>
+<div><dt>发售</dt><dd>2026-09-24</dd></div>
+<div><dt>Metacritic</dt><dd>84（约 60 Critic）</dd></div>
+<div><dt>OpenCritic</dt><dd>84（约 65 Critic，schema）</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「名称」控制: 共振</dd></div>
+<div><dt>AppID</dt><dd>3669870</dd></div>
+<div><dt>时点</dt><dd>解禁约 9/18；样本堆至 9/19；昨扫漏报</dd></div>
+</dl>
+
+<ul class="facts">
+<li>普遍评价高于前作但未冲进 2026 头部梯队（二线综述口径）</li><li>用户评尚未开闸；首周销量待发售后</li><li>不记入 new_games（档期早已公布）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.metacritic.com/game/control-resonant/" rel="noopener" target="_blank">metacritic.com</a> · <a href="https://opencritic.com/game/20766/control-resonant" rel="noopener" target="_blank">opencritic.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3669870&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://www.gamesradar.com/games/action-rpg/control-resonant-metacritic-score-places-it-higher-than-its-predecessor-but-it-cant-touch-2026s-top-20-bangers-like-resident-evil-requiem-and-pokemon-pokopia/" rel="noopener" target="_blank">gamesradar.com</a>。</p>
+<div class="tags"><span>大作</span><span>评测</span></div>
+</article>
+</div></div>
+<div class="axis-card"><div class="axis-title"><h3>🏭 行业其他</h3><span class="density">2</span></div><div class="axis-body">
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.4gamer.net/games/991/G999110/20260919042/" rel="noopener" target="_blank">TGS 2026 最终日（9/21）因台风中止</a></h4></div>
+<p class="signal-lede">CESA 宣布东京电玩展 2026 原定最终日 9/21（30 周年首次五日展 Day5）因台风 25 号接近全日中止；9/20 仍按计划举办，21 日门票退款。展会运营增量，非作品片单。</p>
+
+<dl class="kv">
+<div><dt>事件</dt><dd>展会日程变更</dd></div>
+<div><dt>中止日</dt><dd>2026-09-21（全日）</dd></div>
+<div><dt>仍举办</dt><dd>2026-09-20</dd></div>
+<div><dt>原因</dt><dd>台风 25 号（气象/交通/安全）</dd></div>
+<div><dt>时点</dt><dd>4Gamer 9/19 16:00 JST；Gematsu 3:00 AM EDT≈15:00 CST</dd></div>
+</dl>
+
+<ul class="facts">
+<li>本届原为庆祝 30 周年首次五日制；现实质回到四日</li><li>各参展商 21 日舞台/活动随之取消，以官方与各社 X 为准</li><li>不涉及政治敏感表述</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.4gamer.net/games/991/G999110/20260919042/" rel="noopener" target="_blank">4gamer.net</a> · <a href="https://www.gematsu.com/2026/09/tokyo-game-show-2026-day-five-cancelled-due-to-severe-weather-concerns" rel="noopener" target="_blank">gematsu.com</a>。</p>
+<div class="tags"><span>行业</span></div>
+</article><article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.4gamer.net/games/038/G103882/20260919016/" rel="noopener" target="_blank">Lollipop Chainsaw 电影化公布（TGS 舞台）</a></h4></div>
+<p class="signal-lede">Lollipop Chainsaw 2 Back2Back 特别舞台宣布系列电影化；制片 Kirk Shaw、Robert Frank 登场，公开档与内容未定。游戏本身仍为 PS5 / 2027 年内，无精确日、无多平台新锁——游戏侧不升片单新锁，本条只记 IP 跨媒介增量。</p>
+
+<dl class="kv">
+<div><dt>事件</dt><dd>IP 影视化公布</dd></div>
+<div><dt>关联游戏</dt><dd>Lollipop Chainsaw 2 Back2Back（仍 PS5 / 2027）</dd></div>
+<div><dt>电影</dt><dd>档期与内容 TBA</dd></div>
+<div><dt>命名</dt><dd>无 Steam 简中店名 → 留英文不自译</dd></div>
+<div><dt>时点</dt><dd>4Gamer 9/19 11:36 JST≈10:36 CST（昨 09:40 后）</dd></div>
+</dl>
+
+<ul class="facts">
+<li>游戏侧 pending 条件（精确日/多平台）仍未满足</li><li>电影信息不升 new_games</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.4gamer.net/games/038/G103882/20260919016/" rel="noopener" target="_blank">4gamer.net</a>。</p>
+<div class="tags"><span>行业</span><span>影视化</span></div>
+</article>
+</div></div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+<li>TGS Day4（9/20）已播增量；PC Gaming Show Tokyo Direct（约 9/21 00:00 CST）— 截稿未播，明日核</li><li>Lollipop Chainsaw 2 Back2Back 若出现精确日/多平台再升游戏增量；电影档 TBA</li><li>火焰纹章：万缕千丝 首周销量</li><li>SILENT HILL: Townfall / 控制: 共振 9/24 发售观察</li><li>Gears of War: E-Day 预装后评测解禁节奏</li><li>Kaelis Kickstarter 达标后再报</li><li>虚空潜者：逃出深渊 精确日；Sugar Lies / 法拉第蓝 / Bloomwalker / GACHIAKUTA 精确日</li><li>Well Dweller / Graveyard Keeper 2 / Ved: Recure 等 9/22 主机窗观察清单</li>
+</ul>
+  </section>
+</section>
+
+
+<footer class="foot">
+  <p>游戏开发空库未出 Tab · 今日无新旗舰 · 今日无新 MCP/Skill 推荐 · TGS Day3 片单已出（VOID DIVER 新锁）· Xbox/Capcom/Sugar Lies 见前报不复述 · 不发涉政</p>
+  <p>观察台固定入口 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 本页快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-20.html">/daily/2026-09-20.html</a></p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
