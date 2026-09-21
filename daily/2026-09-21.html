@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-21</title>
+<!--
+  沿用综合日报样式骨架；事实窗口 (2026-09-20, 2026-09-21]。
+  含昨 ~09:40 CST 后补入核。显示 总览 + AI + 二次元 + 游戏行业；游戏开发空库未出 Tab。
+  今日无新旗舰；今日无新 MCP/Skill 推荐。
+  PCGS Tokyo Direct 已播片单（13 世界首发 + 大批新锁）。不复述昨崩坏3/鸣潮/VOID DIVER/控制共振/Day5取消/Accenture/Omni。
+-->
+<style>
+
+
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-21 · 周一 · Asia/Shanghai · ISO 2026-W39</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W38.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-21" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-20, 09-21]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是行业 🎬 <strong>PC Gaming Show Tokyo Direct</strong> 已播翻牌——<strong>13 世界首发</strong> + 大批秋冬新锁；二次元 <strong>星穹铁道 4.6「月升之前，与兽共舞」</strong>前瞻已播并锁 <strong>9/28</strong>（真珠·欢愉·冰）；AI 漏报补入 <strong>Qwen-Image-2.1</strong> 开源权重（图像专用，非旗舰）。独立：PCGS 世界首发簇 + 奇迹工厂/Rabbit Haul 9/21 窗 + TOKYO WALLED CITY 漏报 + 四狂神战记合集；TGS 闭幕来场 257,642 + TGS2027=9/16–20。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:40 CST 后补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐（new_mcp_skill_rec=false）</dd></div>
+      <div><dt>展会</dt><dd>PCGS Tokyo Direct 已播（13 WP + 大批新锁）；TGS 实体闭幕来场增量；Day3/Day5 取消见前报不复述</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>展会：PCGS Tokyo Direct — 13 世界首发 + 奇迹工厂/Rabbit Haul/霓虹深渊2/真菌朋克等新锁；TGS 闭幕 25.7 万 + 下届 9/16–20。</li>
+      <li>二次元：星铁 4.6 前瞻已播，开门锁 9/28；真珠（欢愉·冰）+ 专武「献给明日的色彩」。</li>
+      <li>独立：PCGS 独立 WP 簇；奇迹工厂 + Rabbit Haul 9/21 窗；TOKYO WALLED CITY 场馆漏报；四狂神战记：I&amp;II 合集 2027。</li>
+      <li>AI：Qwen-Image-2.1 开源权重（图像专用档，非旗舰）；无新旗舰、无新 MCP/Skill 推荐。</li>
+    </ul>
+    <p class="lib-note">判定：PCGS 片单 + 星铁 4.6 前瞻扛主线。不复述昨崩坏3/鸣潮/VOID DIVER/控制: 共振/Day5 取消/Accenture/Omni。不发涉政。游戏开发空库未出 Tab。</p>
+  </div>
+</header>
+
+<section class="metrics">
+  <div class="metric"><b>8</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>7</b><span>高 Attention</span></div>
+  <div class="metric accent"><b>3</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+  <div class="metric"><b>0</b><span>MCP/Skill 推荐</span></div>
+  <div class="metric"><b>1</b><span>展会片单</span></div>
+</section>
+
+<nav class="tabs" aria-label="库切换">
+  <button class="tab-btn active" data-tab="ov">总览</button>
+  <button class="tab-btn" data-tab="ai">AI 观察</button>
+  <button class="tab-btn" data-tab="anime">二次元</button>
+  <button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+<section id="ov" class="tab-pane active">
+  <div class="pane-digest">
+    <p class="lib-lede">最高 Attention 落在 <strong>星铁 4.6 前瞻锁 9/28</strong> 与 🎬 <strong>PCGS Tokyo Direct 片单</strong>（13 世界首发）。另有 Qwen-Image-2.1（非旗舰）、独立 WP 簇、奇迹工厂/Rabbit Haul、四狂神战记合集、TOKYO WALLED CITY。游戏开发空库未出 Tab。今日无新旗舰；今日无新 MCP/Skill 推荐。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>8（AI 1 + 二次元 1 + 行业 6）</dd></div>
+      <div><dt>高 Attention</dt><dd>7（fire≥2）</dd></div>
+      <div><dt>空库</dt><dd>游戏开发（未出 Tab）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（PCGS WP 簇 / 奇迹工厂·Rabbit Haul / TOKYO WALLED CITY）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业：PCGS 片单 13 WP + 大批新锁；TGS 闭幕来场 257,642 + TGS2027。</li>
+      <li>二次元：星铁 4.6「月升之前，与兽共舞」前瞻已播、9/28 开门。</li>
+      <li>AI：Qwen-Image-2.1 图像开源权重（非旗舰）；无新旗舰、无 MCP/Skill 推荐。</li>
+      <li>空库：游戏开发 — 总览只记「未出 Tab」，不编造信号。</li>
+    </ul>
+    <p class="lib-note">判定：三库同出；展会片单已出（PCGS）；星铁前瞻为二次元主轴。</p>
+  </div>
+
+  <h2 class="section-title">最高 Attention</h2>
+  <div class="overview-grid">
+<div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 二次元</span>
+<h3>星穹铁道 4.6「月升之前，与兽共舞」前瞻特别节目已播（9/28 上线 · 真珠）</h3>
+<p class="ov-lede">《崩坏：星穹铁道》4.6 版本「月升之前，与兽共舞」前瞻特别节目于 9/20 19:30 播出后，米游社同晚放出回顾长图、前瞻节目页、速览与版本 PV：官方正文确认版本将于 2026 年 9 月 28 日上线；新五星「真珠」（欢愉·冰）登场…</p>
+<dl class="kv"><div><dt>事件</dt><dd>4.6 前瞻特别节目已播 + 版本内容/开门日一线</dd></div><div><dt>版本</dt><dd>4.6「月升之前，与兽共舞」</dd></div><div><dt>开门</dt><dd>2026-09-28（米游社前瞻节目页/速览正文）</dd></div><div><dt>新角色</dt><dd>五星「真珠」（欢愉·冰）；专武「献给明日的色彩（欢愉）」</dd></div></dl>
+</div><div class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 游戏行业</span>
+<h3>🎬 PC Gaming Show Tokyo Direct 2026 片单（已播）</h3>
+<p class="ov-lede">昨 pending 翻牌：PC Gaming Show Tokyo Direct 已于 9/20 09:00 PT（≈9/21 00:00 CST / 01:00 JST）播出。官方/PC Gamer/Games Press 交叉：约 36…</p>
+<dl class="kv"><div><dt>事件</dt><dd>展会同期官方秀已播 / 🎬 展会片单</dd></div><div><dt>世界首发</dt><dd>13（含独立新作簇 + 四狂神战记合集 PC/主机 + 两则扩展/更新世界首揭）</dd></div><div><dt>新锁要点</dt><dd>奇迹工厂≈9/21；The Rabbit Haul 9/21；霓虹深渊2 10/8；真菌朋克 1.0 10/20；Virtue 10/27；乐浮岛 EA 11/3 等</dd></div><div><dt>时点</dt><dd>播完≈9/21 00:00–01:30 CST；本窗入核</dd></div></dl>
+</div><div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · AI 观察</span>
+<h3>Qwen-Image-2.1：统一文生图/图像编辑开源权重（非新旗舰）</h3>
+<p class="ov-lede">通义 Qwen 官方组织于 Hugging Face / ModelScope / GitHub 放出 Qwen-Image-2.1 开源权重：统一文生图与图像编辑，视觉生成组件约 7B（32 层 Single-Stream DiT），支持…</p>
+<dl class="kv"><div><dt>产品/事项</dt><dd>Qwen-Image-2.1（文生图 + 图像编辑统一模型）</dd></div><div><dt>规格（厂商自报）</dt><dd>视觉生成约 7B / 32 DiT；原生 RGBA；最多 10 参考图；diffusers QwenImage21Pipeline</dd></div><div><dt>是否新旗舰</dt><dd>否（图像专用档）</dd></div><div><dt>时点</dt><dd>HF lastModified 2026-09-20T09:41:05Z ≈ 17:41 CST；昨截稿后漏报补入</dd></div></dl>
+</div><div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>🧩 PCGS 独立世界首发簇（WANE / 清扫至天明 / HODKA 等）</h3>
+<p class="ov-lede">PCGS Tokyo Direct 13 世界首发中，独立/小厂向可核：WANE（记忆战术肉鸽）、beautiful freaks of the desert（Q4 2026 速度跑 FPS）、清扫至天明（Dust till Dawn，山冈…</p>
+<dl class="kv"><div><dt>事件</dt><dd>世界首发簇 / 展会周独立门槛</dd></div><div><dt>平台</dt><dd>以 PC Steam 为主（部分后续扩平台未核）</dd></div><div><dt>命名要点</dt><dd>清扫至天明←Steam 简中；其余多无店名简中→留英文</dd></div><div><dt>时点</dt><dd>PCGS 播出窗</dd></div></dl>
+</div><div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>奇迹工厂（Brave New Wonders）+ The Rabbit Haul 锁 9/21 发售窗</h3>
+<p class="ov-lede">PCGS 当场锁两款独立向近发售：奇迹工厂（Brave New Wonders，自然语言指挥机器人的工厂建造）Steam 简中店名「奇迹工厂」，PC Gamer 口径 9/21、Steam 简中店页写 9/20、截稿 ~09:50 仍 co…</p>
+<dl class="kv"><div><dt>事件</dt><dd>定档 / 即将正式发售</dd></div><div><dt>奇迹工厂</dt><dd>PC Steam；简中名「奇迹工厂」AppID 2403830</dd></div><div><dt>The Rabbit Haul</dt><dd>PC Steam；AppID 2514330；店页 9/21</dd></div><div><dt>截稿状态</dt><dd>两作 Steam API 仍 coming_soon=true（未宣称已上架翻牌）</dd></div></dl>
+</div><div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>四狂神战记：I&amp;II（Lufia I &amp; II: The Sinistrals Saga）公布</h3>
+<p class="ov-lede">TAITO / Clear River Games（西方）于 PCGS 世界首发合集《四狂神战记：I&amp;II》：含《Lufia &amp; the Fortress of Doom》与前传《Lufia II: Rise of the Sinistra…</p>
+<dl class="kv"><div><dt>事件</dt><dd>新作公布 / 合集世界首发</dd></div><div><dt>平台</dt><dd>PS5 / Switch 2 / Switch / PC</dd></div><div><dt>档期</dt><dd>2027</dd></div><div><dt>命名</dt><dd>Steam 简中「四狂神战记：I&amp;II」</dd></div></dl>
+</div><div class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3>TOKYO WALLED CITY 新作公布（TGS 场馆 · 漏报补入）</h3>
+<p class="ov-lede">Grim Ronin 独立沉浸模拟《TOKYO WALLED CITY》（复古赛博朋克潜行动作 + 生存恐怖/RPG）于 TGS 2026 场馆侧揭晓并上 Steam 愿望单；计划先 EA、公开 alpha 约 18–24 个月，精确发售日…</p>
+<dl class="kv"><div><dt>事件</dt><dd>新作公布 / 世界首发（场馆）</dd></div><div><dt>平台</dt><dd>PC Steam（先 EA）</dd></div><div><dt>开发</dt><dd>Grim Ronin</dd></div><div><dt>时点</dt><dd>TGS 周场馆；PC Gamer 9/20；漏报补入</dd></div></dl>
+</div>
+  </div>
+
+  <section class="watch" style="margin-top:22px">
+    <h3>观察清单</h3>
+    <ul>
+<li>奇迹工厂 / The Rabbit Haul 截稿后上架翻牌</li><li>PCGS 软锁续精确日；Mycopunk / 霓虹深渊2 / Virtue 评测窗</li><li>Townfall / 控制: 共振 9/24；虚空潜者精确日</li><li>原神 7.1 开门 9/23；终末地噗切娜约 9/24；崩坏3 9.1 开门（媒体传约 9/24）</li><li>星铁 4.6 已锁 9/28；等维护公告细化；鸣潮 3.7 已锁 9/30</li><li>Grok 4.7 / 4.8 仍未发；DeepSeek-V4.1-Pro 未出；Qwen4 盯云栖 9/22–24（Image-2.1 ≠ Qwen4）</li><li>TGS2027=9/16–20；Lollipop / Kaelis / FE 首周 / Gears 评测（延续）</li>
+</ul>
+  </section>
+</section>
+
+<section id="ai" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🤖</span><h2>AI 观察</h2></div>
+    <p class="lib-lede">今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。漏报补入 <strong>Qwen-Image-2.1</strong> 统一文生图/图像编辑开源权重（图像专用档，不当一般文本旗舰）。现役仍 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash；Grok docs 仍 4.6。昨报 Accenture / Omni-Flash / Voice Transcribe / Astra for Law 不复述。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>高 Attention</dt><dd>1</dd></div>
+      <div><dt>新旗舰</dt><dd>无</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>🧠 模型发布：Qwen-Image-2.1 开源权重（图像专用，非旗舰）；今日无新一般文本旗舰。</li>
+      <li>🔧 Agent/MCP/Skill：今日无达推荐门槛一线包。</li>
+      <li>不与云栖 Qwen4（9/22–24）混写；Image-2.1 ≠ Qwen4。</li>
+    </ul>
+    <p class="lib-note">判定：无一般文本旗舰 GA；无推荐条。pending：Grok 4.7/4.8、V4.1-Pro、Qwen4 云栖。</p>
+  </div>
+
+<div class="axis-card "><div class="axis-title"><h3>🧠 模型发布</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://huggingface.co/Qwen/Qwen-Image-2.1" rel="noopener" target="_blank">Qwen-Image-2.1：统一文生图/图像编辑开源权重（非新旗舰）</a></h4></div>
+<p class="signal-lede">通义 Qwen 官方组织于 Hugging Face / ModelScope / GitHub 放出 Qwen-Image-2.1 开源权重：统一文生图与图像编辑，视觉生成组件约 7B（32 层 Single-Stream DiT），支持原生 RGBA 透明图、最多 10 张参考图、圈选/涂抹/蒙版局部编辑。HF API lastModified 2026-09-20T09:41:05Z（≈17:41 CST），落在昨 ~09:40 截稿之后，本窗漏报补入。属图像专用档，不当一般文本旗舰（new_flagship=false）；亦不驱动 MCP/Skill 推荐。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-21/qwen-image-21-logo.png" alt="Qwen-Image-2.1 logo" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption></figure>
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>Qwen-Image-2.1（文生图 + 图像编辑统一模型）</dd></div>
+<div><dt>落款</dt><dd>HF Qwen/Qwen-Image-2.1；ModelScope Qwen/Qwen-Image-2.1；GitHub QwenLM/Qwen-Image-2.1；官方 blog 链 qwen.ai/blog?id=qwen-image-2.1（CSR 壳，正文以 HF README 为准）</dd></div>
+<div><dt>规格（厂商自报）</dt><dd>视觉生成约 7B / 32 DiT；原生 RGBA；最多 10 参考图；diffusers QwenImage21Pipeline</dd></div>
+<div><dt>许可</dt><dd>Qwen Research License（非商业默认；商用需另授权）</dd></div>
+<div><dt>时点</dt><dd>HF lastModified 2026-09-20T09:41:05Z ≈ 17:41 CST；昨截稿后漏报补入</dd></div>
+<div><dt>是否新旗舰</dt><dd>否（图像专用档）</dd></div>
+<div><dt>是否推荐条</dt><dd>否（非 MCP/Skill 工作流包）</dd></div>
+</dl>
+<div class="analysis-box">与主流一般文本旗舰对照（定性）：Qwen-Image-2.1 为<strong>图像生成/编辑专用档</strong>（约 7B DiT，开源权重），不当 GPT-6 Astra / Claude Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash 等一般文本旗舰同列；无官方公开与上述旗舰的同口径文本评测对照表，故不硬凑数字表。许可为 Qwen Research License（非商业默认）。</div>
+<ul class="facts">
+<li>官方 README 强调四项：轻量高效（mixed-granularity attention + prefix KV cache）、原生透明与统一创作/编辑、多参考与局部编辑、纹理/排版/人像光感 refinement。</li><li>安装路径经 transformers≥5.17 + diffusers（含 git 安装指引）与 QwenImage21Pipeline.from_pretrained(&quot;Qwen/Qwen-Image-2.1&quot;）。</li><li>支持常见宽高比至约 2048 级分辨率表（1:1 / 16:9 等，厂商表列）。</li><li>不当 new_flagship；不驱动 new_mcp_skill_rec；不与 Qwen4（云栖 9/22–24）混写。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://huggingface.co/Qwen/Qwen-Image-2.1" rel="noopener" target="_blank">huggingface.co</a> · <a href="https://huggingface.co/Qwen/Qwen-Image-2.1/raw/main/README.md" rel="noopener" target="_blank">huggingface.co</a> · <a href="https://modelscope.cn/models/Qwen/Qwen-Image-2.1" rel="noopener" target="_blank">modelscope.cn</a> · <a href="https://github.com/QwenLM/Qwen-Image-2.1" rel="noopener" target="_blank">github.com</a> · <a href="https://qwen.ai/blog?id=qwen-image-2.1" rel="noopener" target="_blank">qwen.ai</a>。</p>
+<div class="tags"><span>Qwen</span><span>Image</span><span>开源权重</span><span>非旗舰</span></div>
+</article>
+</div></div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+<li>Grok 4.7 / 4.8：仍未发布；docs Latest=Grok 4.6</li><li>DeepSeek-V4.1-Pro：未发布</li><li>DeepSeek deepseek-v4-pro 路由：API 口径延续，≠新旗舰</li><li>Qwen4 / 云栖 2026：未 GA；会议 9/22–24 杭州（未到不预写；Image-2.1 ≠ Qwen4）</li>
+</ul>
+  </section>
+</section>
+
+<section id="anime" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+    <p class="lib-lede">星铁 4.6 前瞻落地：特别节目已播 → 米游社回顾长图/速览/PV 确认「月升之前，与兽共舞」<strong>9/28</strong> 上线；新五星<strong>真珠</strong>（欢愉·冰）+ 专武「献给明日的色彩」；上半真珠+绯英、下半千冶·刃；星际幻宠；并预告 4.8×绝区零（艾莲/耀嘉音）。崩坏3 十周年/9.1、鸣潮 3.7 昨已报不复述。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>高 Attention</dt><dd>1</dd></div>
+      <div><dt>新作</dt><dd>无（new_games 空）</dd></div>
+      <div><dt>主轴</dt><dd>🔄 版本更新 / 大版本 / 周年庆</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>星铁：4.6 前瞻 9/20 19:30 已播；开门锁 9/28（米游社正文）。</li>
+      <li>新角色：真珠（欢愉·冰）；专武「献给明日的色彩」。</li>
+      <li>不复述崩坏3/鸣潮；原神 7.1 开门仍 9/23。</li>
+    </ul>
+    <p class="lib-note">判定：前瞻实质增量升格正文。开门已锁 9/28，后续等维护公告细化时刻。</p>
+  </div>
+
+<div class="axis-card "><div class="axis-title"><h3>🔄 版本更新 / 大版本 / 周年庆</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.miyoushe.com/sr/article/78286964" rel="noopener" target="_blank">星穹铁道 4.6「月升之前，与兽共舞」前瞻特别节目已播（9/28 上线 · 真珠）</a></h4></div>
+<p class="signal-lede">《崩坏：星穹铁道》4.6 版本「月升之前，与兽共舞」前瞻特别节目于 9/20 19:30 播出后，米游社同晚放出回顾长图、前瞻节目页、速览与版本 PV：官方正文确认版本将于 2026 年 9 月 28 日上线；新五星「真珠」（欢愉·冰）登场，专属光锥「献给明日的色彩（欢愉）」；并同步公开星际幻宠玩法、绯英/风堇新时装，以及 4.8 版本与《绝区零》联动（艾莲、耀嘉音）预告。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-21/hsr-zhenzhu.jpg" alt="崩坏：星穹铁道 真珠（欢愉·冰）养成前瞻" loading="lazy"/>
+<img src="../media/2026-09-21/hsr-46-review.jpg" alt="星穹铁道 4.6「月升之前，与兽共舞」前瞻回顾长图" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption></figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>4.6 前瞻特别节目已播 + 版本内容/开门日一线</dd></div>
+<div><dt>版本</dt><dd>4.6「月升之前，与兽共舞」</dd></div>
+<div><dt>开门</dt><dd>2026-09-28（米游社前瞻节目页/速览正文）</dd></div>
+<div><dt>新角色</dt><dd>五星「真珠」（欢愉·冰）；专武「献给明日的色彩（欢愉）」</dd></div>
+<div><dt>卡池结构</dt><dd>回顾长图：真珠活动跃迁持续整个 4.6；上半真珠+绯英，下半千冶·刃（正式跃迁公告未出前以回顾长图为准）</dd></div>
+<div><dt>新场景/玩法</dt><dd>生研院；永久玩法「星际幻宠」乐园（潮玩礼券抽取/布设/好友交互）</dd></div>
+<div><dt>时装</dt><dd>绯英「月待花时」（星琼特惠）；风堇「云边拾暖」（古老梦华特惠）；特惠至约 11/11</dd></div>
+<div><dt>跨作预告</dt><dd>4.8《崩坏：星穹铁道》×《绝区零》联动：艾莲、耀嘉音登场（快讯帖；细节待后续）</dd></div>
+<div><dt>兑换码</dt><dd>国服三码（KXHN8W7FGB6U / XEZNQE6FZSNY / ZXH68F7WYTN4）至 2026-09-21 23:59:59 失效</dd></div>
+<div><dt>时点</dt><dd>节目 9/20 19:30；米游社回顾长图约 20:25、节目页约 20:30、速览约 20:40 CST</dd></div>
+</dl>
+
+<ul class="facts">
+<li>米游社「4.6版本「月升之前，与兽共舞」前瞻特别节目回顾长图」（post 78286964，约 9/20 20:25）：写明「前瞻特别节目现已结束」；兑换码失效至 9/21 23:59:59</li><li>米游社「4.6版本「月升之前，与兽共舞」前瞻特别节目」（post 78287085，约 20:30）与「4.6版本前瞻节目速览」（78287359，约 20:40）正文均写「将于2026年9月28日上线/正式上线」——开门日升为一线</li><li>米游社「【前瞻更新】真珠养成前瞻更新」（78288294，约 21:15）：明确角色「真珠（欢愉·冰）」、光锥「献给明日的色彩（欢愉）」；培养指引可设前瞻目标</li><li>米游社版本 PV（78286103）：CV 表含真珠——苏婉等；开拓任务同名「月升之前，与兽共舞」</li><li>回顾长图 EP.02 卡池块：真珠活动跃迁持续整个 4.6；上半绯英复刻、下半千冶·刃复刻（社群/速览交叉一致）；正式「活动跃迁」公告通常贴近开门再发，本日不以媒体转述另开 Signal</li><li>「星际幻宠」乐园说明（78286288）：4.6 更新后永久开放；登录领潮玩礼券等；生研院布设区</li><li>商店上新（78286608）：绯英时装「月待花时」、风堇时装「云边拾暖」；特惠自 9/28 版本更新后至 2026/11/11 03:59</li><li>快讯（78286787）：×绝区零联动于 4.8 正式上线，艾莲与耀嘉音登陆星穹列车——并入本条不单开；非 new_games</li><li>B 站官号「崩坏星穹铁道」BV1wXeq6wEGR 为同晚前瞻特别节目成片/回放入口（搜索 API 可见官号 mid=1340190821）；截稿 view 接口 412，不以简介作开门日落款（开门日以米游社正文为准）</li><li>昨 pending「星铁 4.6 前瞻今晚未播」关闭；开门日已锁 9/28，后续等维护公告细化时刻与完整更新说明</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.miyoushe.com/sr/article/78286964" rel="noopener" target="_blank">www.miyoushe.com</a> · <a href="https://www.miyoushe.com/sr/article/78287085" rel="noopener" target="_blank">www.miyoushe.com</a> · <a href="https://www.miyoushe.com/sr/article/78287359" rel="noopener" target="_blank">www.miyoushe.com</a> · <a href="https://www.miyoushe.com/sr/article/78288294" rel="noopener" target="_blank">www.miyoushe.com</a> · <a href="https://www.miyoushe.com/sr/article/78286103" rel="noopener" target="_blank">www.miyoushe.com</a>。</p>
+<div class="tags"><span>版本更新</span><span>前瞻</span></div>
+</article>
+</div></div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+<li>原神 7.1「往冥府的安魂歌」开门：仍 2026-09-23；窗内无改期/维护公告一线</li><li>终末地噗切娜免费领取：仍约 2026-09-24 12:00（「我们的大菲林！来袭！」）</li><li>鸣潮 3.7「镜锁妄世，心照红尘」开门：已锁 2026-09-30（昨官号回顾影像）；等维护公告细化时刻</li><li>崩坏3 9.1「时序照新」开门 / 维护时刻：媒体多传约 2026-09-24；截稿未见独立维护通知/更新公告锁日</li><li>星穹铁道 4.6「月升之前，与兽共舞」开门 / 维护时刻：已锁 2026-09-28（米游社前瞻节目页/速览）；等维护公告细化时刻与完整更新说明</li><li>偶像大师 SideM 家庭用正式标题 + 发售日：仍 TBA</li><li>重返未来1999 4.0「应门者」/箱中巡游：仍约 2026-09-24 开门；窗内无新改期/加料一线</li><li>战双帕弥什「远信回响」版本开门：仍约 2026-09-24；约会大作战V 联动约 9/29</li><li>燕云十六声「平澜起风波」版本开门：官网标 2026-09-24；窗外已宣，窗内无新加料一线</li><li>BanG Dream! Our Notes 全球服发售：仍约 2026-09-24；支持简中口径窗外已见</li>
+</ul>
+  </section>
+</section>
+
+<section id="industry" class="tab-pane">
+  <div class="library-head">
+    <div><span class="lib-icon">🕹️</span><h2>游戏行业观察</h2></div>
+    <p class="lib-lede">行业主线：🎬 <strong>PC Gaming Show Tokyo Direct</strong> 已播（13 世界首发 + 大批秋冬新锁）；🧩 <strong>独立 WP 簇</strong> + <strong>奇迹工厂 / Rabbit Haul</strong> 9/21 窗 + <strong>TOKYO WALLED CITY</strong> 场馆漏报；大作 <strong>四狂神战记：I&amp;II</strong> 合集公布 2027；运营 <strong>TGS 闭幕来场 257,642</strong> + TGS2027=9/16–20。今日<strong>有独立游戏观察新增</strong>；展会片单已出。Day3 VOID DIVER / Townfall / 控制: 共振 / Day5 取消见前报，本日不复述长名单。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>6（展会 1 + 独立 3 + 大作 1 + 行业 1）</dd></div>
+      <div><dt>展会片单</dt><dd>有（PCGS：13 WP + 大批新锁）</dd></div>
+      <div><dt>独立游戏观察</dt><dd>有新增（3 条）</dd></div>
+      <div><dt>高 Attention</dt><dd>5</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>展会：PCGS Tokyo Direct 已播翻牌；TGS 实体闭幕来场增量。</li>
+      <li>独立：PCGS WP 簇；奇迹工厂 + Rabbit Haul 锁 9/21（截稿仍 coming_soon）；TOKYO WALLED CITY 漏报。</li>
+      <li>大作：四狂神战记：I&amp;II 合集 PS5/Switch2/Switch/PC · 2027。</li>
+      <li>行业：CESA 四日来场 257,642；TGS2027=9/16–20。</li>
+    </ul>
+    <p class="lib-note">判定：PCGS 片单扛主线。不复述昨 VOID DIVER / 控制: 共振 / Day5 取消等。扩展/免费更新 WP 不进 new_games。</p>
+  </div>
+
+<div class="axis-card show-slate"><div class="axis-title"><h3>🎬 展会片单 · TGS 2026 · Day4 / PC Gaming Show Tokyo Direct</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.pcgamer.com/gaming-industry/events-conferences/everything-announced-at-the-pc-gaming-show-tokyo-direct-2026/" rel="noopener" target="_blank">🎬 PC Gaming Show Tokyo Direct 2026 片单（已播）</a></h4></div>
+<p class="signal-lede">昨 pending 翻牌：PC Gaming Show Tokyo Direct 已于 9/20 09:00 PT（≈9/21 00:00 CST / 01:00 JST）播出。官方/PC Gamer/Games Press 交叉：约 36 作与 DLC 更新、**13 世界首发**。世界首发与精确/窗口新锁进 🎬 片单；已定档深潜与扩展/免费更新压表。不复述 Xbox/Capcom/Day3 长名单。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-21/dust-till-dawn.jpg" alt="清扫至天明 · PCGS 世界首发" loading="lazy"/>
+<img src="../media/2026-09-21/lufia-sinistrals.jpg" alt="四狂神战记：I&amp;II · PCGS 世界首发" loading="lazy"/>
+<img src="../media/2026-09-21/brave-new-wonders.jpg" alt="奇迹工厂 · PCGS 新锁" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption></figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会同期官方秀已播 / 🎬 展会片单</dd></div>
+<div><dt>档期窗</dt><dd>2026-09-20 晚～09-21 凌晨 CST（昨 09:40 后）</dd></div>
+<div><dt>世界首发</dt><dd>13（含独立新作簇 + 四狂神战记合集 PC/主机 + 两则扩展/更新世界首揭）</dd></div>
+<div><dt>新锁要点</dt><dd>奇迹工厂≈9/21；The Rabbit Haul 9/21；霓虹深渊2 10/8；真菌朋克 1.0 10/20；Virtue 10/27；乐浮岛 EA 11/3 等</dd></div>
+<div><dt>已定档深潜</dt><dd>P4R 地点剧情；Stellar Blade Switch2 试玩；幻水 STAR LEAP 第3章；Thief Remaster 实机；扩展/DLC 见深潜表</dd></div>
+<div><dt>展会运营</dt><dd>实体闭幕增量另条；Day5 取消本身不复述</dd></div>
+<div><dt>时点</dt><dd>播完≈9/21 00:00–01:30 CST；本窗入核</dd></div>
+</dl>
+<div class="compare-wrap"><table class="compare"><caption>世界首发 / 新锁 / 深潜（片单）</caption><thead><tr><th>作品</th><th>类型</th><th>档期 / 平台</th><th>备注</th></tr></thead><tbody>
+<tr><td>Really Illegal Golf</td><td>世界首发</td><td>—</td><td>潜行高尔夫；暂无官方简中；Steam AppID 4115520；约 2027 Q1</td></tr>
+<tr><td>四狂神战记：I&amp;II（Lufia I &amp; II: The Sinistrals Saga）</td><td>世界首发</td><td>—</td><td>PS5/Switch2/Switch/PC；2027；TAITO / Clear River</td></tr>
+<tr><td>HODKA</td><td>世界首发</td><td>—</td><td>开放世界废土厢式车冒险；Steam 4530680；约 2027</td></tr>
+<tr><td>Lemonade Apocalypse</td><td>世界首发</td><td>—</td><td>增量经济讽刺；约 2027 Q1；Steam 3427820</td></tr>
+<tr><td>WANE</td><td>世界首发</td><td>—</td><td>记忆主题战术肉鸽；Steam 5189770；demo 约明年</td></tr>
+<tr><td>beautiful freaks of the desert</td><td>世界首发</td><td>—</td><td>速度跑 FPS；Q4 2026；Steam 5095490</td></tr>
+<tr><td>清扫至天明（Dust till Dawn）</td><td>世界首发</td><td>—</td><td>恐怖清扫；山冈晃配乐；Steam 简中；约 2027</td></tr>
+<tr><td>The Hollowing</td><td>世界首发</td><td>—</td><td>Lorn&#x27;s Lure 同世界飞行雾中；Steam 4882000</td></tr>
+<tr><td>Marked For Mayhem</td><td>世界首发</td><td>—</td><td>4 人地城竞合；Steam 2818700；约 2027</td></tr>
+<tr><td>Toxic Frontier</td><td>世界首发</td><td>—</td><td>卡牌建造肉鸽；约 2027 Q1；Steam 2285020</td></tr>
+<tr><td>Fish &amp; Ships</td><td>世界首发</td><td>—</td><td>合作空中搞怪；档 TBA；Steam 4738010</td></tr>
+<tr><td>BALL x PIT: Risen Ballbylon（扩展 WP）</td><td>世界首发</td><td>—</td><td>付费扩展 11/12；不进 new_games</td></tr>
+<tr><td>Quarantine Zone: Miami Zero（免费更新 WP）</td><td>世界首发</td><td>—</td><td>10/15 免费；不进 new_games</td></tr>
+<tr><td>奇迹工厂（Brave New Wonders）</td><td>新锁</td><td>—</td><td>PC；PCGS 口径 9/21 / Steam 简中店页 9/20；截稿仍 coming_soon</td></tr>
+<tr><td>The Rabbit Haul</td><td>新锁</td><td>—</td><td>PC；2026-09-21</td></tr>
+<tr><td>霓虹深渊2（Neon Abyss 2）</td><td>新锁</td><td>—</td><td>正式版/1.0 窗 2026-10-08（Gematsu/PCGS）</td></tr>
+<tr><td>Mycopunk — 真菌朋克</td><td>新锁</td><td>—</td><td>退出 EA → 1.0；PC/PS5 2026-10-20；$14.99；日一 PS+ Catalog</td></tr>
+<tr><td>Virtue and a Sledgehammer</td><td>新锁</td><td>—</td><td>PC；2026-10-27；Devolver</td></tr>
+<tr><td>我们曾到此：明日遗踪（We Were Here Tomorrow）</td><td>新锁</td><td>—</td><td>PC；2026-10-20</td></tr>
+<tr><td>Fool King</td><td>新锁</td><td>—</td><td>PC；2026-11-16</td></tr>
+<tr><td>Night Plane</td><td>新锁</td><td>—</td><td>PC；2026-10-26</td></tr>
+<tr><td>Escape from Playtime</td><td>新锁</td><td>—</td><td>PC；2026-10-21</td></tr>
+<tr><td>Young Suns</td><td>新锁</td><td>—</td><td>PC；2026-11-03</td></tr>
+<tr><td>乐浮岛（Loftia）</td><td>新锁</td><td>—</td><td>EA 2026-11-03</td></tr>
+<tr><td>Obstacle Overdrive</td><td>新锁</td><td>—</td><td>PC；2026-10-02</td></tr>
+<tr><td>Tenebris Somnia</td><td>新锁</td><td>—</td><td>PC；2026-10-16</td></tr>
+<tr><td>Let&#x27;s Build a Dungeon</td><td>新锁</td><td>—</td><td>EA 2027-02-11（PCGS；Steam 店页仍粗 2026）</td></tr>
+<tr><td>Stronghold 4 要塞4</td><td>新锁</td><td>—</td><td>PC；2026 年内（软锁）</td></tr>
+<tr><td>四狂神战记：I&amp;II</td><td>新锁</td><td>—</td><td>多平台；2027</td></tr>
+<tr><td>beautiful freaks of the desert</td><td>新锁</td><td>—</td><td>Q4 2026</td></tr>
+<tr><td>Lemonade Apocalypse / Really Illegal Golf / Toxic Frontier</td><td>新锁</td><td>—</td><td>约 2027 Q1（Steam）</td></tr>
+<tr><td>Vaewolf</td><td>新锁</td><td>—</td><td>early 2027</td></tr>
+<tr><td>Persona 4 Revival / ペルソナ4 リバイバル</td><td>已定档深潜</td><td>—</td><td>地点剧情/新曲等；发售仍 2027-02-18（Switch2 5/20）— 4Gamer 9/20</td></tr>
+<tr><td>Stellar Blade Complete Edition Switch2</td><td>已定档深潜</td><td>—</td><td>TGS 试玩配信/访谈；档期仍 11/6（Direct 已锁）</td></tr>
+<tr><td>幻想水滸伝 STAR LEAP</td><td>已定档深潜</td><td>—</td><td>第3章 9/24；舞台化等 — 版本章，不进 new_games</td></tr>
+<tr><td>Thief: The Dark Project Remastered</td><td>已定档深潜</td><td>—</td><td>Nightdive 实机预告；档 TBA</td></tr>
+<tr><td>Hello Sunshine / Hellcard 2 / UNDEFEATED: Genesis</td><td>已定档深潜</td><td>—</td><td>预告或 demo；无新精确锁或不升独立门槛单条</td></tr>
+<tr><td>BALL x PIT 扩展 / Quarantine Zone 免费更 / Cairn 免费 DLC / Core Keeper 更新</td><td>已定档深潜</td><td>—</td><td>版本更新压表；不进 new_games</td></tr>
+<tr><td>TOKYO WALLED CITY</td><td>已定档深潜</td><td>—</td><td>场馆揭晓见独立条；非 PCGS</td></tr>
+</tbody></table></div><p class="compare-src">Day3 增量（虚空潜者新锁 / Townfall·凌越深潜）见 2026-09-20；Xbox @ TGS 见 2026-09-18；Capcom Spotlight 见 2026-09-17；Sugar Lies 见 2026-09-19。本日不复述长名单。 CESA 闭幕稿：四日来场 257,642；9/21 实体中止已昨报；线上节目+ TGS2027=9/16–20。</p>
+<ul class="facts">
+<li>一手综述：PC Gamer Everything announced（Issy van der Velde，9/20）+ Games Press 同日通稿交叉 13 WP</li><li>Gematsu 同窗跟进：四狂神战记合集 / Mycopunk 10/20 / Neon Abyss 2 10/8 / We Were Here Tomorrow 10/20 / Marked For Mayhem 等</li><li>Devolver 通稿：Virtue and a Sledgehammer 10/27、Mycopunk 1.0 10/20、BALL x PIT 扩展 11/12、Quarantine Zone: Miami Zero 免费更 10/15</li><li>Xbox @ TGS / Capcom Spotlight / Day3 VOID DIVER·Townfall·凌越 见前报，本日片单不复述长名单</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.pcgamer.com/gaming-industry/events-conferences/everything-announced-at-the-pc-gaming-show-tokyo-direct-2026/" rel="noopener" target="_blank">www.pcgamer.com</a> · <a href="https://www.gamespress.com/Everything-Announced-at-the-PC-Gaming-Show-Tokyo-Direct-on-Sund-Future" rel="noopener" target="_blank">www.gamespress.com</a> · <a href="https://www.gematsu.com/2026/09/lufia-i-ii-the-sinistrals-saga-announced-for-ps5-switch-2-switch-and-pc" rel="noopener" target="_blank">www.gematsu.com</a> · <a href="https://www.gematsu.com/2026/09/mycopunk-launches-october-20" rel="noopener" target="_blank">www.gematsu.com</a> · <a href="https://www.gamespress.com/Devolver-Digital-Announces-Four-Release-Dates-for-Upcoming-Must-plays-" rel="noopener" target="_blank">www.gamespress.com</a>。</p>
+<div class="tags"><span>展会</span><span>片单</span></div>
+</article>
+</div></div>
+<div class="axis-card"><div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">3</span></div><div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gamespress.com/Everything-Announced-at-the-PC-Gaming-Show-Tokyo-Direct-on-Sund-Future" rel="noopener" target="_blank">🧩 PCGS 独立世界首发簇（WANE / 清扫至天明 / HODKA 等）</a></h4></div>
+<p class="signal-lede">PCGS Tokyo Direct 13 世界首发中，独立/小厂向可核：WANE（记忆战术肉鸽）、beautiful freaks of the desert（Q4 2026 速度跑 FPS）、清扫至天明（Dust till Dawn，山冈晃配乐恐怖清扫）、HODKA、Toxic Frontier、Fish &amp; Ships、Really Illegal Golf、Lemonade Apocalypse、The Hollowing、Marked For Mayhem 等。展会周官方秀独立世界首发本身达 5.15 门槛；同步进 🎬 片单。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-21/dust-till-dawn.jpg" alt="清扫至天明（Dust till Dawn）" loading="lazy"/>
+<img src="../media/2026-09-21/wane.jpg" alt="WANE" loading="lazy"/>
+<img src="../media/2026-09-21/beautiful-freaks.jpg" alt="beautiful freaks of the desert" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption></figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>世界首发簇 / 展会周独立门槛</dd></div>
+<div><dt>平台</dt><dd>以 PC Steam 为主（部分后续扩平台未核）</dd></div>
+<div><dt>命名要点</dt><dd>清扫至天明←Steam 简中；其余多无店名简中→留英文</dd></div>
+<div><dt>代表档期</dt><dd>beautiful freaks Q4 2026；Lemonade/Really Illegal Golf≈2027 Q1；多数 TBA/2027</dd></div>
+<div><dt>时点</dt><dd>PCGS 播出窗</dd></div>
+</dl>
+
+<ul class="facts">
+<li>Games Press 明示 World Premiere 标签与 PC Gamer 逐条顺序交叉</li><li>Steam 简中已核：清扫至天明 AppID 4694470；WANE 5189770；HODKA 4530680 等店名仍英文</li><li>扩展类 WP（BALL x PIT: Risen Ballbylon / Quarantine Zone: Miami Zero）不进本条、不进 new_games</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gamespress.com/Everything-Announced-at-the-PC-Gaming-Show-Tokyo-Direct-on-Sund-Future" rel="noopener" target="_blank">www.gamespress.com</a> · <a href="https://www.pcgamer.com/gaming-industry/events-conferences/everything-announced-at-the-pc-gaming-show-tokyo-direct-2026/" rel="noopener" target="_blank">www.pcgamer.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4694470&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=5189770&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://www.gematsu.com/2026/09/multiplayer-action-dungeon-runner-marked-for-mayhem-announced-for-pc" rel="noopener" target="_blank">www.gematsu.com</a>。</p>
+<div class="tags"><span>独立</span><span>世界首发</span></div>
+</article><article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.pcgamer.com/games/sim/command-a-legion-of-robots-in-factory-builder-brave-new-wonders-launching-tomorrow/" rel="noopener" target="_blank">奇迹工厂（Brave New Wonders）+ The Rabbit Haul 锁 9/21 发售窗</a></h4></div>
+<p class="signal-lede">PCGS 当场锁两款独立向近发售：奇迹工厂（Brave New Wonders，自然语言指挥机器人的工厂建造）Steam 简中店名「奇迹工厂」，PC Gamer 口径 9/21、Steam 简中店页写 9/20、截稿 ~09:50 仍 coming_soon；The Rabbit Haul（塔防×农场×肉鸽）Steam 简中店名仍英文，店页 2026-09-21。二者均进 new_games（定档/正式发售窗）。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-21/brave-new-wonders.jpg" alt="奇迹工厂（Brave New Wonders）" loading="lazy"/>
+<img src="../media/2026-09-21/rabbit-haul.jpg" alt="The Rabbit Haul" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption></figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>定档 / 即将正式发售</dd></div>
+<div><dt>奇迹工厂</dt><dd>PC Steam；简中名「奇迹工厂」AppID 2403830</dd></div>
+<div><dt>The Rabbit Haul</dt><dd>PC Steam；AppID 2514330；店页 9/21</dd></div>
+<div><dt>截稿状态</dt><dd>两作 Steam API 仍 coming_soon=true（未宣称已上架翻牌）</dd></div>
+<div><dt>时点</dt><dd>PCGS 播出；本窗</dd></div>
+</dl>
+
+<ul class="facts">
+<li>奇迹工厂开发 City From Naught；Rabbit Haul 开发 Caldera Interactive（PC Gamer）</li><li>不把截稿仍 coming_soon 写成「已全球上架」</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.pcgamer.com/games/sim/command-a-legion-of-robots-in-factory-builder-brave-new-wonders-launching-tomorrow/" rel="noopener" target="_blank">www.pcgamer.com</a> · <a href="https://www.pcgamer.com/games/roguelike/defend-your-farm-from-a-gaze-of-raccoons-in-this-charming-tower-defense-roguelite-out-tomorrow/" rel="noopener" target="_blank">www.pcgamer.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=2403830&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=2514330&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://www.pcgamer.com/gaming-industry/events-conferences/everything-announced-at-the-pc-gaming-show-tokyo-direct-2026/" rel="noopener" target="_blank">www.pcgamer.com</a>。</p>
+<div class="tags"><span>独立</span><span>定档</span></div>
+</article><article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.pcgamer.com/games/action/tokyo-walled-city-looks-set-to-fill-the-deus-ex-shaped-hole-in-my-life/" rel="noopener" target="_blank">TOKYO WALLED CITY 新作公布（TGS 场馆 · 漏报补入）</a></h4></div>
+<p class="signal-lede">Grim Ronin 独立沉浸模拟《TOKYO WALLED CITY》（复古赛博朋克潜行动作 + 生存恐怖/RPG）于 TGS 2026 场馆侧揭晓并上 Steam 愿望单；计划先 EA、公开 alpha 约 18–24 个月，精确发售日未锁。Steam 简中「名称」仍英文。PC Gamer 9/20 深稿；店页资产约 9/17 起——前扫未入核，本窗漏报补入。非 PCGS 条目。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-21/tokyo-walled-city.jpg" alt="TOKYO WALLED CITY" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption></figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>新作公布 / 世界首发（场馆）</dd></div>
+<div><dt>平台</dt><dd>PC Steam（先 EA）</dd></div>
+<div><dt>档期</dt><dd>TBA；EA alpha 约 18–24 个月（厂商自报）</dd></div>
+<div><dt>开发</dt><dd>Grim Ronin</dd></div>
+<div><dt>命名</dt><dd>无官方简中店名 → 留英文</dd></div>
+<div><dt>AppID</dt><dd>4165760</dd></div>
+<div><dt>时点</dt><dd>TGS 周场馆；PC Gamer 9/20；漏报补入</dd></div>
+</dl>
+
+<ul class="facts">
+<li>不在 PCGS 13 WP 名单内，单独记场馆增量</li><li>官方图可用 Steam header</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.pcgamer.com/games/action/tokyo-walled-city-looks-set-to-fill-the-deus-ex-shaped-hole-in-my-life/" rel="noopener" target="_blank">www.pcgamer.com</a> · <a href="https://store.steampowered.com/app/4165760/" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4165760&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a>。</p>
+<div class="tags"><span>独立</span><span>新作</span><span>漏报</span></div>
+</article>
+</div></div>
+<div class="axis-card"><div class="axis-title"><h3>🏟️ 大作</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/lufia-i-ii-the-sinistrals-saga-announced-for-ps5-switch-2-switch-and-pc" rel="noopener" target="_blank">四狂神战记：I&amp;II（Lufia I &amp; II: The Sinistrals Saga）公布</a></h4></div>
+<p class="signal-lede">TAITO / Clear River Games（西方）于 PCGS 世界首发合集《四狂神战记：I&amp;II》：含《Lufia &amp; the Fortress of Doom》与前传《Lufia II: Rise of the Sinistrals》现代移植增强版；平台 PS5 / Switch 2 / Switch / PC Steam，档期 2027。Steam 简中「名称」四狂神战记：I&amp;II（AppID 4027620）。系列官方译可核，进 new_games。</p>
+<figure class="signal-media">
+<img src="../media/2026-09-21/lufia-sinistrals.jpg" alt="四狂神战记：I&amp;II" loading="lazy"/>
+<figcaption>官方 / 一线配图</figcaption></figure>
+<dl class="kv">
+<div><dt>事件</dt><dd>新作公布 / 合集世界首发</dd></div>
+<div><dt>平台</dt><dd>PS5 / Switch 2 / Switch / PC</dd></div>
+<div><dt>档期</dt><dd>2027</dd></div>
+<div><dt>开发·发行</dt><dd>TAITO · Clear River Games（西）</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「四狂神战记：I&amp;II」</dd></div>
+<div><dt>AppID</dt><dd>4027620</dd></div>
+<div><dt>时点</dt><dd>PCGS；Gematsu 9/20 12:04 PM EDT≈9/21 00:04 CST</dd></div>
+</dl>
+
+<ul class="facts">
+<li>首次官方 PC 版合集（PC Gamer / Games Press）</li><li>与独立 WP 簇分开记（中厂合集/IP 向）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/lufia-i-ii-the-sinistrals-saga-announced-for-ps5-switch-2-switch-and-pc" rel="noopener" target="_blank">www.gematsu.com</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4027620&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com</a> · <a href="https://www.pcgamer.com/gaming-industry/events-conferences/everything-announced-at-the-pc-gaming-show-tokyo-direct-2026/" rel="noopener" target="_blank">www.pcgamer.com</a>。</p>
+<div class="tags"><span>大作</span><span>合集</span></div>
+</article>
+</div></div>
+<div class="axis-card"><div class="axis-title"><h3>🏭 行业其他</h3><span class="density">1</span></div><div class="axis-body">
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://prtimes.jp/main/html/rd/p/000000164.000013057.html" rel="noopener" target="_blank">TGS 2026 实体闭幕：四日来场 257,642 + 线上 Day5 + TGS2027 会期</a></h4></div>
+<p class="signal-lede">CESA 9/20 21:50 JST 发稿宣布 TGS2026 实体展闭幕：9/17–20 四日总来场 **257,642**；9/21 实体中止本身已昨报，本日只收增量——官方节目仍线上（Red Bull Revenge、Ending Stage），部分出展社自办配信；并公布 **TGS2027 会期 2027-09-16～20**（幕张）。不复述台风取消长文。</p>
+
+<dl class="kv">
+<div><dt>事件</dt><dd>展会闭幕运营增量</dd></div>
+<div><dt>来场</dt><dd>257,642（4 日合计）</dd></div>
+<div><dt>出展</dt><dd>53 国·地区 / 1,138 企业·团体（CESA）</dd></div>
+<div><dt>商谈</dt><dd>商务匹配 3,673 件（CESA 自报过去最多）</dd></div>
+<div><dt>线上 Day5</dt><dd>官方节目照常配信；舞台改线上</dd></div>
+<div><dt>TGS2027</dt><dd>2027-09-16～20</dd></div>
+<div><dt>时点</dt><dd>PR TIMES 9/20 21:50 JST≈20:50 CST</dd></div>
+</dl>
+
+<ul class="facts">
+<li>不把「取消」当新主线，只记来场/线上/下届会期</li><li>不涉及政治敏感表述</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://prtimes.jp/main/html/rd/p/000000164.000013057.html" rel="noopener" target="_blank">prtimes.jp</a> · <a href="https://tgs.cesa.or.jp/2026/" rel="noopener" target="_blank">tgs.cesa.or.jp</a>。</p>
+<div class="tags"><span>行业</span></div>
+</article>
+</div></div>
+
+  <section class="watch">
+    <h3>观察清单</h3>
+    <ul>
+<li>奇迹工厂 / The Rabbit Haul：截稿后是否已 Steam 翻牌上架与首日愿望单/评测</li><li>PCGS 其余新锁精确日是否续锁（Stronghold 4、Vaewolf、Lufia 精确日）</li><li>Mycopunk / 霓虹深渊2 / Virtue 评测解禁节奏</li><li>Townfall / 控制: 共振 9/24 发售观察（延续）</li><li>TGS Day5 线上 Ending Stage / 出展社配信若有作品级新锁再核</li><li>Lollipop 精确日/多平台；虚空潜者精确日；Kaelis Kickstarter（延续）</li><li>火焰纹章：万缕千丝 Famitsu 首周（约 9/24 前后）</li><li>Gears E-Day 预装后评测（延续）</li>
+</ul>
+  </section>
+</section>
+
+<footer class="foot">
+  <p>游戏开发空库未出 Tab · 今日无新旗舰 · 今日无新 MCP/Skill 推荐 · PCGS Tokyo Direct 片单已出（13 WP）· Day3/Day5 取消见前报不复述 · 不发涉政</p>
+  <p>观察台固定入口 <a href="https://gamecrazy.github.io/daily-intelligence-hub/">daily-intelligence-hub</a> · 本页快照 <a href="https://gamecrazy.github.io/daily-intelligence-hub/daily/2026-09-21.html">/daily/2026-09-21.html</a></p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
