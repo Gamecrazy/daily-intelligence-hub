@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-26</title>
+<style>
+
+
+
+
+
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+
+
+
+
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-26 · 周六 · Asia/Shanghai · ISO 2026-W39</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W39.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-26" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-25, 09-26]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是行业 <strong>IGNISPHERE / DAWNGAZER</strong> 公布（野间唯史新工作室，2028）+ 🧩 <strong>I Know a Guy</strong> Steam 开门特别好评 + 独立簇（<strong>离火长明2</strong> 定档 11/10 / Decklings / 一坠万千念 / Hostile Lands 1.0）+ Mercenaries Grace / A列车 9 PRIME LINE / Alpha Nomos；二次元星铁 4.6「无名勋礼」+ 版本速览（开门仍锁 9/28）与绝区零洛克茜角色展示；AI 侧<strong>无新旗舰</strong>、<strong>无新 MCP/Skill 推荐</strong>，主记 Codex 全日故障约 1 小时后恢复。展会片单无窗内增量。显示 3 库（游戏开发空库未出 Tab）。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:50 CST 后漏报补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（new_flagship=false；现役仍 GPT-6 Astra / Claude Opus 5.5·Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash / Grok 4.7）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐（new_mcp_skill_rec=false）</dd></div>
+      <div><dt>展会</dt><dd>无窗内新播官方秀（exhibition_empty）；TGS·PCGS 已报不复述；Minecraft LIVE 截稿未播不预写</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业：IGNISPHERE/DAWNGAZER 公布（fire3）+ I Know a Guy 发售（fire3）+ 离火长明2 / Decklings / 一坠万千念 / Hostile Lands；Mercenaries Grace、A列车 9 PRIME LINE、Alpha Nomos；Digital Bros 砍 Armed Fantasia；Relic Xbox / 恶魔城移动免费。</li>
+      <li>二次元：星铁 4.6 无名勋礼更新 + 版本速览（仍锁 9/28）；绝区零洛克茜《神秘负棺人》角色展示。昨开服簇无增量不复述。</li>
+      <li>AI：Codex 全日级故障约 07:03–07:54 CST 后恢复；Meta Muse Connect 早鸟意向；Crusoe 取消约 $12.5 亿 Boom 涡轮采购。无新一般文本旗舰、无新 MCP/Skill 推荐。</li>
+      <li>游戏开发空库未出 Tab（UE 5.8.3 / Unity 6000.6.3f1 / Godot 4.8-dev6 静默）。</li>
+    </ul>
+    <p class="lib-note">判定：最高 Attention 落在 DAWNGAZER 公布与 I Know a Guy 发售（均为 fire3）。今日无新旗舰、无新 MCP/Skill 推荐。显示 3 库。不复述昨控制:共振 / Townfall / 崩坏3 9.1 开服簇 / GCP MCP。不发涉政。</p>
+  </div>
+</header>
+
+<section class="metrics" aria-label="本期指标">
+  <div class="metric accent"><b>17</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>13</b><span>高 Attention</span></div>
+  <div class="metric"><b>3</b><span>显示库</span></div>
+  <div class="metric"><b>11</b><span>新游戏事件</span></div>
+  <div class="metric"><b>13</b><span>配图</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+</section>
+
+<nav class="tabs" aria-label="分页">
+  <button class="tab-btn active" data-tab="pane-overview" type="button">总览</button>
+  <button class="tab-btn" data-tab="pane-ai" type="button">AI 观察</button>
+  <button class="tab-btn" data-tab="pane-anime" type="button">二次元游戏</button>
+  <button class="tab-btn" data-tab="pane-industry" type="button">游戏行业</button>
+</nav>
+
+<section class="tab-pane active" id="pane-overview">
+  <div class="pane-digest library-head">
+    <p class="lib-lede">最高 Attention 落在行业 <strong>IGNISPHERE / DAWNGAZER</strong> 与 <strong>I Know a Guy</strong>（均为🔥🔥🔥）。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。显示 3 库；独立轴有新增。游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>17（AI 3 · 二次元 2 · 行业 12）</dd></div>
+      <div><dt>高 Attention</dt><dd>13（fire≥2）</dd></div>
+      <div><dt>新游戏事件</dt><dd>11</dd></div>
+      <div><dt>空库</dt><dd>游戏开发空库未出 Tab</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业主导：新工作室 IP 公布 + 独立发售簇 + 定档/公布波。</li>
+      <li>二次元增量克制：星铁 BP/速览 + 绝区零角色展示。</li>
+      <li>AI 轻量：Codex 可用性事故 + Muse 早鸟 + Crusoe 供应链调整。</li>
+    </ul>
+    <p class="lib-note">展会片单空。待核：星铁 4.6 开服（9/28）、鸣潮 3.7、狂三 9/29、Qwen4 / Sonnet·Haiku 5.5 / Grok 4.8 / V4.1-Pro。</p>
+  </div>
+  <h2 class="section-title">最高 Attention</h2>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+<p class="ov-lede"><a href="https://www.gematsu.com/2026/09/unicorn-overlord-director-takafumi-noma-announces-fantasy-ip-ignisphere-and-action-rpg-dawngazer-for-ps5-switch-2-and-pc" rel="noopener" target="_blank">IGNISPHERE 新 IP 与 DAWNGAZER 公布（野间唯史 / Monochrome × Good Smile）</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥🔥（3）</dd></div>
+<div><dt>轴</dt><dd>indie</dd></div>
+<div><dt>日期</dt><dd>2026-09-25</dd></div>
+</dl>
+<p class="ov-note">昨 ~09:50 后漏报补入：前 Vanillaware、《圣兽之王》（Unicorn Overlord）导演野间唯史领衔的 IGNISPHERE Studio（隶属 Monochrome）与 Good Smile Company 公布全新…</p>
+</article><article class="overview-signal high">
+<p class="ov-lede"><a href="https://store.steampowered.com/app/4173620/" rel="noopener" target="_blank">I Know a Guy: Shady Life Simulator 正式发售</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥🔥（3）</dd></div>
+<div><dt>轴</dt><dd>indie</dd></div>
+<div><dt>日期</dt><dd>2026-09-25</dd></div>
+</dl>
+<p class="ov-note">Bunch&#x27;o&#x27;Nerds 独立模拟作《I Know a Guy: Shady Life Simulator》于 9/25 Steam 正式上架：前台开披萨店、后院替手作 NPC 办「灰色人情」。截稿 Steam 特别好评（≈420/468…</p>
+</article><article class="overview-signal medium">
+<p class="ov-lede"><a href="https://status.openai.com/incidents/01M3DCNWMW57HYK8FJ5FBFPA39" rel="noopener" target="_blank">OpenAI Codex 全日级故障约 1 小时后恢复（Web / API / VS Code）</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>轴</dt><dd>🛠️ AI 编程</dd></div>
+<div><dt>日期</dt><dd>2026-09-26</dd></div>
+</dl>
+<p class="ov-note">OpenAI Status 事故页：Codex 组件出现 Full outage（影响 Codex Web、Codex API、VS Code extension 等）。时间线按 UTC 约 2026-09-25 23:03 识别升高错误 …</p>
+</article><article class="overview-signal medium">
+<p class="ov-lede"><a href="https://www.miyoushe.com/sr/article/78395357" rel="noopener" target="_blank">星穹铁道 4.6「无名勋礼」更新落地（并入版本速览；开门仍锁 9/28）</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>轴</dt><dd>🔄 版本更新 / 大版本 / 周年庆</dd></div>
+<div><dt>日期</dt><dd>2026-09-25</dd></div>
+</dl>
+<p class="ov-note">《崩坏：星穹铁道》米游社 9/25 11:30（昨截稿后）放出「4.6版本「无名勋礼」更新」（78395357）：勋礼档期锁 2026/09/28 4.6版本更新后–2026/11/09 03:59；荣勋立即星琼×680，奖章另含真珠/银枝…</p>
+</article><article class="overview-signal medium">
+<p class="ov-lede"><a href="https://www.miyoushe.com/zzz/article/78396026" rel="noopener" target="_blank">绝区零「洛克茜」角色展示《神秘负棺人》落地（并入不可售影像；下半档约 9/30）</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>轴</dt><dd>🎭 角色 / 世界观 / 剧情</dd></div>
+<div><dt>日期</dt><dd>2026-09-25</dd></div>
+</dl>
+<p class="ov-note">《绝区零》米游社 9/25 12:00 放出「洛克茜角色展示 | 神秘负棺人」（78396026，含官方展示视频）；CV 中/刘一蕾、日/赤﨑千夏。并入同日 18:00「不可售影像丨洛克茜」（78403936）与 Random Play 会…</p>
+</article><article class="overview-signal medium">
+<p class="ov-lede"><a href="https://www.gematsu.com/2026/09/nocturnal-ii-for-pc-launches-november-10" rel="noopener" target="_blank">离火长明2（Nocturnal 2）PC 定档 11/10</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>轴</dt><dd>indie</dd></div>
+<div><dt>日期</dt><dd>2026-09-25</dd></div>
+</dl>
+<p class="ov-note">昨漏报补入 / 本窗核：Sunnyside Games 横版类银河城邦续作于 Gematsu 锁定 PC Steam 2026-11-10。Steam 简中名称「离火长明2」（前作店名「离火长明」）→ 标题写法「离火长明2（Nocturna…</p>
+</article>
+  </div>
+</section>
+
+<section class="tab-pane" id="pane-ai">
+  <div class="library-head">
+    <p class="lib-lede">今日<strong>无新旗舰</strong>（new_flagship=false）；今日<strong>无新 MCP/Skill 推荐</strong>（new_mcp_skill_rec=false）。主线：OpenAI Codex 全日级故障约 1 小时后恢复（🔥🔥）+ Meta Muse Connect 早鸟意向 + Crusoe 取消约 $12.5 亿 Boom 涡轮采购。现役一般文本仍：GPT-6 Astra / Claude Opus 5.5·Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash / Grok 4.7。昨报 GCP MCP / MS Skill / Muse 眼镜·Charm / Akamai×Anthropic / Opus 5.5 等不复述。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>3</dd></div>
+      <div><dt>最高火苗</dt><dd>🔥🔥（2）</dd></div>
+      <div><dt>新旗舰</dt><dd>无</dd></div>
+      <div><dt>MCP / Skill 推荐</dt><dd>无</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>Codex Full Outage 约 07:03–07:54 CST 已 Resolved（Status 落款）。</li>
+      <li>Muse Connect 新能力早鸟意向开放（非 Charm 发售锁日）。</li>
+      <li>Crusoe×Boom 涡轮大单取消，属算力供电路径调整。</li>
+    </ul>
+    <p class="lib-note">Pending：Qwen4 Coming Soon；Sonnet/Haiku 5.5 coming weeks；Grok 4.8；DeepSeek-V4.1-Pro；Muse Charm 发售日。</p>
+  </div>
+  <h3 class="section-title">🛠️ AI 编程 / 💡 应用 / 🏭 行业</h3>
+  <article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://status.openai.com/incidents/01M3DCNWMW57HYK8FJ5FBFPA39" rel="noopener" target="_blank">OpenAI Codex 全日级故障约 1 小时后恢复（Web / API / VS Code）</a></h4></div>
+
+<p class="signal-lede">OpenAI Status 事故页：Codex 组件出现 Full outage（影响 Codex Web、Codex API、VS Code extension 等）。时间线按 UTC 约 2026-09-25 23:03 识别升高错误 → 23:34 锁定根因 → 23:45 缓解监控 → 23:54 宣布全面恢复，对应 Asia/Shanghai 约 09-26 07:03–07:54。期间有「用 API key 登录可暂时解阻」提示。属窗内编程工具可用性事件，非新模型/非 MCP·Skill 推荐。</p>
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>OpenAI Codex Full Outage（已 Resolved）</dd></div>
+<div><dt>落款</dt><dd>status.openai.com incident 01M3DCNWMW57HYK8FJ5FBFPA39 · Fri Sep 25 2026（UTC 时标）</dd></div>
+<div><dt>影响面</dt><dd>Codex Web / Codex API / VS Code extension 等 Codex 组件</dd></div>
+<div><dt>窗口内时刻</dt><dd>约 07:03–07:54 CST 2026-09-26（故障窗）；截稿前已恢复</dd></div>
+<div><dt>是否新旗舰</dt><dd>否</dd></div>
+<div><dt>是否推荐条</dt><dd>否（故障/可用性≠ MCP/Skill 推荐）</dd></div>
+</dl>
+<ul class="facts">
+<li>HN 同晚出现「Issues with Codex – Identified – Full Outage」与「Tell HN: Codex Is Down [fixed]」交叉温度。</li>
+<li>官方未在 index/news 另发模型帖；以 Status 为权威落款。</li>
+<li>不把 Codex 产品故障记成 Skill/MCP 推荐。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://status.openai.com/incidents/01M3DCNWMW57HYK8FJ5FBFPA39" rel="noopener" target="_blank">OpenAI Status · Issues with Codex</a>。</p>
+<div class="tags"><span>OpenAI</span><span>Codex</span><span>outage</span><span>status</span></div>
+</article>
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://techcrunch.com/2026/09/25/meta-opens-early-access-program-for-new-muse-features/" rel="noopener" target="_blank">Meta Muse：Connect 新能力开放早鸟意向报名</a></h4></div>
+
+<p class="signal-lede">TechCrunch 标 2026-09-25 1:34 PM PDT（≈09-26 04:34 CST）：Connect 2026 预告一批 Muse 新能力后，Meta/Muse 开放早鸟意向——向 Muse 发送固定提示即可登记。预告仍围绕数字分身视频通话、更多购物/服务连接器、Mac 电脑操控扩展、AI 眼镜唤醒等。相对昨报「眼镜/Charm」属报名通道增量，非新 MCP/Skill，Charm 发售日仍未锁。</p>
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>Muse early access 意向登记（Connect 新功能预览）</dd></div>
+<div><dt>落款</dt><dd>TechCrunch 2026-09-25 PDT；交叉 Muse @Muse X 帖</dd></div>
+<div><dt>怎么参与</dt><dd>向 Muse 发送：Can you let the Muse team know I want to be part of the Muse early access program?</dd></div>
+<div><dt>预告能力（未全部 GA）</dt><dd>avatar 视频聊 / 购物连接器 / Mac computer use 扩展 / 眼镜唤醒</dd></div>
+<div><dt>是否新旗舰</dt><dd>否</dd></div>
+<div><dt>是否推荐条</dt><dd>否（硬件/应用早鸟≠ MCP/Skill 推荐）</dd></div>
+</dl>
+<ul class="facts">
+<li>昨已报 Muse 眼镜与 Charm 硬件叙事，本条只收「早鸟名单打开」增量，不复述 Connect 全文。</li>
+<li>社媒 X 不能单独当核心落款；以 TechCrunch 二线 + X 交叉入核，火苗压到 1。</li>
+<li>Charm 发售日/定价继续 pending。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://techcrunch.com/2026/09/25/meta-opens-early-access-program-for-new-muse-features/" rel="noopener" target="_blank">TechCrunch · Muse early access</a>。</p>
+<div class="tags"><span>Meta</span><span>Muse</span><span>early-access</span><span>Connect</span></div>
+</article>
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://techcrunch.com/2026/09/25/crusoe-abandons-1-25b-plan-to-use-boom-turbines-at-ai-data-centers/" rel="noopener" target="_blank">Crusoe 取消约 $12.5 亿 Boom 涡轮采购：AI 数据中心供电路径再调整</a></h4></div>
+
+<p class="signal-lede">TechCrunch Sep 25：AI 云/算力基建商 Crusoe 放弃原计划向 Boom Supersonic 采购约 29 台 Superpower 涡轮（单机约 42 MW、合计约 $12.5 亿）用作数据中心近端主供电。Boom CEO 称涡轮不再是 Crusoe 近端主电源组合；Crusoe 确认合作终止，并称未来仍可能把涡轮与电网/风光/储能混用。属算力侧能源供应链调整，非模型发布。</p>
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>Crusoe × Boom Superpower 涡轮大单取消（≈$1.25B / 29 台）</dd></div>
+<div><dt>落款</dt><dd>TechCrunch · 2026-09-25</dd></div>
+<div><dt>影响解读</dt><dd>AI 数据中心近端发电路径从「大单涡轮」退回更混成/并网方案</dd></div>
+<div><dt>是否新旗舰</dt><dd>否</dd></div>
+<div><dt>是否推荐条</dt><dd>否</dd></div>
+</dl>
+<ul class="facts">
+<li>二线媒体落款；无涉政内容。</li>
+<li>与昨 Akamai×Anthropic 云合约同属行业算力/基础设施轴，但主体与事件不同，可独立短条。</li>
+<li>火苗 1：合约取消有新闻性，但对模型/工具链直接冲击有限。</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://techcrunch.com/2026/09/25/crusoe-abandons-1-25b-plan-to-use-boom-turbines-at-ai-data-centers/" rel="noopener" target="_blank">TechCrunch · Crusoe/Boom</a>。</p>
+<div class="tags"><span>Crusoe</span><span>Boom</span><span>data-center</span><span>power</span><span>industry</span></div>
+</article>
+</section>
+
+<section class="tab-pane" id="pane-anime">
+  <div class="library-head">
+    <p class="lib-lede">窗内增量克制：星铁 4.6「无名勋礼」更新 + 版本速览并入（开门仍锁 <strong>9/28</strong>，不预写开服）+ 绝区零「洛克茜」角色展示《神秘负棺人》。昨开服簇（崩坏3 9.1 / BanG Dream / 噗切娜 / 战双·R1999 / 星铁预下载 / 原神 7.1）无增量不复述。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>2</dd></div>
+      <div><dt>最高火苗</dt><dd>🔥🔥（2）</dd></div>
+      <div><dt>新游戏</dt><dd>无</dd></div>
+      <div><dt>开门提醒</dt><dd>星铁 4.6 → 9/28；鸣潮 3.7 → 9/30；狂三 → 9/29 10:00</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>无名勋礼档期锁 9/28 版本更新后至 11/09；维护钟点仍待核。</li>
+      <li>洛克茜展示含官方影像；3.2 下半约 9/30 开池未到不预写。</li>
+    </ul>
+    <p class="lib-note">崩坏3 庆典同游 / 原神中秋花灯不升格。SideM 标题+发售日仍 TBA。</p>
+  </div>
+  <h3 class="section-title">🔄 版本 / 🎭 角色</h3>
+  <article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.miyoushe.com/sr/article/78395357" rel="noopener" target="_blank">星穹铁道 4.6「无名勋礼」更新落地（并入版本速览；开门仍锁 9/28）</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/hsr_46_nameless.jpg" alt="星穹铁道 4.6「无名勋礼」更新落地（并入版本速览；开门仍锁 9/28）" loading="lazy"/>
+</figure>
+<p class="signal-lede">《崩坏：星穹铁道》米游社 9/25 11:30（昨截稿后）放出「4.6版本「无名勋礼」更新」（78395357）：勋礼档期锁 2026/09/28 4.6版本更新后–2026/11/09 03:59；荣勋立即星琼×680，奖章另含真珠/银枝宫廷头像等。并入同日 11:00「月升之前，与兽共舞」4.6版本速览（78394696，图集 13 张）。开门日仍锁 9/28，正文未给维护起止钟点，不预写开服。不复述昨预下载/前瞻真珠长文。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>4.6 无名勋礼更新 + 版本速览一线落地</dd></div>
+<div><dt>版本</dt><dd>4.6「月升之前，与兽共舞」</dd></div>
+<div><dt>勋礼档期</dt><dd>2026/09/28 版本更新后 – 2026/11/09 03:59</dd></div>
+<div><dt>购买关闭</dt><dd>2026/11/09 02:59（荣勋/奖章/荣勋授章）</dd></div>
+<div><dt>开门日</dt><dd>仍锁 2026-09-28（无改档；不预写开服）</dd></div>
+<div><dt>维护钟点</dt><dd>正文仍未核全；待开门前补</dd></div>
+<div><dt>并入</dt><dd>4.6版本速览 78394696（11:00）</dd></div>
+<div><dt>时点</dt><dd>昨截稿 ~09:50 后补入核</dd></div>
+</dl>
+<ul class="facts">
+<li>米游社新闻 78395357 于 9/25 11:30 上线，标题「4.6版本「无名勋礼」更新」——一线落款</li>
+<li>开启时间写「2026/09/28 4.6版本更新后」，未给 HH:MM 维护窗；pending 维护钟点/开服实况续盯</li>
+<li>同日 11:00 版本速览（78394696）并入不单开；图集复述前瞻已报内容，不升格复述真珠/生研院</li>
+<li>不复述昨 Signal 预下载&amp;更新预告全文（78372557）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.miyoushe.com/sr/article/78395357" rel="noopener" target="_blank">www.miyoushe.com/sr/article/78395357</a> · <a href="https://www.miyoushe.com/sr/article/78394696" rel="noopener" target="_blank">www.miyoushe.com/sr/article/78394696</a>。</p>
+
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.miyoushe.com/zzz/article/78396026" rel="noopener" target="_blank">绝区零「洛克茜」角色展示《神秘负棺人》落地（并入不可售影像；下半档约 9/30）</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/zzz_roxy_showcase.png" alt="绝区零「洛克茜」角色展示《神秘负棺人》落地（并入不可售影像；下半档约 9/30）" loading="lazy"/>
+</figure>
+<p class="signal-lede">《绝区零》米游社 9/25 12:00 放出「洛克茜角色展示 | 神秘负棺人」（78396026，含官方展示视频）；CV 中/刘一蕾、日/赤﨑千夏。并入同日 18:00「不可售影像丨洛克茜」（78403936）与 Random Play 会员册有奖帖（不单开）。语境：3.2「她与她的隐秘往事」期内下半列车，二线交叉下半 UP「烬夜安眠」约 9/30–10/20——未到日不预写开池实况。区别于 9/20 已拒的养成材料预告：本日为正式角色展示阶段。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>官方角色展示（含展示视频）</dd></div>
+<div><dt>角色</dt><dd>洛克茜（Roxie / 洛克茜·伊芙莉塔·普萊斯口径见官网）</dd></div>
+<div><dt>展示标题</dt><dd>神秘负棺人</dd></div>
+<div><dt>CV</dt><dd>中：刘一蕾；日：赤﨑千夏</dd></div>
+<div><dt>版本语境</dt><dd>3.2「她与她的隐秘往事」下半列车</dd></div>
+<div><dt>卡池交叉</dt><dd>二线称下半约 9/30 开；未到不预写</dd></div>
+<div><dt>并入</dt><dd>不可售影像丨洛克茜（78403936）</dd></div>
+<div><dt>时点</dt><dd>昨截稿后补入核</dd></div>
+</dl>
+<ul class="facts">
+<li>米游社活动帖 78396026 于 9/25 12:00 上线，view_type 含 vod——官方角色展示阶段</li>
+<li>78403936「不可售影像丨洛克茜」（18:00）并入宣传图不单开；盈月辉光/丽都有丽事等中秋/周边向跳过</li>
+<li>9/20 扫描曾拒「洛克茜养成材料预告」为宣传列车；本日展示帖升格为角色轴 Signal</li>
+<li>非新游/非大版本开门；开池实况等 9/30 前后再核</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.miyoushe.com/zzz/article/78396026" rel="noopener" target="_blank">www.miyoushe.com/zzz/article/78396026</a> · <a href="https://www.miyoushe.com/zzz/article/78403936" rel="noopener" target="_blank">www.miyoushe.com/zzz/article/78403936</a>。</p>
+
+</article>
+</section>
+
+<section class="tab-pane" id="pane-industry">
+  <div class="library-head">
+    <p class="lib-lede">昨 ~09:50 后漏报补入 <strong>IGNISPHERE / DAWNGAZER</strong>（fire3）+ <strong>离火长明2</strong> 定档 + <strong>A列车 9 PRIME LINE</strong> + Mercenaries Grace；本窗独立簇 <strong>I Know a Guy</strong>（特别好评，fire3）/ Decklings / 一坠万千念 / Hostile Lands 1.0。今日<strong>有独立游戏观察新增</strong>。展会片单空（exhibition_empty）。控制:共振 / Townfall 无重大增量不复述。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>12</dd></div>
+      <div><dt>最高火苗</dt><dd>🔥🔥🔥（3）</dd></div>
+      <div><dt>独立轴</dt><dd>有新增（indie_empty=false）</dd></div>
+      <div><dt>展会片单</dt><dd>空（Minecraft LIVE 截稿未播不预写）</dd></div>
+      <div><dt>新游戏事件</dt><dd>11</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>新工作室 IP：野间唯史 IGNISPHERE 首作 DAWNGAZER（2028，PS5/Switch2/PC）。</li>
+      <li>独立发售：I Know a Guy / Decklings / 一坠万千念 / Hostile Lands 1.0。</li>
+      <li>定档/公布：离火长明2 11/10、Alpha Nomos 10/12、A列车 9 PRIME LINE 12/9、Mercenaries Grace 日11月。</li>
+      <li>行业：Digital Bros 取消 Armed Fantasia 等；恶魔城初代免费上移动；Relic Xbox 开门。</li>
+    </ul>
+    <p class="lib-note">Ace Combat 8 Overview 记深潜不单开。新 IP 无官方简中店名者留英文（5.18）。</p>
+  </div>
+  <h3 class="section-title">🧩 独立游戏观察</h3>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/unicorn-overlord-director-takafumi-noma-announces-fantasy-ip-ignisphere-and-action-rpg-dawngazer-for-ps5-switch-2-and-pc" rel="noopener" target="_blank">IGNISPHERE 新 IP 与 DAWNGAZER 公布（野间唯史 / Monochrome × Good Smile）</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/dawngazer_kv.jpg" alt="IGNISPHERE 新 IP 与 DAWNGAZER 公布（野间唯史 / Monochrome × Good Smile）" loading="lazy"/>
+</figure>
+<p class="signal-lede">昨 ~09:50 后漏报补入：前 Vanillaware、《圣兽之王》（Unicorn Overlord）导演野间唯史领衔的 IGNISPHERE Studio（隶属 Monochrome）与 Good Smile Company 公布全新奇幻 IP「IGNISPHERE」，首作动作 RPG《DAWNGAZER》锁定 PS5 / Switch 2 / PC（Steam），档期 2028，支持英/日/繁中/简中。配乐工藤吉三（圣兽之王 / 艾尔登法环相关履历）。跨媒介含手办与角川轻小说线。全新 IP，本作店名/厂商中文稿暂无简中作品名 → 留英文；不自译。达独立轴「新作公布」门槛（新工作室 + 一线二线落款世界首发级公布）。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>新 IP / 新作公布（世界首发级）</dd></div>
+<div><dt>平台</dt><dd>PS5 · Switch 2 · PC Steam</dd></div>
+<div><dt>档期</dt><dd>2028</dd></div>
+<div><dt>开发·发行</dt><dd>Monochrome / IGNISPHERE Studio · Good Smile Company</dd></div>
+<div><dt>导演</dt><dd>野间唯史（前 Vanillaware，《圣兽之王》导演）</dd></div>
+<div><dt>命名</dt><dd>全新 IP，无官方简中店名 → 留 DAWNGAZER / IGNISPHERE</dd></div>
+<div><dt>语言</dt><dd>英 / 日 / 繁中 / 简中</dd></div>
+<div><dt>时点</dt><dd>Gematsu 09-24 23:00 EDT ≈ 09-25 11:00 CST（昨截稿后）</dd></div>
+</dl>
+<ul class="facts">
+<li>Monochrome 15 周年节点启动跨媒介 IP；Good Smile 负责周边商务窗口</li>
+<li>角川富士见 Fantasia 文库多部轻小说在研</li>
+<li>本条进独立轴（新工作室首作公布）；不按 3A 大作轴处理</li>
+<li>未播实机深潜不编玩法</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/unicorn-overlord-director-takafumi-noma-announces-fantasy-ip-ignisphere-and-action-rpg-dawngazer-for-ps5-switch-2-and-pc" rel="noopener" target="_blank">www.gematsu.com/2026/09/unicorn-overlord-directo</a> · <a href="https://automaton-media.com/en/news/unicorn-overlord-director-takafumi-noma-announces-brand-new-action-rpg-dawngazer-kicking-off-original-ignisphere-ip/" rel="noopener" target="_blank">automaton-media.com/en/news/unicorn-overlord-dir</a>。</p>
+
+</article>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://store.steampowered.com/app/4173620/" rel="noopener" target="_blank">I Know a Guy: Shady Life Simulator 正式发售</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/i_know_a_guy_header.jpg" alt="I Know a Guy: Shady Life Simulator 正式发售" loading="lazy"/>
+</figure>
+<p class="signal-lede">Bunch&#x27;o&#x27;Nerds 独立模拟作《I Know a Guy: Shady Life Simulator》于 9/25 Steam 正式上架：前台开披萨店、后院替手作 NPC 办「灰色人情」。截稿 Steam 特别好评（≈420/468），样本已过数百 → 初期评价明显为正，机制有明确双线新意，达 5.15 独立门槛。走完 5.18：Steam 简中名称字段仍为英文，厂商中文稿/主机店页无官方简中 → 留英文（不采用媒体「灰色人生模拟器」等自译）。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>正式发售</dd></div>
+<div><dt>平台</dt><dd>PC Steam</dd></div>
+<div><dt>档期</dt><dd>2026-09-25</dd></div>
+<div><dt>开发·发行</dt><dd>Bunch&#x27;o&#x27;Nerds</dd></div>
+<div><dt>命名</dt><dd>Steam 简中名称字段英文 → 留 I Know a Guy: Shady Life Simulator</dd></div>
+<div><dt>AppID</dt><dd>4173620</dd></div>
+<div><dt>初期评价</dt><dd>特别好评（截稿≈468 评）</dd></div>
+</dl>
+<ul class="facts">
+<li>国区畅销/热销雷达可见（交叉，非销量结论）</li>
+<li>indieova 等第三方译名不进正文</li>
+<li>样本充足，fire 控 3（非大作）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://store.steampowered.com/app/4173620/" rel="noopener" target="_blank">store.steampowered.com/app/4173620/</a> · <a href="https://store.steampowered.com/api/appdetails?appids=4173620&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com/api/appdetails?appids=417</a> · <a href="https://store.steampowered.com/appreviews/4173620?json=1" rel="noopener" target="_blank">store.steampowered.com/appreviews/4173620?json=1</a>。</p>
+
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/nocturnal-ii-for-pc-launches-november-10" rel="noopener" target="_blank">离火长明2（Nocturnal 2）PC 定档 11/10</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/nocturnal2_kv.jpg" alt="离火长明2（Nocturnal 2）PC 定档 11/10" loading="lazy"/>
+</figure>
+<p class="signal-lede">昨漏报补入 / 本窗核：Sunnyside Games 横版类银河城邦续作于 Gematsu 锁定 PC Steam 2026-11-10。Steam 简中名称「离火长明2」（前作店名「离火长明」）→ 标题写法「离火长明2（Nocturnal 2）」。独立工作室续作定档，进独立轴。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>PC 定档</dd></div>
+<div><dt>平台</dt><dd>PC Steam（主机未在本稿新锁）</dd></div>
+<div><dt>档期</dt><dd>2026-11-10</dd></div>
+<div><dt>开发·发行</dt><dd>Sunnyside Games</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「离火长明2」；前作「离火长明」</dd></div>
+<div><dt>AppID</dt><dd>2847780</dd></div>
+<div><dt>时点</dt><dd>Gematsu 09-25 06:00 EDT ≈ 18:00 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>手绘波斯风建筑氛围 + 能力回归开图，官方概要确认</li>
+<li>coming_soon=true，未开玩不预写口碑</li>
+<li>英文店名 Nocturnal 2 / 媒体 Nocturnal II 并用，中文统一「离火长明2」</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/nocturnal-ii-for-pc-launches-november-10" rel="noopener" target="_blank">www.gematsu.com/2026/09/nocturnal-ii-for-pc-laun</a> · <a href="https://store.steampowered.com/api/appdetails?appids=2847780&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com/api/appdetails?appids=284</a>。</p>
+
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/3715790/" rel="noopener" target="_blank">Decklings 正式发售</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/decklings_header.jpg" alt="Decklings 正式发售" loading="lazy"/>
+</figure>
+<p class="signal-lede">Dark Lizard Games / 2 Left Thumbs 海盗驯宠卡牌构筑作 Decklings 于 9/25 Steam 上架。截稿 19 评、好评（19/19）。驯宠 + 卡牌战斗机制有明确新意，达日常独立门槛（样本仍小，fire 控 2）。Steam 简中名称字段英文 → 留 Decklings。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>正式发售</dd></div>
+<div><dt>平台</dt><dd>PC Steam</dd></div>
+<div><dt>档期</dt><dd>2026-09-25</dd></div>
+<div><dt>开发·发行</dt><dd>Dark Lizard Games · 2 Left Thumbs</dd></div>
+<div><dt>命名</dt><dd>Steam 简中名称字段英文 → 留 Decklings</dd></div>
+<div><dt>AppID</dt><dd>3715790</dd></div>
+<div><dt>初期评价</dt><dd>好评（截稿 19/19）</dd></div>
+</dl>
+<ul class="facts">
+<li>组海盗团、驯服 Decklings、资源制造与卡牌战</li>
+<li>样本 &lt;50，不升格高火</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/3715790/" rel="noopener" target="_blank">store.steampowered.com/app/3715790/</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3715790&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com/api/appdetails?appids=371</a> · <a href="https://store.steampowered.com/appreviews/3715790?json=1" rel="noopener" target="_blank">store.steampowered.com/appreviews/3715790?json=1</a>。</p>
+
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/3989550/" rel="noopener" target="_blank">一坠万千念（Fallosophy）正式发售</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/fallosophy_header.jpg" alt="一坠万千念（Fallosophy）正式发售" loading="lazy"/>
+</figure>
+<p class="signal-lede">Reliable Plumbing Services 极简弹球攀登作于 9/25 Steam 上架。Steam 简中名称「一坠万千念」→ 标题「一坠万千念（Fallosophy）」。两键攀登跨越西方哲学史巨型弹球台，无分数/无震台，坠落重来；机制有明确新意。截稿好评（≈21/26），样本小 → fire 2。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>正式发售</dd></div>
+<div><dt>平台</dt><dd>PC Steam</dd></div>
+<div><dt>档期</dt><dd>2026-09-25</dd></div>
+<div><dt>开发·发行</dt><dd>Reliable Plumbing Services</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「一坠万千念」</dd></div>
+<div><dt>AppID</dt><dd>3989550</dd></div>
+<div><dt>初期评价</dt><dd>好评（截稿≈26 评）</dd></div>
+</dl>
+<ul class="facts">
+<li>哲学主题极简操作，差异化强</li>
+<li>样本小，不写「神作」</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/3989550/" rel="noopener" target="_blank">store.steampowered.com/app/3989550/</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3989550&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com/api/appdetails?appids=398</a> · <a href="https://store.steampowered.com/appreviews/3989550?json=1" rel="noopener" target="_blank">store.steampowered.com/appreviews/3989550?json=1</a>。</p>
+
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/3075890/" rel="noopener" target="_blank">Hostile Lands 离开抢先体验 · 1.0 正式版</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/hostile_lands_header.jpg" alt="Hostile Lands 离开抢先体验 · 1.0 正式版" loading="lazy"/>
+</figure>
+<p class="signal-lede">Perceiving Light 技能向弹幕肉鸽射击《Hostile Lands》于 9/25 离开 Early Access 交付 1.0（通稿强调 36 角色池、新 Boss 与叙事结局）。Steam coming_soon=false，类型含独立。截稿好评（10/10）样本极小 → fire 控 2，记 EA 毕业正式发售。无官方简中店名 → 留英文。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>EA → 1.0 正式发售</dd></div>
+<div><dt>平台</dt><dd>PC Steam</dd></div>
+<div><dt>档期</dt><dd>2026-09-25</dd></div>
+<div><dt>开发·发行</dt><dd>Perceiving Light</dd></div>
+<div><dt>命名</dt><dd>Steam 简中名称字段英文 → 留 Hostile Lands</dd></div>
+<div><dt>AppID</dt><dd>3075890</dd></div>
+<div><dt>初期评价</dt><dd>好评（截稿 10/10，样本极小）</dd></div>
+</dl>
+<ul class="facts">
+<li>Games Press 通稿确认今日离开 EA</li>
+<li>含同屏合作类别</li>
+<li>样本 &lt;20，不升格</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/3075890/" rel="noopener" target="_blank">store.steampowered.com/app/3075890/</a> · <a href="https://store.steampowered.com/api/appdetails?appids=3075890&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com/api/appdetails?appids=307</a> · <a href="https://store.steampowered.com/appreviews/3075890?json=1" rel="noopener" target="_blank">store.steampowered.com/appreviews/3075890?json=1</a> · <a href="https://www.gamespress.com/Hostile-Lands-a-Skill-Based-Bullet-Hell-Shooter-Blasts-Out-of-Early-Ac" rel="noopener" target="_blank">www.gamespress.com/Hostile-Lands-a-Skill-Based-B</a>。</p>
+
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/alpha-nomos-launches-october-12" rel="noopener" target="_blank">Alpha Nomos 定档 10/12</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/alpha_nomos_kv.jpg" alt="Alpha Nomos 定档 10/12" loading="lazy"/>
+</figure>
+<p class="signal-lede">昨截稿前漏报补入核：Roguelite 节奏动作《Alpha Nomos》定档 2026-10-12，PS5 / Xbox Series / PC。Steam 简中名称字段英文 → 留 Alpha Nomos。独立向节奏肉鸽定档，进独立轴。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>多平台定档</dd></div>
+<div><dt>平台</dt><dd>PS5 · Xbox Series · PC</dd></div>
+<div><dt>档期</dt><dd>2026-10-12</dd></div>
+<div><dt>命名</dt><dd>Steam 简中名称字段英文 → 留 Alpha Nomos</dd></div>
+<div><dt>AppID</dt><dd>2529960</dd></div>
+<div><dt>时点</dt><dd>Gematsu 09-24 12:15 EDT ≈ 09-25 00:15 CST（昨窗内、截稿前漏报）</dd></div>
+</dl>
+<ul class="facts">
+<li>Steam coming_soon=true 锁 10/12</li>
+<li>未开玩不预写口碑</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/alpha-nomos-launches-october-12" rel="noopener" target="_blank">www.gematsu.com/2026/09/alpha-nomos-launches-oct</a> · <a href="https://store.steampowered.com/api/appdetails?appids=2529960&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com/api/appdetails?appids=252</a>。</p>
+
+</article>
+<h3 class="section-title">🎮 新游 / 定档 / 发售</h3>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/mercenaries-grace-black-feather-and-the-golden-right-arm-announced-for-ps5-switch-and-pc" rel="noopener" target="_blank">Mercenaries Grace: Black Feather and the Golden Right Arm 公布</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/mercenaries_grace_kv.jpg" alt="Mercenaries Grace: Black Feather and the Golden Right Arm 公布" loading="lazy"/>
+</figure>
+<p class="signal-lede">RideonJapan 公布 Mercenaries Saga 系列最新作《Mercenaries Grace: Black Feather and the Golden Right Arm》，PS5 / Switch / PC Steam，日本 2026 年 11 月，英文版在备。回合制棋盘 SRPG（我方一单位行动后敌方立刻一单位反击）。系列中厂续作 → 进新游轴，不进独立轴。无官方简中店名 → 留英文，不自译「佣兵」。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>新作公布 + 日本档期窗</dd></div>
+<div><dt>平台</dt><dd>PS5 · Switch · PC Steam</dd></div>
+<div><dt>档期</dt><dd>2026-11（日本）；英文版筹备中</dd></div>
+<div><dt>开发·发行</dt><dd>RideonJapan</dd></div>
+<div><dt>命名</dt><dd>无官方简中 → 留 Mercenaries Grace: Black Feather and the Golden Right Arm</dd></div>
+<div><dt>时点</dt><dd>Gematsu 09-25 00:30 EDT ≈ 12:30 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>确认英文本亦在准备（Gematsu 向厂商核实）</li>
+<li>不并入独立轴（系列中厂 SRPG）</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/mercenaries-grace-black-feather-and-the-golden-right-arm-announced-for-ps5-switch-and-pc" rel="noopener" target="_blank">www.gematsu.com/2026/09/mercenaries-grace-black-</a>。</p>
+
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/a-train-9-prime-line-announced-for-pc" rel="noopener" target="_blank">A列车 9 PRIME LINE（A-Train 9 PRIME LINE）公布并定档 12/9</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/a_train9_prime_kv.jpg" alt="A列车 9 PRIME LINE（A-Train 9 PRIME LINE）公布并定档 12/9" loading="lazy"/>
+</figure>
+<p class="signal-lede">昨 ~09:50 后漏报：ARTDINK / KOMODO 公布《A-Train 9》终极版「PRIME LINE」，Steam 定档 2026-12-09，英日语言。本作 Steam 简中名称字段仍为英文；系列前作店名有「A列车：开始吧 观光开发计划」→ 按 5.18 写「A列车 9 PRIME LINE」。模拟系列商业作，进新游轴。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>公布 + PC 定档</dd></div>
+<div><dt>平台</dt><dd>PC Steam</dd></div>
+<div><dt>档期</dt><dd>2026-12-09</dd></div>
+<div><dt>开发·发行</dt><dd>ARTDINK · KOMODO</dd></div>
+<div><dt>命名</dt><dd>系列前作 Steam 简中「A列车…」→「A列车 9 PRIME LINE」</dd></div>
+<div><dt>AppID</dt><dd>5006320</dd></div>
+<div><dt>时点</dt><dd>Gematsu 09-24 22:30 EDT ≈ 09-25 10:30 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>强调曲线/坡度轨道与双模式（目标关 / 沙盒建造）</li>
+<li>可导入 TRAIN CONSTRUCTION / Workshop 车辆</li>
+<li>非独立轴</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/a-train-9-prime-line-announced-for-pc" rel="noopener" target="_blank">www.gematsu.com/2026/09/a-train-9-prime-line-ann</a> · <a href="https://store.steampowered.com/api/appdetails?appids=5006320&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com/api/appdetails?appids=500</a> · <a href="https://www.atrain.jp/title/a9pl/" rel="noopener" target="_blank">www.atrain.jp/title/a9pl/</a>。</p>
+
+</article>
+<h3 class="section-title">🏭 厂商 / 行业动态</h3>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/digital-bros-cancels-armed-fantasia-to-the-end-of-the-wilderness-directorate-novitiate" rel="noopener" target="_blank">Digital Bros 取消 Armed Fantasia / Directorate Novitiate 等</a></h4></div>
+
+<p class="signal-lede">昨截稿前漏报补入：505 Games 母公司 Digital Bros 在财报中宣布停止开发 Armed Fantasia: To the End of the Wilderness、Directorate Novitiate 以及 Battle Island 续作；相关减值约 €17.6M（总非现金减值口径含约 €18.7M）。Armed Fantasia 为 Wild Arms 精神续作、曾成功 Kickstarter。资本/项目砍停轴，不进 new_games。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>项目停研 / 减值</dd></div>
+<div><dt>公司</dt><dd>Digital Bros（505 Games）</dd></div>
+<div><dt>涉及项目</dt><dd>Armed Fantasia · Directorate Novitiate · Battle Island 续作</dd></div>
+<div><dt>金额口径</dt><dd>停研相关 write-off ≈€17.6M（集团非现金减值披露）</dd></div>
+<div><dt>时点</dt><dd>Gematsu 09-24 14:00 EDT ≈ 09-25 02:00 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>官方表述：多次修改玩法后，仍评估市场前景与完工追加投入后决定停研</li>
+<li>不把 Kickstarter 退款细节未核部分写成已定论</li>
+<li>Xbox 9/22 裁员重组昨已报，不并入本条</li>
+</ul>
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/digital-bros-cancels-armed-fantasia-to-the-end-of-the-wilderness-directorate-novitiate" rel="noopener" target="_blank">www.gematsu.com/2026/09/digital-bros-cancels-arm</a> · <a href="https://automaton-media.com/en/news/wild-arms-spiritual-successor-armed-fantasia-discontinued-by-publisher-despite-successful-2022-crowdfunding-campaign/" rel="noopener" target="_blank">automaton-media.com/en/news/wild-arms-spiritual-</a>。</p>
+
+</article>
+<h3 class="section-title">📺 平台 / 主机</h3>
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gamespress.com/en-US/The-Relic-First-Guardian-launches-across-Xbox-Series-XS-and-Xbox-Play-" rel="noopener" target="_blank">The Relic: First Guardian Xbox Series / Play Anywhere 正式上架</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/relic_first_guardian_header.jpg" alt="The Relic: First Guardian Xbox Series / Play Anywhere 正式上架" loading="lazy"/>
+</figure>
+<p class="signal-lede">Project Cloud / Perp Games 暗黑动作 RPG《The Relic: First Guardian》于 9/25 登陆 Xbox Series 并支持 Play Anywhere（PC Steam 已于 7/30 发售）。截稿 Steam 褒贬不一（≈109/227）。主机开门记平台轴；不因 Mixed 升格。无官方简中店名 → 留英文。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>主机正式发售（Xbox）</dd></div>
+<div><dt>平台</dt><dd>Xbox Series（Play Anywhere）；PC 已有；Switch 2 先前锁 10/9</dd></div>
+<div><dt>档期</dt><dd>2026-09-25（Xbox）</dd></div>
+<div><dt>开发·发行</dt><dd>Project Cloud Games · Perp Games</dd></div>
+<div><dt>命名</dt><dd>Steam 简中名称字段英文</dd></div>
+<div><dt>AppID</dt><dd>2827820</dd></div>
+<div><dt>PC 评价</dt><dd>褒贬不一（截稿≈227 评）</dd></div>
+</dl>
+<ul class="facts">
+<li>韩神话题材动作 RPG</li>
+<li>不把 PC Mixed 写成主机结论</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gamespress.com/en-US/The-Relic-First-Guardian-launches-across-Xbox-Series-XS-and-Xbox-Play-" rel="noopener" target="_blank">www.gamespress.com/en-US/The-Relic-First-Guardia</a> · <a href="https://store.steampowered.com/api/appdetails?appids=2827820&amp;l=schinese" rel="noopener" target="_blank">store.steampowered.com/api/appdetails?appids=282</a> · <a href="https://store.steampowered.com/appreviews/2827820?json=1" rel="noopener" target="_blank">store.steampowered.com/appreviews/2827820?json=1</a>。</p>
+
+</article>
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/original-castlevania-now-available-for-ios-android-for-free" rel="noopener" target="_blank">恶魔城（Castlevania）原版免费登陆 iOS / Android</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-26/castlevania_mobile_kv.jpg" alt="恶魔城（Castlevania）原版免费登陆 iOS / Android" loading="lazy"/>
+</figure>
+<p class="signal-lede">昨漏报边界补入：Konami 将 NES 初代《Castlevania》免费上架 App Store / Google Play。系列官方简中「恶魔城」→ 标题「恶魔城（Castlevania）」。复刻免费上架，fire 1，不进独立轴、不按全新 IP 发售升温。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>复刻免费上架移动端</dd></div>
+<div><dt>平台</dt><dd>iOS · Android</dd></div>
+<div><dt>档期</dt><dd>2026-09-25 已上架</dd></div>
+<div><dt>开发·发行</dt><dd>Konami</dd></div>
+<div><dt>命名</dt><dd>系列官方译「恶魔城」+ 英文 Castlevania</dd></div>
+<div><dt>时点</dt><dd>Gematsu 09-24 21:45 EDT ≈ 09-25 09:45 CST</dd></div>
+</dl>
+<ul class="facts">
+<li>为初代 NES 移植免费配信，非新作重制长篇</li>
+<li>不把合集/Dominus 等既报条复述</li>
+</ul>
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/original-castlevania-now-available-for-ios-android-for-free" rel="noopener" target="_blank">www.gematsu.com/2026/09/original-castlevania-now</a>。</p>
+
+</article>
+</section>
+
+<footer class="site-foot">
+  <p>观察台 · <a href="https://gamecrazy.github.io/daily-intelligence-hub/">最新入口</a> · 本页快照 <code>/daily/2026-09-26.html</code> · 生成 Asia/Shanghai</p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
