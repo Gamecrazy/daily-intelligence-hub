@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合周报 · 2026-W39</title>
+<!--
+  基于 2026-W38 骨架 / CSS；页头 .issue-nav / .edition-nav（与日报一致）。
+  内容：W39 升维，非日报堆叠。截稿周六覆盖 Mon–Sat；周日 9/27 pending。
+-->
+<style>
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+#overview .axis-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+#overview .axis-card .axis-body p{font-size:13.5px;color:var(--ink2);margin:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="hero-top">
+<div>
+<h1>综合周报</h1>
+<div class="meta">2026-W39 · 2026-09-21 – 2026-09-26 · Saturday 截稿 · 周日 pending</div>
+</div>
+<div class="issue-nav">
+<nav class="edition-nav" aria-label="日报周报切换">
+<a href="../daily/2026-09-26.html">日报</a>
+<a class="active" href="#">周报</a>
+</nav>
+<nav class="date-nav" data-week="2026-W39" aria-label="周次切换"></nav>
+<span class="window">本周 W39（周一至周六，周日未发生）</span>
+</div>
+</div>
+<div class="lede">
+<p class="lib-lede">本周从 W38 的「TGS 周脊 + 发售簇 + MCP 推荐波 + 旗舰空窗」切到「<b>双旗舰落地</b>（Grok 4.7 + Claude Opus 5.5）+ <b>发售验证周</b>（控制:共振 / Townfall）+ <b>二次元开门密周</b> + <b>展会收束</b>（PCGS Tokyo Direct / TGS 闭幕）」。相对 W38「整周无一般文本旗舰」，本周为<strong>旗舰反转</strong>。<b>本周有新一般文本旗舰</b>（9/22 Grok 4.7、9/23 Claude Opus 5.5）。专用档（Gemini 3.8 Flash TTS / Flash-Lite TTS、Qwen-Image-2.1、GPT-6 Sol/Luna）不计旗舰。<b>本周有新 MCP/Skill 推荐</b>（仅 9/25：GCP API Gateway 远程 MCP + Microsoft run-assert-eval）——相对 W38 四日连波为<strong>间歇/降温</strong>。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>本周有新一般文本旗舰：Grok 4.7（9/22）+ Claude Opus 5.5（9/23）；现役另含 Astra / Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash</dd></div>
+<div><dt>MCP/Skill</dt><dd>本周有推荐（间歇：仅 9/25 一日两包）· 相对 W38 降温</dd></div>
+<div><dt>窗口</dt><dd>2026-09-21（一）至 2026-09-27（日）</dd></div>
+<div><dt>截稿</dt><dd>2026-09-26 ~10:00 CST · 覆盖 Mon–Sat</dd></div>
+</dl>
+<ul class="facts">
+<li>AI：双旗舰连落打破 W38 空窗；MCP/Skill 仅周五一日推荐；Qwen4 云栖仍 Coming Soon；Grok 4.8 未发。</li>
+<li>行业：周初 PCGS Tokyo Direct 收束展会周 → 中后半发售验证（Townfall 9/24、控制:共振 9/24–25）+ 独立连波 + 周末 IGNISPHERE/DAWNGAZER 公布。</li>
+<li>二次元：相对 W38 薄周升温——原神 7.1、崩坏3 9.1、战双、R1999、BanG Dream! 交织的乐章开门；星铁 4.6 锁 9/28、鸣潮 3.7 锁 9/30。</li>
+<li>独立：针影裁梦 → 守墓人2/黯井微光 → 打工火柴人簇 → 龙之庇护所 → I Know a Guy，连波不降。</li>
+<li>游戏开发：9/23 Unity Content Directories + NVIDIA Mega Geometry；9/25 Unity Meta VR Glasses day-one——有趋势出 Tab；其余日空库。</li>
+</ul>
+<p class="lib-note">覆盖周一至周六共 6 天日报；周日 9/27 pending，不预写。补搜：docs.x.ai Latest 仍 Grok 4.7（无 4.8 模型卡）；Anthropic Claude Opus 5.5 官方仍 live；Qwen4 云栖曝光但 Coming Soon / 未 GA；控制:共振发售与 ~MC/OC 84 口径、Townfall Steam 褒贬不一（UE5 卡顿）与日报一致；截稿晨无突发一般文本旗舰；Minecraft LIVE 截稿未播不预写。不发涉政。</p>
+</div>
+</header>
+
+<section class="metrics">
+<div class="metric hot"><b>5</b><span>本周大事</span></div>
+<div class="metric accent"><b>4</b><span>显示观察库</span></div>
+<div class="metric"><b>3</b><span>跨周对比</span></div>
+<div class="metric"><b>6</b><span>本周日报</span></div>
+<div class="metric"><b>6</b><span>补搜确认</span></div>
+<div class="metric"><b>6</b><span>覆盖天数</span></div>
+</section>
+
+<nav aria-label="周报分页" class="tabs">
+<button class="tab-btn active" data-tab="overview">总览</button>
+<button class="tab-btn" data-tab="ai">AI</button>
+<button class="tab-btn" data-tab="anime">二次元</button>
+<button class="tab-btn" data-tab="dev">游戏开发</button>
+<button class="tab-btn" data-tab="industry">游戏行业</button>
+</nav>
+
+<main>
+<div class="tab-pane active" id="overview">
+<h2 class="section-title">本周大事</h2>
+<div class="overview-grid">
+
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3><a href="https://www.anthropic.com/claude-opus-5-5" rel="noopener" target="_blank">双旗舰落地：Grok 4.7 + Claude Opus 5.5</a></h3>
+<p class="ov-lede">相对 W38「整周无一般文本旗舰」，本周连续两日落款——9/22 Grok 4.7（docs Latest 切 4.7）、9/23 Claude Opus 5.5（API <code>claude-opus-5-5</code>）——旗舰列车明显反转。</p>
+<dl class="kv">
+<div><dt>9/22</dt><dd>Grok 4.7 · API grok-4.7 · 500k 上下文</dd></div>
+<div><dt>9/23</dt><dd>Claude Opus 5.5 · 首款 5.5 家族 · ~40% 成本降</dd></div>
+<div><dt>未到</dt><dd>Qwen4 仍 Coming Soon · Grok 4.8 未发 · V4.1-Pro / Sonnet·Haiku 5.5</dd></div>
+</dl>
+</article>
+
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥🔥</div>
+<h3><a href="https://store.steampowered.com/app/3669870/" rel="noopener" target="_blank">发售验证周：控制:共振 + SILENT HILL: Townfall</a></h3>
+<p class="ov-lede">W38 还在「Townfall 待核 / 控制媒体评」；本周双作开门——控制:共振全球翻牌（媒体 ~MC/OC 84，最高 fire4）+ Townfall 亚区/Steam 开门后用户评转褒贬不一（UE5 卡顿）。</p>
+<dl class="kv">
+<div><dt>控制:共振</dt><dd>9/24–25 全球开门 · Steam 特别好评 · ~MC/OC 84</dd></div>
+<div><dt>Townfall</dt><dd>9/24 发售 · Steam Mixed/Mostly Positive · Konami 确认补丁</dd></div>
+<div><dt>对照 W38</dt><dd>从 TGS 预热切到发售验证</dd></div>
+</dl>
+</article>
+
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3>二次元开门密周：原神 7.1 → 崩坏3 / 战双 / R1999 / BanG Dream</h3>
+<p class="ov-lede">相对 W38 薄周（SideM + 蔚蓝档案），本周密度明显升温：原神 7.1「往冥府的安魂歌」开门，崩坏3 9.1 / 战双远信回响 / 重返未来：1999 4.0 / BanG Dream! 交织的乐章全球开服连翻；星铁 4.6 仍锁 9/28。</p>
+<dl class="kv">
+<div><dt>已开</dt><dd>原神 7.1 · 崩坏3 9.1 · 战双 · R1999 · BanG Dream 交织的乐章</dd></div>
+<div><dt>锁日</dt><dd>星铁 4.6 → 9/28 · 鸣潮 3.7 → 9/30 · 时崎狂三 9/29</dd></div>
+<div><dt>对照</dt><dd>W38 薄周 → W39 开门密周</dd></div>
+</dl>
+</article>
+
+<article class="overview-signal high">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://www.pcgamer.com/gaming-industry/events-conferences/everything-announced-at-the-pc-gaming-show-tokyo-direct-2026/" rel="noopener" target="_blank">展会收束：PCGS Tokyo Direct + TGS 闭幕</a></h3>
+<p class="ov-lede">W38 是 TGS 周脊；本周周一 PCGS Tokyo Direct（13 世界首发 + 秋冬新锁）与 TGS 闭幕来场 257,642 收束展会轴，之后 exhibition_empty；Minecraft LIVE 截稿未播不预写。</p>
+<dl class="kv">
+<div><dt>PCGS</dt><dd>9/21 窗 · 13 WP · 奇迹工厂 / Rabbit Haul 等新锁</dd></div>
+<div><dt>闭幕</dt><dd>来场 257,642 · TGS2027=9/16–20</dd></div>
+<div><dt>之后</dt><dd>9/22–26 exhibition_empty</dd></div>
+</dl>
+</article>
+
+<article class="overview-signal medium">
+<div class="ov-fire">🔥🔥</div>
+<h3><a href="https://www.gematsu.com/2026/09/unicorn-overlord-director-takafumi-noma-announces-fantasy-ip-ignisphere-and-action-rpg-dawngazer-for-ps5-switch-2-and-pc" rel="noopener" target="_blank">独立连波 + IGNISPHERE/DAWNGAZER</a></h3>
+<p class="ov-lede">独立轴贯穿全周：针影裁梦 → 守墓人2/黯井微光 → 打工火柴人簇 → 龙之庇护所 → I Know a Guy；周末叠野间唯史新工作室 IGNISPHERE 与动作 RPG DAWNGAZER（2028）公布。</p>
+<dl class="kv">
+<div><dt>发售波</dt><dd>针影裁梦 · 守墓人2 · 黯井微光 · 打工火柴人 · I Know a Guy</dd></div>
+<div><dt>公布</dt><dd>DAWNGAZER（IGNISPHERE）· Mercenaries Grace · A列车 9 PRIME LINE</dd></div>
+<div><dt>定档</dt><dd>离火长明2 11/10 · Alpha Nomos 10/12</dd></div>
+</dl>
+</article>
+
+</div>
+
+<h2 class="section-title">跨周对比（W38 → W39）</h2>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>延续</h3><span class="density">对照 W38</span></div>
+<div class="analysis-box">上周已经出现、本周继续发展。W38 证据日落 9/14–9/19；本周证据日落 9/21–9/26。</div>
+<div class="axis-body">
+<p>展会周逻辑收束：W38 Capcom Spotlight + Xbox @ TGS → 本周 PCGS Tokyo Direct + TGS 闭幕来场，之后片单轴空。</p>
+<p>独立发售/公布波延续：从法拉第蓝 / Kaelis / Sugar Lies 接到针影裁梦–守墓人2–打工火柴人–龙之庇护所–I Know a Guy–DAWNGAZER。</p>
+<p>Qwen4 仍 Coming Soon（云栖曝光≠GA）；Grok 4.8 / DeepSeek-V4.1-Pro / Sonnet·Haiku 5.5 仍未发。原神 7.1、鸣潮 3.7、星铁 4.6 从 W38 pending 接到本周开门或锁日。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>反转</h3><span class="density">对照 W38</span></div>
+<div class="analysis-box">上周判断或趋势在本周出现变化、降温或反向信号。</div>
+<div class="axis-body">
+<p>旗舰密度反转。W38 整周无新一般文本旗舰 → 本周 Grok 4.7 + Claude Opus 5.5 双旗舰落地。</p>
+<p>MCP 推荐轴降温。W38 四日连波 → 本周仅 9/25 一日两包（GCP MCP + MS run-assert-eval），其余日无推荐。</p>
+<p>二次元主线升温。W38 薄周（SideM + 蔚蓝档案）→ 本周开门密周（原神/崩坏3/战双/R1999/BanG Dream）。行业主线从「展会预告」切到「发售验证」。</p>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>新增</h3><span class="density">本周首次</span></div>
+<div class="analysis-box">本周首次出现、值得后续跟踪。</div>
+<div class="axis-body">
+<p>旗舰：Grok 4.7（docs Latest）；Claude Opus 5.5（5.5 家族首款，Sonnet/Haiku 5.5 coming weeks）。</p>
+<p>发售验证：控制:共振全球开门；SILENT HILL: Townfall 用户评翻牌争议。</p>
+<p>行业：IGNISPHERE/DAWNGAZER（野间唯史×Good Smile，2028）；离火长明2 / A列车 9 PRIME LINE / Mercenaries Grace。开发：Unity Content Directories + Meta VR Glasses day-one；NVIDIA Mega Geometry 2.0。</p>
+</div>
+</section>
+</div>
+
+<h2 class="section-title">专题更新</h2>
+<div class="watch-list">
+<div class="watch"><b>旗舰列车（反转周）</b><br/>本周：Grok 4.7 + Claude Opus 5.5 双旗舰。专用档 TTS / Image / Sol·Luna 不计。继续跟踪：Qwen4 正式 GA；Grok 4.8；V4.1-Pro；Sonnet/Haiku 5.5。</div>
+<div class="watch"><b>MCP / Skill 推荐轴</b><br/>本周：间歇推荐（仅 9/25 GCP 远程 MCP + MS run-assert-eval）。相对 W38 四日波降温。继续跟踪：下周是否再有可安装新包。</div>
+<div class="watch"><b>展会收束 → 下一场</b><br/>本周：PCGS Tokyo Direct + TGS 闭幕。之后 exhibition_empty。Minecraft LIVE 截稿未播；继续跟踪播后片单与精确日。</div>
+<div class="watch"><b>发售验证簇</b><br/>本周：控制:共振（~MC/OC 84）+ Townfall（Steam 褒贬不一 / 补丁承诺）。继续跟踪：销量、重大热修、口碑翻牌。</div>
+<div class="watch"><b>二次元开门密周</b><br/>本周：原神 7.1 / 崩坏3 9.1 / 战双 / R1999 / BanG Dream 交织的乐章。继续跟踪：星铁 4.6（9/28）、鸣潮 3.7（9/30）、时崎狂三（9/29）。</div>
+<div class="watch"><b>独立连波 + 新 IP</b><br/>本周：针影裁梦→I Know a Guy 发售链 + IGNISPHERE/DAWNGAZER 公布。继续跟踪：DAWNGAZER 实机、离火长明2 11/10、Alpha Nomos 10/12。</div>
+</div>
+
+<h2 class="section-title">下周观察</h2>
+<div class="watch-list">
+<div class="watch"><b>必跟｜星铁 4.6「月升之前，与兽共舞」9/28</b><br/>本周前瞻/无名勋礼/预下载已落地；看维护钟点与开服确认。</div>
+<div class="watch"><b>必跟｜鸣潮 3.7 9/30</b><br/>W38–W39 连续 pending；维护细化已锁，开门实况必核。</div>
+<div class="watch"><b>必跟｜时崎狂三（战双）9/29 10:00</b><br/>本周远信回响进服后的角色档；看开门与活动页。</div>
+<div class="watch"><b>必跟｜Qwen4 是否正式 GA</b><br/>云栖仅 Coming Soon；只看官方模型卡 / API / 权重，不预写。</div>
+<div class="watch"><b>必跟｜Grok 4.8 / Sonnet·Haiku 5.5</b><br/>补搜：docs Latest 仍 4.7；Anthropic 称 Sonnet/Haiku 5.5 coming weeks。</div>
+<div class="watch"><b>必跟｜Minecraft LIVE 播后片单</b><br/>定于 09-26 10:00 PDT（≈09-27 01:00 CST），落周日、截稿未播；有世界首发/新锁再进日报。</div>
+<div class="watch"><b>可跟｜控制:共振 / Townfall 口碑与补丁</b><br/>发售已收；盯销量、重大热修、Steam 标签翻牌。</div>
+<div class="watch"><b>可跟｜Gears of War: E-Day 预装 9/29</b><br/>W38 已锁预装；评测解禁前只跟店页。</div>
+<div class="watch"><b>可跟｜离火长明2 11/10 · Alpha Nomos 10/12 · DAWNGAZER 实机</b><br/>本周定档/公布；精确推进与试玩待核。</div>
+<div class="watch"><b>可跟｜SideM 正式标题+发售日 · Muse Charm 发售日</b><br/>项目/早鸟已报，档期仍 TBA。</div>
+</div>
+
+<h2 class="section-title">本周日报回看</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>日期</th><th>星期</th><th>是否有日报</th><th>周报如何用</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>9/21</td><td>一</td><td>有</td><td>全量聚合</td><td>PCGS Tokyo Direct 片单；星铁 4.6 前瞻锁 9/28；Qwen-Image-2.1；TGS 闭幕来场；开发空</td></tr>
+<tr><td>9/22</td><td>二</td><td>有</td><td>全量聚合</td><td>紧急：Grok 4.7 旗舰；原神 7.1 维护锁；针影裁梦发售；开发空</td></tr>
+<tr><td>9/23</td><td>三</td><td>有</td><td>全量聚合</td><td>紧急：Claude Opus 5.5；原神 7.1 更新说明；守墓人2/黯井微光；Unity Content Directories + Mega Geometry；Xbox Reset</td></tr>
+<tr><td>9/24</td><td>四</td><td>有</td><td>全量聚合</td><td>Townfall 开门；打工火柴人簇；原神 7.1 现已开启；Gemini TTS 专用档；开发空</td></tr>
+<tr><td>9/25</td><td>五</td><td>有</td><td>全量聚合</td><td>控制:共振 开门 fire4；Townfall 初评增量；崩坏3/BanG Dream/战双·R1999 翻牌；GCP MCP + MS Skill；Unity Meta VR</td></tr>
+<tr><td>9/26</td><td>六</td><td>有</td><td>全量聚合</td><td>IGNISPHERE/DAWNGAZER；I Know a Guy；离火长明2/A列车/Mercenaries；星铁 4.6 BP；Codex 故障恢复；开发空</td></tr>
+<tr><td>9/27</td><td>日</td><td>无</td><td>未发生，pending</td><td>不预写周日事件（Minecraft LIVE 等）</td></tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">本周日报 6 篇（9/21–9/26），全部已推观察台。周日 9/27 未发生。Minecraft LIVE 落周日凌晨，pending 不预写。</p>
+
+<h2 class="section-title">主要信源</h2>
+<ul class="sources">
+<li><a href="https://docs.x.ai/docs/models" rel="noopener" target="_blank">xAI Docs · Models（Latest Grok 4.7）</a></li>
+<li><a href="https://www.anthropic.com/claude-opus-5-5" rel="noopener" target="_blank">Anthropic · Introducing Claude Opus 5.5</a></li>
+<li><a href="https://platform.claude.com/docs/en/models/opus-5-5/overview" rel="noopener" target="_blank">Claude Docs · Opus 5.5</a></li>
+<li><a href="https://store.steampowered.com/app/3669870/" rel="noopener" target="_blank">Steam · 控制:共振</a></li>
+<li><a href="https://store.steampowered.com/app/1636440/" rel="noopener" target="_blank">Steam · SILENT HILL: Townfall</a></li>
+<li><a href="https://www.metacritic.com/game/control-resonant/critic-reviews/?platform=pc" rel="noopener" target="_blank">Metacritic · CONTROL Resonant</a></li>
+<li><a href="https://www.pcgamer.com/gaming-industry/events-conferences/everything-announced-at-the-pc-gaming-show-tokyo-direct-2026/" rel="noopener" target="_blank">PC Gamer · PCGS Tokyo Direct 2026</a></li>
+<li><a href="https://www.gematsu.com/2026/09/unicorn-overlord-director-takafumi-noma-announces-fantasy-ip-ignisphere-and-action-rpg-dawngazer-for-ps5-switch-2-and-pc" rel="noopener" target="_blank">Gematsu · IGNISPHERE / DAWNGAZER</a></li>
+<li><a href="https://www.gematsu.com/2026/09/nocturnal-ii-for-pc-launches-november-10" rel="noopener" target="_blank">Gematsu · 离火长明2</a></li>
+<li><a href="https://developers.googleblog.com/turn-your-rest-apis-into-mcp-tools-with-google-cloud-api-gateway/" rel="noopener" target="_blank">Google Cloud · API Gateway 远程 MCP</a></li>
+<li><a href="https://commandline.microsoft.com/run-assert-eval-responsible-ai-agent-risk-discovery-at-runtime/" rel="noopener" target="_blank">Microsoft · run-assert-eval Skill</a></li>
+<li><a href="https://blog.unity.com/" rel="noopener" target="_blank">Unity Blog · Meta VR Glasses / Content Directories</a></li>
+<li><a href="https://developer.nvidia.com/" rel="noopener" target="_blank">NVIDIA · Mega Geometry 2.0</a></li>
+<li><a href="https://qwenlm.github.io/" rel="noopener" target="_blank">Qwen · 云栖 Coming Soon / Image-2.1</a></li>
+<li><a href="https://yunqi.aliyun.com/" rel="noopener" target="_blank">云栖大会（Qwen4 观察窗）</a></li>
+<li><a href="https://store.steampowered.com/" rel="noopener" target="_blank">Steam 店页（独立发售簇）</a></li>
+</ul>
+<p class="footnote">血缘：聚合本周 6 篇日报（9/21–9/26）+ 补搜 6 条（Grok docs Latest 仍 4.7、无 4.8；Opus 5.5 官方仍 live；Qwen4 未 GA；控制:共振/~MC84 与 Townfall 褒贬不一口径一致；截稿晨无突发一般文本旗舰；星铁 4.6/鸣潮 3.7/时崎狂三仍下周 pending；Minecraft LIVE 未播），提炼升维，不是日报堆叠。<b>本周有新一般文本旗舰。本周有新 MCP/Skill 推荐（间歇）。</b>覆盖 Mon–Sat，Sunday 2026-09-27 pending，不预写。显示 4 库（AI / 二次元 / 游戏开发 / 游戏行业）。待核：星铁 4.6 开服；鸣潮 3.7；时崎狂三；Qwen4 GA；Grok 4.8；Sonnet/Haiku 5.5；Minecraft LIVE 播后片单；控制/Townfall 补丁与销量。</p>
+</div>
+
+<div class="tab-pane" id="ai">
+<div class="library-head">
+<div><span class="lib-icon">📦</span><h2>AI 观察</h2></div>
+<p class="lib-lede"><b>本周有新一般文本旗舰</b>（Grok 4.7 + Claude Opus 5.5）。<b>本周有新 MCP/Skill 推荐</b>（间歇：仅 9/25 GCP API Gateway 远程 MCP + Microsoft run-assert-eval）。相对 W38「旗舰空窗 + 四日推荐波」，本周是<strong>旗舰反转 + 推荐降温</strong>；专用档（TTS / Image / Sol·Luna）与产品轴（Codex 故障、Muse 早鸟）并行，但不改旗舰结论。</p>
+<dl class="kv">
+<div><dt>旗舰</dt><dd>Grok 4.7（9/22）· Claude Opus 5.5（9/23）</dd></div>
+<div><dt>推荐</dt><dd>GCP 远程 MCP · MS run-assert-eval（仅 9/25）</dd></div>
+<div><dt>专用档</dt><dd>Gemini 3.8 Flash TTS/Lite-TTS · Qwen-Image-2.1 · GPT-6 Sol/Luna</dd></div>
+<div><dt>未到</dt><dd>Qwen4（Coming Soon）· Grok 4.8 · V4.1-Pro · Sonnet/Haiku 5.5</dd></div>
+</dl>
+<ul class="facts">
+<li>现役一般文本旗舰：Astra / Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash / <b>Grok 4.7</b> / <b>Claude Opus 5.5</b>。</li>
+<li>推荐轴从 W38 四日波降为单日两包；多数日写清「无新 MCP/Skill 推荐」。</li>
+<li>不把 TTS / Image / 成本档写成一般旗舰；不发涉政。</li>
+</ul>
+<p class="lib-note">补搜确认：docs.x.ai 推荐仍 Grok 4.7；Anthropic Opus 5.5 页仍 live；Qwen4 未出模型卡。Codex 全日故障约 1h 恢复（9/26）记产品轴。</p>
+<div class="lib-stats">
+<span><b>2</b> 显示轴</span>
+<span class="level">双旗舰 + 间歇推荐</span>
+<span>相对 W38 反转</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🧠 模型发布</h3><span class="density">本周有双旗舰</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://docs.x.ai/docs/models" rel="noopener" target="_blank">Grok 4.7：一般文本旗舰 GA</a></h4></div>
+<p class="signal-lede">9/22 紧急入核。API <code>grok-4.7</code>；docs Latest 切 4.7；500k 上下文。补搜：截稿时 docs 仍列 4.7 为推荐，无 Grok 4.8 模型卡。</p>
+<figure class="signal-media">
+<img alt="Grok 4.7" src="../media/2026-09-22/grok-4-7.webp"/>
+</figure>
+<div class="tags"><span>旗舰</span><span>xAI</span><span>Grok 4.7</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://www.anthropic.com/claude-opus-5-5" rel="noopener" target="_blank">Claude Opus 5.5：5.5 家族首款</a></h4></div>
+<p class="signal-lede">9/23 紧急入核。API <code>claude-opus-5-5</code>；官方称多数工作达 Fable 5.1 水平、典型负载成本约降 40%。Sonnet/Haiku 5.5 仍 coming weeks，不当本周旗舰。</p>
+<figure class="signal-media">
+<img alt="Claude Opus 5.5" src="../media/2026-09-23/claude-opus-5-5.jpg"/>
+</figure>
+<div class="tags"><span>旗舰</span><span>Anthropic</span><span>Opus 5.5</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4>专用档与成本档（非旗舰）</h4></div>
+<p>Qwen-Image-2.1 开源权重（9/21）；Gemini 3.8 Flash TTS / Flash-Lite TTS（9/24）；GPT-6 Sol/Luna Introducing（9/23）——均记专用/成本档，不当一般文本旗舰。</p>
+<figure class="signal-media">
+<img alt="Qwen-Image-2.1" src="../media/2026-09-21/qwen-image-21-logo.png"/>
+<img alt="Gemini TTS" src="../media/2026-09-24/gemini-tts.png"/>
+<img alt="GPT-6 Sol/Luna" src="../media/2026-09-23/gpt6-sol-luna.png"/>
+</figure>
+<div class="tags"><span>专用档</span><span>非旗舰</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🔧 Agent / MCP / Skill</h3><span class="density">间歇推荐</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>本周推荐：GCP API Gateway 远程 MCP + Microsoft run-assert-eval</h4></div>
+<p class="signal-lede">相对 W38 四日连波降温。仅 9/25 两包达推荐门槛；9/21–24、9/26 均写清「今日无新 MCP/Skill 推荐」。周级口径：<b>本周有新 MCP/Skill 推荐（间歇）</b>。</p>
+<figure class="signal-media">
+<img alt="GCP API Gateway MCP" src="../media/2026-09-25/gcp_api_gateway_mcp.jpg"/>
+</figure>
+<div class="tags"><span>MCP</span><span>Skill</span><span>推荐</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4>产品轴：Codex 故障恢复 · Muse 早鸟 · Crusoe/Boom</h4></div>
+<p>9/26 Codex 全日级故障约 1 小时后恢复；Meta Muse 早鸟意向；Crusoe 取消 Boom 涡轮大单——记产品/基建轴，不当新旗舰，也不撑推荐条。</p>
+<figure class="signal-media">
+<img alt="Meta Muse" src="../media/2026-09-25/meta_muse_glasses.jpg"/>
+</figure>
+<div class="tags"><span>产品轴</span><span>非推荐主线</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="anime">
+<div class="library-head">
+<div><span class="lib-icon">🌸</span><h2>二次元游戏观察</h2></div>
+<p class="lib-lede">本周是<strong>开门密周</strong>：相对 W38 薄周（SideM + 蔚蓝档案），密度明显升温。原神 7.1 开门后，崩坏3 9.1 / 战双远信回响 / 重返未来：1999 / BanG Dream! 交织的乐章连翻；星铁 4.6 前瞻锁 9/28，鸣潮 3.7 锁 9/30——下周仍是必跟窗。</p>
+<dl class="kv">
+<div><dt>已开</dt><dd>原神 7.1 · 崩坏3 9.1 · 战双 · R1999 · BanG Dream! 交织的乐章</dd></div>
+<div><dt>锁日</dt><dd>星铁 4.6 → 9/28 · 鸣潮 3.7 → 9/30 · 时崎狂三 9/29</dd></div>
+<div><dt>展示</dt><dd>绝区零洛克茜《神秘负棺人》（并入不可售影像）</dd></div>
+<div><dt>对照 W38</dt><dd>薄周 → 开门密周</dd></div>
+</dl>
+<ul class="facts">
+<li>不把宣传列车（角色 PV）单独升格为版本开门；开门以官方「现已开启」/进服确认为准。</li>
+<li>星铁 4.6 本周有前瞻、无名勋礼、预下载与速览，开门仍锁 9/28，不预写开服。</li>
+<li>SideM 标题档期仍 TBA，不复述为新主线。</li>
+</ul>
+<p class="lib-note">国服/国际服差异以一线官帖为准；燕云平澜起风波等运营增量压深潜。</p>
+<div class="lib-stats">
+<span><b>2</b> 显示轴卡</span>
+<span class="level">开门密周</span>
+<span>下周锁日密</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🔄 版本开门</h3><span class="density">周级簇</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>原神 7.1「往冥府的安魂歌」开门</h4></div>
+<p class="signal-lede">9/22–24：维护预告 → 版本更新说明 →「现已开启」确认。薇斯纳/沃雅妮莎上半。相对 W38 pending，本周完成翻牌。</p>
+<figure class="signal-media">
+<img alt="原神 7.1" src="../media/2026-09-22/genshin-71-kv.jpg"/>
+<img alt="原神 7.1 开门" src="../media/2026-09-24/genshin-71.png"/>
+</figure>
+<div class="tags"><span>原神</span><span>7.1</span><span>开门</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>崩坏3 9.1 / 战双 / R1999 / BanG Dream 交织的乐章</h4></div>
+<p class="signal-lede">9/24–25 集中翻牌：崩坏3 9.1「时序照新」开服确认；战双远信回响与重返未来：1999 4.0 进服；BanG Dream! 交织的乐章全球开服。终末地噗切娜同窗。</p>
+<figure class="signal-media">
+<img alt="崩坏3 9.1" src="../media/2026-09-25/bh3_91_update.png"/>
+<img alt="BanG Dream 交织的乐章" src="../media/2026-09-25/bangdream_kv.png"/>
+</figure>
+<div class="tags"><span>崩坏3</span><span>战双</span><span>R1999</span><span>BanG Dream</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📅 锁日 / 预热</h3><span class="density">下周必跟</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>星铁 4.6「月升之前，与兽共舞」锁 9/28</h4></div>
+<p class="signal-lede">9/21 前瞻已播（真珠·欢愉·冰）；其后无名勋礼、预下载与版本速览落地。开门仍锁 9/28，维护钟点待核，不预写开服。</p>
+<figure class="signal-media">
+<img alt="星铁真珠" src="../media/2026-09-21/hsr-zhenzhu.jpg"/>
+<img alt="星铁 4.6 无名勋礼" src="../media/2026-09-26/hsr_46_nameless.jpg"/>
+</figure>
+<div class="tags"><span>星铁</span><span>4.6</span><span>9/28</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4>鸣潮 3.7 9/30 · 时崎狂三 9/29 · 洛克茜展示</h4></div>
+<p>鸣潮 3.7 维护细化锁 9/30；战双时崎狂三约 9/29 10:00；绝区零洛克茜角色展示《神秘负棺人》并入不可售影像。均属下周必跟/可跟。</p>
+<figure class="signal-media">
+<img alt="洛克茜展示" src="../media/2026-09-26/zzz_roxy_showcase.png"/>
+</figure>
+<div class="tags"><span>鸣潮</span><span>战双</span><span>绝区零</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="dev">
+<div class="library-head">
+<div><span class="lib-icon">🛠️</span><h2>游戏开发观察</h2></div>
+<p class="lib-lede">本周相对 W38「仅 Unity Codex 插件」为<strong>工具链续波</strong>：9/23 Unity Content Directories + NVIDIA Mega Geometry 2.0；9/25 Unity Meta VR Glasses day-one 支持。其余日（含 9/21–22、9/24、9/26）空库不造 filler；引擎快照无 GA 跃迁。</p>
+<dl class="kv">
+<div><dt>核心 Signal</dt><dd>3 日有达门槛（9/23×2 + 9/25×1）</dd></div>
+<div><dt>引擎快照</dt><dd>UE 仍 5.8.3；Unity stable 仍 6000.6.3f1；Godot Blog 仍 4.8-dev6</dd></div>
+<div><dt>空日</dt><dd>9/21–22、9/24、9/26 开发空库</dd></div>
+<div><dt>对照 W38</dt><dd>W38 唯一 Codex 插件 → 本周 Content Directories / Mega Geometry / Meta VR</dd></div>
+</dl>
+<ul class="facts">
+<li>只保留引擎级一方工具链；案例稿 / tip 博文不升格。</li>
+<li>不复述 W38 Unity Codex 插件规格。</li>
+</ul>
+<p class="lib-note">中间件（Wwise/FMOD/Substance 等）本周无一线生产发版。pending：Godot 4.8-dev7；Unity 6000.6.4f1 / 7.0b3+；Wwise 2026.1 GA。</p>
+<div class="lib-stats">
+<span><b>1</b> 显示轴</span>
+<span class="level">Unity + NVIDIA</span>
+<span>多数日空</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🛠️ 引擎与工具链</h3><span class="density">周级续波</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>Unity Content Directories + NVIDIA Mega Geometry 2.0</h4></div>
+<p class="signal-lede">9/23 同窗入核：Unity 一方 Content Directories 工作流；NVIDIA Mega Geometry 2.0 几何管线。属引擎/中间件级，区别于社区脚本。</p>
+<div class="tags"><span>Unity</span><span>NVIDIA</span><span>引擎</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://blog.unity.com/" rel="noopener" target="_blank">Unity Meta VR Glasses day-one 支持</a></h4></div>
+<p class="signal-lede">9/25：Unity 宣布 Meta VR Glasses 首日支持路径。与同日 AI 库 Muse 早鸟分流——本条归开发工具链。</p>
+<figure class="signal-media">
+<img alt="Unity Meta VR" src="../media/2026-09-25/unity_meta_vr.png"/>
+</figure>
+<div class="tags"><span>Unity</span><span>Meta VR</span><span>day-one</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+<div class="tab-pane" id="industry">
+<div class="library-head">
+<div><span class="lib-icon">🎮</span><h2>游戏行业观察</h2></div>
+<p class="lib-lede">本周主线从 W38「TGS 周脊」切到「<b>展会收束</b> → <b>发售验证</b>（控制:共振 / Townfall）→ <b>独立连波</b> + 周末 <b>IGNISPHERE/DAWNGAZER</b>」。片单轴仅周初 PCGS 有增量，其后 exhibition_empty；Minecraft LIVE 截稿未播不预写。</p>
+<dl class="kv">
+<div><dt>展会</dt><dd>PCGS Tokyo Direct 9/21 · TGS 闭幕来场 · 之后空</dd></div>
+<div><dt>发售</dt><dd>控制:共振 · Townfall · 针影裁梦→I Know a Guy 独立簇</dd></div>
+<div><dt>公布</dt><dd>IGNISPHERE/DAWNGAZER · Mercenaries Grace · A列车 9 PRIME LINE</dd></div>
+<div><dt>定档</dt><dd>离火长明2 11/10 · Alpha Nomos 10/12 · 幽室鬼牌主机 10/8</dd></div>
+</dl>
+<ul class="facts">
+<li>世界首发优先写片单；已定档深潜压表；未播秀不预写。</li>
+<li>独立轴与发售验证升维合并趋势，不堆日报全表。</li>
+<li>Xbox Continuing Our Reset（268+并轨）、Digital Bros 砍 Armed Fantasia 记冷/行业信号。</li>
+</ul>
+<p class="lib-note">官方简中：控制:共振、针影裁梦、守墓人2、黯井微光、打工火柴人、龙之庇护所、离火长明2、一坠万千念、A列车 9 PRIME LINE；无官方译留英文（Townfall / I Know a Guy / Decklings / Hostile Lands / DAWNGAZER 等按店名规则）。</p>
+<div class="lib-stats">
+<span><b>4</b> 显示轴</span>
+<span class="level">发售验证 + 独立</span>
+<span>展会已收束</span>
+</div>
+</div>
+<div class="axis-grid">
+<section class="axis-card">
+<div class="axis-title"><h3>🎬 展会片单</h3><span class="density">周初收束</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.pcgamer.com/gaming-industry/events-conferences/everything-announced-at-the-pc-gaming-show-tokyo-direct-2026/" rel="noopener" target="_blank">PCGS Tokyo Direct：13 世界首发 + 秋冬新锁</a></h4></div>
+<p class="signal-lede">9/21 窗已播。世界首发含清扫至天明 / WANE / beautiful freaks 等独立簇 + 四狂神战记：I&II 合集；新锁含奇迹工厂 / The Rabbit Haul / 霓虹深渊2 / 真菌朋克 1.0 等。TGS 闭幕来场 257,642；TGS2027=9/16–20。9/22 起 exhibition_empty。</p>
+<figure class="signal-media">
+<img alt="奇迹工厂" src="../media/2026-09-21/brave-new-wonders.jpg"/>
+<img alt="WANE" src="../media/2026-09-21/wane.jpg"/>
+<img alt="TOKYO WALLED CITY" src="../media/2026-09-21/tokyo-walled-city.jpg"/>
+</figure>
+<div class="tags"><span>PCGS</span><span>世界首发</span><span>TGS 闭幕</span></div>
+</article>
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4>Minecraft LIVE：截稿未播</h4></div>
+<p>定于 09-26 10:00 PDT（≈09-27 01:00 CST），落周日、周报截稿前未播。不预写片单；有世界首发/新锁再进下一日报。</p>
+<div class="tags"><span>pending</span><span>不预写</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🏆 发售验证</h3><span class="density">周级主线</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥🔥</b><h4><a href="https://store.steampowered.com/app/3669870/" rel="noopener" target="_blank">控制:共振：全球开门 · ~MC/OC 84</a></h4></div>
+<p class="signal-lede">9/24 晚间全球约 22:00 CST 开门，9/25 日报最高 fire4。媒体评 ~MC/OC 84；Steam 特别好评。补搜口径与日报一致。后续只盯销量/重大补丁。</p>
+<figure class="signal-media">
+<img alt="控制:共振" src="../media/2026-09-25/control_resonant_header.jpg"/>
+</figure>
+<div class="tags"><span>控制:共振</span><span>发售</span><span>Remedy</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://store.steampowered.com/app/1636440/" rel="noopener" target="_blank">SILENT HILL: Townfall：开门后褒贬不一</a></h4></div>
+<p class="signal-lede">9/24 亚区 PS5 / Steam 开门；9/25 收 Steam 初评增量——Mixed / Mostly Positive，主诉 UE5 微卡顿；Konami 确认补丁在研。不采用媒体「寂静岭」冒充简中店名。</p>
+<figure class="signal-media">
+<img alt="Townfall" src="../media/2026-09-24/townfall_header.jpg"/>
+</figure>
+<div class="tags"><span>Townfall</span><span>发售</span><span>口碑</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>🧩 独立游戏观察</h3><span class="density">周级连波</span></div>
+<div class="axis-body">
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4>连波：针影裁梦 → 守墓人2 → 打工火柴人 → I Know a Guy</h4></div>
+<p class="signal-lede">贯穿全周：针影裁梦（特别好评）→ 守墓人2 / 黯井微光（含 Game Pass）→ 打工火柴人 1.0 / 吹笛人 / Nomori / Otterly Lost → 龙之庇护所 / Farming Camp → I Know a Guy（特别好评≈468）/ Decklings / 一坠万千念 / Hostile Lands 1.0。</p>
+<figure class="signal-media">
+<img alt="针影裁梦" src="../media/2026-09-22/dressmaker.jpg"/>
+<img alt="守墓人2" src="../media/2026-09-23/graveyard-keeper-2.jpg"/>
+<img alt="打工火柴人" src="../media/2026-09-24/stickman_header.jpg"/>
+<img alt="龙之庇护所" src="../media/2026-09-25/dragon_shelter_header.jpg"/>
+<img alt="I Know a Guy" src="../media/2026-09-26/i_know_a_guy_header.jpg"/>
+</figure>
+<div class="tags"><span>独立</span><span>连波</span></div>
+</article>
+<article class="signal high">
+<div class="signal-head"><b class="fire">🔥🔥</b><h4><a href="https://www.gematsu.com/2026/09/unicorn-overlord-director-takafumi-noma-announces-fantasy-ip-ignisphere-and-action-rpg-dawngazer-for-ps5-switch-2-and-pc" rel="noopener" target="_blank">IGNISPHERE / DAWNGAZER 公布</a></h4></div>
+<p class="signal-lede">9/25–26 漏报补入：野间唯史新工作室 IGNISPHERE × Good Smile；动作 RPG DAWNGAZER（PS5 / Switch 2 / PC，2028）。同窗另有离火长明2 定档 11/10、Mercenaries Grace、A列车 9 PRIME LINE 12/9。</p>
+<figure class="signal-media">
+<img alt="DAWNGAZER" src="../media/2026-09-26/dawngazer_kv.jpg"/>
+<img alt="离火长明2" src="../media/2026-09-26/nocturnal2_kv.jpg"/>
+<img alt="A列车 9 PRIME LINE" src="../media/2026-09-26/a_train9_prime_kv.jpg"/>
+</figure>
+<div class="tags"><span>IGNISPHERE</span><span>DAWNGAZER</span><span>公布</span></div>
+</article>
+</div>
+</section>
+<section class="axis-card">
+<div class="axis-title"><h3>📅 定档深潜</h3><span class="density">压表</span></div>
+<div class="axis-body">
+<article class="signal medium">
+<div class="signal-head"><b class="fire">🔥</b><h4>离火长明2 / Alpha Nomos / 主机移植簇 / Xbox Reset</h4></div>
+<p>离火长明2 PC 11/10；Alpha Nomos 10/12；幽室鬼牌主机 10/8；BeamNG PS5 EA 10/19；露玛岛主机 2026；Heartworm 主机 10/1；Titan Quest II 1.0 2027-01-19。Xbox Continuing Our Reset（268+并轨）与 Digital Bros 取消 Armed Fantasia 记行业冷信号。</p>
+<figure class="signal-media">
+<img alt="Alpha Nomos" src="../media/2026-09-26/alpha_nomos_kv.jpg"/>
+<img alt="幽室鬼牌" src="../media/2026-09-25/deck_of_haunts_header.jpg"/>
+</figure>
+<div class="tags"><span>定档</span><span>深潜</span></div>
+</article>
+</div>
+</section>
+</div>
+</div>
+
+</main>
+</div>
+<script>
+const buttons = [...document.querySelectorAll('.tab-btn')];
+const panes = [...document.querySelectorAll('.tab-pane')];
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.toggle('active', b === btn));
+  panes.forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 8, behavior:'smooth'});
+}));
+</script>
+<script src="../date-nav.js"></script>
+</body>
+</html>
+
