@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-27</title>
+<style>
+
+
+
+
+
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+
+
+
+
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-27 · 周日 · Asia/Shanghai · ISO 2026-W39</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W39.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-27" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-26, 09-27]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是行业 <strong>🎬 Minecraft LIVE</strong> 翻牌建片单（筛界 2027 进本体 + Ice Caves 下一档 Drop）+ EG7/Cold Iron 减员与异形：火力精英2 Switch 2 改档；AI 侧<strong>无新旗舰</strong>、<strong>无新 MCP/Skill 推荐</strong>，仅记 Gemini×Flipkart 购买测试与 BCBSA 医保编码成本观察。二次元与游戏开发均为空库未出 Tab。显示 2 库。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:50 CST 后漏报补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（new_flagship=false；现役仍 GPT-6 Astra / Claude Opus 5.5·Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash / Grok 4.7）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐（new_mcp_skill_rec=false）</dd></div>
+      <div><dt>展会</dt><dd>Minecraft LIVE 已播（≈09-27 01:00 CST）；TGS·PCGS 已报不复述</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业：Minecraft LIVE 片单（fire3）——筛界 / Ice Caves / 音效包 / Minecraft World；Cold Iron 减员 + AFE2 Switch 2 → early 2027（fire2）。今日无独立游戏观察新增；无 new_games。</li>
+      <li>AI：无新一般文本旗舰、无新 MCP/Skill 推荐；Gemini×Flipkart 印度购买测试 + BCBSA AI 成本分析（均为 fire1）。</li>
+      <li>二次元空库未出 Tab（星铁 4.6 仍锁 9/28，期内宣传不升格）。</li>
+      <li>游戏开发空库未出 Tab（UE 5.8.3 / Unity 6000.6.3f1 / Godot 4.8-dev6 静默）。</li>
+    </ul>
+    <p class="lib-note">判定：最高 Attention 落在 Minecraft LIVE 片单（fire3）。今日无新旗舰、无新 MCP/Skill 推荐。显示 2 库。不复述昨 DAWNGAZER / I Know a Guy / Codex 故障。不发涉政。无新游戏事件，不通知头条选题。</p>
+  </div>
+</header>
+
+<section class="metrics" aria-label="本期指标">
+  <div class="metric accent"><b>4</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>2</b><span>高 Attention</span></div>
+  <div class="metric"><b>2</b><span>显示库</span></div>
+  <div class="metric"><b>0</b><span>新游戏事件</span></div>
+  <div class="metric"><b>4</b><span>配图</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+</section>
+
+<nav class="tabs" aria-label="分页">
+  <button class="tab-btn active" data-tab="pane-overview" type="button">总览</button><button class="tab-btn" data-tab="pane-ai" type="button">AI 观察</button><button class="tab-btn" data-tab="pane-industry" type="button">游戏行业</button>
+</nav>
+
+<section class="tab-pane active" id="pane-overview">
+  <div class="pane-digest library-head">
+    <p class="lib-lede">最高 Attention 落在行业 <strong>🎬 Minecraft LIVE</strong> 片单（🔥🔥🔥）。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。显示 2 库；独立轴无新增。二次元空库未出 Tab；游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>4（AI 2 · 行业 2）</dd></div>
+      <div><dt>高 Attention</dt><dd>2（fire≥2）</dd></div>
+      <div><dt>新游戏事件</dt><dd>0</dd></div>
+      <div><dt>空库</dt><dd>二次元空库未出 Tab；游戏开发空库未出 Tab</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业主导：Minecraft LIVE 内容片单翻牌 + Cold Iron / AFE2 改档补入。</li>
+      <li>AI 轻量：无旗舰、无推荐条；应用与行业成本各一记。</li>
+      <li>二游 / 开发周日静窗，Tab 隐藏。</li>
+    </ul>
+    <p class="lib-note">待核：筛界/Ice Caves 精确窗；Dungeons II 9/29；星铁 4.6 开服（9/28）；狂三 9/29；鸣潮 3.7；Qwen4 / Sonnet·Haiku 5.5 / Grok 4.8 / V4.1-Pro。</p>
+  </div>
+  <h2 class="section-title">最高 Attention</h2>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+<p class="ov-lede"><a href="https://www.minecraft.net/en-us/article/mclive_sept2026_recap" rel="noopener" target="_blank">🎬 Minecraft LIVE（2026-09）片单（已播）</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥🔥（3）</dd></div>
+<div><dt>轴</dt><dd>exhibition</dd></div>
+<div><dt>日期</dt><dd>2026-09-27</dd></div>
+</dl>
+<p class="ov-note">昨 pending 翻牌：Minecraft LIVE 已于 09-26 10:00 PDT（≈09-27 01:00 CST）播出。官方 Recap + Xbox Wire + Windows Central 交叉：世界首发级内容为「筛界（The Sift）」确认 2027 登…</p>
+</article><article class="overview-signal medium">
+<p class="ov-lede"><a href="https://www.inderes.fi/en/releases/enad-global-7-announces-staff-reduction-at-cold-iron-studios" rel="noopener" target="_blank">EG7 / Cold Iron 裁员；异形：火力精英2（Aliens: Fireteam Elite 2）Switch 2 改档 early 2027</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>轴</dt><dd>industry</dd></div>
+<div><dt>日期</dt><dd>2026-09-26</dd></div>
+</dl>
+<p class="ov-note">昨窗漏报补入：EG7 于 09-25 21:00（芬兰，≈09-26 02:00 CST）发通稿——全资子公司 Daybreak 旗下 Cold Iron 在《异形：火力精英2》发售后按既定计划减员以降低运营成本；工作室仍留在 Daybreak，继续运营与支持本作。同稿将 Swi…</p>
+</article><article class="overview-signal ">
+<p class="ov-lede"><a href="https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/" rel="noopener" target="_blank">Google 在印度测试经 Gemini / AI Mode 直连 Flipkart 购买</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥（1）</dd></div>
+<div><dt>轴</dt><dd>💡 AI 应用</dd></div>
+<div><dt>日期</dt><dd>2026-09-26</dd></div>
+</dl>
+<p class="ov-note">TechCrunch 标 2026-09-26 6:30 PM PDT（≈09-27 09:30 CST）：Google 在印度小范围测试——Gemini 与 AI Mode 中部分 Flipkart 商品出现「Buy」，点开后进入 Flipkart 结账流且不离开 AI 界面。…</p>
+</article><article class="overview-signal ">
+<p class="ov-lede"><a href="https://techcrunch.com/2026/09/26/insurers-claim-ai-is-already-increasing-healthcare-costs/" rel="noopener" target="_blank">BCBSA：医院侧 AI 推高医保理赔编码，两年约增支 $9.42 亿</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥（1）</dd></div>
+<div><dt>轴</dt><dd>🏭 行业 / 国内</dd></div>
+<div><dt>日期</dt><dd>2026-09-26</dd></div>
+</dl>
+<p class="ov-note">TechCrunch 标 2026-09-26 2:02 PM PDT（≈09-27 05:02 CST）转述 Blue Cross Blue Shield Association 分析：医院用 AI 提交理赔相关文档后，两年内医保支出额外约 $9.42 亿；协会称复杂病情编码急…</p>
+</article>
+  </div>
+</section>
+
+<section class="tab-pane" id="pane-ai">
+  <div class="library-head">
+    <p class="lib-lede">今日<strong>无新旗舰</strong>（new_flagship=false）；今日<strong>无新 MCP/Skill 推荐</strong>（new_mcp_skill_rec=false）。周日窗薄：Google 在印度测 Gemini / AI Mode 直连 Flipkart 购买 + BCBSA 称医院侧 AI 抬高医保理赔编码成本。现役一般文本仍：GPT-6 Astra / Claude Opus 5.5·Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash / Grok 4.7。昨报 Codex 故障恢复 / Muse 早鸟 / Crusoe×Boom / GCP MCP 等不复述。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>2</dd></div>
+      <div><dt>最高火苗</dt><dd>🔥（1）</dd></div>
+      <div><dt>新旗舰</dt><dd>无</dd></div>
+      <div><dt>MCP / Skill 推荐</dt><dd>无</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>印度小流量测试：Gemini / AI Mode 内部分 Flipkart 商品出现 Buy，结账进 Flipkart 流；消息人士称 10 月更广推。</li>
+      <li>BCBSA 分析口径：医院侧 AI 两年约增支 $9.42 亿医保编码相关支出（协会自报，单方）。</li>
+      <li>旗舰必开页已核：无新一般文本旗舰 GA；Sonnet/Haiku 5.5 仍 coming weeks。</li>
+    </ul>
+    <p class="lib-note">Pending：Qwen4；Sonnet/Haiku 5.5；Grok 4.8；DeepSeek-V4.1-Pro；Muse Charm 发售日；Flipkart Buy 10 月广推。</p>
+  </div>
+  <h3 class="section-title">💡 AI 应用 / 🏭 行业</h3>
+  <article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/" rel="noopener" target="_blank">Google 在印度测试经 Gemini / AI Mode 直连 Flipkart 购买</a></h4></div>
+
+<p class="signal-lede">TechCrunch 标 2026-09-26 6:30 PM PDT（≈09-27 09:30 CST）：Google 在印度小范围测试——Gemini 与 AI Mode 中部分 Flipkart 商品出现「Buy」，点开后进入 Flipkart 结账流且不离开 AI 界面。测试限部分用户与手机/电子配件等品类；计划 10 月更广推开以迎节日购物季。Google 发言人称「一直在测试新功能」未否认。属 agentic 电商从发现走向交易的应用增量，非新模型、非 MCP/Skill 推荐。</p>
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>Gemini / AI Mode × Flipkart 站内购买测试（印度）</dd></div>
+<div><dt>落款</dt><dd>TechCrunch · 2026-09-26 18:30 PDT（≈09-27 09:30 CST）</dd></div>
+<div><dt>范围</dt><dd>小流量测试；部分用户 + 手机/电子/配件；Amazon 等同页竞品未见 Buy</dd></div>
+<div><dt>后续计划（二线）</dt><dd>消息人士称 10 月更广推开，迎印度节日季</dd></div>
+<div><dt>是否新旗舰</dt><dd>否</dd></div>
+<div><dt>是否推荐条</dt><dd>否（应用/电商实验≠ MCP/Skill 推荐）</dd></div>
+</dl>
+<ul class="facts">
+<li>结账呈现为 Flipkart 品牌结账流，TC 写明与早前演示的 Google 托管 UCP 结账形态可能不同，底层技术未锁。</li>
+<li>Google 此前已点名 Flipkart 为印度 agentic 购物合作商家之一，本条是测试细节与时间表增量。</li>
+<li>火苗 1：地区小测+二线媒体，对全球模型/工具链冲击有限。</li>
+</ul>
+
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/" rel="noopener" target="_blank">TechCrunch · Google Flipkart Gemini buy test</a>。</p>
+<div class="tags"><span>Google</span><span>Gemini</span><span>Flipkart</span><span>AI-Mode</span><span>commerce</span><span>India</span></div>
+</article>
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://techcrunch.com/2026/09/26/insurers-claim-ai-is-already-increasing-healthcare-costs/" rel="noopener" target="_blank">BCBSA：医院侧 AI 推高医保理赔编码，两年约增支 $9.42 亿</a></h4></div>
+
+<p class="signal-lede">TechCrunch 标 2026-09-26 2:02 PM PDT（≈09-27 05:02 CST）转述 Blue Cross Blue Shield Association 分析：医院用 AI 提交理赔相关文档后，两年内医保支出额外约 $9.42 亿；协会称复杂病情编码急升但「编码与实际治疗脱节」、未见对应诊疗变化。属行业侧 AI 成本外部性观察，非模型发布。</p>
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>BCBSA 医院侧 AI×理赔编码成本分析</dd></div>
+<div><dt>落款</dt><dd>TechCrunch · 2026-09-26 PDT（交叉 NYT 报道框架）</dd></div>
+<div><dt>数字（协会自报）</dt><dd>两年额外约 $942M 医保支出</dd></div>
+<div><dt>是否新旗舰</dt><dd>否</dd></div>
+<div><dt>是否推荐条</dt><dd>否</dd></div>
+</dl>
+<ul class="facts">
+<li>为保险公司协会立场稿，医院侧未必认可；Abridge 创始人亦警告「bots fighting bots」风险。</li>
+<li>不涉政治敏感政策细节，只收行业成本外部性短条。</li>
+<li>火苗 1：分析口径单方、对工具链直接冲击有限。</li>
+</ul>
+
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://techcrunch.com/2026/09/26/insurers-claim-ai-is-already-increasing-healthcare-costs/" rel="noopener" target="_blank">TechCrunch · Insurers AI healthcare costs</a>。</p>
+<div class="tags"><span>healthcare</span><span>BCBSA</span><span>insurance</span><span>industry</span><span>cost</span></div>
+</article>
+</section>
+<section class="tab-pane" id="pane-industry">
+  <div class="library-head">
+    <p class="lib-lede">昨 pending 翻牌：<strong>Minecraft LIVE</strong> 已于 ≈09-27 01:00 CST 播出，建 🎬 展会片单（最高🔥🔥🔥）——<strong>筛界（The Sift）</strong>确认 2027 进 Java/Bedrock + Ice Caves / Frozen Zombie 下一档 Drop 首曝。昨漏报补入 EG7 / Cold Iron 减员与<strong>异形：火力精英2</strong> Switch 2 改档 early 2027（🔥🔥）。今日<strong>无独立游戏观察新增</strong>（indie_empty）。无 new_games 进事件池。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>2</dd></div>
+      <div><dt>最高火苗</dt><dd>🔥🔥🔥（3）</dd></div>
+      <div><dt>独立轴</dt><dd>无新增（indie_empty=true）</dd></div>
+      <div><dt>展会片单</dt><dd>Minecraft LIVE 已播（exhibition_empty=false）</dd></div>
+      <div><dt>新游戏事件</dt><dd>0（内容维度/乐园/改档不进池）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>片单世界首发/新揭：筛界 2027；Ice Caves+Frozen Zombie（精确日未锁）；Marketplace 音效包；Minecraft World 酒店+Escape the Nether（2027）。</li>
+      <li>已定档深潜：Minecraft Dungeons II 仍 9/29；我的世界 Switch 2 仍 10/27。</li>
+      <li>行业：Cold Iron 按计划减员；AFE2 Switch 2 自 9/29 改 early 2027。</li>
+    </ul>
+    <p class="lib-note">不复述 TGS/PCGS、控制:共振/Townfall、昨 DAWNGAZER 独立簇。不发涉政。</p>
+  </div>
+  <h3 class="section-title">🎬 展会片单</h3>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.minecraft.net/en-us/article/mclive_sept2026_recap" rel="noopener" target="_blank">🎬 Minecraft LIVE（2026-09）片单（已播）</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-27/minecraft_live_kv.jpg" alt="🎬 Minecraft LIVE（2026-09）片单（已播）" loading="lazy"/>
+<img src="../media/2026-09-27/sift_01.jpg" alt="🎬 Minecraft LIVE（2026-09）片单（已播）" loading="lazy"/>
+</figure>
+<p class="signal-lede">昨 pending 翻牌：Minecraft LIVE 已于 09-26 10:00 PDT（≈09-27 01:00 CST）播出。官方 Recap + Xbox Wire + Windows Central 交叉：世界首发级内容为「筛界（The Sift）」确认 2027 登陆 Java/Bedrock（14 年来首个新维度）+ 下一档 Game Drop 首曝 Ice Caves / Frozen Zombie；音效包、Minecraft World 酒店与 Escape the Nether 过山车概念亦为新揭。已定档深潜：Minecraft Dungeons II（仍 9/29）与 我的世界 Switch 2（仍 10/27）压表不单开。命名：筛界 ← 官方简中 about-dungeons-ii；Ice Caves 官方简中稿仍英文 → 留英文；Dungeons II / Minecraft 店名与官方中文页作品名保持英文产品名，系列可称我的世界。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会同期官方秀已播 / 🎬 展会片单</dd></div>
+<div><dt>档期窗</dt><dd>2026-09-26 10:00 PDT ≈ 09-27 01:00 CST</dd></div>
+<div><dt>世界首发要点</dt><dd>筛界→本体 2027；Ice Caves+Frozen Zombie（下一档 Drop，精确日未锁）；Marketplace 音效包（年内）；Minecraft World 酒店+Escape the Nether（2027）</dd></div>
+<div><dt>已定档深潜</dt><dd>Minecraft Dungeons II 仍 9/29；我的世界 Switch 2 仍 10/27（8 月已锁）</dd></div>
+<div><dt>一手落款</dt><dd>minecraft.net Recap 09-26 + Xbox Wire 筛界稿 + Nintendo/官方 Switch2 早前锁日</dd></div>
+<div><dt>独立轴</dt><dd>本场无独立世界首发达门槛条 → 今日无独立游戏观察新增</dd></div>
+<div><dt>时点</dt><dd>播完≈09-27 01:00–02:30 CST；本窗入核</dd></div>
+</dl>
+<ul class="facts">
+<li>筛界（The Sift）先于 Minecraft Dungeons II（9/29）可玩，再于 2027 进入 Java &amp; Bedrock；官方称第四维度、14 年+首个新维度</li>
+<li>Ice Caves：稀有地下洞穴生物群系；冰晶/冰锥 + Frozen Zombie（叠冻结；部分投掷冰球）；精确 Drop 日未锁</li>
+<li>Sound Effects Packs：Minecraft Marketplace，官方口径年内</li>
+<li>Minecraft World（伦敦 Chessington，2027）：首家 Minecraft World Hotel + 首条 Minecraft 过山车 Escape the Nether（概念图）</li>
+<li>Creator Platform：降低创作门槛倡议，无作品级新锁</li>
+<li>不复述 TGS/PCGS/Xbox@TGS/Capcom 长名单</li>
+</ul>
+<table class="compare"><thead><tr><th>作品/内容</th><th>类型</th><th>说明</th></tr></thead><tbody>
+<tr><td>筛界（The Sift）→ 我的世界 Java &amp; Bedrock</td><td>世界首发/新揭</td><td>2027；14 年来首个新维度 / 第四维度；先于 Dungeons II 体验；官方简中「筛界」</td></tr>
+<tr><td>Ice Caves + Frozen Zombie（下一档 Game Drop）</td><td>世界首发/新揭</td><td>稀有冰穴生物群系；冰晶/冰锥；Frozen Zombie 叠冻结；精确日未锁；官方简中稿暂无店名级译 → 留英文</td></tr>
+<tr><td>Sound Effects Packs（Minecraft Marketplace）</td><td>世界首发/新揭</td><td>官方口径年内上架；非独立游戏</td></tr>
+<tr><td>Minecraft World Hotel + Escape the Nether</td><td>世界首发/新揭</td><td>伦敦 Chessington，2027；首家主题酒店 + 首条 Minecraft 过山车；IP/乐园，不进 new_games</td></tr>
+<tr><td>Minecraft Dungeons II</td><td>已定档深潜</td><td>LIVE 深潜筛界/互联世界；发售仍 2026-09-29；多平台+Game Pass — 不单开、不进 new_games</td></tr>
+<tr><td>我的世界（Minecraft）Nintendo Switch 2</td><td>已定档深潜</td><td>秀上祝贺/提醒；档期仍 2026-10-27（Nintendo/官方 8 月已锁）；Vibrant Visuals 默认 — 不单开</td></tr>
+<tr><td>Creator Platform 倡议</td><td>已定档深潜</td><td>降低创作门槛；无作品级新锁/日期</td></tr>
+</tbody></table>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.minecraft.net/en-us/article/mclive_sept2026_recap" rel="noopener" target="_blank">www.minecraft.net/en-us/article/mclive_sept2026_recap</a> · <a href="https://www.minecraft.net/zh-hans/about-dungeons-ii" rel="noopener" target="_blank">www.minecraft.net/zh-hans/about-dungeons-ii</a> · <a href="https://news.xbox.com/en-us/2026/09/26/minecraft-new-dimension-sift-dungeons-2/" rel="noopener" target="_blank">news.xbox.com/en-us/2026/09/26/minecraft-new-dimension-s</a> · <a href="https://www.windowscentral.com/gaming/minecraft/minecraft-live-2026-everything-announced" rel="noopener" target="_blank">www.windowscentral.com/gaming/minecraft/minecraft-live-2</a> · <a href="https://www.minecraft.net/en-us/article/minecraft-coming-nintendo-switch-2" rel="noopener" target="_blank">www.minecraft.net/en-us/article/minecraft-coming-nintend</a> · <a href="https://www.nintendo.com/us/whatsnew/minecraft-for-nintendo-switch-2-arrives-oct-27/" rel="noopener" target="_blank">www.nintendo.com/us/whatsnew/minecraft-for-nintendo-swit</a>。</p>
+
+</article>
+<h3 class="section-title">🏭 厂商 / 行业动态</h3>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.inderes.fi/en/releases/enad-global-7-announces-staff-reduction-at-cold-iron-studios" rel="noopener" target="_blank">EG7 / Cold Iron 裁员；异形：火力精英2（Aliens: Fireteam Elite 2）Switch 2 改档 early 2027</a></h4></div>
+
+<p class="signal-lede">昨窗漏报补入：EG7 于 09-25 21:00（芬兰，≈09-26 02:00 CST）发通稿——全资子公司 Daybreak 旗下 Cold Iron 在《异形：火力精英2》发售后按既定计划减员以降低运营成本；工作室仍留在 Daybreak，继续运营与支持本作。同稿将 Switch 2 版由原 9/29 改档至 early 2027（精确日未锁）。Steam 简中店名「异形：火力精英2」。人数未披露。不与 Xbox 268 裁员并条复述。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>工作室减员 + 主机档期改锁</dd></div>
+<div><dt>公司·工作室</dt><dd>EG7 → Daybreak → Cold Iron Studios</dd></div>
+<div><dt>作品</dt><dd>异形：火力精英2（Aliens: Fireteam Elite 2）</dd></div>
+<div><dt>Switch 2</dt><dd>原 2026-09-29 → early 2027（精确日未锁）</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「异形：火力精英2」AppID 3448650</dd></div>
+<div><dt>时点</dt><dd>EG7 通稿 09-25 21:00 EEST ≈ 09-26 02:00 CST（昨窗应覆盖，本日补入）</dd></div>
+</dl>
+<ul class="facts">
+<li>通稿口径：减员属原计划成本控制，非点名销售回应</li>
+<li>Cold Iron 继续支持 AFE2 与 Switch 2 移植</li>
+<li>人数 / 比例未披露 → 不编</li>
+<li>Build A Rocket Boy 托管（约 9/23–25）属更早窗外，本日不追溯升格</li>
+</ul>
+
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.inderes.fi/en/releases/enad-global-7-announces-staff-reduction-at-cold-iron-studios" rel="noopener" target="_blank">www.inderes.fi/en/releases/enad-global-7-announces-staff</a> · <a href="https://storage.mfn.se/5f4cea28-f698-464c-9f43-ecab592917f1/enad-global-7-announces-staff-reduction-at-cold-iron-studios.pdf" rel="noopener" target="_blank">storage.mfn.se/5f4cea28-f698-464c-9f43-ecab592917f1/enad</a> · <a href="https://store.steampowered.com/api/storesearch/?term=Aliens%20Fireteam%20Elite%202&amp;l=schinese&amp;cc=cn" rel="noopener" target="_blank">store.steampowered.com/api/storesearch/?term=Aliens%20Fi</a>。</p>
+
+</article>
+</section>
+
+<footer class="site-foot">
+  <p>观察台 · <a href="https://gamecrazy.github.io/daily-intelligence-hub/">最新入口</a> · 本页快照 <code>/daily/2026-09-27.html</code> · 生成 Asia/Shanghai</p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
