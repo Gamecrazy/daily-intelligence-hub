@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-28</title>
+<style>
+
+
+
+
+
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+
+
+
+
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-28 · 周一 · Asia/Shanghai · ISO 2026-W40</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W40.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-28" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-27, 09-28]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线是行业独立轴 <strong>Keep Driving</strong> 主机三端发售（PS5 / Xbox Series / Switch；PC 同日 Workshop）。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。AI / 二次元 / 游戏开发均为空库未出 Tab。显示 1 库。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:50 CST 后漏报补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（new_flagship=false；现役仍 GPT-6 Astra / Claude Opus 5.5·Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash / Grok 4.7）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐（new_mcp_skill_rec=false）</dd></div>
+      <div><dt>展会</dt><dd>无新已播秀（exhibition_empty=true；Minecraft LIVE 昨已报不复述）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业：Keep Driving 主机移植首发 + Workshop（fire2）；new_games×1。明日档 Dungeons II / 空战奇兵8 抢先等 pending。</li>
+      <li>AI 空库未出 Tab（无新旗舰、无新 MCP/Skill 推荐、独立 Signal 0）。</li>
+      <li>二次元空库未出 Tab（星铁 4.6 开门日有更新说明，截稿前未「现已开启」，不预写开服）。</li>
+      <li>游戏开发空库未出 Tab（UE 5.8.3 / Unity 6000.6.3f1 / Godot 4.8-dev6 静默）。</li>
+    </ul>
+    <p class="lib-note">判定：最高 Attention 落在 Keep Driving 主机发售（fire2）。今日无新旗舰、无新 MCP/Skill 推荐。显示 1 库（仅游戏行业）。不复述昨 Minecraft LIVE / Cold Iron。不发涉政。新游戏事件×1，可通知头条选题。</p>
+  </div>
+</header>
+
+<section class="metrics" aria-label="本期指标">
+  <div class="metric accent"><b>1</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>1</b><span>高 Attention</span></div>
+  <div class="metric"><b>1</b><span>显示库</span></div>
+  <div class="metric"><b>1</b><span>新游戏事件</span></div>
+  <div class="metric"><b>2</b><span>配图</span></div>
+  <div class="metric"><b>0</b><span>新旗舰</span></div>
+</section>
+
+<nav class="tabs" aria-label="分页">
+  <button class="tab-btn active" data-tab="pane-overview" type="button">总览</button><button class="tab-btn" data-tab="pane-industry" type="button">游戏行业</button>
+</nav>
+
+<section class="tab-pane active" id="pane-overview">
+  <div class="pane-digest library-head">
+    <p class="lib-lede">最高 Attention 落在行业 <strong>Keep Driving</strong> 主机三端发售（🔥🔥）。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。显示 1 库。AI / 二次元 / 游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1（行业 1）</dd></div>
+      <div><dt>高 Attention</dt><dd>1（fire≥2）</dd></div>
+      <div><dt>新游戏事件</dt><dd>1（Keep Driving）</dd></div>
+      <div><dt>空库</dt><dd>AI / 二次元 / 游戏开发空库未出 Tab</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业主导：Keep Driving 独立主机移植首发；无新展会片单。</li>
+      <li>AI / 二次元 / 开发周一静窗，Tab 隐藏。</li>
+      <li>星铁 4.6 维护中，截稿前未确认开服 → 二游空库。</li>
+    </ul>
+    <p class="lib-note">待核：星铁 4.6 开服实况；Dungeons II / 空战奇兵8 抢先 / 巫师3 Remastered 9/29；狂三 9/29；鸣潮 3.7；筛界/Ice Caves 精确窗；Qwen4 / Sonnet·Haiku 5.5 / Grok 4.8 / V4.1-Pro。</p>
+  </div>
+  <h2 class="section-title">最高 Attention</h2>
+  <div class="overview-grid">
+    <article class="overview-signal medium">
+<p class="ov-lede"><a href="https://store.playstation.com/en-us/concept/10017559/" rel="noopener" target="_blank">Keep Driving 登陆 PS5 / Xbox Series / Switch；PC 同日开 Steam Workshop</a></p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>轴</dt><dd>indie</dd></div>
+<div><dt>日期</dt><dd>2026-09-28</dd></div>
+</dl>
+<p class="ov-note">瑞典独立工作室 Y/CJ/Y（Post Void）公路管理 RPG《Keep Driving》于 2026-09-28 正式登陆 PlayStation 5、Xbox Series X|S 与 Nintendo Switch；主机版打包既有 PC 内容更新（新结局/路况事件/本地…</p>
+</article>
+  </div>
+</section>
+
+
+<section class="tab-pane" id="pane-industry">
+  <div class="library-head">
+    <p class="lib-lede">周一静窗：独立公路管理 RPG <strong>Keep Driving</strong> 正式登陆 PS5 / Xbox Series / Switch（🔥🔥），PC 同日开 Steam Workshop；Steam 简中店名仍英文，不采媒体「心驰神往」。今日<strong>无新已播官方秀</strong>（exhibition_empty）；Minecraft LIVE 片单昨已报不复述。明日档 Dungeons II / 空战奇兵8 抢先 / 巫师3 Remastered 等落 pending。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>最高火苗</dt><dd>🔥🔥（2）</dd></div>
+      <div><dt>独立轴</dt><dd>有新增（indie_empty=false）</dd></div>
+      <div><dt>展会片单</dt><dd>无（exhibition_empty=true；Minecraft LIVE 不复述）</dd></div>
+      <div><dt>新游戏事件</dt><dd>1（Keep Driving 主机三端发售）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>Keep Driving：Y/CJ/Y · 2026-09-28 主机三端发售；PC 原版 2025-02，Steam Very Positive ≈6555/94%，销量口径 30 万+；同日 Workshop。</li>
+      <li>展会：今日无新已播秀；筛界/Ice Caves 精确窗无补锁，不整表复述 Minecraft LIVE。</li>
+      <li>明日观察：Minecraft Dungeons II、空战奇兵8 希孚之翼豪华抢先 9/29 06:00 CST、巫师3 Remastered、Transport Fever 3、Way of the Hunter 2 1.0。</li>
+    </ul>
+    <p class="lib-note">不复述 Minecraft LIVE 长名单、EG7/Cold Iron、IGNISPHERE/DAWNGAZER、TGS/PCGS。不发涉政。命名：Keep Driving 留英文。</p>
+  </div>
+  <h3 class="section-title">🧩 独立游戏观察</h3>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.playstation.com/en-us/concept/10017559/" rel="noopener" target="_blank">Keep Driving 登陆 PS5 / Xbox Series / Switch；PC 同日开 Steam Workshop</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-28/keep_driving_header.jpg" alt="Keep Driving 登陆 PS5 / Xbox Series / Switch；PC 同日开 Steam Workshop" loading="lazy"/>
+<img src="../media/2026-09-28/keep_driving_ss01.jpg" alt="Keep Driving 登陆 PS5 / Xbox Series / Switch；PC 同日开 Steam Workshop" loading="lazy"/>
+</figure>
+<p class="signal-lede">瑞典独立工作室 Y/CJ/Y（Post Void）公路管理 RPG《Keep Driving》于 2026-09-28 正式登陆 PlayStation 5、Xbox Series X|S 与 Nintendo Switch；主机版打包既有 PC 内容更新（新结局/路况事件/本地化与手柄优化）。同日 PC 版开启官方 Steam Workshop（报道称初期走 beta 分支）。PC 原版 2025-02-06 发售，Steam 总评仍 Very Positive（约 6555 评 / 约 94% 好评），厂商口径 PC 销量逾 30 万。命名：Steam 简中店名仍为 Keep Driving；中文媒体常见「心驰神往」非 Steam 店名级官方译 → 留英文。达独立门槛：主机移植首发 + 口碑/销量可核。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>独立游戏主机移植首发 + PC Workshop</dd></div>
+<div><dt>作品</dt><dd>Keep Driving</dd></div>
+<div><dt>开发·发行</dt><dd>Y/CJ/Y · YCJY Games AB</dd></div>
+<div><dt>主机档</dt><dd>2026-09-28 · PS5 / Xbox Series / Switch</dd></div>
+<div><dt>PC 增量</dt><dd>Steam Workshop（官方口径同日；报道称先走 beta）</dd></div>
+<div><dt>口碑·销量</dt><dd>Steam Very Positive ≈6555/94%；PC 销量口径 300k+</dd></div>
+<div><dt>命名</dt><dd>Steam 简中店名 Keep Driving → 留英文（不采媒体「心驰神往」）</dd></div>
+<div><dt>时点</dt><dd>主机发售日落在本窗；定档稿约 9/18–9/21，本日报发售翻牌</dd></div>
+</dl>
+<ul class="facts">
+<li>PS Store 概念页锁日 9/28/2026；RPG Site（9/21）与多家二线交叉主机三端同日</li>
+<li>主机版含既有 Steam 更新内容（额外结局、新地点/路况、扩展语言、手柄改进）</li>
+<li>PC Workshop：厂商/媒体口径 9/28 上线；部分报道指需手动切 beta 分支，截稿未核到完整补丁说明全文</li>
+<li>不与 Thank You Bus Driver 定档混淆：后者 Steam 新闻锁 10/14 已在 9/10 公布，TheGamer 9/27 属迟到报道 → 拒收</li>
+<li>展会片单：今日无新已播官方秀 → exhibition_empty=true；Minecraft LIVE 长名单不复述</li>
+</ul>
+
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.playstation.com/en-us/concept/10017559/" rel="noopener" target="_blank">store.playstation.com/en-us/concept/10017559/</a> · <a href="https://store.steampowered.com/app/2756920/Keep_Driving/" rel="noopener" target="_blank">store.steampowered.com/app/2756920/Keep_Driving/</a> · <a href="https://www.rpgsite.net/news/21444-atmospheric-management-rpg-keep-driving-ps5-xbox-series-nintendo-switch-release-date-pc-steam-modding-support" rel="noopener" target="_blank">www.rpgsite.net/news/21444-atmospheric-management-rpg-ke</a> · <a href="https://www.indie-games.eu/keep-driving-reaches-consoles-after-selling-300000-copies-on-pc/" rel="noopener" target="_blank">www.indie-games.eu/keep-driving-reaches-consoles-after-s</a> · <a href="https://news.xbox.com/en-us/2026/09/25/next-week-on-xbox-new-games-for-september-28-to-october-2/" rel="noopener" target="_blank">news.xbox.com/en-us/2026/09/25/next-week-on-xbox-new-gam</a>。</p>
+
+</article>
+</section>
+
+<footer class="site-foot">
+  <p>观察台 · <a href="https://gamecrazy.github.io/daily-intelligence-hub/">最新入口</a> · 本页快照 <code>/daily/2026-09-28.html</code> · 生成 Asia/Shanghai</p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
