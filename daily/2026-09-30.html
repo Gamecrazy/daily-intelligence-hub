@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>综合日报 · 2026-09-30</title>
+<style>
+
+
+
+
+
+/* daily report 2026-08-26 */
+:root {
+  --bg:#f3f4f8; --surface:#fff; --surface2:#f8f9fb; --ink:#181b20;
+  --ink2:#59616d; --ink3:#858d98; --line:#e4e7eb; --accent:#4f46b5;
+  --fire:#d4552d; --fire2:#fff0e9; --green:#167d62; --blue:#1768a6;
+  --warn:#a86613; --rose:#c45b7a; --teal:#1a7a72; --slate:#475569;
+  --r:16px; --shadow:0 8px 30px rgba(27,31,44,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#ddd6fe;color:var(--ink)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased
+}
+a{color:var(--blue);text-decoration:none;text-underline-offset:2px}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:auto;padding:30px 22px 60px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f0efff 100%);border:1px solid var(--line);border-radius:22px;padding:28px 30px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{margin:0;font-size:30px;letter-spacing:-.5px}
+.meta{color:var(--ink3);font-size:14px;margin-top:4px}
+.window{background:#eceafd;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.issue-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.edition-nav{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.edition-nav a{padding:7px 14px;font-size:13px;font-weight:650;color:var(--ink);text-decoration:none}
+.edition-nav a.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.date-nav button,.date-nav select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:650;color:var(--ink);cursor:pointer}
+.date-nav button:disabled{opacity:.4;cursor:not-allowed}
+.date-nav select{min-width:10em}
+.lede{margin:20px 0 0;padding:16px 18px;background:rgba(255,255,255,.78);border-left:4px solid var(--accent);border-radius:12px;color:var(--ink2);line-height:1.75}
+.lede .lib-lede{margin:0 0 8px;font-size:15px}
+.lede .kv{margin:8px 0 10px}
+.lede .facts{margin:0 0 8px}
+.lede .lib-note{margin:8px 0 0}
+.lede code{display:inline;padding:2px 7px;border-radius:6px;background:#eeedff;color:var(--accent);font-size:.9em}
+.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:20px 0}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-align:center;box-shadow:var(--shadow)}
+.metric b{display:block;font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.metric span{font-size:12px;color:var(--ink3)}
+.metric.hot b{color:var(--fire)}
+.metric.accent b{color:var(--accent)}
+.tabs{
+  position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;
+  background:rgba(243,244,248,.94);backdrop-filter:blur(10px);
+  padding:12px 0;margin:8px 0 18px;
+  box-shadow:0 8px 16px -12px rgba(27,31,44,.35);
+  scrollbar-width:none
+}
+.tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.tab-btn{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:9px 15px;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.tab-btn:hover{border-color:#c7c4e8;color:var(--accent);background:#f6f5ff}
+.tab-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section-title{font-size:20px;margin:30px 0 14px;display:flex;gap:9px;align-items:center}
+.section-title:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--accent)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.overview-signal{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px;box-shadow:var(--shadow);
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.overview-signal.high{border-left:3px solid var(--fire);background:linear-gradient(180deg,#fff7f2 0%,#fff 58%)}
+.overview-signal.medium{border-left:3px solid #e8c4b0;background:linear-gradient(180deg,#fffdfb 0%,#fff 72%)}
+.overview-signal:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.overview-signal h3{font-size:16px;margin:8px 0;line-height:1.4}
+.overview-signal p{font-size:13px;color:var(--ink2);margin:0}
+.ov-fire{display:inline-block;color:var(--fire);font-size:12px;font-weight:800;background:var(--fire2);padding:2px 8px;border-radius:6px}
+.table-wrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;min-width:0}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:var(--surface2);color:var(--ink3)}
+tr:last-child td{border-bottom:0}
+.watch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.watch{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;color:var(--ink2)}
+.watch b{color:var(--ink)}
+.library-head{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+#ai .library-head{border-left:4px solid var(--accent)}
+#anime .library-head{border-left:4px solid var(--rose)}
+#industry .library-head{border-left:4px solid var(--teal)}
+#dev .library-head{border-left:4px solid var(--slate)}
+.library-head>div:first-child{display:flex;align-items:center;gap:10px}
+.library-head h2{margin:0;font-size:24px}
+.lib-icon{font-size:25px}
+.library-head p,.pane-digest p{color:var(--ink2);margin:10px 0}
+.pane-digest{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.lib-lede,.ov-lede{font-size:17px;color:var(--ink);margin:12px 0 10px;font-weight:550;line-height:1.55}
+.lib-note{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.7}
+.library-head .kv,.pane-digest .kv,.overview-signal .kv{margin:8px 0 10px}
+.overview-signal p{margin:8px 0}
+.overview-signal .ov-lede{font-size:14px;font-weight:550;color:var(--ink);line-height:1.6}
+.overview-signal .kv{grid-template-columns:1fr}
+.lib-stats{display:flex;gap:10px;flex-wrap:wrap}
+.lib-stats span{font-size:12px;background:var(--surface2);padding:5px 10px;border-radius:999px;color:var(--ink2)}
+.lib-stats .level{color:var(--accent);background:#eeedff;font-weight:700}
+.axis-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.axis-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 18px;box-shadow:var(--shadow);align-self:start;
+  transition:box-shadow .16s ease,transform .16s ease
+}
+.axis-card:hover{box-shadow:0 10px 28px rgba(27,31,44,.08);transform:translateY(-1px)}
+.axis-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.axis-title h3{font-size:15px;margin:0}
+.density{font-size:11px;color:var(--ink3);background:var(--surface2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.subaxis{font-size:13px;margin:15px 0 7px;color:var(--accent)}
+.signal{padding:18px 0;border-top:1px dashed var(--line)}
+.axis-body>.signal:first-child{border-top:0;padding-top:0}
+.signal.high{padding-left:12px;border-left:3px solid var(--fire);background:linear-gradient(90deg,#fff6f0 0%,transparent 68%);border-radius:0 8px 8px 0}
+.signal.medium{padding-left:10px;border-left:2px solid #e8c4b0;background:linear-gradient(90deg,#fffaf6 0%,transparent 52%);border-radius:0 8px 8px 0}
+.signal-head{display:flex;gap:8px;align-items:flex-start}
+.signal-head h4{font-size:14px;margin:0;line-height:1.45}
+.signal-head h4 a{color:inherit}
+.signal-head h4 a:hover{color:var(--blue)}
+.fire{font-size:11px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.signal.medium .fire{color:var(--fire);background:#faece6}
+.signal.high .fire{color:#b6421f;background:var(--fire2)}
+.signal p{font-size:13px;color:var(--ink2);margin:7px 0}
+.signal-note{font-size:12px;color:var(--green);background:#eaf6f1;border-radius:8px;padding:7px 9px;margin:7px 0}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10.5px;color:var(--ink3);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.signal-lede{font-size:16px;color:var(--ink);margin:10px 0 12px;font-weight:550;line-height:1.6}
+.signal-media{margin:8px 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.signal-media img{width:100%;height:auto;max-height:280px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface2);display:block}
+.signal-media figcaption{font-size:11px;color:var(--ink3);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 12px;margin:0 0 10px;padding:0}
+.kv div{display:grid;grid-template-columns:auto minmax(8em,1fr);gap:8px;align-items:start;font-size:13.5px;background:var(--surface2);border-radius:8px;padding:8px 12px;min-width:0}
+.kv dt{margin:0;color:var(--ink3);font-weight:650;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink);overflow-wrap:break-word;word-break:normal;min-width:0}
+.facts{margin:0 0 12px;padding:0 0 0 1.25em;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.facts li{margin:8px 0}
+.compare-wrap{margin:10px 0;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.compare{width:100%;border-collapse:collapse;min-width:420px;margin:0}
+.compare caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;color:var(--ink);padding:8px 10px 4px}
+.compare th,.compare td{font-size:12px;padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:var(--surface2);color:var(--ink3);font-weight:650}
+.compare tr:last-child td{border-bottom:0}
+.compare-src{font-size:11px;color:var(--ink3);margin:6px 0 0}
+/* 展会片单：复用 .compare / .compare-wrap，不另造皮肤 */
+.show-slate .compare{min-width:520px}
+@media(max-width:780px){
+  .kv{grid-template-columns:1fr}
+}
+.empty{font-size:12.5px;color:var(--ink3);font-style:italic;background:var(--surface2);padding:10px 12px;border-radius:10px}
+.analysis-box{font-size:13px;color:var(--ink2);background:#f0efff;border-left:3px solid var(--accent);padding:11px 13px;border-radius:10px}
+.sources{columns:2;column-gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 38px;box-shadow:var(--shadow)}
+.sources li{break-inside:avoid;margin:7px 0;font-size:13px}
+.footnote{font-size:12px;color:var(--ink3);margin-top:16px}
+@media(max-width:1050px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .wrap{padding:18px 12px 40px}
+  .axis-grid,.watch-list{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .sources{columns:1;padding:16px 30px}
+  h1{font-size:25px}
+}
+@media print{
+  .tabs{display:none}
+  body{background:#fff}
+  .hero,.metric,.overview-signal,.axis-card,.library-head,.table-wrap,.watch,.sources{box-shadow:none}
+}
+
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot p{margin:6px 0}
+.empty-axis{font-size:13px;color:var(--ink3);font-style:italic;padding:8px 0}
+
+
+
+
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>综合日报</h1>
+      <div class="meta">2026-09-30 · 周三 · Asia/Shanghai · ISO 2026-W40</div>
+    </div>
+    <div class="issue-nav">
+      <nav class="edition-nav" aria-label="日报周报切换">
+        <a class="active" href="#">日报</a>
+        <a href="../weekly/2026-W40.html">周报</a>
+      </nav>
+      <nav class="date-nav" data-date="2026-09-30" aria-label="日期切换"></nav>
+      <span class="window">窗口 (09-29, 09-30]</span>
+    </div>
+  </div>
+  <div class="lede">
+    <p class="lib-lede">今日主线：行业 <strong>🎬 Big Break Showcase 已播建片单</strong>（最高🔥🔥🔥）+ 独立世界首发簇 + 发售次日口碑（空战奇兵8 / MD2）+ 二次元<strong>战双时崎狂三联动现已开启</strong>（🔥🔥🔥）+ AI DevDay 漏报补入（GPT-6.1 Sol / OpenAI Dots）。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。游戏开发空库未出 Tab。显示 3 库。</p>
+    <dl class="kv">
+      <div><dt>覆盖</dt><dd>1 天（含昨 ~09:50 CST 后漏报补入核）</dd></div>
+      <div><dt>新旗舰</dt><dd>无（new_flagship=false；现役仍 GPT-6 Astra / Claude Opus·Sonnet 5.5·Fable·Mythos 5.1 / Gemini 3.8 Flash / DeepSeek-V4.1-Flash / Grok 4.7）</dd></div>
+      <div><dt>MCP / Skill</dt><dd>无新推荐（new_mcp_skill_rec=false；OpenAI Dots 记 Agent 产品条，不冒充 MCP/Skill 推荐）</dd></div>
+      <div><dt>展会 / 独立</dt><dd>Big Break 已播建片单；今日有独立游戏观察新增</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业：Big Break 片单（fire3）+ 独立世界首发簇（fire2）+ 空战奇兵8/MD2 口碑增量 + Outlanders 10/29 + 真・三国无双２ Remastered 等；new_games×16。</li>
+      <li>二次元：战双时崎狂三联动现已开启（fire3）；鸣潮 3.7 / 洛克茜频段 pending。</li>
+      <li>AI：GPT-6.1 Sol（成本档，非旗舰）+ OpenAI Dots（Agent 产品）；无新旗舰、无 MCP/Skill 推荐。</li>
+      <li>游戏开发空库未出 Tab（Godot 快照→4.8-dev7 feature freeze，不升核心；UE 5.8.3 / Unity 6000.6.3f1 静默）。</li>
+    </ul>
+    <p class="lib-note">判定：最高 Attention 并列 Big Break 片单与战双时崎狂三联动（均为 fire3）。今日无新旗舰；今日无新 MCP/Skill 推荐。显示 3 库。不发涉政。新游戏事件×16，可通知头条选题。</p>
+  </div>
+</header>
+
+<section class="metrics" aria-label="本期指标">
+  <div class="metric accent"><b>12</b><span>独立 Signal</span></div>
+  <div class="metric hot"><b>9</b><span>高 Attention</span></div>
+  <div class="metric"><b>3</b><span>显示库</span></div>
+  <div class="metric"><b>16</b><span>新游戏事件</span></div>
+  <div class="metric"><b>17</b><span>配图</span></div>
+  <div class="metric hot"><b>0</b><span>新旗舰</span></div>
+</section>
+
+<nav class="tabs" aria-label="分页">
+  <button class="tab-btn active" data-tab="pane-overview" type="button">总览</button><button class="tab-btn" data-tab="pane-ai" type="button">AI 观察</button><button class="tab-btn" data-tab="pane-anime" type="button">二次元游戏</button><button class="tab-btn" data-tab="pane-industry" type="button">游戏行业</button>
+</nav>
+
+<section class="tab-pane active" id="pane-overview">
+  <div class="pane-digest library-head">
+    <p class="lib-lede">最高 Attention 落在行业 <strong>🎬 Big Break Showcase 片单</strong>与二次元 <strong>战双时崎狂三联动现已开启</strong>（均为 🔥🔥🔥）。今日<strong>无新旗舰</strong>；今日<strong>无新 MCP/Skill 推荐</strong>。显示 3 库。游戏开发空库未出 Tab。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>12（AI 2 / 二次元 1 / 行业 9）</dd></div>
+      <div><dt>高 Attention</dt><dd>9（fire≥2）</dd></div>
+      <div><dt>新游戏事件</dt><dd>16</dd></div>
+      <div><dt>空库</dt><dd>游戏开发空库未出 Tab</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>行业主导：Big Break 片单 + 独立世界首发簇 + 发售次日口碑与翻牌；new_games×16。</li>
+      <li>二次元狂三联动翻牌；鸣潮 3.7 / 洛克茜午后待核。</li>
+      <li>AI DevDay 漏报补入 Sol/Dots；无新旗舰、无 MCP/Skill 推荐。</li>
+    </ul>
+    <p class="lib-note">待核：鸣潮 3.7 开门；洛克茜 12:00；Ace8 全量 10/1 与 Mixed 趋势；MD2 登录修复后评测；真・三国无双２ Remastered 解锁口碑；筛界/Ice Caves；Haiku 5.5；Qwen4；Grok 4.8；V4.1-Pro；Sol Ultrafast。</p>
+  </div>
+  <h2 class="section-title">最高 Attention</h2>
+  <div class="overview-grid">
+    <article class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 二次元</span>
+<h3><a href="https://www.taptap.cn/moment/853939159537028006" rel="noopener" target="_blank">战双帕弥什×约会大作战V：时崎狂三联动现已开启（TapTap 官方「正式登场」）</a></h3>
+<p class="ov-lede">《战双帕弥什》×《约会大作战V》联动开服确认（昨截稿后补入核）。TapTap 官方 moment（09-29 10:09 CST，published 02:09 UTC）标题「联动开启」，正文「联动现已开启」「S级联动角色「时崎狂三」正式登场」，联动篇章「空滞轮旋之梦」与主题研发同步开。同日 11:29 CST 官方「…</p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥🔥（3）</dd></div>
+<div><dt>库 / 轴</dt><dd>二次元 · 🤝 IP / 联动 / 跨界</dd></div>
+<div><dt>日期</dt><dd>2026-09-29</dd></div>
+</dl>
+</article><article class="overview-signal high">
+<span class="ov-fire">🔥🔥🔥 · 游戏行业</span>
+<h3><a href="https://coffeestain.com/bigbreakshowcase/" rel="noopener" target="_blank">🎬 Coffee Stain Big Break Showcase 片单（已播）</a></h3>
+<p class="ov-lede">昨 pending 翻牌：Coffee Stain Big Break Showcase 已于 2026-09-29 10:00 PDT（≈09-30 01:00 CST）在 YouTube 首播（IGN 同播）。官方通稿 + Gematsu + Pixelkin 交叉：40+ 作品/工作室、约 10 个独家。世界首发…</p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥🔥（3）</dd></div>
+<div><dt>库 / 轴</dt><dd>游戏行业 · exhibition</dd></div>
+<div><dt>日期</dt><dd>2026-09-30</dd></div>
+</dl>
+</article><article class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · AI 观察</span>
+<h3><a href="https://openai.com/index/introducing-gpt-6-1-sol" rel="noopener" target="_blank">GPT-6.1 Sol：OpenAI Sol 成本档升级（API gpt-6.1-sol；近 Astra @约 1/5 价）</a></h3>
+<p class="ov-lede">OpenAI 于 DevDay（Sep 29，RSS 10:00 GMT≈18:00 CST，昨截稿后漏报补入）推出 GPT-6.1 Sol：GPT-6 Sol 的重大升级，厂商自报在 agentic coding / computer use / 专业工作上接近 GPT-6 Astra，标准输入/输出 token 价…</p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>库 / 轴</dt><dd>AI 观察 · 🧠 模型发布</dd></div>
+<div><dt>日期</dt><dd>2026-09-29</dd></div>
+</dl>
+</article><article class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · AI 观察</span>
+<h3><a href="https://openai.com/index/introducing-dots" rel="noopener" target="_blank">OpenAI Dots：Astra 驱动的 always-on 个人 Agent（DevDay）</a></h3>
+<p class="ov-lede">OpenAI 于 DevDay 推出 Dots：由 GPT-6 Astra 驱动的 always-on 个人 Agent，自带云电脑/浏览器，可经插件连接大量应用，并在 ChatGPT / Slack / Teams 等入口协作；开始向 Pro、Business Premium、Enterprise 等合格市场滚动开放…</p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>库 / 轴</dt><dd>AI 观察 · 🔧 Agent / MCP / Skill</dd></div>
+<div><dt>日期</dt><dd>2026-09-29</dd></div>
+</dl>
+</article><article class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3><a href="https://www.gematsu.com/2026/09/roguelike-rpg-auto-battler-acorn-seed-of-resistance-announced-for-pc" rel="noopener" target="_blank">🧩 Big Break 独立世界首发簇（ACORN / Gnomesplosion! / Bad Slime / Dark Offering / Solid Boat Adventure 等）</a></h3>
+<p class="ov-lede">按 5.15 展会周例外：Big Break 已播场次上的独立世界首发/新作公布本身达门槛。头条簇：Guidelight Games（SpellRogue 班底）× Ghost Ship Publishing 公布 roguelike RPG 自动战斗《ACORN: Seed of Resistance》（2027 P…</p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>库 / 轴</dt><dd>游戏行业 · indie</dd></div>
+<div><dt>日期</dt><dd>2026-09-30</dd></div>
+</dl>
+</article><article class="overview-signal medium">
+<span class="ov-fire">🔥🔥 · 游戏行业</span>
+<h3><a href="https://store.steampowered.com/app/2288340/ACE_COMBAT_8_WINGS_OF_THEVE/?l=schinese" rel="noopener" target="_blank">空战奇兵8 希孚之翼：抢先 Steam 仍 Mixed（≈70% / 3k+ 评）；厂商就崩溃致歉；Zero 预购特典争议发酵</a></h3>
+<p class="ov-lede">豪华抢先次日显著增量：Steam 用户评测仍 Mixed，样本约 3041、好评约 70%（昨截稿约 309/56%）；OpenCritic 仍约 88。Bandai/Project Aces Steam 新闻就「意外崩溃」致歉并排查，建议更新显卡驱动与检查存储/虚拟内存。玩家侧另一焦点：预购特典《空战奇兵ZERO 贝…</p>
+<dl class="kv">
+<div><dt>火苗</dt><dd>🔥🔥（2）</dd></div>
+<div><dt>库 / 轴</dt><dd>游戏行业 · aaa</dd></div>
+<div><dt>日期</dt><dd>2026-09-30</dd></div>
+</dl>
+</article>
+  </div>
+</section>
+
+<section class="tab-pane" id="pane-ai">
+  <div class="library-head">
+    <p class="lib-lede">今日<strong>无新旗舰</strong>（new_flagship=false）。昨 PDT DevDay（RSS Sol 条≈18:00 CST，昨截稿后漏报补入）主发两条：<strong>GPT-6.1 Sol</strong>（成本档升级，不当一般旗舰；现役一般文本仍 GPT-6 Astra）+ <strong>OpenAI Dots</strong>（Astra 驱动 always-on 个人 Agent）。今日<strong>无新 MCP/Skill 推荐</strong>（Dots 不冒充推荐）。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>2</dd></div>
+      <div><dt>新旗舰</dt><dd>无</dd></div>
+      <div><dt>MCP / Skill 推荐</dt><dd>无</dd></div>
+      <div><dt>最高火苗</dt><dd>🔥🔥（2）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>GPT-6.1 Sol（fire2）：API <code>gpt-6.1-sol</code>，价 $2/$10；厂商自报近 Astra @约 1/5 价；附「与主流模型对比」表。</li>
+      <li>OpenAI Dots（fire2）：Astra 驱动 always-on 个人 Agent；Pro/Business Premium 等滚动开放——Agent 产品条，非 MCP/Skill 推荐。</li>
+      <li>不复述昨 Sonnet 5.5 / AMD×World Labs；Haiku 5.5 仍 coming weeks。</li>
+    </ul>
+    <p class="lib-note">Pending：Haiku 5.5；Qwen4；Grok 4.8；DeepSeek-V4.1-Pro；Sol Ultrafast；Muse Charm；Kimi K3.1。Claude Fable ≠ 游戏《神鬼寓言》。</p>
+  </div>
+  <h3 class="section-title">🧠 模型发布</h3>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://openai.com/index/introducing-gpt-6-1-sol" rel="noopener" target="_blank">GPT-6.1 Sol：OpenAI Sol 成本档升级（API gpt-6.1-sol；近 Astra @约 1/5 价）</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/gpt-6-1-sol.png" alt="GPT-6.1 Sol：OpenAI Sol 成本档升级（API gpt-6.1-sol；近 Astra @约 1/5 价）" loading="lazy"/>
+</figure>
+<p class="signal-lede">OpenAI 于 DevDay（Sep 29，RSS 10:00 GMT≈18:00 CST，昨截稿后漏报补入）推出 GPT-6.1 Sol：GPT-6 Sol 的重大升级，厂商自报在 agentic coding / computer use / 专业工作上接近 GPT-6 Astra，标准输入/输出 token 价约为 Astra 的五分之一（$2/$10 vs Astra $10/$50）；cached input $0.10/MTok。属 Sol 成本/专用档，**不当一般文本旗舰**（`new_flagship=false`）；一般文本现役仍 GPT-6 Astra。</p>
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>GPT-6.1 Sol（Sol 成本档模型 GA；非一般文本旗舰）</dd></div>
+<div><dt>落款</dt><dd>openai.com/index/introducing-gpt-6-1-sol；DevDay Recap；developers.openai.com 模型卡；RSS Tue 29 Sep 2026 10:00:00 GMT</dd></div>
+<div><dt>API / 规格</dt><dd>slug=gpt-6.1-sol；context 1,050,000；max input 922k；max out 128k；reasoning effort low/medium/high/xhigh/max（无 none/minimal）；知识截止 Apr 30, 2026；modalities text+image → text</dd></div>
+<div><dt>定价（官方）</dt><dd>Input $2 / Cached input $0.10 / Cache writes $2.50 / Output $10 per MTok（模型卡）；Astra 对照 $10/$1/$12.5/$50；厂商称标准 in/out 约为 Astra 的 1/5</dd></div>
+<div><dt>可用性</dt><dd>Plus/Pro/Business/Enterprise/Edu：ChatGPT Work 与 Codex；API gpt-6.1-sol；官方称尚未进 Chat；Ultrafast 档「coming days」最高约 8× 生成速度（Codex）</dd></div>
+<div><dt>时点</dt><dd>DevDay Sep 29；昨扫 ~09:50 CST 前未收录 → 本窗漏报补入</dd></div>
+<div><dt>是否新旗舰</dt><dd>否（Sol 成本/专用档；一般文本旗舰仍 GPT-6 Astra）</dd></div>
+<div><dt>是否推荐条</dt><dd>否（非 MCP/Skill 工作流包；new_mcp_skill_rec=false）</dd></div>
+</dl>
+<ul class="facts">
+<li>定位：厂商称「Near-Astra intelligence for a fifth of the price」；面向复杂日常/agentic coding、computer use、专业工作的成本档，与 Astra 互补而非取代。</li>
+<li>厂商自报评测口径（公告叙述，缺绝对分处写未核）：DeepSWE v1.1 匹配 Astra、较 GPT-6 Sol 最佳分高 6.4pp（更低 effort/成本）；GDP.pdf 高于 Opus 5.5（含 fallbacks）且接近 Astra、成本约 1/5；AutomationBench medium 高 Opus 5.5 2.2pp、较 Sol 同设置 +4.8pp；OSWorld 2.0 offline（partial）max effort 较 Sol +7pp、距 Astra 约 2.1pp、成本约 1/7；Terminal-Bench Science 0.1 max effort 成本约 $5.47/任务 vs Opus 5.5 $23.21 / Astra $23.80，Astra 仍最高分 68.1%。</li>
+<li>事实性：低 effort 下含事实错误回答占比 11.4%→7.7%（约降 32%）；各 effort 与 Astra 差距 ≤1.9pp（厂商自报；难题集非典型流量）。</li>
+<li>安全/对齐：厂商称对齐评测较 Sol 接近 Astra；TC 引二线称未发 GPT-6.1 Astra——**传闻不进正文落款**。</li>
+<li>对比表数字均来自 OpenAI 公告/模型卡，标厂商自报；一线第三方复测未核处写「未核」。</li>
+</ul>
+<p class="signal-lede" style="margin-top:12px;font-size:14px;font-weight:650">与主流模型对比</p>
+<div class="table-wrap"><table class="compare"><thead><tr><th>指标</th>
+<th>GPT-6.1 Sol</th>
+<th>GPT-6 Sol</th>
+<th>GPT-6 Astra</th>
+<th>Claude Opus 5.5</th>
+</tr></thead><tbody>
+<tr><td>Input $/1M（官方）</td>
+<td>$2</td>
+<td>未核本条（前代同档口径）</td>
+<td>$10</td>
+<td>未核本条</td>
+</tr>
+<tr><td>Output $/1M（官方）</td>
+<td>$10</td>
+<td>未核本条</td>
+<td>$50</td>
+<td>未核本条</td>
+</tr>
+<tr><td>Cached input $/1M</td>
+<td>$0.10（较前代 Sol cache 自称低 50%）</td>
+<td>未核绝对值</td>
+<td>$1</td>
+<td>未核本条</td>
+</tr>
+<tr><td>Context / max out</td>
+<td>1.05M / 128k</td>
+<td>未核本条</td>
+<td>未核本条</td>
+<td>未核本条</td>
+</tr>
+<tr><td>DeepSWE v1.1 vs Astra/Sol</td>
+<td>匹配 Astra；较 Sol 最佳 +6.4pp（厂商自报）</td>
+<td>基线</td>
+<td>对照</td>
+<td>—</td>
+</tr>
+<tr><td>AutomationBench（medium）</td>
+<td>较 Opus 5.5 +2.2pp；较 Sol +4.8pp（厂商自报）</td>
+<td>基线</td>
+<td>未核本条</td>
+<td>对照基线</td>
+</tr>
+<tr><td>OSWorld 2.0 offline partial（max）</td>
+<td>较 Sol +7pp；距 Astra ≈2.1pp（厂商自报）</td>
+<td>基线</td>
+<td>对照</td>
+<td>—</td>
+</tr>
+<tr><td>Terminal-Bench Science 0.1 成本/任务（max）</td>
+<td>≈$5.47</td>
+<td>未核</td>
+<td>≈$23.80（分最高 68.1%）</td>
+<td>≈$23.21</td>
+</tr>
+<tr><td>事实错误率（低 effort，难题集）</td>
+<td>7.7%</td>
+<td>11.4%</td>
+<td>差距≤1.9pp（各 effort）</td>
+<td>—</td>
+</tr>
+<tr><td>第三方独立复测</td>
+<td>未核</td>
+<td>未核</td>
+<td>未核</td>
+<td>未核</td>
+</tr>
+</tbody></table></div>
+<p class="signal-note">数字来源 openai.com/index/introducing-gpt-6-1-sol 与 developers 模型卡（gpt-6.1-sol / gpt-6-astra）；缺绝对分写未核；对照优先 GPT-6 Sol / GPT-6 Astra / 公告点名 Opus 5.5</p>
+
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://openai.com/index/introducing-gpt-6-1-sol" rel="noopener" target="_blank">openai.com/index/introducing-gpt-6-1-sol</a> · <a href="https://developers.openai.com/api/docs/models/gpt-6.1-sol" rel="noopener" target="_blank">developers.openai.com/api/docs/models/gpt-6.1-sol</a> · <a href="https://developers.openai.com/api/docs/models/gpt-6-astra" rel="noopener" target="_blank">developers.openai.com/api/docs/models/gpt-6-astra</a> · <a href="https://openai.com/index/devday-2026-recap" rel="noopener" target="_blank">openai.com/index/devday-2026-recap</a> · <a href="https://openai.com/news/rss.xml" rel="noopener" target="_blank">openai.com/news/rss.xml</a> · <a href="https://techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-says-it-nearly-matches-gpt-6-astra-and-costs-less/" rel="noopener" target="_blank">techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-sa</a> · <a href="https://simonwillison.net/2026/Sep/29/openai-devday-2026-live-blog/" rel="noopener" target="_blank">simonwillison.net/2026/Sep/29/openai-devday-2026-live-bl</a>。</p>
+<div class="tags"><span>OpenAI</span><span>GPT-6.1</span><span>Sol</span><span>DevDay</span><span>cost-tier</span><span>not_general_flagship</span></div>
+</article>
+<h3 class="section-title">🔧 Agent / MCP / Skill</h3>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://openai.com/index/introducing-dots" rel="noopener" target="_blank">OpenAI Dots：Astra 驱动的 always-on 个人 Agent（DevDay）</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/openai-dots.png" alt="OpenAI Dots：Astra 驱动的 always-on 个人 Agent（DevDay）" loading="lazy"/>
+</figure>
+<p class="signal-lede">OpenAI 于 DevDay 推出 Dots：由 GPT-6 Astra 驱动的 always-on 个人 Agent，自带云电脑/浏览器，可经插件连接大量应用，并在 ChatGPT / Slack / Teams 等入口协作；开始向 Pro、Business Premium、Enterprise 等合格市场滚动开放。属 Agent 产品主轴高权重条，**不是** MCP/Skill 工作流推荐包（`new_mcp_skill_rec=false`）。</p>
+<dl class="kv">
+<div><dt>产品/事项</dt><dd>Dots（always-on 个人 Agent；Astra 驱动）</dd></div>
+<div><dt>落款</dt><dd>openai.com/index/introducing-dots；DevDay Recap；TC Sep 29</dd></div>
+<div><dt>能力要点</dt><dd>自有云电脑与浏览器；插件生态（官称 4000+ apps）；Slack/Teams；specialist dots 预览；与 Microsoft Agent 365 安全控件合作叙述</dd></div>
+<div><dt>可用性</dt><dd>官称开始在合格市场向 Pro / Business Premium / Enterprise 滚动；Enterprise/Edu/Healthcare 可由 admin 开 beta（默认关）；Simon：Keynote 称 Pro/Enterprise 当日可及</dd></div>
+<div><dt>时点</dt><dd>Sep 29 DevDay（RSS 00:00 GMT≈08:00 CST 已在昨窗、昨扫未收；与同日 10:00 GMT Sol 一并按漏报补入）</dd></div>
+<div><dt>是否新旗舰</dt><dd>否</dd></div>
+<div><dt>是否推荐条</dt><dd>否（OpenAI 自有 Agent 产品，非第三方 MCP/Skill 推荐；不标 new_mcp_skill_rec）</dd></div>
+</dl>
+<ul class="facts">
+<li>定位：厂商称「remarkably capable, always-on agents」——持续为目标工作、可后台推进多任务，用户保留审批/权限控制。</li>
+<li>协作面：引入与 Dot 协作的 ChatGPT Space（DevDay/Simon）；specialist dots 面向组织职责与身份/硬件供给预览。</li>
+<li>与 MCP/Skill 轴关系：本条记 Agent 产品发布；插件/Marketplace/Codex Security Cloud 等 DevDay 辅线不单开、不冒充 MCP/Skill 推荐。</li>
+<li>画面：官方 Art Card 已下 media/openai-dots.png。</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://openai.com/index/introducing-dots" rel="noopener" target="_blank">openai.com/index/introducing-dots</a> · <a href="https://openai.com/index/devday-2026-recap" rel="noopener" target="_blank">openai.com/index/devday-2026-recap</a> · <a href="https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/" rel="noopener" target="_blank">techcrunch.com/2026/09/29/openai-launches-dots-its-bubbl</a> · <a href="https://simonwillison.net/2026/Sep/29/openai-devday-2026-live-blog/" rel="noopener" target="_blank">simonwillison.net/2026/Sep/29/openai-devday-2026-live-bl</a>。</p>
+<div class="tags"><span>OpenAI</span><span>Dots</span><span>Agent</span><span>DevDay</span><span>Astra</span></div>
+</article>
+</section>
+<section class="tab-pane" id="pane-anime">
+  <div class="library-head">
+    <p class="lib-lede">战双×约会大作战V <strong>时崎狂三联动现已开启</strong>（昨截稿后补入：TapTap 官方「联动现已开启 / 正式登场」）。鸣潮 3.7 维护至 11:00——截稿未出窗、不预写已开服。绝区零洛克茜频段锁今日 12:00——未到不预写。星铁 4.6 开服昨已报不复述。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>1</dd></div>
+      <div><dt>最高火苗</dt><dd>🔥🔥🔥（3）</dd></div>
+      <div><dt>狂三联动</dt><dd>live_confirmed（关闭昨 pending）</dd></div>
+      <div><dt>新游戏事件</dt><dd>0（联动角色上线不进事件池）</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>战双时崎狂三：TapTap 官方 10:09 CST moment「联动现已开启」+ 11:29 实机「现已登场」（fire3）。</li>
+      <li>鸣潮 3.7：维护 04:00–11:00，截稿仍在窗内 → pending。</li>
+      <li>绝区零洛克茜频段锁 12:00；SideM 标题+发售日仍 TBA。</li>
+    </ul>
+    <p class="lib-note">不复述星铁 4.6 / 原神六周年 EP / 洛克茜角色 PV。不发涉政。</p>
+  </div>
+  <h3 class="section-title">🤝 IP / 联动 / 跨界</h3>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://www.taptap.cn/moment/853939159537028006" rel="noopener" target="_blank">战双帕弥什×约会大作战V：时崎狂三联动现已开启（TapTap 官方「正式登场」）</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/pgr_kurumi_live.png" alt="战双帕弥什×约会大作战V：时崎狂三联动现已开启（TapTap 官方「正式登场」）" loading="lazy"/>
+<img src="../media/2026-09-30/pgr_kurumi_gameplay.jpg" alt="战双帕弥什×约会大作战V：时崎狂三联动现已开启（TapTap 官方「正式登场」）" loading="lazy"/>
+</figure>
+<p class="signal-lede">《战双帕弥什》×《约会大作战V》联动开服确认（昨截稿后补入核）。TapTap 官方 moment（09-29 10:09 CST，published 02:09 UTC）标题「联动开启」，正文「联动现已开启」「S级联动角色「时崎狂三」正式登场」，联动篇章「空滞轮旋之梦」与主题研发同步开。同日 11:29 CST 官方「时崎狂三」实机展示写「现已登场」。关闭昨 pending。不复述远信回响/破渊/更新公告全文与抽1得2细则长表。联动角色上线不标 is_new_game。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>约战联动 / 时崎狂三上线确认</dd></div>
+<div><dt>一线落款</dt><dd>TapTap 官方 853939159537028006（10:09「现已开启/正式登场」）+ 853959380389856367（11:29「现已登场」实机）</dd></div>
+<div><dt>档期回顾</dt><dd>2026-09-29 10:00 – 11/03 23:59（昨已锁；本日到点翻牌）</dd></div>
+<div><dt>内容</dt><dd>S级异界角色「时崎狂三」；联动剧情「空滞轮旋之梦」；试玩「溯时者逆洄」；联动狙击池</dd></div>
+<div><dt>版本背景</dt><dd>「远信回响」已于 9/24 开门（已报不复述）</dd></div>
+<div><dt>库街区</dt><dd>API 仍外部错误；以 TapTap 官方帖为一线</dd></div>
+<div><dt>时点</dt><dd>开启官帖 ~10:09 CST（昨截稿后）；本条为漏报补入核</dd></div>
+<div><dt>is_new_game</dt><dd>false（既有游戏联动角色上线，不进行业事件池）</dd></div>
+</dl>
+<ul class="facts">
+<li>TapTap 官方《战双帕弥什》×《约会大作战V》联动开启（853939159537028006）：published_time 2026-09-29T02:09:21+00:00（CST 10:09），正文明确「联动现已开启」「时崎狂三正式登场」「空滞轮旋之梦」上线、联动主题研发同步开启</li>
+<li>TapTap 官方「时崎狂三」实机展示（853959380389856367）：CST 11:29，文案「溯时者逆洄，S级联动角色「时崎狂三」现已登场」——上线后实机阶段</li>
+<li>关闭昨 pending pgr-kurumi：昨截稿~09:50 未到 10:00 且无开启官帖；本日以官方「现已开启/正式登场」升格</li>
+<li>B 站社区 9/29 午后至夜间大量抽卡/实机向内容，作交叉，不以二线单独落款</li>
+<li>不复述版本更新公告补偿/破渊淬炼池/新客访临签到长表；战斗技能展示（9/28）属开服前列车，本日并入不单开</li>
+<li>库街区 forum API 仍返回服务器外部错误（与昨同）；战双官网壳页无独立新闻列表</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://www.taptap.cn/moment/853939159537028006" rel="noopener" target="_blank">www.taptap.cn/moment/853939159537028006</a> · <a href="https://www.taptap.cn/moment/853959380389856367" rel="noopener" target="_blank">www.taptap.cn/moment/853959380389856367</a> · <a href="https://www.taptap.cn/app/130651/topic?type=official" rel="noopener" target="_blank">www.taptap.cn/app/130651/topic?type=official</a> · <a href="https://gameinns.com/watch/mucklrrfxm6i" rel="noopener" target="_blank">gameinns.com/watch/mucklrrfxm6i</a>。</p>
+
+</article>
+</section>
+
+<section class="tab-pane" id="pane-industry">
+  <div class="library-head">
+    <p class="lib-lede"><strong>Coffee Stain Big Break Showcase 已播建片单</strong>（🔥🔥🔥；ACORN 等世界首发 + Lightyear 1.0 / DRG Survivor 主机 / FLASK 等新锁）+ <strong>独立世界首发簇</strong>（🔥🔥）+ 发售次日口碑：空战奇兵8 Steam Mixed≈70%/厂商致歉（🔥🔥）与 Minecraft Dungeons II Steam Mixed≈55%（🔥🔥）；漏报补入怪物猎人 Outlanders 全球手游 10/29；发售翻牌真・三国无双２ Remastered / 新宿异变 / 家有恶邻 F2P 1.0。今日<strong>有独立游戏观察新增</strong>；exhibition_empty=false。</p>
+    <dl class="kv">
+      <div><dt>独立 Signal</dt><dd>9</dd></div>
+      <div><dt>最高火苗</dt><dd>🔥🔥🔥（3）</dd></div>
+      <div><dt>独立轴</dt><dd>有新增（Big Break 独立世界首发簇）</dd></div>
+      <div><dt>展会片单</dt><dd>Coffee Stain Big Break Showcase（已播）</dd></div>
+      <div><dt>新游戏事件</dt><dd>16</dd></div>
+    </dl>
+    <ul class="facts">
+      <li>Big Break 片单：世界首发 ACORN / Gnomesplosion! 等；新锁 Lightyear 1.0 11/4、DRG Survivor 主机 10/7、FLASK 2027-01-14 等；DLC/季票深潜压表。</li>
+      <li>口碑增量：空战奇兵8 希孚之翼抢先 Mixed≈70% + 致歉；MD2 首日 Mixed≈55%；巫师3 Remastered 首日 MC≈94 / Steam≈92%（fire1）。</li>
+      <li>new_games×16：ACORN: Seed of Resistance、Lightyear Frontier、Deep Rock Galactic: Survivor、FLASK、Muri: Wildwoods、家有恶邻（Neighbors: Suburban Warfare） 等。</li>
+    </ul>
+    <p class="lib-note">不复述昨发售翻牌本身与 Minecraft LIVE 长名单。命名：真・三国无双２ with 猛将传 Remastered / 新宿异变 / 家有恶邻 / 怪物猎人 Outlanders。不发涉政。</p>
+  </div>
+  <h3 class="section-title">🎬 展会片单</h3>
+<article class="signal high">
+<div class="signal-head"><span class="fire">🔥🔥🔥</span><h4><a href="https://coffeestain.com/bigbreakshowcase/" rel="noopener" target="_blank">🎬 Coffee Stain Big Break Showcase 片单（已播）</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/bigbreak_kv.jpg" alt="🎬 Coffee Stain Big Break Showcase 片单（已播）" loading="lazy"/>
+<img src="../media/2026-09-30/acorn_header.jpg" alt="🎬 Coffee Stain Big Break Showcase 片单（已播）" loading="lazy"/>
+</figure>
+<p class="signal-lede">昨 pending 翻牌：Coffee Stain Big Break Showcase 已于 2026-09-29 10:00 PDT（≈09-30 01:00 CST）在 YouTube 首播（IGN 同播）。官方通稿 + Gematsu + Pixelkin 交叉：40+ 作品/工作室、约 10 个独家。世界首发级含 Ghost Ship×Guidelight《ACORN: Seed of Resistance》（2027 PC）及 Breaking Through 多款新作公布；新锁含 Lightyear Frontier 1.0（11/4）、Deep Rock Galactic: Survivor 主机（10/7 PS5/Switch/Switch 2）、FLASK（2027-01-14）、Muri: Wildwoods（12/7）、Goat Simulator 3「Ticket to Dizzyworld」（11/19）等。已定档深潜（Satisfactory 首个 DLC Core Values 无日、Teardown Rally、DRG 季票路线等）压表。独立世界首发另见独立轴簇。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会同期官方秀已播 / 🎬 展会片单</dd></div>
+<div><dt>档期窗</dt><dd>2026-09-29 10:00 PDT ≈ 09-30 01:00 CST（19:00 CEST）</dd></div>
+<div><dt>规模</dt><dd>40+ games &amp; studios；约 10 exclusives（厂商口径）</dd></div>
+<div><dt>世界首发要点</dt><dd>ACORN: Seed of Resistance（2027）；Gnomesplosion! / Bad Slime / Dark Offering / Solid Boat Adventure 等 Breaking Through；Satisfactory 首 DLC Core Values（无日）</dd></div>
+<div><dt>新锁要点</dt><dd>Lightyear Frontier 1.0 11/4；DRG Survivor 主机 10/7；FLASK 2027-01-14；Muri: Wildwoods 12/7；Goat 3 Dizzyworld 11/19；Wielders of the Essence 11/5</dd></div>
+<div><dt>一手落款</dt><dd>Coffee Stain 秀页/通稿 + Gematsu 同日簇 + Swipe Right 全表通稿</dd></div>
+<div><dt>独立轴</dt><dd>展会周例外：独立世界首发簇另开（见 indie 条）</dd></div>
+<div><dt>时点</dt><dd>播完≈09-30 01:00–03:00 CST；本窗入核</dd></div>
+</dl>
+<ul class="facts">
+<li>VOD：YouTube Premiere https://www.youtube.com/watch?v=oIJOpx40nfs ；Steam Event 汇总愿望单</li>
+<li>Coffee Stain 线：Satisfactory Core Values（地下远征/新叙事/建筑/生物/群系/猫伴，无日）；Goat 3 Ticket to Dizzyworld 11/19 全平台；Lightyear Frontier 离开 EA→11/4 Steam/Xbox；Neighbors 同日 F2P 1.0；Satisfactory 桌游 Gamefound 10/13 众筹</li>
+<li>Ghost Ship 线：DRG Season 07 年内 / Season 08+Expansion 2027 夏；Rogue Core Update 3 约 10 月末；Survivor→PS5/Switch/Switch 2 锁 10/7 + Knockout Expansion（无日）；FLASK 锁 2027-01-14；Dinolords 多人 Demo 10/19；ACORN 公布 2027</li>
+<li>Breaking Through / 伙伴：Gnomesplosion!、Bad Slime、Dark Offering、Solid Boat Adventure、A Corporate Machine、Begraved 预告、Fourleaf Fields、Fish &#x27;n Ships、Appulse/Dungeon Automata（Raw Fury）等——世界首发进片单，已定档深潜压表</li>
+<li>不复述 Minecraft LIVE / TGS / PCGS / Capcom Spotlight 长名单</li>
+</ul>
+
+<div class="show-slate">
+<p class="signal-note">Coffee Stain Big Break Showcase（已播） · 播出 2026-09-30 ~01:00 CST（09-29 10:00 PDT / 19:00 CEST） · <a href="https://www.youtube.com/watch?v=oIJOpx40nfs" rel="noopener" target="_blank">VOD</a></p>
+<p class="signal-lede" style="margin-top:12px;font-size:14px;font-weight:650">世界首发 / 新揭</p>
+<div class="table-wrap"><table class="compare"><thead><tr><th>作品/内容</th><th>说明</th></tr></thead><tbody>
+<tr><td>ACORN: Seed of Resistance</td><td>Guidelight × Ghost Ship；roguelike RPG 自动战斗；2027 PC Steam；独立轴头条</td></tr>
+<tr><td>Gnomesplosion! / Bad Slime / Dark Offering / Solid Boat Adventure</td><td>Breaking Through 世界首发簇；档期大多 TBA/2026；进独立轴+new_games</td></tr>
+<tr><td>A Corporate Machine</td><td>Splendid Failures（ex-SteamWorld）工作室亮相+清扫机器人叙事；Wishlist</td></tr>
+<tr><td>Satisfactory 扩展 Core Values</td><td>系列首个付费 DLC；地下远征等；无发售日——内容向，不进 new_games</td></tr>
+<tr><td>Rock and Stone! A DRG Card Game / Satisfactory: The Board Game</td><td>桌游/卡牌；后者 Gamefound 10/13 众筹——非视频游戏本体，不进 new_games</td></tr>
+</tbody></table></div>
+<p class="signal-lede" style="margin-top:12px;font-size:14px;font-weight:650">新锁日期 / 窗口</p>
+<div class="table-wrap"><table class="compare"><thead><tr><th>作品/内容</th><th>说明</th></tr></thead><tbody>
+<tr><td>Lightyear Frontier 1.0</td><td>2026-11-04 · Steam / Xbox Series（离开 EA）</td></tr>
+<tr><td>Deep Rock Galactic: Survivor 主机</td><td>2026-10-07 · PS5 / Switch / Switch 2；另宣 Knockout Expansion（无日）</td></tr>
+<tr><td>FLASK</td><td>2027-01-14 · PC/Mac；Demo 大修现已上</td></tr>
+<tr><td>Muri: Wildwoods</td><td>2026-12-07 · PC Steam</td></tr>
+<tr><td>Goat Simulator 3: Ticket to Dizzyworld</td><td>2026-11-19 · 多平台扩展——DLC 不进 new_games</td></tr>
+<tr><td>Wielders of the Essence</td><td>2026-11-05 全量；Demo 现已上</td></tr>
+<tr><td>家有恶邻（Neighbors: Suburban Warfare）F2P 1.0</td><td>秀上宣布并同日上线 PS5/Xbox/PC</td></tr>
+<tr><td>Fae &amp; Fauna EA / Contact Protocol / DarkSwarm Alpha</td><td>Fae EA Q1 2027；Contact Protocol Spring 2027 多平台；DarkSwarm 封闭 Alpha 11/3</td></tr>
+</tbody></table></div>
+<p class="signal-lede" style="margin-top:12px;font-size:14px;font-weight:650">已定档深潜，不单开</p>
+<div class="table-wrap"><table class="compare"><thead><tr><th>作品/内容</th><th>说明</th></tr></thead><tbody>
+<tr><td>Deep Rock Galactic 路线图</td><td>Season 07 年内；Season 08 + Expansion DLC 2027 夏；Rogue Core Update 3≈10 月末</td></tr>
+<tr><td>Teardown Rally 模式</td><td>新竞速模式预告；无独立发售日</td></tr>
+<tr><td>Dinolords 多人 Demo</td><td>10/19 起免费 Demo；Hack&#x27;n&#x27;Strat</td></tr>
+<tr><td>Valheim / V Rising / Core Keeper / Jump Space 等</td><td>已定档或已上线作品的预告/更新——压表</td></tr>
+<tr><td>Begraved / Appulse / Fourleaf Fields / Fish &#x27;n Ships</td><td>预告或已曝光作品加深；Begraved 非本窗首曝</td></tr>
+</tbody></table></div>
+<p class="signal-note">Minecraft LIVE（9/27）/ TGS / PCGS / Capcom Spotlight / Xbox@TGS 见前报；本日不复述长名单。</p>
+</div>
+<p class="signal-note">关注度 · 🔥🔥🔥。来源：<a href="https://coffeestain.com/bigbreakshowcase/" rel="noopener" target="_blank">coffeestain.com/bigbreakshowcase/</a> · <a href="https://www.mynewsdesk.com/uk/swipe-right/pressreleases/everything-revealed-at-the-big-break-showcase-new-games-release-dates-and-a-frankly-obnoxious-number-of-trailers-3469784" rel="noopener" target="_blank">www.mynewsdesk.com/uk/swipe-right/pressreleases/everythi</a> · <a href="https://www.gematsu.com/2026/09/lightyear-frontier-launches-november-4" rel="noopener" target="_blank">www.gematsu.com/2026/09/lightyear-frontier-launches-nove</a> · <a href="https://www.gematsu.com/2026/09/satisfactory-expansion-core-values-announced" rel="noopener" target="_blank">www.gematsu.com/2026/09/satisfactory-expansion-core-valu</a> · <a href="https://www.gematsu.com/2026/09/deep-rock-galactic-survivor-coming-to-ps5-switch-2-and-switch-on-october-7" rel="noopener" target="_blank">www.gematsu.com/2026/09/deep-rock-galactic-survivor-comi</a> · <a href="https://www.gematsu.com/2026/09/roguelike-rpg-auto-battler-acorn-seed-of-resistance-announced-for-pc" rel="noopener" target="_blank">www.gematsu.com/2026/09/roguelike-rpg-auto-battler-acorn</a> · <a href="https://www.gematsu.com/2026/09/goat-simulator-3-dlc-ticket-to-dizzyworld-announced" rel="noopener" target="_blank">www.gematsu.com/2026/09/goat-simulator-3-dlc-ticket-to-d</a> · <a href="https://www.gematsu.com/2026/09/muri-wildwoods-launches-december-7" rel="noopener" target="_blank">www.gematsu.com/2026/09/muri-wildwoods-launches-december</a> · <a href="https://pixelkin.org/2026/09/29/big-break-showcase-2026-featured-over-40-indie-games-including-new-reveals/" rel="noopener" target="_blank">pixelkin.org/2026/09/29/big-break-showcase-2026-featured</a> · <a href="https://www.youtube.com/watch?v=oIJOpx40nfs" rel="noopener" target="_blank">www.youtube.com/watch?v=oIJOpx40nfs</a>。</p>
+
+</article>
+<h3 class="section-title">🧩 独立游戏观察</h3>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.gematsu.com/2026/09/roguelike-rpg-auto-battler-acorn-seed-of-resistance-announced-for-pc" rel="noopener" target="_blank">🧩 Big Break 独立世界首发簇（ACORN / Gnomesplosion! / Bad Slime / Dark Offering / Solid Boat Adventure 等）</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/acorn_header.jpg" alt="🧩 Big Break 独立世界首发簇（ACORN / Gnomesplosion! / Bad Slime / Dark Offering / Solid Boat Adventure 等）" loading="lazy"/>
+<img src="../media/2026-09-30/acorn_ss01.jpg" alt="🧩 Big Break 独立世界首发簇（ACORN / Gnomesplosion! / Bad Slime / Dark Offering / Solid Boat Adventure 等）" loading="lazy"/>
+</figure>
+<p class="signal-lede">按 5.15 展会周例外：Big Break 已播场次上的独立世界首发/新作公布本身达门槛。头条簇：Guidelight Games（SpellRogue 班底）× Ghost Ship Publishing 公布 roguelike RPG 自动战斗《ACORN: Seed of Resistance》（2027 PC Steam）；并列 Breaking Through 世界首发 Gnomesplosion!、Bad Slime、Dark Offering、Solid Boat Adventure（2026）及 Splendid Failures《A Corporate Machine》等。新锁可跟：Muri: Wildwoods 12/7、FLASK 2027-01-14（亦见片单）。命名：ACORN 等 Steam 简中均英文 → 留英文。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>展会周独立世界首发簇（🧩）</dd></div>
+<div><dt>秀</dt><dd>Coffee Stain Big Break Showcase（已播）</dd></div>
+<div><dt>头条公布</dt><dd>ACORN: Seed of Resistance · Guidelight × Ghost Ship · 2027 PC</dd></div>
+<div><dt>并列世界首发</dt><dd>Gnomesplosion! / Bad Slime / Dark Offering / Solid Boat Adventure / A Corporate Machine 等</dd></div>
+<div><dt>同场新锁（独立向）</dt><dd>Muri: Wildwoods 12/7；FLASK 2027-01-14；Fae &amp; Fauna EA Q1 2027</dd></div>
+<div><dt>门槛</dt><dd>5.15 展会周例外：官方秀独立世界首发不必等口碑</dd></div>
+<div><dt>命名</dt><dd>Steam 简中店名均为英文产品名 → 留英文</dd></div>
+</dl>
+<ul class="facts">
+<li>ACORN：约 15 分钟一局的 roguelike RPG 自动战斗；动物黑暗奇幻；重建陨落骑士团战役；Steam AppID 4714570，档期 2027</li>
+<li>Gnomesplosion! / Bad Slime / Dark Offering Steam 仍「即将宣布」；Solid Boat Adventure「即将推出」/2026</li>
+<li>Begraved（Grip Jaw，Valheim 相关班底）本场为预告加深，非本窗首次公布 → 进片单深潜不进本簇世界首发表</li>
+<li>家有恶邻（Neighbors）同日 F2P 1.0 另见新游条，不重复撑独立轴第二卡</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.gematsu.com/2026/09/roguelike-rpg-auto-battler-acorn-seed-of-resistance-announced-for-pc" rel="noopener" target="_blank">www.gematsu.com/2026/09/roguelike-rpg-auto-battler-acorn</a> · <a href="https://store.steampowered.com/app/4714570/ACORN_Seed_of_Resistance/" rel="noopener" target="_blank">store.steampowered.com/app/4714570/ACORN_Seed_of_Resista</a> · <a href="https://www.mynewsdesk.com/uk/swipe-right/pressreleases/everything-revealed-at-the-big-break-showcase-new-games-release-dates-and-a-frankly-obnoxious-number-of-trailers-3469784" rel="noopener" target="_blank">www.mynewsdesk.com/uk/swipe-right/pressreleases/everythi</a> · <a href="https://store.steampowered.com/app/4271130/Gnomesplosion/" rel="noopener" target="_blank">store.steampowered.com/app/4271130/Gnomesplosion/</a> · <a href="https://store.steampowered.com/app/4105890/Bad_Slime/" rel="noopener" target="_blank">store.steampowered.com/app/4105890/Bad_Slime/</a> · <a href="https://www.gematsu.com/2026/09/muri-wildwoods-launches-december-7" rel="noopener" target="_blank">www.gematsu.com/2026/09/muri-wildwoods-launches-december</a>。</p>
+
+</article>
+<h3 class="section-title">🎯 大作 / 重点</h3>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/2288340/ACE_COMBAT_8_WINGS_OF_THEVE/?l=schinese" rel="noopener" target="_blank">空战奇兵8 希孚之翼：抢先 Steam 仍 Mixed（≈70% / 3k+ 评）；厂商就崩溃致歉；Zero 预购特典争议发酵</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/ace8_header.jpg" alt="空战奇兵8 希孚之翼：抢先 Steam 仍 Mixed（≈70% / 3k+ 评）；厂商就崩溃致歉；Zero 预购特典争议发酵" loading="lazy"/>
+<img src="../media/2026-09-30/ace8_ss01.jpg" alt="空战奇兵8 希孚之翼：抢先 Steam 仍 Mixed（≈70% / 3k+ 评）；厂商就崩溃致歉；Zero 预购特典争议发酵" loading="lazy"/>
+</figure>
+<p class="signal-lede">豪华抢先次日显著增量：Steam 用户评测仍 Mixed，样本约 3041、好评约 70%（昨截稿约 309/56%）；OpenCritic 仍约 88。Bandai/Project Aces Steam 新闻就「意外崩溃」致歉并排查，建议更新显卡驱动与检查存储/虚拟内存。玩家侧另一焦点：预购特典《空战奇兵ZERO 贝尔卡战争》以依赖本体的 DLC 形式交付、非独立 App，PC Gamer/Kotaku 等交叉。全量仍 Steam 简中 10/1（coming_soon）。不复述发售翻牌本身。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>抢先口碑/PC 运营增量（非发售复述）</dd></div>
+<div><dt>作品</dt><dd>空战奇兵8 希孚之翼（ACE COMBAT 8: WINGS OF THEVE）</dd></div>
+<div><dt>Steam</dt><dd>Mixed ≈2117/3041（≈70%）；昨≈56%/309</dd></div>
+<div><dt>OpenCritic</dt><dd>仍 ≈88（未核到显著下修）</dd></div>
+<div><dt>厂商</dt><dd>Steam 新闻致歉崩溃；修复进行中；驱动/存储建议</dd></div>
+<div><dt>争议点</dt><dd>ACE COMBAT ZERO 预购特典非独立 App / 需下本体体积</dd></div>
+<div><dt>全量</dt><dd>Steam 简中仍 10/1 coming_soon</dd></div>
+<div><dt>命名</dt><dd>沿用 Steam 简中「空战奇兵8 希孚之翼」</dd></div>
+</dl>
+<ul class="facts">
+<li>媒体评分与玩家评测继续分叉：OC 高、Steam Mixed——正文并列</li>
+<li>GamingBolt 等二线曾写约 72% Mostly Positive，以本窗 Steam API Mixed≈70% 为准</li>
+<li>主机侧口碑相对更稳（二线评测印象）；本日不升格主机单独条</li>
+<li>全量日后再核 Mixed→趋势是否越过 Mostly Positive</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/2288340/ACE_COMBAT_8_WINGS_OF_THEVE/?l=schinese" rel="noopener" target="_blank">store.steampowered.com/app/2288340/ACE_COMBAT_8_WINGS_OF</a> · <a href="https://opencritic.com/game/20762/ace-combat-8-wings-of-theve" rel="noopener" target="_blank">opencritic.com/game/20762/ace-combat-8-wings-of-theve</a> · <a href="https://gamingbolt.com/ace-combat-8-wings-of-theve-studio-apologizes-for-pc-issues-working-on-fixes" rel="noopener" target="_blank">gamingbolt.com/ace-combat-8-wings-of-theve-studio-apolog</a> · <a href="https://www.pcgamer.com/games/sim/ace-combat-8-steam-reviewers-are-steaming-mad-about-its-pre-order-bonus-not-being-a-standalone-app/" rel="noopener" target="_blank">www.pcgamer.com/games/sim/ace-combat-8-steam-reviewers-a</a> · <a href="https://kotaku.com/an-ace-combat-8-wings-of-theve-pc-pre-order-bonus-snafu-has-fans-pissed-off-enough-to-tank-its-steam-reviews-2000738328" rel="noopener" target="_blank">kotaku.com/an-ace-combat-8-wings-of-theve-pc-pre-order-b</a>。</p>
+
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/1912410/Minecraft_Dungeons_II/" rel="noopener" target="_blank">Minecraft Dungeons II 首日 Steam Mixed（≈55% / 2.6k 评）vs OpenCritic≈85；登录故障集中</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/md2_header.jpg" alt="Minecraft Dungeons II 首日 Steam Mixed（≈55% / 2.6k 评）vs OpenCritic≈85；登录故障集中" loading="lazy"/>
+<img src="../media/2026-09-30/md2_ss01.jpg" alt="Minecraft Dungeons II 首日 Steam Mixed（≈55% / 2.6k 评）vs OpenCritic≈85；登录故障集中" loading="lazy"/>
+</figure>
+<p class="signal-lede">昨发售翻牌后首日口碑显著增量：Steam 总评 Mixed（约 1488/2686，≈55%）；OpenCritic 仍约 85。Sportskeeda/Geek 等交叉微软账号登录失败、Error 0064、键位与 Linux/Steam Deck 兼容投诉；能进游戏的评价仍肯定开放世界/联机/战利品。不复述发售与 Game Pass 本身；命名仍留 Minecraft Dungeons II。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>首日玩家口碑显著增量</dd></div>
+<div><dt>作品</dt><dd>Minecraft Dungeons II</dd></div>
+<div><dt>Steam</dt><dd>Mixed ≈1488/2686（≈55%）</dd></div>
+<div><dt>OpenCritic</dt><dd>仍 ≈85</dd></div>
+<div><dt>故障簇</dt><dd>微软账号登录 / Error 0064 / 键位 / Deck·Linux 兼容（二线交叉）</dd></div>
+<div><dt>订阅</dt><dd>Day One Game Pass 昨已报不复述</dd></div>
+<div><dt>命名</dt><dd>Steam 简中 + minecraft.net/zh-hans 均英文</dd></div>
+</dl>
+<ul class="facts">
+<li>媒体分与玩家分继续分叉；正文并列不单采</li>
+<li>筛界/Ice Caves 精确窗仍未补锁 → 不整表复述 Minecraft LIVE</li>
+<li>后续若登录修复带动评测上修再短更</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/1912410/Minecraft_Dungeons_II/" rel="noopener" target="_blank">store.steampowered.com/app/1912410/Minecraft_Dungeons_II</a> · <a href="https://opencritic.com/game/20797/minecraft-dungeons-ii" rel="noopener" target="_blank">opencritic.com/game/20797/minecraft-dungeons-ii</a> · <a href="https://www.sportskeeda.com/minecraft/minecraft-dungeons-ii-launches-mixed-reviews-fans-face-login-issues" rel="noopener" target="_blank">www.sportskeeda.com/minecraft/minecraft-dungeons-ii-laun</a> · <a href="https://www.minecraft.net/en-us/about-dungeons-ii" rel="noopener" target="_blank">www.minecraft.net/en-us/about-dungeons-ii</a>。</p>
+
+</article>
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.kitguru.net/gaming/matthew-wilson/the-witcher-3-remastered-launches-to-very-positive-reviews/" rel="noopener" target="_blank">巫师3：狂猎 — 重制版首日口碑：Metacritic 汇总约 94；Steam 近期约 92% Very Positive</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/witcher3_header.jpg" alt="巫师3：狂猎 — 重制版首日口碑：Metacritic 汇总约 94；Steam 近期约 92% Very Positive" loading="lazy"/>
+</figure>
+<p class="signal-lede">昨发售/免费升级翻牌后首日口碑增量：KitGuru 交叉 Metacritic 综合约 94（称 2026 迄今最高之一）、Steam 近期评测约 92% Very Positive（6000+ 近期样本；总评仍 Overwhelmingly Positive，因共用原 AppID 292030）。媒体肯定画面管线/技能树/操作重做，亦有「仍略未完成」类保留。不复述升级路径本身；命名沿用 CDPR 简中「巫师3：狂猎 — 重制版」。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>首日口碑增量（非发售复述）</dd></div>
+<div><dt>作品</dt><dd>巫师3：狂猎 — 重制版（The Witcher 3: Wild Hunt – Remastered）</dd></div>
+<div><dt>Metacritic</dt><dd>汇总口径 ≈94（KitGuru 交叉）</dd></div>
+<div><dt>Steam 近期</dt><dd>≈92% Very Positive / 6000+（KitGuru）；总评 Overwhelmingly Positive</dd></div>
+<div><dt>注意</dt><dd>Steam 与原作同 AppID → 采「近期」而非全历史</dd></div>
+<div><dt>命名</dt><dd>CDPR 简中官方稿</dd></div>
+</dl>
+<ul class="facts">
+<li>属正面显著增量，权重低于 PC 翻车/分叉条 → fire 压 1</li>
+<li>Switch 2 独立版体感与体积投诉截稿未形成稳定一线簇 → pending</li>
+<li>不与巫师4 混条</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.kitguru.net/gaming/matthew-wilson/the-witcher-3-remastered-launches-to-very-positive-reviews/" rel="noopener" target="_blank">www.kitguru.net/gaming/matthew-wilson/the-witcher-3-rema</a> · <a href="https://www.thewitcher.com/pr/zh-cn/news/52022/wu-shi-3-kuang-xi-zhong-zhi-ban-zheng-shi-gong-kai" rel="noopener" target="_blank">www.thewitcher.com/pr/zh-cn/news/52022/wu-shi-3-kuang-xi</a> · <a href="https://store.steampowered.com/app/292030/" rel="noopener" target="_blank">store.steampowered.com/app/292030/</a>。</p>
+
+</article>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://www.capcom.co.jp/ir/english/news/html/e260929.html" rel="noopener" target="_blank">怪物猎人 Outlanders（Monster Hunter Outlanders）全球手游定档 10/29；国服「旅人」仍 2027</a></h4></div>
+
+<p class="signal-lede">昨 ~09:50 后漏报补入：Capcom IR（2026-09-29）与 Gematsu（09-28 22:15 EDT≈09-29 10:15 CST）确认 TiMi×Capcom 手游《Monster Hunter Outlanders》于 2026-10-29 登陆 iOS/Android（F2P+内购）；中国大陆简体版官方口径 2027。国服媒体通译「怪物猎人：旅人」指向大陆版本，海外产品名英文 Outlanders——标题「怪物猎人 Outlanders（Monster Hunter Outlanders）」，并注明国服译名。开放世界生存狩猎、7 种经典武器起步、Radiant 种怪物等。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>旗舰 IP 手游全球定档（漏报补入）</dd></div>
+<div><dt>作品</dt><dd>怪物猎人 Outlanders（Monster Hunter Outlanders）</dd></div>
+<div><dt>开发·发行</dt><dd>TiMi Studio Group · Capcom（授权）</dd></div>
+<div><dt>全球档期</dt><dd>2026-10-29 · iOS / Android</dd></div>
+<div><dt>中国大陆</dt><dd>2027（Capcom/通稿）；国服亦称「怪物猎人：旅人」</dd></div>
+<div><dt>类型</dt><dd>开放世界生存狩猎手游 · F2P</dd></div>
+<div><dt>时点</dt><dd>Capcom IR 09-29；Gematsu 落昨 10:15 CST → 补入核</dd></div>
+<div><dt>命名</dt><dd>海外产品名 Outlanders；国服「旅人」作平行注记</dd></div>
+</dl>
+<ul class="facts">
+<li>属二次元向弱、主机/PC 业界强的行业条 → 进游戏行业库而非二游库</li>
+<li>WeGame/国服实质开发消息二线有报，无新精确日 → 不另开</li>
+<li>进 new_games（定档）</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://www.capcom.co.jp/ir/english/news/html/e260929.html" rel="noopener" target="_blank">www.capcom.co.jp/ir/english/news/html/e260929.html</a> · <a href="https://www.gematsu.com/2026/09/monster-hunter-outlanders-launches-october-29" rel="noopener" target="_blank">www.gematsu.com/2026/09/monster-hunter-outlanders-launch</a> · <a href="https://www.capcom.co.jp/ir/english/news/pdf/e260929.pdf" rel="noopener" target="_blank">www.capcom.co.jp/ir/english/news/pdf/e260929.pdf</a>。</p>
+
+</article>
+<h3 class="section-title">🎮 新游 / 定档 / 发售</h3>
+<article class="signal medium">
+<div class="signal-head"><span class="fire">🔥🔥</span><h4><a href="https://store.steampowered.com/app/3841510/DYNASTY_WARRIORS_3_Complete_Edition_Remastered/?l=schinese" rel="noopener" target="_blank">真・三国无双２ with 猛将传 Remastered（DYNASTY WARRIORS 3: Complete Edition Remastered）今日发售翻牌</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/dw3re_header.jpg" alt="真・三国无双２ with 猛将传 Remastered（DYNASTY WARRIORS 3: Complete Edition Remastered）今日发售翻牌" loading="lazy"/>
+<img src="../media/2026-09-30/dw3re_ss01.jpg" alt="真・三国无双２ with 猛将传 Remastered（DYNASTY WARRIORS 3: Complete Edition Remastered）今日发售翻牌" loading="lazy"/>
+</figure>
+<p class="signal-lede">Omega Force / KOEI TECMO《真・三国无双２ with 猛将传 Remastered》Steam 简中店名与系列日式序号一致（西方编号 Dynasty Warriors 3＝系列「2」）。Steam / 部分店页锁 2026-09-30，KOEI TECMO America 通稿写 10/01——截稿 Steam 仍 coming_soon、用户评 0，按发售日翻牌。平台 PS5 / Xbox Series / Switch 2 / PC；UE5 重制含猛将传内容。口碑待解锁后补。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>系列经典完全版重制 · 发售翻牌</dd></div>
+<div><dt>作品</dt><dd>真・三国无双２ with 猛将传 Remastered（DYNASTY WARRIORS 3: Complete Edition Remastered）</dd></div>
+<div><dt>开发·发行</dt><dd>Omega Force · KOEI TECMO</dd></div>
+<div><dt>档期</dt><dd>Steam 简中 2026-09-30；KT America 通稿 10/01（以各店倒计时为准）</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series X|S / Switch 2 / PC（Steam）</dd></div>
+<div><dt>口碑</dt><dd>截稿 Steam 0 评；聚合分未核</dd></div>
+<div><dt>命名</dt><dd>Steam 简中店名「真・三国无双２ with 猛将传 Remastered」（非笔误：日系序号）</dd></div>
+</dl>
+<ul class="facts">
+<li>含原版 + Xtreme Legends（猛将传）内容；动作系统在还原基础上强化</li>
+<li>与空战奇兵8 全量窗邻近，属本周日系大作簇</li>
+<li>进 new_games</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥🔥。来源：<a href="https://store.steampowered.com/app/3841510/DYNASTY_WARRIORS_3_Complete_Edition_Remastered/?l=schinese" rel="noopener" target="_blank">store.steampowered.com/app/3841510/DYNASTY_WARRIORS_3_Co</a> · <a href="https://www.koeitecmoamerica.com/games/dynasty-warriors-3-complete-edition-remastered/" rel="noopener" target="_blank">www.koeitecmoamerica.com/games/dynasty-warriors-3-comple</a> · <a href="https://www.gematsu.com/2026/09/this-weeks-japanese-game-releases-ace-combat-8-wings-of-theve-dynasty-warriors-3-complete-edition-remastered-more" rel="noopener" target="_blank">www.gematsu.com/2026/09/this-weeks-japanese-game-release</a>。</p>
+
+</article>
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://store.steampowered.com/app/3386350/Shinjuku_Anomaly/?l=schinese" rel="noopener" target="_blank">新宿异变（Shinjuku Anomaly）Steam 短篇恐怖视觉小说发售</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/shinjuku_header.jpg" alt="新宿异变（Shinjuku Anomaly）Steam 短篇恐怖视觉小说发售" loading="lazy"/>
+<img src="../media/2026-09-30/shinjuku_ss01.jpg" alt="新宿异变（Shinjuku Anomaly）Steam 短篇恐怖视觉小说发售" loading="lazy"/>
+</figure>
+<p class="signal-lede">AMATA Games 短篇恐怖视觉小说《新宿异变》已在 Steam 上架（店页发行日写 9/29；厂商/Gematsu 口径 9/30 10:00 JST≈09:00 CST）。Steam 简中店名「新宿异变」；支持简中/繁中/英/日；定价约 ¥500 / $3.99。截稿 0 用户评——未达 5.15 优秀独立门槛，不进独立轴，进 new_games。部分背景图使用 AI（店页披露）。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>短篇恐怖视觉小说正式发售</dd></div>
+<div><dt>作品</dt><dd>新宿异变（Shinjuku Anomaly）</dd></div>
+<div><dt>开发·发行</dt><dd>AMATA Games</dd></div>
+<div><dt>档期</dt><dd>Steam 店页 9/29；厂商 9/30 10:00 JST</dd></div>
+<div><dt>平台</dt><dd>PC（Steam）</dd></div>
+<div><dt>定价</dt><dd>约 ¥500 / $3.99</dd></div>
+<div><dt>口碑</dt><dd>截稿 0 评</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「新宿异变」</dd></div>
+</dl>
+<ul class="facts">
+<li>玩法：夜间新宿拍摄怪异兼职 + 多结局；四条兼职规则</li>
+<li>独立轴：样本/完成度门槛未过 → indie 不单开本条</li>
+<li>落昨 pending「Shinjuku Anomaly 9/30」翻牌</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://store.steampowered.com/app/3386350/Shinjuku_Anomaly/?l=schinese" rel="noopener" target="_blank">store.steampowered.com/app/3386350/Shinjuku_Anomaly/?l=s</a> · <a href="https://www.gematsu.com/2026/09/horror-visual-novel-shinjuku-anomaly-launches-september-30" rel="noopener" target="_blank">www.gematsu.com/2026/09/horror-visual-novel-shinjuku-ano</a> · <a href="https://www.dreamnews.jp/press/0000363706" rel="noopener" target="_blank">www.dreamnews.jp/press/0000363706</a>。</p>
+
+</article>
+<article class="signal ">
+<div class="signal-head"><span class="fire">🔥</span><h4><a href="https://www.gematsu.com/2026/09/neighbors-suburban-warfare-now-available-for-ps5-xbox-series-and-pc" rel="noopener" target="_blank">家有恶邻（Neighbors: Suburban Warfare）离开抢先体验 · F2P 1.0 登陆 PS5 / Xbox Series / PC</a></h4></div>
+<figure class="signal-media">
+<img src="../media/2026-09-30/neighbors_header.jpg" alt="家有恶邻（Neighbors: Suburban Warfare）离开抢先体验 · F2P 1.0 登陆 PS5 / Xbox Series / PC" loading="lazy"/>
+</figure>
+<p class="signal-lede">Invisible Walls 郊区混战派对《家有恶邻》于 Big Break 同日宣布并完成 F2P 1.0：PS5 / Xbox Series / PC（Steam）现已可玩；EA 期曾售 $9.99。Steam 简中店名「家有恶邻」；截稿总评 Mixed（约 1277/1916）。属中小型多人新游翻牌，进 new_games；不达独立优秀门槛故不进独立轴（世界首发簇另开）。</p>
+<dl class="kv">
+<div><dt>事件</dt><dd>EA→F2P 1.0 + 主机同步</dd></div>
+<div><dt>作品</dt><dd>家有恶邻（Neighbors: Suburban Warfare）</dd></div>
+<div><dt>开发</dt><dd>Invisible Walls</dd></div>
+<div><dt>档期</dt><dd>2026-09-29（秀上宣布并上线）</dd></div>
+<div><dt>平台</dt><dd>PS5 / Xbox Series / PC（Steam）</dd></div>
+<div><dt>口碑</dt><dd>Steam Mixed ≈1277/1916（含 EA）</dd></div>
+<div><dt>命名</dt><dd>Steam 简中「家有恶邻」</dd></div>
+</dl>
+<ul class="facts">
+<li>模式含 Destruction / Brawl / Prop Hunt / Robot Invasion</li>
+<li>落 Big Break 同日，片单深潜表亦记；本条为发售翻牌短开</li>
+<li>时点 Gematsu 09-29 13:36 EDT≈09-30 01:36 CST → 本窗</li>
+</ul>
+
+
+<p class="signal-note">关注度 · 🔥。来源：<a href="https://www.gematsu.com/2026/09/neighbors-suburban-warfare-now-available-for-ps5-xbox-series-and-pc" rel="noopener" target="_blank">www.gematsu.com/2026/09/neighbors-suburban-warfare-now-a</a> · <a href="https://store.steampowered.com/app/1732430/Neighbors_Suburban_Warfare/?l=schinese" rel="noopener" target="_blank">store.steampowered.com/app/1732430/Neighbors_Suburban_Wa</a> · <a href="https://www.mynewsdesk.com/uk/swipe-right/pressreleases/everything-revealed-at-the-big-break-showcase-new-games-release-dates-and-a-frankly-obnoxious-number-of-trailers-3469784" rel="noopener" target="_blank">www.mynewsdesk.com/uk/swipe-right/pressreleases/everythi</a>。</p>
+
+</article>
+</section>
+
+<footer class="site-foot">
+  <p>观察台 · <a href="https://gamecrazy.github.io/daily-intelligence-hub/">最新入口</a> · 本页快照 <code>/daily/2026-09-30.html</code> · 生成 Asia/Shanghai</p>
+</footer>
+</div>
+<script src="../date-nav.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
